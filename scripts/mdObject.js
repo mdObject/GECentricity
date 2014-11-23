@@ -502,9 +502,11 @@ $mdObject.patient = function () {
         var data = $mdObject._mel.getData('{PATIENT.CONTACTS}');
 
         var dataArray = data.split('|');
-        for (var i = 0; i < dataArray.length; i++)
-            if (dataArray[i].length == 0)
+        for (var i = 0; i < dataArray.length; i++) {
+            if (dataArray[i].length == 0) {
                 dataArray.splice(i, 1);
+            }
+        }
         return dataArray;
     };
 
@@ -642,15 +644,17 @@ $mdObject.patient = function () {
 
         var data = $mdObject._mel.getData('{MEL_LIST_CARE_PLAN("delim","all","all")}');
 
-        var dataArray = data.split('|');
+        var dataArray = data.toList();
         for (var i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].length == 0) {
-                dataArray.splice(i, 1);
-            } else {
+            {
                 dataArray[i] = new carePlan(dataArray[i]);
             };
-
         }
+
+        dataArray.toMelString = function () {
+            return data;
+        };
+        
         return dataArray;
 
     };
@@ -694,8 +698,151 @@ $mdObject.patient = function () {
         return allergiesProperty;
     }();
 
+    patientProperty.immunizations = function () {
+
+        var data = $mdObject._mel.getData('{IMMUN_GETLIST()}');
+
+        var dataArray = data.toList();
+        for (var i = 0; i < dataArray.length; i++) {
+            {
+                dataArray[i] = new immunization(dataArray[i]);
+            };
+        }
+
+
+        dataArray.push = function (immunization) {
+            $mdObject._mel.getData('{IMMUN_ADD("' + immunization.toStringAdd() + '")}');
+            //Do what you want here...
+            return Array.prototype.push.apply(this, immunization);
+        };
+
+        dataArray.toMelString = function () {
+            return data;
+        };
+
+        
+        return dataArray;
+
+    };
+
+    //patientProperty.immunizations.prototype.get = function () {
+    //    var result = $mdObject._mel.getData('{IMMUN_GETLIST()}');
+        
+    //    return result === "" ? [] : result.toImmunizations();
+    //};
+
     return patientProperty;
 }();
+
+
+function immunization(value) {
+    var data = value.split('^');
+
+    var immunizationsProperty = {
+        immunizationId:         (data.length > 0) ? data[0] : {},
+        immunizationGroupId:    (data.length > 1) ? data[1] : {},
+        vaccineGroupName:       (data.length > 2) ? data[2] : {},
+        vaccineName:            (data.length > 3) ? data[3] : {},
+        medicalDisplayName:     (data.length > 4) ? data[4] : {},
+        series:                 (data.length > 5) ? data[5] : {},
+        wasGiven:               (data.length > 6) ? data[6] : {},
+        reasonNotGiven:         (data.length > 7) ? data[7] : {},
+        historical:             (data.length > 8) ? data[8] : {},
+        historicalSource:       (data.length > 9) ? data[9] : {},
+        vfcElegibility:         (data.length > 10) ? data[10] : {},
+        ddid:                   (data.length > 11) ? data[11] : {},
+        dnid:                   (data.length > 12) ? data[12] : {},
+        gpi:                    (data.length > 13) ? data[13] : {},
+        kdc:                    (data.length > 14) ? data[14] : {},
+        ndc:                    (data.length > 15) ? data[15] : {},
+        cvxCode:                (data.length > 16) ? data[16] : {},
+        doseAmount:             (data.length > 17) ? data[17] : {},
+        dosageUnitOfMeasure:    (data.length > 18) ? data[18] : {},
+        route:                  (data.length > 19) ? data[19] : {},
+        routeCode:              (data.length > 20) ? data[20] : {},
+        site:                   (data.length > 21) ? data[21] : {},
+        siteCode:               (data.length > 22) ? data[22] : {},
+        manufacturer:           (data.length > 23) ? data[23] : {},
+        manufacturerCode:       (data.length > 24) ? data[24] : {},
+        lotNumber:              (data.length > 25) ? data[25] : {},
+        expirationDate:         (data.length > 26) ? data[26] : {},
+        visPublishedDate:       (data.length > 27) ? data[27] : {},
+        administeredByName:     (data.length > 28) ? data[28] : {},
+        administeredDate:       (data.length > 29) ? data[29] : {},
+            administeredDateType:(data.length > 30) ? data[30] : {},
+        administeredComments: (data.length > 31) ? data[31] : {},
+        advReactionDateTime: (data.length > 32) ? data[32] : {},
+            advReactionDateTimeType: (data.length > 33) ? data[33] : {},
+        advReactionComments:    (data.length > 34) ? data[34] : {},
+        advReactionCmtByName:   (data.length > 35) ? data[35] : {},
+        signed:                 (data.length > 36) ? data[36] : {},
+        signedByName:           (data.length > 37) ? data[37] : {},
+        signedDate:             (data.length > 38) ? data[38] : {},
+        reasonRemoved:          (data.length > 39) ? data[39] : {},
+        stopDate:               (data.length > 40) ? data[40] : {},
+        reasonNotGivenMedical:  (data.length > 41) ? data[41] : {},
+        reasonNotGivenMedicalDetail: (data.length > 42) ? data[42] : {},
+        save: function () {
+            if(immunizationId == null)
+            {
+                // add
+            }
+            else
+            {
+                // update
+            }
+        },
+        toMelString: function () { return value; }
+    };
+
+    //immunizationsProperty.toStringAdd = function () {
+    //    return vaccineGroupName + '^' +
+    //        vaccineName + '^' +
+    //        medicalDisplayName + '^' +
+    //        series + '^' +
+    //        wasGiven + '^' +
+    //        reasonNotGiven + '^' +
+    //        historical + '^' +
+    //        historicalSource + '^' +
+    //        vfcElegibility + '^' +
+    //        ddid + '^' +
+    //        dnid + '^' +
+    //        gpi + '^' +
+    //        kdc + '^' +
+    //        ndc + '^' +
+    //        cvxCode + '^' +
+    //        administeredDose + '^' +
+    //        administeredDoseUnits + '^' +
+    //        route + '^' +
+    //        routeCode + '^' +
+    //        site + '^' +
+    //        siteCode + '^' +
+    //        manufacturer + '^' +
+    //        manufacturerCode + '^' +
+    //        lotNumber + '^' +
+    //        expirationDate + '^' +
+    //        visPublishedDate + '^' +
+    //        administeredByName + '^' +
+    //        administeredDate + '^' +
+    //        administeredDateType + '^' +
+    //        administeredComments + '^' +
+    //        advReactionDateTime + '^' +
+    //        advReactionDateTimeType + '^' +
+    //        advReactionComments + '^' +
+    //        advReactionCmtByName + '^' +
+    //        signed + '^' +
+    //        signedByName + '^' +
+    //        signedDate + '^' +
+    //        reasonRemoved + '^' +
+    //        stopDate + '^' +
+    //        reasonNotGivenMedical + '^' +
+    //        reasonNotGivenMedicalDetail;
+    //};
+
+    
+
+    return immunizationsProperty;
+};
 
 // Implementation of EMR object
 $mdObject.emr = function () {
@@ -723,10 +870,9 @@ function measurement(isCurrent) {
     var objectProperty = {
         // Returns the patient’s weight
         weight: {},
+        // Returns the patient’s height
         height: {}
     };
-
-
 
     objectProperty.weight = function () { return $mdObject._mel.getObs(isCurrent, $mdObjectObsTermsMapping.weight); };
     objectProperty.height = function () { return $mdObject._mel.getObs(isCurrent, $mdObjectObsTermsMapping.height); };
@@ -812,14 +958,17 @@ function allergyListRemoved(list) {
 // Function parse string object to array of string 
 if (String.prototype.toList == null) {
     String.prototype.toList = function (seporator) {
-        if (seporator == null)
+        if (seporator == null) {
             seporator = '|';
+        }
+
         var dataArray = this.split(seporator);
         for (var i = 0; i < dataArray.length; i++) {
             if (dataArray[i].length == 0) {
                 dataArray.splice(i, 1);
             };
         }
+
         return dataArray;
     }
 }
