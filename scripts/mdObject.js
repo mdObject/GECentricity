@@ -726,63 +726,79 @@ function immunization(value) {
     var data = value==null? []: value.split('^');
     var isNew = value == null ? true : false;
     var immunizationsProperty = {
-        immunizationId:         (data.length > 0) ? data[0] : '',
-        immunizationGroupId:    (data.length > 1) ? data[1] : '',
-        vaccineGroupName:       (data.length > 2) ? data[2] : '',
-        vaccineName:            (data.length > 3) ? data[3] : '',
-        medicalDisplayName:     (data.length > 4) ? data[4] : '',
-        series:                 (data.length > 5) ? data[5] : '',
-        wasGiven:               (data.length > 6) ? data[6] : '',
-        reasonNotGiven:         (data.length > 7) ? data[7] : '',
-        historical:             (data.length > 8) ? data[8] : '',
-        historicalSource:       (data.length > 9) ? data[9] : '',
-        vfcElegibility:         (data.length > 10) ? data[10] : '',
-        ddid:                   (data.length > 11) ? data[11] : '',
-        dnid:                   (data.length > 12) ? data[12] : '',
-        gpi:                    (data.length > 13) ? data[13] : '',
-        kdc:                    (data.length > 14) ? data[14] : '',
-        ndc:                    (data.length > 15) ? data[15] : '',
-        cvxCode:                (data.length > 16) ? data[16] : '',
-        doseAmount:             (data.length > 17) ? data[17] : '',
-        dosageUnitOfMeasure:    (data.length > 18) ? data[18] : '',
-        route:                  (data.length > 19) ? data[19] : '',
-        routeCode:              (data.length > 20) ? data[20] : '',
-        site:                   (data.length > 21) ? data[21] : '',
-        siteCode:               (data.length > 22) ? data[22] : '',
-        manufacturer:           (data.length > 23) ? data[23] : '',
-        manufacturerCode:       (data.length > 24) ? data[24] : '',
-        lotNumber:              (data.length > 25) ? data[25] : '',
-        expirationDate:         (data.length > 26) ? data[26] : '',
-        visPublishedDate:       (data.length > 27) ? data[27] : '',
-        administeredByName:     (data.length > 28) ? data[28] : '',
-        administeredDate:       (data.length > 29) ? data[29] : '',
-            administeredDateType:(data.length > 30) ? data[30] : '',
+        immunizationId: (data.length > 0) ? data[0] : '',
+        immunizationGroupId: (data.length > 1) ? data[1] : '',
+        vaccineGroupName: (data.length > 2) ? data[2] : '',
+        vaccineName: (data.length > 3) ? data[3] : '',
+        medicalDisplayName: (data.length > 4) ? data[4] : '',
+        series: (data.length > 5) ? data[5] : '',
+        wasGiven: (data.length > 6) ? data[6] : '',
+        reasonNotGiven: (data.length > 7) ? data[7] : '',
+        historical: (data.length > 8) ? data[8] : '',
+        historicalSource: (data.length > 9) ? data[9] : '',
+        vfcElegibility: (data.length > 10) ? data[10] : '',
+        ddid: (data.length > 11) ? data[11] : '',
+        dnid: (data.length > 12) ? data[12] : '',
+        gpi: (data.length > 13) ? data[13] : '',
+        kdc: (data.length > 14) ? data[14] : '',
+        ndc: (data.length > 15) ? data[15] : '',
+        cvxCode: (data.length > 16) ? data[16] : '',
+        doseAmount: (data.length > 17) ? data[17] : '',
+        dosageUnitOfMeasure: (data.length > 18) ? data[18] : '',
+        route: (data.length > 19) ? data[19] : '',
+        routeCode: (data.length > 20) ? data[20] : '',
+        site: (data.length > 21) ? data[21] : '',
+        siteCode: (data.length > 22) ? data[22] : '',
+        manufacturer: (data.length > 23) ? data[23] : '',
+        manufacturerCode: (data.length > 24) ? data[24] : '',
+        lotNumber: (data.length > 25) ? data[25] : '',
+        expirationDate: (data.length > 26) ? data[26] : '',
+        visPublishedDate: (data.length > 27) ? data[27] : '',
+        administeredByName: (data.length > 28) ? data[28] : '',
+        administeredDate: (data.length > 29) ? data[29] : '',
+        administeredDateType: (data.length > 30) ? data[30] : '',
         administeredComments: (data.length > 31) ? data[31] : '',
         advReactionDateTime: (data.length > 32) ? data[32] : '',
-            advReactionDateTimeType: (data.length > 33) ? data[33] : '',
-        advReactionComments:    (data.length > 34) ? data[34] : '',
-        advReactionCmtByName:   (data.length > 35) ? data[35] : '',
-        signed:                 (data.length > 36) ? data[36] : '',
-        signedByName:           (data.length > 37) ? data[37] : '',
-        signedDate:             (data.length > 38) ? data[38] : '',
-        reasonRemoved:          (data.length > 39) ? data[39] : '',
-        stopDate:               (data.length > 40) ? data[40] : '',
-        reasonNotGivenMedical:  (data.length > 41) ? data[41] : '',
+        advReactionDateTimeType: (data.length > 33) ? data[33] : '',
+        advReactionComments: (data.length > 34) ? data[34] : '',
+        advReactionCmtByName: (data.length > 35) ? data[35] : '',
+        signed: (data.length > 36) ? data[36] : '',
+        signedByName: (data.length > 37) ? data[37] : '',
+        signedDate: (data.length > 38) ? data[38] : '',
+        reasonRemoved: (data.length > 39) ? data[39] : '',
+        stopDate: (data.length > 40) ? data[40] : '',
+        reasonNotGivenMedical: (data.length > 41) ? data[41] : '',
         reasonNotGivenMedicalDetail: (data.length > 42) ? data[42] : '',
         save: function () {
-            if(isNew)
-            {
-                // add
-                $mdObject._mel.getData('{IMMUN_ADD("' + this.toStringAdd() + '")}');
-                alert('Added');
+            if (isNew) {
+                if ((isError = this.validateAdd()) == '') {
+                    var response = $mdObject._mel.getData('{IMMUN_ADD("' + this.toStringAdd() + '")}');
+                    if (response < 0)
+                    { alert(response); }
+                }
+                else {
+                    alert(isError);
+                }
             }
-            else
-            {
+            else {
                 // update
             }
         },
         toMelString: function () { return value; }
     };
+
+    immunizationsProperty.validateAdd = function () {
+        var errorMessage = ' is required.';
+        // check required parameters
+        if (this.vaccineGroupName == '') { return 'vaccineGroupName' + errorMessage; }
+        if (this.wasGiven == '') { return 'wasGiven' + errorMessage; }
+        if (this.historical == '') { return 'historical' + errorMessage; }
+        if (this.vfcElegibility == '') { return 'vfcElegibility' + errorMessage; }
+        if (this.administeredDate == '') { return 'administeredDate' + errorMessage; }
+        if (this.doseAmount.match(/[^0-9.]/g)) { return 'doseAmount should be numeric.'; }
+        return '';
+    }
+
 
     immunizationsProperty.toStringAdd = function () {
         return this.vaccineGroupName + '^' +
