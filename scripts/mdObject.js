@@ -134,6 +134,7 @@ var $mdObject = {
 $mdObject.patient = function () {
     // Holds all patient immunizations
     var _immunizations = null;
+    var _carePlans = null;
     // Get current patient
     var patientProperty = {
         // Returns the patient’s ID number
@@ -214,7 +215,7 @@ $mdObject.patient = function () {
         // List of patient insurances 
         insurances: {},
 
-        measurement: {}
+        measurements: {}
     };
     
     patientProperty.patientId = function () {
@@ -607,7 +608,7 @@ $mdObject.patient = function () {
         return providerProperty;
     }();
 
-    patientProperty.measurement = function () {
+    patientProperty.measurements = function () {
         var measurementProperty = {
 
             current: {},
@@ -644,20 +645,20 @@ $mdObject.patient = function () {
             patientConditionCode: {}
         };
 
-        var data = $mdObject._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
-
-        var dataArray = data.toList();
-        for (var i = 0; i < dataArray.length; i++) {
-            {
+        if (_carePlans == null) {
+            var data = $mdObject._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
+            var dataArray = data.toList();
+            for (var i = 0; i < dataArray.length; i++) {
                 dataArray[i] = new carePlan(dataArray[i]);
-            };
+            }
+            _carePlans = dataArray;
         }
 
-        dataArray.toMelString = function () {
+        _carePlans.toMelString = function () {
             return data;
         };
         
-        return dataArray;
+        return _carePlans;
 
     };
 
@@ -701,13 +702,13 @@ $mdObject.patient = function () {
     }();
 
     patientProperty.immunizations = function () {
+        // pull immunization only one time
         if (_immunizations == null) {
             var data = $mdObject._mel.melFunc('{IMMUN_GETLIST()}');
             var dataArray = data.toList();
             for (var i = 0; i < dataArray.length; i++) {
-                dataArray[i] = new immunization(dataArray[i]);
+                dataArray[i] = new $mdObject.immunization(dataArray[i]);
             }
-
             _immunizations = dataArray;
         }
 
@@ -722,7 +723,7 @@ $mdObject.patient = function () {
 }();
 
 
-function immunization(value) {
+$mdObject.immunization = function(value) {
     var data = value == null ? [] : value.split('^');
     var isNew = value == null ? true : false;
     var immunizationsProperty = {
