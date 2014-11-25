@@ -72,11 +72,11 @@ function emrMel() {
     };
 
     // Implements MEL eval function
-    this.getData = function (data) { return (mel == null) ? noMelData : mel.eval(data); }
+    this.melFunc = function (data) { return (mel == null) ? noMelData : mel.eval(data); }
 
     this.getObs = function (isCurrent, data) { return (mel == null) ? noMelData : ((isCurrent == true) ? mel.OBSNOW(data, '', '') : mel.OBSPREV(data)); }
 
-    this.showUrlDialog = function (url) { this.getData('{SHOW_HTML_FORM("' + url + '","test")}'); }
+    this.showUrlDialog = function (url) { this.melFunc('{SHOW_HTML_FORM("' + url + '","test")}'); }
 
 }
 
@@ -219,7 +219,7 @@ $mdObject.patient = function () {
     
     patientProperty.patientId = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.PATIENTID}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.PATIENTID}'); },
             tag: function () { return 'PATIENT.PATIENTID'; }
         };
         return propertyObject;
@@ -227,7 +227,7 @@ $mdObject.patient = function () {
     
     patientProperty.medicalRecordId = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.MEDRECNO}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.MEDRECNO}'); },
             tag: function () { return 'PATIENT.MEDRECNO'; }
         };
         return propertyObject;
@@ -235,7 +235,7 @@ $mdObject.patient = function () {
 
     patientProperty.externalId = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.EXTERNALID}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.EXTERNALID}'); },
             tag: function () { return 'PATIENT.EXTERNALID'; }
         };
         return propertyObject;
@@ -243,7 +243,7 @@ $mdObject.patient = function () {
 
     patientProperty.printId = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.PRINTID}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.PRINTID}'); },
             tag: function () { return 'PATIENT.PRINTID'; }
         };
         return propertyObject;
@@ -251,7 +251,7 @@ $mdObject.patient = function () {
 
     patientProperty.ssn = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.SOCSECNO}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.SOCSECNO}'); },
             tag: function () { return 'PATIENT.SOCSECNO'; }
         };
         return propertyObject;
@@ -259,7 +259,7 @@ $mdObject.patient = function () {
 
     patientProperty.firstName = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.FIRSTNAME}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.FIRSTNAME}'); },
             tag: function () { return 'PATIENT.FIRSTNAME'; }
         };
         return propertyObject;
@@ -267,7 +267,7 @@ $mdObject.patient = function () {
 
     patientProperty.lastName = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.LASTNAME}');},
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.LASTNAME}');},
             tag: function () { return 'PATIENT.LASTNAME'; }
         };
         return propertyObject;
@@ -275,7 +275,7 @@ $mdObject.patient = function () {
 
     patientProperty.middleName = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.MIDDLENAME}');},
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.MIDDLENAME}');},
             tag: function () { return 'PATIENT.MIDDLENAME'; }
         };
         return propertyObject;
@@ -283,7 +283,7 @@ $mdObject.patient = function () {
 
     patientProperty.labelName = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.LABELNAME}');},
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.LABELNAME}');},
             tag: function () { return 'PATIENT.LABELNAME'; }
         };
         return propertyObject;
@@ -291,7 +291,7 @@ $mdObject.patient = function () {
 
     patientProperty.namePrefix = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.TITLE}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.TITLE}'); },
             tag: function () { return 'PATIENT.TITLE'; }
         };
         return propertyObject;
@@ -299,7 +299,7 @@ $mdObject.patient = function () {
 
     patientProperty.nameSuffix = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.ENTITLEMENTS}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.ENTITLEMENTS}'); },
             tag: function () { return 'PATIENT.ENTITLEMENTS'; }
         };
         return propertyObject;
@@ -323,7 +323,7 @@ $mdObject.patient = function () {
 
         addressProperty.address1 = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.ADDRESS1}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.ADDRESS1}'); },
                 tag: function () { return 'PATIENT.ADDRESS1'; }
             };
             return propertyObject;
@@ -331,7 +331,7 @@ $mdObject.patient = function () {
 
         addressProperty.address2 = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.ADDRESS2}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.ADDRESS2}'); },
                 tag: function () { return 'PATIENT.ADDRESS2'; }
             };
             return propertyObject;
@@ -339,7 +339,7 @@ $mdObject.patient = function () {
 
         addressProperty.city = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.CITY}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.CITY}'); },
                 tag: function () { return 'PATIENT.CITY'; }
             };
             return propertyObject;
@@ -347,7 +347,7 @@ $mdObject.patient = function () {
 
         addressProperty.state = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.STATE}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.STATE}'); },
                 tag: function () { return 'PATIENT.STATE'; }
             };
             return propertyObject;
@@ -355,7 +355,7 @@ $mdObject.patient = function () {
 
         addressProperty.postCode = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.ZIP}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.ZIP}'); },
                 tag: function () { return 'PATIENT.ZIP'; }
             };
             return propertyObject;
@@ -363,7 +363,7 @@ $mdObject.patient = function () {
 
         addressProperty.country = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.COUNTRY}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.COUNTRY}'); },
                 tag: function () { return 'PATIENT.COUNTRY'; }
             };
             return propertyObject;
@@ -374,7 +374,7 @@ $mdObject.patient = function () {
 
     patientProperty.sex = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.SEX}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.SEX}'); },
             tag: function () { return 'PATIENT.SEX'; }
         };
         return propertyObject;
@@ -382,7 +382,7 @@ $mdObject.patient = function () {
 
     patientProperty.race = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.RACE}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.RACE}'); },
             tag: function () { return 'PATIENT.RACE'; }
         };
         return propertyObject;
@@ -390,7 +390,7 @@ $mdObject.patient = function () {
 
     patientProperty.ethnicity = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.ETHNICITY}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.ETHNICITY}'); },
             tag: function () { return 'PATIENT.ETHNICITY'; }
         };
         return propertyObject;
@@ -398,25 +398,25 @@ $mdObject.patient = function () {
 
     patientProperty.dateOfBirth = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.DATEOFBIRTH}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.DATEOFBIRTH}'); },
             tag: function () { return 'PATIENT.DATEOFBIRTH'; },
-            toDate: function () { var dob = $mdObject._mel.getData('{PATIENT.DATEOFBIRTH}'); return new Date(dob); }
+            toDate: function () { var dob = $mdObject._mel.melFunc('{PATIENT.DATEOFBIRTH}'); return new Date(dob); }
         };
         return propertyObject;
     };
 
     patientProperty.dateOfDeath = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.DATEOFDEATH}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.DATEOFDEATH}'); },
             tag: function () { return 'PATIENT.DATEOFDEATH'; },
-            toDate: function () { var dod = $mdObject._mel.getData('{PATIENT.DATEOFDEATH}'); return new Date(dod); }
+            toDate: function () { var dod = $mdObject._mel.melFunc('{PATIENT.DATEOFDEATH}'); return new Date(dod); }
         };
         return propertyObject;
     };
 
     patientProperty.maritalStatus = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.MARITALSTATUS}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.MARITALSTATUS}'); },
             tag: function () { return 'PATIENT.MARITALSTATUS'; }
         };
         return propertyObject;
@@ -424,7 +424,7 @@ $mdObject.patient = function () {
 
     patientProperty.language = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.PREFLANG}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.PREFLANG}'); },
             tag: function () { return 'PATIENT.PREFLANG'; }
         };
         return propertyObject;
@@ -443,7 +443,7 @@ $mdObject.patient = function () {
 
         addressProperty.home = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.ALTPHONE}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.ALTPHONE}'); },
                 tag: function () { return 'PATIENT.ALTPHONE'; }
             };
             return propertyObject;
@@ -451,7 +451,7 @@ $mdObject.patient = function () {
 
         addressProperty.business = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.WORKPHONE}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.WORKPHONE}'); },
                 tag: function () { return 'PATIENT.WORKPHONE'; }
             };
             return propertyObject;
@@ -459,7 +459,7 @@ $mdObject.patient = function () {
 
         addressProperty.mobile = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.CELLPHONE}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.CELLPHONE}'); },
                 tag: function () { return 'PATIENT.CELLPHONE'; }
             };
             return propertyObject;
@@ -467,7 +467,7 @@ $mdObject.patient = function () {
 
         addressProperty.fax = function () {
             var propertyObject = {
-                toString: function () { return $mdObject._mel.getData('{PATIENT.FAXPHONE}'); },
+                toString: function () { return $mdObject._mel.melFunc('{PATIENT.FAXPHONE}'); },
                 tag: function () { return 'PATIENT.FAXPHONE'; }
             };
             return propertyObject;
@@ -478,7 +478,7 @@ $mdObject.patient = function () {
 
     patientProperty.email = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.EMAIL}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.EMAIL}'); },
             tag: function () { return 'PATIENT.EMAIL'; }
         };
         return propertyObject;
@@ -486,7 +486,7 @@ $mdObject.patient = function () {
 
     patientProperty.contactBy = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.CONTACTBY}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.CONTACTBY}'); },
             tag: function () { return 'PATIENT.CONTACTBY'; }
         };
         return propertyObject;
@@ -501,7 +501,7 @@ $mdObject.patient = function () {
             address: {}
         };
 
-        var data = $mdObject._mel.getData('{PATIENT.CONTACTS}');
+        var data = $mdObject._mel.melFunc('{PATIENT.CONTACTS}');
 
         var dataArray = data.split('|');
         for (var i = 0; i < dataArray.length; i++) {
@@ -514,7 +514,7 @@ $mdObject.patient = function () {
 
     patientProperty.employmentStatus = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.EMPLSTATUS}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.EMPLSTATUS}'); },
             tag: function () { return 'PATIENT.EMPLSTATUS'; }
         };
         return propertyObject;
@@ -522,7 +522,7 @@ $mdObject.patient = function () {
 
     patientProperty.clinicStatus = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.PSTATUS}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.PSTATUS}'); },
             tag: function () { return 'PATIENT.PSTATUS'; }
         };
         return propertyObject;
@@ -530,7 +530,7 @@ $mdObject.patient = function () {
 
     patientProperty.primaryCarePhysicianName = function () {
         var propertyObject = {
-            toString: function () { return $mdObject._mel.getData('{PATIENT.PCP}'); },
+            toString: function () { return $mdObject._mel.melFunc('{PATIENT.PCP}'); },
             tag: function () { return 'PATIENT.PCP'; }
         };
         return propertyObject;
@@ -548,19 +548,19 @@ $mdObject.patient = function () {
         };
 
         providerProperty.referringProviderId = function () {
-            return $mdObject._mel.getData('{PATIENT.REFMDID}');
+            return $mdObject._mel.melFunc('{PATIENT.REFMDID}');
         };
 
         providerProperty.firstName = function () {
-            return $mdObject._mel.getData('{PATIENT.REFMDFIRSTNAME}');
+            return $mdObject._mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
         };
 
         providerProperty.lastName = function () {
-            return $mdObject._mel.getData('{PATIENT.REFMDLASTNAME}');
+            return $mdObject._mel.melFunc('{PATIENT.REFMDLASTNAME}');
         };
 
         providerProperty.email = function () {
-            return $mdObject._mel.getData('{PATIENT.REFMDEMAILADDRESS}');
+            return $mdObject._mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
         };
 
         providerProperty.phone = function () {
@@ -578,30 +578,30 @@ $mdObject.patient = function () {
             };
 
             phoneProperty.office = function () {
-                return $mdObject._mel.getData('{PATIENT.REFMDOFFICEPHONE}');
+                return $mdObject._mel.melFunc('{PATIENT.REFMDOFFICEPHONE}');
             };
 
             phoneProperty.alternative = function () {
-                return $mdObject._mel.getData('{PATIENT.REFMDALTPHONE}');
+                return $mdObject._mel.melFunc('{PATIENT.REFMDALTPHONE}');
             };
 
             phoneProperty.fax = function () {
-                return $mdObject._mel.getData('{PATIENT.REFMDFAXPHONE}');
+                return $mdObject._mel.melFunc('{PATIENT.REFMDFAXPHONE}');
             };
 
             phoneProperty.pager = function () {
-                return $mdObject._mel.getData('{PATIENT.REFMDPAGERPHONE}');
+                return $mdObject._mel.melFunc('{PATIENT.REFMDPAGERPHONE}');
             };
 
             phoneProperty.mobile = function () {
-                return $mdObject._mel.getData('{PATIENT.REFMDCELLPHONE}');
+                return $mdObject._mel.melFunc('{PATIENT.REFMDCELLPHONE}');
             };
 
             return phoneProperty;
         }();
 
         providerProperty.fullAddress = function () {
-            return $mdObject._mel.getData('{PATIENT.REFMDADDRESS}');
+            return $mdObject._mel.melFunc('{PATIENT.REFMDADDRESS}');
         };
 
         return providerProperty;
@@ -644,7 +644,7 @@ $mdObject.patient = function () {
             patientConditionCode: {}
         };
 
-        var data = $mdObject._mel.getData('{MEL_LIST_CARE_PLAN("delim","all","all")}');
+        var data = $mdObject._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
 
         var dataArray = data.toList();
         for (var i = 0; i < dataArray.length; i++) {
@@ -669,7 +669,7 @@ $mdObject.patient = function () {
         };
 
         allergiesProperty.added = function () {
-            var dataArray = $mdObject._mel.getData('{ALL_NEW("delimited")}').toList();
+            var dataArray = $mdObject._mel.melFunc('{ALL_NEW("delimited")}').toList();
             for (var i = 0; i < dataArray.length; i++) {
                 {
                     dataArray[i] = new allergyList(dataArray[i]);
@@ -679,7 +679,7 @@ $mdObject.patient = function () {
         };
 
         allergiesProperty.removed = function () {
-            var dataArray = $mdObject._mel.getData('{ALL_REMOVED("delimited")}').toList();
+            var dataArray = $mdObject._mel.melFunc('{ALL_REMOVED("delimited")}').toList();
             for (var i = 0; i < dataArray.length; i++) {
                 {
                     dataArray[i] = new allergyListRemoved(dataArray[i]);
@@ -689,7 +689,7 @@ $mdObject.patient = function () {
         };
 
         allergiesProperty.current = function () {
-            var dataArray = $mdObject._mel.getData('{ALL_PRIOR("delimited")}').toList();
+            var dataArray = $mdObject._mel.melFunc('{ALL_PRIOR("delimited")}').toList();
             for (var i = 0; i < dataArray.length; i++) {
                 {
                     dataArray[i] = new allergyList(dataArray[i]);
@@ -702,7 +702,7 @@ $mdObject.patient = function () {
 
     patientProperty.immunizations = function () {
         if (_immunizations == null) {
-            var data = $mdObject._mel.getData('{IMMUN_GETLIST()}');
+            var data = $mdObject._mel.melFunc('{IMMUN_GETLIST()}');
             var dataArray = data.toList();
             for (var i = 0; i < dataArray.length; i++) {
                 dataArray[i] = new immunization(dataArray[i]);
@@ -723,7 +723,7 @@ $mdObject.patient = function () {
 
 
 function immunization(value) {
-    var data = value==null? []: value.split('^');
+    var data = value == null ? [] : value.split('^');
     var isNew = value == null ? true : false;
     var immunizationsProperty = {
         immunizationId: (data.length > 0) ? data[0] : '',
@@ -772,7 +772,7 @@ function immunization(value) {
         save: function () {
             if (isNew) {
                 if ((isError = this.validateAdd()) == '') {
-                    var response = $mdObject._mel.getData('{IMMUN_ADD("' + this.toStringAdd() + '")}');
+                    var response = $mdObject._mel.melFunc('{IMMUN_ADD("' + this.toStringAdd() + '")}');
                     if (response < 0)
                     { alert(response); }
                 }
@@ -798,7 +798,6 @@ function immunization(value) {
         if (this.doseAmount.match(/[^0-9.]/g)) { return 'doseAmount should be numeric.'; }
         return '';
     }
-
 
     immunizationsProperty.toStringAdd = function () {
         return this.vaccineGroupName + '^' +
@@ -843,9 +842,6 @@ function immunization(value) {
             this.reasonNotGivenMedical + '^' +
             this.reasonNotGivenMedicalDetail;
     };
-
-    
-
     return immunizationsProperty;
 };
 
