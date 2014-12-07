@@ -400,6 +400,27 @@
 
         return objectProperty;
     }
+
+    function Insurance(insuranceType)
+    {
+        var objectProperty = {
+            // Type of insurance P = Primary S = Secondary O = Other
+            type: insuranceType,
+            // The name of the patient’s insurance carrier.
+            name: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_NAME("' + type + '")}'); } return value; }(insuranceType),
+            // The name and address of the patient’s insurance carrier.
+            address: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_ADDR("' + type + '")}'); } return value; }(insuranceType),
+            // The patient’s insurance ID number for insurance carrier.
+            insuranceId: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_ID("' + type + '")}'); } return value; }(insuranceType),
+            // The name of the patient’s plan for insurance
+            planName: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_PLAN("' + type + '")}'); } return value; }(insuranceType),
+            // The group number of the patient’s insurance carrier.
+            groupNumber: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_GRP("' + type + '")}'); } return value; }(insuranceType),
+            // The phone number of the patient’s insurance company
+            phone: function (type) { var value; if (value === undefined) { value = _mel.melFunc('{INS_PHONE("' + type + '")}'); } return value; }(insuranceType)
+        };
+        return objectProperty;
+    }
     //-------------- /classes --------------
 
 
@@ -1264,6 +1285,18 @@
         return allergiesProperty;
     }();
 
+    mdObject.patient.insurances = (function () {
+        var insArray;
+        if (insArray === undefined) {
+            insArray = new Array();
+            insArray.push(new Insurance('P'));
+            insArray.push(new Insurance('S'));
+            insArray.push(new Insurance('T'));
+
+        }
+        return insArray;
+
+    }());
     // List all immunizations
     mdObject.patient.immunizations =
         (function () {

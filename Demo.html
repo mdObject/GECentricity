@@ -487,6 +487,48 @@
                         </div>
                     </div>
                 </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Insurances</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="ins in patient.insurances">
+                                        <div class="row">
+                                            <div class="col-sm-3">Name:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.name"></span></div>
+                                            <div class="col-sm-3">Type:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.type"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Phone:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.phone"></span></div>
+                                            <div class="col-sm-3">Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.insuranceId"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">planName:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.planName"></span></div>
+                                            <div class="col-sm-3">groupNumber:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.groupNumber"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Address:</div>
+                                            <div class="col-sm-9"><span ng-bind="ins.address"></span></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
      </div>
