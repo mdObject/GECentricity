@@ -405,7 +405,7 @@
 
     var document = window.document,
 
-        version = "0.0.2",
+        version = "0.0.3",
 
         productType = "GE",
 
@@ -416,6 +416,8 @@
         _immunizations = null,
 
         _carePlans = null;
+
+    mdObject.version = version;
 
     mdObject.obsTermsMap = {
         // patient’s weight
@@ -1204,7 +1206,7 @@
             return measurementProperty;
         }());
 
-    mdObject.patient.carePlans = function () {
+    mdObject.patient.carePlans = (function () {
         var data, dataArray, index;
 
         if (_carePlans === null) {
@@ -1218,12 +1220,15 @@
             _carePlans = dataArray;
         }
 
+        _carePlans.tag = function () {
+            return 'MEL_LIST_CARE_PLAN';
+        };
         _carePlans.toMelString = function () {
             return data;
         };
 
         return _carePlans;
-    };
+    }());
 
     // Allergy list
     mdObject.patient.allergies = function () {

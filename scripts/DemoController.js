@@ -5,4 +5,5 @@ var phonecatApp = angular.module('mdObjectDemo', []);
 phonecatApp.controller('DemoController', function ($scope, $parse) {
 
     $scope.patient = $mdObject.patient;
+    $scope.version = $mdObject.version;
 });

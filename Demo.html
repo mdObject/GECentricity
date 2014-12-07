@@ -13,11 +13,13 @@
     <script src="scripts/DemoController.js" type="text/javascript"></script>
 </head>
 <body ng-controller="DemoController">
+    
     <div class="container">
         <div class="jumbotron">
             <h1>  GE Centricity mdObject Demo</h1>
             <p>This is a template for a simple demo of $mdObject functionality.
             Use it as a starting point to create something more unique.</p>
+            <p>mdObject version: <span ng-bind="version" /></p> 
         </div>
 
         <div class="panel panel-primary">
@@ -348,7 +350,7 @@
                                             <div class="col-sm-3">visPublishedDate:</div>
                                             <div class="col-sm-3"><span ng-bind="imms.visPublishedDate"></span></div>
                                             <div class="col-sm-3"></div>
-                                            <div class="col-sm-3"></span></div>
+                                            <div class="col-sm-3"></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-3">administeredByName:</div>
@@ -419,10 +421,75 @@
                     </div>
                 </div>
 
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Care Plan</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="plan in patient.carePlans">
+                                        <div class="row">
+                                            <div class="col-sm-3">ID:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.carePlanId"></span></div>
+                                            <div class="col-sm-3">goal:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goal"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">snomedCTCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.snomedCTCode"></span></div>
+                                            <div class="col-sm-3">target:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.target"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">instructions:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.instructions"></span></div>
+                                            <div class="col-sm-3">goalSetDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goalSetDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">goalMetDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goalMetDate"></span></div>
+                                            <div class="col-sm-3">recordCreatedDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordCreatedDateTime"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">sign:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.sign"></span></div>
+                                            <div class="col-sm-3">signedBy:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.signedBy"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.signedDate"></span></div>
+                                            <div class="col-sm-3">recordChangedDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordChangedDateTime"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">recordChangedBy:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordChangedBy"></span></div>
+                                            <div class="col-sm-3">patientConditionDescription:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.patientConditionDescription"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">patientConditionCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.patientConditionCode"></span></div>
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-3"></div>
+                                        </div>
 
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
+     </div>
 
 </body>
 
