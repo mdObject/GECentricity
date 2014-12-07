@@ -266,6 +266,159 @@
                         </div>
                     </div>
                 </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Immunizations</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="imms in patient.immunizations">
+                                        <div class="row">
+                                            <div class="col-sm-3">Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.immunizationId"></span></div>
+                                            <div class="col-sm-3">Group Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="contact.immunizationGroupId"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Vaccine Group Name:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.vaccineGroupName"></span></div>
+                                            <div class="col-sm-3">Series:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.series"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Vaccine Name:</div>
+                                            <div class="col-sm-9"><span ng-bind="imms.vaccineName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Medical Display Name:</div>
+                                            <div class="col-sm-9"><span ng-bind="imms.medicalDisplayName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Was Given:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.wasGiven"></span></div>
+                                            <div class="col-sm-3">Reason Not Given:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGiven"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Historical:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.historical"></span></div>
+                                            <div class="col-sm-3">Historical Source:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.historicalSource"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">VFC Elegibility:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.vfcElegibility"></span></div>
+                                            <div class="col-sm-3">CVX Code:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.cvxCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Dose Amount:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.doseAmount"></span></div>
+                                            <div class="col-sm-3">Unit Of Measure:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.dosageUnitOfMeasure"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">route:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.route"></span></div>
+                                            <div class="col-sm-3">routeCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.routeCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">site:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.site"></span></div>
+                                            <div class="col-sm-3">siteCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.siteCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">manufacturer:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.manufacturer"></span></div>
+                                            <div class="col-sm-3">manufacturerCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.manufacturerCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">lotNumber:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.lotNumber"></span></div>
+                                            <div class="col-sm-3">expirationDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.expirationDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">visPublishedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.visPublishedDate"></span></div>
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-3"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">administeredByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredByName"></span></div>
+                                            <div class="col-sm-3">administeredDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">administeredDateType:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredDateType"></span></div>
+                                            <div class="col-sm-3">administeredComments:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredComments"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">advReactionDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionDateTime"></span></div>
+                                            <div class="col-sm-3">advReactionDateTimeType:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionDateTimeType"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">advReactionComments:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionComments"></span></div>
+                                            <div class="col-sm-3">advReactionCmtByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionCmtByName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signed:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signed"></span></div>
+                                            <div class="col-sm-3">signedByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signedByName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signedDate"></span></div>
+                                            <div class="col-sm-3">reasonRemoved:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonRemoved"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">stopDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.stopDate"></span></div>
+                                            <div class="col-sm-3">reasonNotGivenMedical:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGivenMedical"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">reasonNotGivenMedicalDetail:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGivenMedicalDetail"></span></div>
+                                            <div class="col-sm-3">ndc:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.ndc"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">ddid:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.ddid"></span></div>
+                                            <div class="col-sm-3">dnid:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.dnid"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">gpi:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.gpi"></span></div>
+                                            <div class="col-sm-3">kdc:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.kdc"></span></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
