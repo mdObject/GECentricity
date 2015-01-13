@@ -1,9 +1,9 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v0.0.1
+ * mdObject JavaScript Library v1.0.3
  * http://mdObject.com/
  *
- * Copyright (c) 2013, 2014 mdObject, Inc. and other contributors
+ * Copyright (c) 2015 mdObject, Inc. and other contributors
  * All Rights RESERVED
  * Released under the Microsoft Public License (MS-PL)
  * http://opensource.org/licenses/MS-PL
@@ -552,7 +552,7 @@
 
     var document = window.document,
 
-        version = "0.0.7",
+        version = "1.0.3",
 
         productType = "GE",
 

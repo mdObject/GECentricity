@@ -52,6 +52,7 @@
     <Content Include="scripts\DemoController.js" />
     <Content Include="scripts\jquery-2.1.1.min.js" />
     <Content Include="scripts\mdObject.js" />
+    <Content Include="scripts\mdObject.min.js" />
     <Content Include="SimulatorXml.html" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -79,7 +80,8 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <Exec Command="..\Tools\JSMin\jsmin.exe &lt; scripts\mdObject.js &gt; scripts\mdObject.min.js &quot;Copyright (c) 2015 mdObject, Inc. and other contributors&quot; &quot;All Rights RESERVED&quot; &quot;Released under the Microsoft Public License (MS-PL)&quot;" IgnoreExitCode="false" />
+  </Target>
 </Project>
