@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.3
+ * mdObject JavaScript Library v1.0.4
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -191,17 +191,30 @@
 
     function EmrContent(value) {
         var data = value === undefined ? [] : value.split('^'),
+            isNew = value === undefined ? true : false,
             contentProperty = {
                 "contentId": (data.length > 0) ? data[0] : '',
                 "key": (data.length > 1) ? data[1] : '',
                 "name": (data.length > 2) ? data[2] : '',
-                "value": (data.length > 3) ? window.atob(data[3]) : '',
+                "value": (data.length > 3) ? data[3] : '',
                 "_unk0": (data.length > 4) ? data[4] : '',
                 "_unk1": (data.length > 5) ? data[5] : '',
                 "_unk2": (data.length > 6) ? data[6] : '',
                 "_unk3": (data.length > 7) ? data[7] : '',
                 "_unk4": (data.length > 8) ? data[8] : '',
-                "_unk5": (data.length > 9) ? data[9] : ''
+                "_unk5": (data.length > 9) ? data[9] : '',
+                toAddString: function () { return this.key + '^' + this.name + '^' + this.value + '^' + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^' + this._unk3 + '^' + this._unk4 + '^' + this._unk5; },
+                save: function () {
+                    var response;
+                    if (isNew) {
+                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}');
+                        isNew = false;
+                    } else {
+                        response = _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
+                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}');
+                    }
+                },
+                remove: function () { _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}'); }
             };
 
         return contentProperty;
@@ -552,7 +565,7 @@
 
     var document = window.document,
 
-        version = "1.0.3",
+        version = "1.0.4",
 
         productType = "GE",
 
@@ -1552,6 +1565,10 @@
     };
 
     mdObject.LocationType = LocationType;
+
+    mdObject.EmrContent = function (value) {
+        return EmrContent(value);
+    };
 
     return mdObject;
 }));
