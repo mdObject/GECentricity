@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.4
+ * mdObject JavaScript Library v1.0.5
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -203,15 +203,18 @@
                 "_unk3": (data.length > 7) ? data[7] : '',
                 "_unk4": (data.length > 8) ? data[8] : '',
                 "_unk5": (data.length > 9) ? data[9] : '',
-                toAddString: function () { return this.key + '^' + this.name + '^' + this.value + '^' + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^' + this._unk3 + '^' + this._unk4 + '^' + this._unk5; },
-                save: function () {
+                toAddString: function (encodeValue) {
+                    var recordValue = encodeValue === undefined ? this.value : window.btoa(this.value);
+                    return this.key + '^' + this.name + '^' + recordValue + '^' + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^' + this._unk3 + '^' + this._unk4 + '^' + this._unk5;
+                },
+                save: function (encodeValue) {
                     var response;
                     if (isNew) {
-                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}');
+                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
                         isNew = false;
                     } else {
                         response = _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
-                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}');
+                        response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
                     }
                 },
                 remove: function () { _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}'); }
@@ -565,7 +568,7 @@
 
     var document = window.document,
 
-        version = "1.0.4",
+        version = "1.0.5",
 
         productType = "GE",
 
