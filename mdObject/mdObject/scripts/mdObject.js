@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.5
+ * mdObject JavaScript Library v1.0.6
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -568,7 +568,7 @@
 
     var document = window.document,
 
-        version = "1.0.5",
+        version = "1.0.6",
 
         productType = "GE",
 
@@ -1507,8 +1507,30 @@
 
         emrProperty.window = function () {
             var property = {
-                open: function (url) {
+                openDialog: function (url) {
                     ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url) : _app.showUrlDialog(url);
+                },
+                // Arguments :
+                //  verb : 'GET'|'POST', defaults to "GET"
+                //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
+                open: function (url, verb, target, features, data) {
+                    var form = document.createElement("form");
+                    form.action = url;
+                    form.method = verb || 'GET';
+                    form.target = target || "_self";
+                    if (data) {
+                        for (var key in data) {
+                            var input = document.createElement("textarea");
+                            input.name = key;
+                            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]) : data[key];
+                            form.appendChild(input);
+                        }
+                    }
+                    form.style.display = 'none';
+                    document.body.appendChild(form);
+                    var w = window.open("about:blank", target, features);
+                    form.submit();
+                    return w;
                 }
             };
             return property;
