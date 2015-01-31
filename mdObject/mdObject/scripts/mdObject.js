@@ -1508,7 +1508,7 @@
         emrProperty.window = function () {
             var property = {
                 open: function (url) {
-                    (url.toLowerCase().startsWith('//localserver')) ? _mel.showUrlDialog(url) : _app.showUrlDialog(url);
+                    ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url) : _app.showUrlDialog(url);
                 }
             };
             return property;
