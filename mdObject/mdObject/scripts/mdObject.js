@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.6
+ * mdObject JavaScript Library v1.0.7
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -445,7 +445,7 @@
         return carePlanProperty;
     }
 
-    function AllertyData() {
+    function AllergyData() {
         var allergyDataProperty = {
             name: {},
             onDate: {},
@@ -461,7 +461,7 @@
 
     function AllergyList(list) {
         var data = list.split('^'),
-            allergyListProperty = new AllertyData();
+            allergyListProperty = new AllergyData();
 
         allergyListProperty.name = (data.length >= 1) ? data[0] : {};
         allergyListProperty.onDate = (data.length >= 2) ? data[1] : {};
@@ -476,7 +476,7 @@
 
     function AllergyListRemoved(list) {
         var data = list.split('^'),
-            allergyListProperty = new AllertyData();
+            allergyListProperty = new AllergyData();
 
         allergyListProperty.name = (data.length >= 1) ? data[0] : {};
         allergyListProperty.onDate = (data.length >= 2) ? data[1] : {};
@@ -568,7 +568,7 @@
 
     var document = window.document,
 
-        version = "1.0.6",
+        version = "1.0.7",
 
         productType = "GE",
 
