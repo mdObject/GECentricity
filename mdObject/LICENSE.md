@@ -1,6 +1,6 @@
 mdObject JavaScript Library
 http://mdObject.com/
-Copyright (c) 2013, 2014 mdObject, Inc. and other contributors
+Copyright (c) 2013 - 2015 mdObject, Inc. and other contributors
 All Rights RESERVED
 Released under the Microsoft Public License (MS-PL)
 http://opensource.org/licenses/MS-PL
@@ -14,4 +14,4 @@ limitations under the License.
 Note: This mdObject are compatible only with GE EMR 9.8 & CPS 12.0 or above. 
 This file should not be modified 
 
-Date: 2013-11-4
+Start Date: 2013-11-4
