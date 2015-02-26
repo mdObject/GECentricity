@@ -12,5 +12,5 @@ phonecatApp.controller('DemoController', function ($scope, $parse) {
     $scope.emrUsers = $mdObject.users;
     $scope.hwinstonUser = $mdObject.users.getUser('hwinston');
     $scope.usersInCurrentLocation = $mdObject.users.getUsers();
-
+    $scope.currentUser = $mdObject.users.getUser();
 });

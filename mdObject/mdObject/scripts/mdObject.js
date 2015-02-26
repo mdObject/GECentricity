@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.7
+ * mdObject JavaScript Library v1.0.8
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -378,6 +378,10 @@
             userProperty.uniquePhysicianId = (data.length > 14) ? data[14] : '';
             userProperty.activationDate = (data.length > 15) ? data[15] : '';
             userProperty.expirationDate = (data.length > 16) ? data[16] : '';
+            userProperty.currentLocation = (data.length > 17) ? data[17] : '';
+            userProperty.firstName = (data.length > 18) ? data[18] : '';
+            userProperty.middleName = (data.length > 19) ? data[19] : '';
+            userProperty.lastName = (data.length > 20) ? data[20] : '';
         };
 
         if (callFunction === UserCallFunction.UserList) {
@@ -392,7 +396,6 @@
             userProperty.prescriberId = (data.length > 8) ? data[8] : '';
             userProperty.deaId = (data.length > 9) ? data[9] : '';
             userProperty.stateLicenceId = (data.length > 10) ? data[10] : '';
-
             userProperty.memberLogin = (data.length > 11) ? data[11] : '';
             userProperty.data2000 = (data.length > 12) ? data[12] : '';
             userProperty.uniquePhysicianId = (data.length > 13) ? data[13] : '';
@@ -568,7 +571,7 @@
 
     var document = window.document,
 
-        version = "1.0.7",
+        version = "1.0.8",
 
         productType = "GE",
 
@@ -682,10 +685,25 @@
         return propertyObject;
     }()));
 
+    var getCurrentUser = function()
+    {
+        return _mel.melFunc('{GETUSERINFO("' + _mel.melFunc('{USER.LOGINNAME}') + '")}')
+        + '^' + _mel.melFunc('{USER.CURLOCATIONNAME}')
+        + '^' + _mel.melFunc('{USER.FIRSTNAME}')
+        + '^' + _mel.melFunc('{USER.MIDDLENAME}')
+        + '^' + _mel.melFunc('{USER.LASTNAME}');
+    }
+
     /*** Users Properties ***/
     mdObject.users.getUser = function (value) {
-        var melValue = (melValue !== undefined) ? melValue : new User(_mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
-        return melValue;
+        if (value === undefined) {
+            var melValueCurrent = (melValueCurrent !== undefined) ? melValueCurrent : new User(getCurrentUser(), UserCallFunction.UserInfo);
+            return melValueCurrent;
+        }
+        else {
+            var melValue = (melValue !== undefined) ? melValue : new User(_mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
+            return melValue;
+        }
     };
 
     mdObject.users.getUsers = function (locations, roles) {

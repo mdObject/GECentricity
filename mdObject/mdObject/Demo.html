@@ -578,12 +578,97 @@
                 <div class="row">
                     <div class="col-sm-3">User Login Name:</div>
                     <div class="col-sm-3"><span ng-bind="clinicalDocument.userLoginName"></span></div>
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">DocumentId</div>
+                    <div class="col-sm-3">{{clinicalDocument.documentId}}</div>
                 </div>
 
             </div>
         </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current User</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">Login Name:</div>
+                    <div class="col-sm-3">{{currentUser.loginName}}</div>
+                    <div class="col-sm-3">Full Name:</div>
+                    <div class="col-sm-3">{{currentUser.searchName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Phone:</div>
+                    <div class="col-sm-3">{{currentUser.phoneNumber}}</div>
+                    <div class="col-sm-3">Home Location</div>
+                    <div class="col-sm-3">{{currentUser.homeLocation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">group:</div>
+                    <div class="col-sm-3">{{currentUser.group}}</div>
+                    <div class="col-sm-3">jobTitle</div>
+                    <div class="col-sm-3">{{currentUser.jobTitle}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Specialty:</div>
+                    <div class="col-sm-3">{{currentUser.specialty}}</div>
+                    <div class="col-sm-3">NPI:</div>
+                    <div class="col-sm-3">{{currentUser.npi}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Roles:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="role in currentUser.roles">
+                                <span ng-bind="role"></span>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">prescriberId:</div>
+                    <div class="col-sm-3">{{currentUser.prescriberId}}</div>
+                    <div class="col-sm-3">deaId:</div>
+                    <div class="col-sm-3">{{currentUser.deaId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">State Licence Id:</div>
+                    <div class="col-sm-3">{{currentUser.stateLicenceId}}</div>
+                    <div class="col-sm-3">memberLogin:</div>
+                    <div class="col-sm-3">{{currentUser.memberLogin}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">data2000:</div>
+                    <div class="col-sm-3">{{currentUser.data2000}}</div>
+                    <div class="col-sm-3">Unique Physician Identification Number:</div>
+                    <div class="col-sm-3">{{currentUser.uniquePhysicianId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">activationDate:</div>
+                    <div class="col-sm-3">{{currentUser.activationDate}}</div>
+                    <div class="col-sm-3">expirationDate:</div>
+                    <div class="col-sm-3">{{currentUser.expirationDate}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">First Name:</div>
+                    <div class="col-sm-3">{{currentUser.firstName}}</div>
+                    <div class="col-sm-3">Middle Name:</div>
+                    <div class="col-sm-3">{{currentUser.middleName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Last Name:</div>
+                    <div class="col-sm-3">{{currentUser.lastName}}</div>
+                    <div class="col-sm-3">Current Location:</div>
+                    <div class="col-sm-3">{{currentUser.currentLocation}}</div>
+                </div>
+
+            </div>
+        </div>
+
 
         <div class="panel panel-primary">
             <div class="panel-heading">
