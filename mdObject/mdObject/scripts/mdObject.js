@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.8
+ * mdObject JavaScript Library v1.0.9
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -43,11 +43,23 @@
     // Pass this if window is not defined yet
 }(window !== undefined ? window : this, function (window, noGlobal) {
 
+    var _melOpener, _appOpener;
+    if (window.opener !== undefined && window.opener.$mdObject !== undefined && window.opener.$mdObject.emr !== undefined) {
+        if (window.opener.$mdObject.emr.EmrMel !== undefined)
+        {
+            _melOpener = window.opener.$mdObject.emr.EmrMel;
+        }
+
+        if (window.opener.$mdObject.emr.EmrApp !== undefined) {
+            _appOpener = window.opener.$mdObject.emr.EmrApp;
+        }
+    };
+
     var mdObject = {
         // Emr Users
         "users": {},
         // Selected EMR patient object
-        "patient":{}
+        "patient": {}
 
     };
 
@@ -348,6 +360,13 @@
         "UserList": 1,
         "UserInfo": 2
     };
+
+    var ObservationType = {
+        "None": 'Undefined',
+        "Signed": 'Signed',
+        "DocumentUnsigned": 'Update'
+    };
+
     if (Object.freeze) {
         LocationType = Object.freeze(UserCallFunction);
     }
@@ -493,6 +512,62 @@
         return allergyListProperty;
     }
 
+    function Observation(name, type, valueString) {
+
+        var data = valueString === undefined ? [] : valueString.split('^'),
+            isNew = valueString === undefined ? true : false,
+            tag,
+
+         objectProperty = {
+             "name": (name !== undefined) ? name : '',
+             "value": (data.length > 0) ? data[0] : '',
+             "date": (data.length > 1) ? data[1] : '',
+             "time": (data.length > 2) ? data[2] : '',
+             "signingUser": (data.length > 3) ? data[3] : '',
+             "enteringUser": (data.length > 4) ? data[4] : '',
+             "flags": (data.length > 5) ? data[5] : '',
+             "comment": (data.length > 6) ? data[6] : '',
+             "state": (data.length > 7) ? data[7] : '',
+             "locationOfCare": (data.length > 8) ? data[8] : '',
+             "documentType": (data.length > 9) ? data[9] : '',
+             "documentId": (data.length > 10) ? data[10] : '',
+             "tag": (type === ObservationType.DocumentUnsigned) ? _mel.melFunc('{OBSTAGNOW("' + this.name + '")}') : '',
+             "type": type,
+             "unitOfMeasure": '',
+             "save": function () {
+                 var response;
+                 response = _mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
+                 response = _mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}');
+                 response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
+             },
+             "remove": function () { }
+         };
+
+        Object.defineProperty(objectProperty, 'unitOfMeasure', (function () {
+            var melValue,
+                propertyObject = {
+                    get: function () {
+                        melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{OBSUNIT("' + objectProperty.name + '")}');
+                        return melValue;
+                    }
+                };
+            return propertyObject;
+        }()));
+
+        Object.defineProperty(objectProperty, 'tag', (function () {
+            var melValue,
+                propertyObject = {
+                    get: function () {
+                        melValue = (melValue !== undefined) ? melValue : (type === ObservationType.DocumentUnsigned) ? _mel.melFunc('{OBSTAGNOW("' + objectProperty.name + '")}') : '';
+                        return melValue;
+                    }
+                };
+            return propertyObject;
+        }()));
+
+        return objectProperty;
+    }
+
     function Measurement(isCurrent) {
         var objectProperty = {
             // Returns the patient’s weight
@@ -571,15 +646,17 @@
 
     var document = window.document,
 
-        version = "1.0.8",
+        version = "1.0.9",
 
         productType = "GE",
 
-        _mel = new EmrMel(),
+        _mel = (_mel !== undefined) ? _mel : (_melOpener !== undefined) ? _melOpener : new EmrMel(),
 
-        _app = new EmrApp(),
+        _app = (_app !== undefined) ? _app : (_appOpener !== undefined) ? _appOpener : new EmrApp(),
 
         _immunizations = null,
+
+        _observations = {},
 
         _carePlans = null;
 
@@ -592,8 +669,29 @@
         height: "Height"
     };
 
-
     mdObject.clinicalDocument = {};
+
+    Object.defineProperty(mdObject.clinicalDocument, 'did', (function () {
+        var melValue,
+            propertyObject = {
+                get: function () {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{find("DOCUMENT","DID")}');
+                    return melValue;
+                }
+            };
+        return propertyObject;
+    }()));
+
+    Object.defineProperty(mdObject.clinicalDocument, 'xid', (function () {
+        var melValue,
+            propertyObject = {
+                get: function () {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.XID}').split('.')[0];
+                    return melValue;
+                }
+            };
+        return propertyObject;
+    }()));
 
     // The unique document identifier for a document within a patient chart. You can see the Doc ID on each 
     // document and on a chart update. Each document in the patient’s chart has a Doc ID.
@@ -685,8 +783,7 @@
         return propertyObject;
     }()));
 
-    var getCurrentUser = function()
-    {
+    var getCurrentUser = function () {
         return _mel.melFunc('{GETUSERINFO("' + _mel.melFunc('{USER.LOGINNAME}') + '")}')
         + '^' + _mel.melFunc('{USER.CURLOCATIONNAME}')
         + '^' + _mel.melFunc('{USER.FIRSTNAME}')
@@ -732,6 +829,8 @@
     mdObject.patient = {
         // Returns the patient’s ID number
         patientId: '',
+        // Returns the internal PID number for patient record
+        pid: '',
         // Returns the patient’s medical record number.
         medicalRecordId: '',
         // Returns the patient’s ID from an external system, such as a billing or lab system
@@ -783,8 +882,6 @@
         // referring provider
         referringProvider: {},
 
-
-
         // List all medications and refills
         medications: {},
         // Lists all problems 
@@ -803,11 +900,48 @@
         insurances: {}
     };
 
+    mdObject.patient.observations = function (name) {
+        var data;
+        if (_observations[name] === undefined) {
+            data = _mel.melFunc('{LIST_OBS("' + name + '","Update","Delimited","value")}');
+
+            var dataArray = new StringInternal(data).toList();
+            for (var i = 0; i < dataArray.length; i++) {
+                dataArray[i] = new Observation(name, ObservationType.DocumentUnsigned, dataArray[i]);
+            }
+            _observations[name] = dataArray;
+
+            data = _mel.melFunc('{LIST_OBS("' + name + '","Signed","Delimited","value")}');
+
+            var dataArrayU = new StringInternal(data).toList();
+            for (var i = 0; i < dataArrayU.length; i++) {
+                _observations[name].push( new Observation(name, ObservationType.Signed, dataArrayU[i]));
+            }
+        }
+
+        _observations[name].tag = function () {
+            return 'LIST_OBS.' + name;
+        }();
+        
+        return _observations[name];
+    };
+
     Object.defineProperty(mdObject.patient, 'patientId', (function () {
         var melValue,
             propertyObject = {
                 get: function () {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PATIENTID}');
+                    return melValue;
+                }
+            };
+        return propertyObject;
+    }()));
+
+    Object.defineProperty(mdObject.patient, 'pid', (function () {
+        var melValue,
+            propertyObject = {
+                get: function () {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{find("patient", "PID")}');
                     return melValue;
                 }
             };
@@ -1570,6 +1704,11 @@
             };
             return dataArray;
         };
+
+        emrProperty.mel = function (value) { return _mel.melFunc(value); }
+        emrProperty.EmrMel = function () { return _mel; }();
+        emrProperty.EmrApp = function () { return _app; }();
+
         return emrProperty;
     };
 
@@ -1601,6 +1740,10 @@
 
     mdObject.Immunization = function (value) {
         return Immunization(value);
+    };
+
+    mdObject.Observation = function (value) {
+        return Observation(value);
     };
 
     mdObject.User = function (value) {

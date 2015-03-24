@@ -24,6 +24,7 @@
         document.write("<br />"); document.write("<br />");
 
         document.write(htmlEncode("<Patient Id=\"") + $mdObject.patient.patientId + htmlEncode("\">") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<find.PATIENT.PID>") + $mdObject.clinicalDocument.did + htmlEncode("</find.PATIENT.PID>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PATIENTID>") + $mdObject.patient.patientId + htmlEncode("</PATIENT.PATIENTID>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.MEDRECNO>") + $mdObject.patient.medicalRecordId + htmlEncode("</PATIENT.MEDRECNO>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.EXTERNALID>") + $mdObject.patient.externalId + htmlEncode("</PATIENT.EXTERNALID>") + "<br />");
@@ -120,6 +121,9 @@
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.CLINICALDATE>") + $mdObject.clinicalDocument.dateOfUpdate + htmlEncode("</DOCUMENT.CLINICALDATE>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.PROVIDER>") + $mdObject.clinicalDocument.provider + htmlEncode("</DOCUMENT.PROVIDER>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.USERLOGINNAME>") + $mdObject.clinicalDocument.userLoginName + htmlEncode("</DOCUMENT.USERLOGINNAME>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.XID>") + $mdObject.clinicalDocument.xid + htmlEncode("</DOCUMENT.XID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<find.DOCUMENT.DID>") + $mdObject.clinicalDocument.did + htmlEncode("</find.DOCUMENT.DID>") + "<br />");
 
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<VER_EMR>") + $mdObject.emr.version + htmlEncode("</VER_EMR>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<GETUSERINFO>") + $mdObject.users.getUser('hwinston').toMelString() + htmlEncode("</GETUSERINFO>") + "<br />");

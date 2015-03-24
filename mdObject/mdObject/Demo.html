@@ -32,12 +32,16 @@
     
     <div class="container">
         <div class="jumbotron">
-            <h1>  GE Centricity mdObject Demo</h1>
+            <h1>  GE Centricity $mdObject Demo</h1>
             <p>
                 This is a template for a simple demo of $mdObject functionality.
                 Use it as a starting point to create something more unique.
             </p>
-            <p>mdObject version: <span ng-bind="version" /></p>
+            Click <a href="#" onclick='var w = window.open(window.location, "_blank",
+                                              ["menubar=yes", "resizable=yes", "scrollbars=yes",
+                                                  "status=yes", "titlebar=yes", "toolbar=yes"].join(","));
+    '>here to open this page in Internet Explorer (IE)</a>
+            <p>$mdObject version: <span ng-bind="version"></span></p>
         </div>
 
         <div class="panel panel-primary">
@@ -45,6 +49,12 @@
                 <h3 class="panel-title">Patient</h3>
             </div>
             <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">PID:</div>
+                    <div class="col-sm-3"><span>{{patient.pid}}</span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                </div>
                 <div class="row">
                     <div class="col-sm-3">ID:</div>
                     <div class="col-sm-3"><span>{{patient.patientId}}</span></div>
@@ -564,6 +574,12 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    <div class="col-sm-3">DID:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.did"></span></div>
+                    <div class="col-sm-3">XID:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.xid"></span></div>
+                </div>
+                <div class="row">
                     <div class="col-sm-3">Status:</div>
                     <div class="col-sm-3"><span ng-bind="clinicalDocument.status"></span></div>
                     <div class="col-sm-3">Location:</div>
@@ -820,9 +836,75 @@
 
             </div>
         </div>
+
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Observations: [weight]</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="obs in patient.observations('weight')">
+                                <div class="row">
+                                    <div class="col-sm-3">Name:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.name"></span></div>
+                                    <div class="col-sm-3">Value:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.value"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Date:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.date"></span></div>
+                                    <div class="col-sm-3">Time:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.time"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">signingUser:</div>
+                                    <div class="col-sm-9"><span ng-bind="obs.signingUser"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">enteringUser:</div>
+                                    <div class="col-sm-9"><span ng-bind="obs.enteringUser"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">flags:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.flags"></span></div>
+                                    <div class="col-sm-3">comment:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.comment"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">state:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.state"></span></div>
+                                    <div class="col-sm-3">locationOfCare:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.locationOfCare"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">documentType:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.documentType"></span></div>
+                                    <div class="col-sm-3">DocumentId:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.documentId"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">unitOfMeasure:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.unitOfMeasure"></span></div>
+                                    <div class="col-sm-3">Tag:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.tag"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Type:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.type"></span></div>
+                                    <div class="col-sm-3"> </div>
+                                    <div class="col-sm-3"> </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    
 </body>
 
 </html>

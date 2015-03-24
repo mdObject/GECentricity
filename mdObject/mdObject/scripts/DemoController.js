@@ -1,4 +1,4 @@
-﻿/// <reference path="mdObject2.js" /> 
+﻿/// <reference path="mdObject.js" /> 
 
 var phonecatApp = angular.module('mdObjectDemo', []);
 
@@ -13,4 +13,5 @@ phonecatApp.controller('DemoController', function ($scope, $parse) {
     $scope.hwinstonUser = $mdObject.users.getUser('hwinston');
     $scope.usersInCurrentLocation = $mdObject.users.getUsers();
     $scope.currentUser = $mdObject.users.getUser();
+    $scope.mel = $mdObject.emr.mel;
 });
