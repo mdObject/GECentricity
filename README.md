@@ -7,4 +7,8 @@ The GECentricity is subproject of mdObject initiative to simplify patient medica
 The mdObject is simple JSON stricture that is easy to implement and to use.
 The mdObject is stand for Medical Data Object. 
 
+For users of GE Centricity EMR9.8 Evaluation version, execute the following line to enable ActiveX component:  
 
+Regsvr32 "C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\GE.EMR.Msg.IF.dll"
+
+Use IE9+ for demo. 
