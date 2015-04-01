@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Demo.html" />
+    <Content Include="mdObjectHelp.html" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\bootstrap.min.css" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -53,6 +54,7 @@
     <Content Include="scripts\jquery-2.1.1.min.js" />
     <Content Include="scripts\mdObject.js" />
     <Content Include="scripts\mdObject.min.js" />
+    <Content Include="scripts\prettify.css" />
     <Content Include="SimulatorXml.html" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
