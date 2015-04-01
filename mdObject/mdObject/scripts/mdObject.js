@@ -839,7 +839,8 @@
         printId: '',
         // Returns the patient’s Social Security number.
         ssn: '',
-        //firstName: '',
+        // Returns the patient’s first name.
+        firstName: '',
         // Returns the patient’s last name.
         lastName: '',
         // Returns the patient’s middle name.
@@ -851,7 +852,7 @@
         // Name Suffix
         nameSuffix: '',
         // Represent patient address object
-        address: '',
+        address: {},
         // Patient’s sex.
         sex: '',
         // Patient’s race
@@ -866,7 +867,7 @@
         maritalStatus: '',
         // Returns the patient’s preferred language
         language: '',
-        phone: '',
+        phone: {},
         // Returns the patient’s e-mail address
         email: '',
         // Returns the patient’s contact by information
@@ -878,7 +879,7 @@
         // Patient’s current status in the clinic
         clinicStatus: '',
         // Name of the primary care physician
-        primaryCarePhysicianName: {},
+        primaryCarePhysicianName: '',
         // referring provider
         referringProvider: {},
 
@@ -897,7 +898,10 @@
         // Lists appointments
         appointments: {},
         // List of patient insurances 
-        insurances: {}
+        insurances: {},
+        // List of patient immunizations 
+        immunizations: {},
+        carePlans: {}
     };
 
     mdObject.patient.observations = function (name) {
