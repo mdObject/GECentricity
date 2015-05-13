@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.9
+ * mdObject JavaScript Library v1.0.10
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -568,6 +568,14 @@
         return objectProperty;
     }
 
+    function Protocol(name) {
+        var objectProperty = {
+            "name": (name !== undefined) ? name : '',
+        };
+
+        return objectProperty;
+    }
+
     function Measurement(isCurrent) {
         var objectProperty = {
             // Returns the patient’s weight
@@ -646,7 +654,7 @@
 
     var document = window.document,
 
-        version = "1.0.9",
+        version = "1.0.10",
 
         productType = "GE",
 
@@ -654,9 +662,11 @@
 
         _app = (_app !== undefined) ? _app : (_appOpener !== undefined) ? _appOpener : new EmrApp(),
 
-        _immunizations = null,
+        _immunizations,
 
         _observations = {},
+
+        _protocols,
 
         _carePlans = null;
 
@@ -891,8 +901,9 @@
         observations: {},
         // List of all orders
         orders: {},
-        // List of observations required for this patient, as indicated by protocols set up in this clinic comment
-        protocols: {},
+        // Protocols tell you when a patient is due for a particular action, based on factors that include sex, age, current problems, and current medications. 
+        // The protocols contains array of observations required for this patient, as indicated by protocols set up in this clinic.
+        protocols: [],
         // List of all directives
         directives: {},
         // Lists appointments
@@ -903,6 +914,24 @@
         immunizations: {},
         carePlans: {}
     };
+
+    mdObject.patient.protocols = (function () {
+        var data;
+        if(_protocols === undefined)
+        {
+            data = _mel.melFunc('{LISTPROTOCOLSHORT("list")}');
+
+            var dataArray = new StringInternal(data).toList('\r\n');
+            for (var i = 0; i < dataArray.length; i++) {
+                dataArray[i] = new Protocol(dataArray[i]);
+            };
+
+            _protocols = dataArray;
+
+        }
+
+        return _protocols;
+    }());
 
     mdObject.patient.observations = function (name) {
         var data;
@@ -1315,28 +1344,35 @@
     }()));
 
     // Returns a list of the contacts for the current patient
-    mdObject.patient.contacts =
-        (function () {
-            var data = _mel.melFunc('{PATIENT.CONTACTS}'),
-                dataArray = new StringInternal(data).toList(),
-                index;
+    Object.defineProperty(mdObject.patient, 'contacts', (function () {
+        var data,
+            dataArray,
+             index,
+            propertyObject = {
+                get: function () {
+                    data = (data !== undefined) ? data : _mel.melFunc('{PATIENT.CONTACTS}');
+                    if (dataArray === undefined) {
 
-            /*jslint plusplus: true */
-            for (index = 0; index < dataArray.length; index++) {
-                dataArray[index] = new PatientContact(dataArray[index]);
-            }
+                        dataArray = new StringInternal(data).toList();
 
-            dataArray.tag = function () {
-                return 'PATIENT.CONTACTS';
-            }();
+                        /*jslint plusplus: true */
+                        for (index = 0; index < dataArray.length; index++) {
+                            dataArray[index] = new PatientContact(dataArray[index]);
+                        }
 
-            dataArray.toMelString = function () {
-                return data;
+                        dataArray.tag = function () {
+                            return 'PATIENT.CONTACTS';
+                        }();
+
+                        dataArray.toMelString = function () {
+                            return data;
+                        };
+                    }
+                    return dataArray;
+                }
             };
-
-
-            return dataArray;
-        }());
+        return propertyObject;
+    }()));
 
     // Returns the patient’s employment status.
     Object.defineProperty(mdObject.patient, 'employmentStatus', (function () {
@@ -1624,7 +1660,7 @@
         (function () {
             // pull immunization only one time
             var data;
-            if (_immunizations === null) {
+            if (_immunizations === undefined) {
                 data = _mel.melFunc('{IMMUN_GETLIST()}');
 
                 var dataArray = new StringInternal(data).toList();
