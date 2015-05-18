@@ -662,8 +662,6 @@
 
         _app = (_app !== undefined) ? _app : (_appOpener !== undefined) ? _appOpener : new EmrApp(),
 
-        _immunizations,
-
         _observations = {},
 
         _carePlans = null;
@@ -1665,30 +1663,37 @@
         return insArray;
 
     }());
+
     // List all immunizations
-    mdObject.patient.immunizations =
-        (function () {
-            // pull immunization only one time
-            var data;
-            if (_immunizations === undefined) {
-                data = _mel.melFunc('{IMMUN_GETLIST()}');
+    Object.defineProperty(mdObject.patient, 'immunizations', (function () {
+        var data,
+            dataArray,
+             index,
+             propertyObject = {
+                 get: function () {
+                     data = (data !== undefined) ? data : _mel.melFunc('{IMMUN_GETLIST()}');
+                     if (dataArray === undefined) {
 
-                var dataArray = new StringInternal(data).toList();
-                for (var i = 0; i < dataArray.length; i++) {
-                    dataArray[i] = new Immunization(dataArray[i]);
-                }
-                _immunizations = dataArray;
-            }
+                         dataArray = new StringInternal(data).toList();
 
-            _immunizations.tag = function () {
-                return 'IMMUN_GETLIST';
-            }();
-            _immunizations.toMelString = function () {
-                return data;
-            };
+                         /*jslint plusplus: true */
+                         for (index = 0; index < dataArray.length; index++) {
+                             dataArray[index] = new Immunization(dataArray[index]);
+                         }
 
-            return _immunizations;
-        }());
+                         dataArray.tag = function () {
+                             return 'IMMUN_GETLIST';
+                         }();
+
+                         dataArray.toMelString = function () {
+                             return data;
+                         };
+                     }
+                     return dataArray;
+                 }
+             };
+        return propertyObject;
+    }()));
 
     mdObject.emr = new function () {
         var emrProperty = {};
