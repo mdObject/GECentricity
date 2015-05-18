@@ -666,8 +666,6 @@
 
         _observations = {},
 
-        _protocols,
-
         _carePlans = null;
 
     mdObject.version = version;
@@ -915,23 +913,35 @@
         carePlans: {}
     };
 
-    mdObject.patient.protocols = (function () {
-        var data;
-        if(_protocols === undefined)
-        {
-            data = _mel.melFunc('{LISTPROTOCOLSHORT("list")}');
+    Object.defineProperty(mdObject.patient, 'protocols', (function () {
+        var data,
+            dataArray,
+            index,
+            propertyObject = {
+                get: function () {
+                    data = (data !== undefined) ? data : _mel.melFunc('{LISTPROTOCOLSHORT("list")}');
+                    if(dataArray === undefined) {
 
-            var dataArray = new StringInternal(data).toList('\r\n');
-            for (var i = 0; i < dataArray.length; i++) {
-                dataArray[i] = new Protocol(dataArray[i]);
+                        dataArray = new StringInternal(data).toList('\r\n');
+
+                        /*jslint plusplus: true */
+                        for (index = 0; index < dataArray.length; index++) {
+                            dataArray[index] = new Protocol(dataArray[index]);
+                        };
+
+                        dataArray.tag = function () {
+                            return 'LISTPROTOCOLSHORT("list")';
+                        }();
+
+                        dataArray.toMelString = function () {
+                            return data;
+                        };
+                    }
+                    return dataArray;
+                }
             };
-
-            _protocols = dataArray;
-
-        }
-
-        return _protocols;
-    }());
+        return propertyObject;
+    }()));
 
     mdObject.patient.observations = function (name) {
         var data;
@@ -1680,9 +1690,7 @@
             return _immunizations;
         }());
 
-    mdObject.emr = new
-
-    function () {
+    mdObject.emr = new function () {
         var emrProperty = {};
 
         emrProperty.enterpriseId = function () {
