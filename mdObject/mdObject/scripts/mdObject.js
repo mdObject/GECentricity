@@ -45,8 +45,7 @@
 
     var _melOpener, _appOpener;
     if (window.opener !== undefined && window.opener.$mdObject !== undefined && window.opener.$mdObject.emr !== undefined) {
-        if (window.opener.$mdObject.emr.EmrMel !== undefined)
-        {
+        if (window.opener.$mdObject.emr.EmrMel !== undefined) {
             _melOpener = window.opener.$mdObject.emr.EmrMel;
         }
 
@@ -918,7 +917,7 @@
             propertyObject = {
                 get: function () {
                     data = (data !== undefined) ? data : _mel.melFunc('{LISTPROTOCOLSHORT("list")}');
-                    if(dataArray === undefined) {
+                    if (dataArray === undefined) {
 
                         dataArray = new StringInternal(data).toList('\r\n');
 
@@ -956,14 +955,14 @@
 
             var dataArrayU = new StringInternal(data).toList();
             for (var i = 0; i < dataArrayU.length; i++) {
-                _observations[name].push( new Observation(name, ObservationType.Signed, dataArrayU[i]));
+                _observations[name].push(new Observation(name, ObservationType.Signed, dataArrayU[i]));
             }
         }
 
         _observations[name].tag = function () {
             return 'LIST_OBS.' + name;
         }();
-        
+
         return _observations[name];
     };
 
@@ -1706,9 +1705,16 @@
             return _app.databaseVersion();
         };
 
-        emrProperty.version = (function () {
-            return _mel.melFunc('{VER_EMR()}');
-        }());
+        Object.defineProperty(emrProperty, 'version', (function () {
+            var melValue,
+            propertyObject = {
+                get: function () {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{VER_EMR()}');
+                    return melValue;
+                }
+            };
+            return propertyObject;
+        }()));
 
         emrProperty.window = function () {
             var property = {
