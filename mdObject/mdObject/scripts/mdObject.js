@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.10
+ * mdObject JavaScript Library v1.0.11
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -71,7 +71,7 @@
         var activeXsupport = false;
 
         // Verify ActiveX support in this browser
-        if (window.ActiveXObject) {
+        if (window.ActiveXObject !== undefined) {
             activeXsupport = true;
         } else {
             activeXsupport = false;
@@ -653,7 +653,7 @@
 
     var document = window.document,
 
-        version = "1.0.10",
+        version = "1.0.11",
 
         productType = "GE",
 
