@@ -111,6 +111,11 @@
             return (mel === null) ? noMelData : mel.eval(data);
         };
 
+        this.saveObservation = function(obs, value, date)
+        {
+            return (mel === null) ? noMelData : mel.OBSNOW(obs, value, date);
+        }
+
         this.getObs = function (isCurrent, data) {
             return (mel === null) ? noMelData : ((isCurrent === true) ? mel.OBSNOW(data, '', '') : mel.OBSPREV(data));
         };
@@ -535,9 +540,9 @@
              "unitOfMeasure": '',
              "save": function () {
                  var response;
-                 response = _mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
-                 response = _mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}');
-                 response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
+                 response = _mel.saveObservation(this.name, this.value, this.date); //  _mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
+                 if (this.tag !== undefined && this.tag !== '') { response = _mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}'); }
+                 if (this.comment !== undefined && this.comment != '') { response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}'); }
              },
              "remove": function () { }
          };
@@ -569,7 +574,7 @@
 
     function Protocol(name) {
         var objectProperty = {
-            "name": (name !== undefined) ? name : '',
+            "name": (name !== undefined) ? name : ''
         };
 
         return objectProperty;
@@ -1801,8 +1806,8 @@
         return Immunization(value);
     };
 
-    mdObject.Observation = function (value) {
-        return Observation(value);
+    mdObject.Observation = function (name) {
+        return Observation(name);
     };
 
     mdObject.User = function (value) {
