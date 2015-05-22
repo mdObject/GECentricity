@@ -1597,31 +1597,40 @@
             return providerProperty;
         }());
 
-    mdObject.patient.location =
-        (function () {
-            var locationPropertyArray = new Array(),
-                melValue = _mel.melFunc('{PATIENT.HOMELOCATIONNAME}'),
-                melId = _mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}'),
-                locationProperty = new Location(melId, melValue, LocationType.Home);
+    Object.defineProperty(mdObject.patient, 'location', (function () {
+        var melValue,
+            melId,
+            locationPropertyArray,
+            locationProperty,
+            propertyObject = {
+                get: function () {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
+                    melId = (melId !== undefined) ? melId : _mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
+                    locationProperty = (locationProperty !== undefined) ? locationProperty : new Location(melId, melValue, LocationType.Home);
+                    if (locationPropertyArray === undefined) {
+                        locationPropertyArray = new Array();
+                        locationPropertyArray.push(locationProperty);
 
-            locationPropertyArray.push(locationProperty)
-            locationPropertyArray.findByType =
-                (function (value) {
-                    var i;
-                    if (typeof (value) === "number") {
-                        for (i = 0; i < this.length; i++) {
-                            if (this[i].locationType === value) {
-                                return this[i];
-                            }
-                        }
-                    };
-                    return undefined;
+                        locationPropertyArray.findByType =
+                            (function (value) {
+                                var i;
+                                if (typeof (value) === "number") {
+                                    for (i = 0; i < this.length; i++) {
+                                        if (this[i].locationType === value) {
+                                            return this[i];
+                                        }
+                                    }
+                                };
+                                return undefined;
 
-                });
+                            });
+                    }
 
-            return locationPropertyArray;
-        }());
-
+                    return locationPropertyArray;
+                }
+            };
+        return propertyObject;
+    }()));
 
     mdObject.patient.measurements =
         (function () {
