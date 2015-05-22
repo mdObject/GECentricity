@@ -784,32 +784,38 @@
     }()));
 
     // The location of care of the document for the current chart update.
-    mdObject.clinicalDocument.location =
-        (function() {
-            var locationPropertyArray = new Array(),
-                melValue = _mel.melFunc('{DOCUMENT.LOCOFCARENAME}'),
-                locationProperty = new Location(melValue, melValue, LocationType.Current);
+    Object.defineProperty(mdObject.clinicalDocument, 'location', (function() {
+        var melValue,
+            locationPropertyArray,
+            locationProperty,
+            propertyObject = {
+                get: function() {
+                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.LOCOFCARENAME}');
+                    locationProperty = (locationProperty !== undefined) ? locationProperty : new Location(melValue, melValue, LocationType.Current);
+                    if (locationPropertyArray === undefined) {
+                        locationPropertyArray = new Array();
+                        locationPropertyArray.push(locationProperty);
 
-            locationPropertyArray.push(locationProperty)
-            locationPropertyArray.findByType =
-                (function(value) {
-                    var i;
-                    if (typeof(value) === "number") {
-                        for (i = 0; i < this.length; i++) {
-                            if (this[i].locationType === value) {
-                                return this[i];
-                            }
-                        }
-                    };
-                    return undefined;
+                        locationPropertyArray.findByType =
+                            (function(value) {
+                                var i;
+                                if (typeof(value) === "number") {
+                                    for (i = 0; i < this.length; i++) {
+                                        if (this[i].locationType === value) {
+                                            return this[i];
+                                        }
+                                    }
+                                };
+                                return undefined;
 
-                });
-            locationPropertyArray.tag = function() {
-                return 'DOCUMENT.LOCOFCARENAME';
-            }();
+                            });
+                    }
 
-            return locationPropertyArray;
-        }());
+                    return locationPropertyArray;
+                }
+            };
+        return propertyObject;
+    }()));
 
     Object.defineProperty(mdObject.clinicalDocument, 'dateOfUpdate', (function() {
         var melValue,
