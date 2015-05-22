@@ -21,7 +21,7 @@
  * ============================================================================ */
 /*jslint node: true */
 'use strict';
-(function (global, factory) {
+(function(global, factory) {
 
     if (typeof module === "object" && typeof module.exports === "object") {
         // For CommonJS and CommonJS-like environments where a proper window is present,
@@ -30,7 +30,7 @@
         // (such as Node.js), expose a mdObject-making factory as module.exports
         // This accentuates the need for the creation of a real window
         // e.g. var mdObject = require("mdobject")(window);
-        module.exports = global.document ? factory(global, true) : function (w) {
+        module.exports = global.document ? factory(global, true) : function(w) {
             if (!w.document) {
                 throw new Error("mdObject requires a window with a document");
             }
@@ -41,7 +41,7 @@
     }
 
     // Pass this if window is not defined yet
-}(window !== undefined ? window : this, function (window, noGlobal) {
+}(window !== undefined ? window : this, function(window, noGlobal) {
 
     var _melOpener, _appOpener;
     if (window.opener !== undefined && window.opener.$mdObject !== undefined && window.opener.$mdObject.emr !== undefined) {
@@ -107,19 +107,19 @@
         }
 
         // Implements MEL eval function
-        this.melFunc = function (data) {
+        this.melFunc = function(data) {
             return (mel === null) ? noMelData : mel.eval(data);
         };
 
-        this.saveObservation = function (obs, value, date) {
+        this.saveObservation = function(obs, value, date) {
             return (mel === null) ? noMelData : mel.OBSNOW(obs, value, date);
         }
 
-        this.getObs = function (isCurrent, data) {
+        this.getObs = function(isCurrent, data) {
             return (mel === null) ? noMelData : ((isCurrent === true) ? mel.OBSNOW(data, '', '') : mel.OBSPREV(data));
         };
 
-        this.showUrlDialog = function (url) {
+        this.showUrlDialog = function(url) {
             this.melFunc('{SHOW_HTML_FORM("' + url + '","test")}');
         };
 
@@ -152,13 +152,13 @@
             }
         }
 
-        this.enterpriseId = function () {
+        this.enterpriseId = function() {
             return (app === null) ? noAppData : app.EnterpriseID;
         };
-        this.databaseVersion = function () {
+        this.databaseVersion = function() {
             return (app === null) ? noAppData : app.DatabaseVersion;
         };
-        this.showUrlDialog = function (url) {
+        this.showUrlDialog = function(url) {
             return (app === null) ? noAppData : app.ShowURLDialog(url);
         };
     }
@@ -167,7 +167,7 @@
 
     function DocumentVariable(value, saveCallback) {
         var ar = (value === undefined) ? new Object() : value;
-        ar.save = function () {
+        ar.save = function() {
             if (saveCallback !== undefined) {
                 saveCallback();
             }
@@ -180,7 +180,7 @@
         var sb = new String(value);
 
         // Function parse string object to array of string 
-        sb.toList = function (seporator) {
+        sb.toList = function(seporator) {
             if (seporator === undefined) {
                 seporator = '|';
             }
@@ -198,18 +198,18 @@
         };
 
         // String helper function to validate that string start with specified string
-        sb.startsWith = function (str) {
+        sb.startsWith = function(str) {
             return value.slice(0, str.length) === str;
         };
 
         // String helper function to validate that string end with specified string
-        sb.endsWith = function (str) {
+        sb.endsWith = function(str) {
             return value.slice(-str.length) === str;
         };
 
         sb.tag = (tag !== undefined) ? tag : '';
 
-        sb.toDate = function () {
+        sb.toDate = function() {
             return new Date(value.toString());
         };
 
@@ -230,11 +230,11 @@
                 "_unk3": (data.length > 7) ? data[7] : '',
                 "_unk4": (data.length > 8) ? data[8] : '',
                 "_unk5": (data.length > 9) ? data[9] : '',
-                toAddString: function (encodeValue) {
+                toAddString: function(encodeValue) {
                     var recordValue = encodeValue === undefined ? this.value : window.btoa(this.value);
                     return this.key + '^' + this.name + '^' + recordValue + '^' + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^' + this._unk3 + '^' + this._unk4 + '^' + this._unk5;
                 },
-                save: function (encodeValue) {
+                save: function(encodeValue) {
                     var response;
                     if (isNew) {
                         response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
@@ -244,7 +244,9 @@
                         response = _mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
                     }
                 },
-                remove: function () { _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}'); }
+                remove: function() {
+                    _mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
+                }
             };
 
         return contentProperty;
@@ -258,7 +260,7 @@
                 phone: (data.length > 2) ? data[2] : '',
                 phoneType: (data.length > 3) ? data[3] : '',
                 address: (data.length > 4) ? data[4] : '',
-                toMelString: function () {
+                toMelString: function() {
                     return value;
                 }
             };
@@ -312,7 +314,7 @@
                 stopDate: (data.length > 40) ? data[40] : '',
                 reasonNotGivenMedical: (data.length > 41) ? data[41] : '',
                 reasonNotGivenMedicalDetail: (data.length > 42) ? data[42] : '',
-                save: function () {
+                save: function() {
                     if (isNew) {
                         var isError = this.validateAdd(),
                             response;
@@ -328,12 +330,12 @@
                         // update
                     }
                 },
-                toMelString: function () {
+                toMelString: function() {
                     return value;
                 }
             };
 
-        immunizationsProperty.validateAdd = function () {
+        immunizationsProperty.validateAdd = function() {
             var errorMessage = ' is required.';
             // check required parameters
             if (this.vaccineGroupName === '') {
@@ -357,7 +359,7 @@
             return '';
         };
 
-        immunizationsProperty.toStringAdd = function () {
+        immunizationsProperty.toStringAdd = function() {
             return this.vaccineGroupName + '^' + this.vaccineName + '^' + this.medicalDisplayName + '^' + this.series + '^' + this.wasGiven +
                 '^' + this.reasonNotGiven + '^' + this.historical + '^' + this.historicalSource + '^' + this.vfcElegibility + '^' + this.ddid +
                 '^' + this.dnid + '^' + this.gpi + '^' + this.kdc + '^' + this.ndc + '^' + this.cvxCode + '^' + this.doseAmount + '^' + this.dosageUnitOfMeasure +
@@ -388,12 +390,12 @@
 
     function User(value, callFunction) {
         var data = value === undefined ? [] : value.split('^'),
-                    isNew = value === undefined ? true : false,
-                    userProperty = {
-                        toMelString: function () {
-                            return value;
-                        }
-                    };
+            isNew = value === undefined ? true : false,
+            userProperty = {
+                toMelString: function() {
+                    return value;
+                }
+            };
         if (callFunction === UserCallFunction.UserInfo) {
             userProperty.loginName = (data.length > 0) ? data[0] : '';
             userProperty.searchName = (data.length > 1) ? data[1] : '';
@@ -533,35 +535,39 @@
             isNew = valueString === undefined ? true : false,
             tag,
 
-         objectProperty = {
-             "name": (name !== undefined) ? name : '',
-             "value": (data.length > 0) ? data[0] : '',
-             "date": (data.length > 1) ? data[1] : '',
-             "time": (data.length > 2) ? data[2] : '',
-             "signingUser": (data.length > 3) ? data[3] : '',
-             "enteringUser": (data.length > 4) ? data[4] : '',
-             "flags": (data.length > 5) ? data[5] : '',
-             "comment": (data.length > 6) ? data[6] : '',
-             "state": (data.length > 7) ? data[7] : '',
-             "locationOfCare": (data.length > 8) ? data[8] : '',
-             "documentType": (data.length > 9) ? data[9] : '',
-             "documentId": (data.length > 10) ? data[10] : '',
-             "tag": (type === ObservationType.DocumentUnsigned) ? _mel.melFunc('{OBSTAGNOW("' + this.name + '")}') : '',
-             "type": type,
-             "unitOfMeasure": '',
-             "save": function () {
-                 var response;
-                 response = _mel.saveObservation(this.name, this.value, this.date); //  _mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
-                 if (this.tag !== undefined && this.tag !== '') { response = _mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}'); }
-                 if (this.comment !== undefined && this.comment != '') { response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}'); }
-             },
-             "remove": function () { }
-         };
+            objectProperty = {
+                "name": (name !== undefined) ? name : '',
+                "value": (data.length > 0) ? data[0] : '',
+                "date": (data.length > 1) ? data[1] : '',
+                "time": (data.length > 2) ? data[2] : '',
+                "signingUser": (data.length > 3) ? data[3] : '',
+                "enteringUser": (data.length > 4) ? data[4] : '',
+                "flags": (data.length > 5) ? data[5] : '',
+                "comment": (data.length > 6) ? data[6] : '',
+                "state": (data.length > 7) ? data[7] : '',
+                "locationOfCare": (data.length > 8) ? data[8] : '',
+                "documentType": (data.length > 9) ? data[9] : '',
+                "documentId": (data.length > 10) ? data[10] : '',
+                "tag": (type === ObservationType.DocumentUnsigned) ? _mel.melFunc('{OBSTAGNOW("' + this.name + '")}') : '',
+                "type": type,
+                "unitOfMeasure": '',
+                "save": function() {
+                    var response;
+                    response = _mel.saveObservation(this.name, this.value, this.date); //  _mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
+                    if (this.tag !== undefined && this.tag !== '') {
+                        response = _mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}');
+                    }
+                    if (this.comment !== undefined && this.comment != '') {
+                        response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
+                    }
+                },
+                "remove": function() {}
+            };
 
-        Object.defineProperty(objectProperty, 'unitOfMeasure', (function () {
+        Object.defineProperty(objectProperty, 'unitOfMeasure', (function() {
             var melValue,
                 propertyObject = {
-                    get: function () {
+                    get: function() {
                         melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{OBSUNIT("' + objectProperty.name + '")}');
                         return melValue;
                     }
@@ -569,10 +575,10 @@
             return propertyObject;
         }()));
 
-        Object.defineProperty(objectProperty, 'tag', (function () {
+        Object.defineProperty(objectProperty, 'tag', (function() {
             var melValue,
                 propertyObject = {
-                    get: function () {
+                    get: function() {
                         melValue = (melValue !== undefined) ? melValue : (type === ObservationType.DocumentUnsigned) ? _mel.melFunc('{OBSTAGNOW("' + objectProperty.name + '")}') : '';
                         return melValue;
                     }
@@ -599,10 +605,10 @@
             height: {}
         };
 
-        objectProperty.weight = function () {
+        objectProperty.weight = function() {
             return _mel.getObs(isCurrent, mdObject.obsTermsMap.weight);
         };
-        objectProperty.height = function () {
+        objectProperty.height = function() {
             return _mel.getObs(isCurrent, mdObject.obsTermsMap.height);
         };
 
@@ -610,61 +616,61 @@
     }
 
     function Insurance(insuranceType) {
-        var objectProperty = {
-            // Type of insurance P = Primary S = Secondary O = Other
-            type: insuranceType,
-            // The name of the patient’s insurance carrier.
-            name: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_NAME("' + type + '")}');
-                }
-                return value;
-            }(insuranceType),
-            // The name and address of the patient’s insurance carrier.
-            address: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_ADDR("' + type + '")}');
-                }
-                return value;
-            }(insuranceType),
-            // The patient’s insurance ID number for insurance carrier.
-            insuranceId: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_ID("' + type + '")}');
-                }
-                return value;
-            }(insuranceType),
-            // The name of the patient’s plan for insurance
-            planName: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_PLAN("' + type + '")}');
-                }
-                return value;
-            }(insuranceType),
-            // The group number of the patient’s insurance carrier.
-            groupNumber: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_GRP("' + type + '")}');
-                }
-                return value;
-            }(insuranceType),
-            // The phone number of the patient’s insurance company
-            phone: function (type) {
-                var value;
-                if (value === undefined) {
-                    value = _mel.melFunc('{INS_PHONE("' + type + '")}');
-                }
-                return value;
-            }(insuranceType)
-        };
-        return objectProperty;
-    }
-    //-------------- /classes --------------
+            var objectProperty = {
+                // Type of insurance P = Primary S = Secondary O = Other
+                type: insuranceType,
+                // The name of the patient’s insurance carrier.
+                name: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_NAME("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType),
+                // The name and address of the patient’s insurance carrier.
+                address: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_ADDR("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType),
+                // The patient’s insurance ID number for insurance carrier.
+                insuranceId: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_ID("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType),
+                // The name of the patient’s plan for insurance
+                planName: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_PLAN("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType),
+                // The group number of the patient’s insurance carrier.
+                groupNumber: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_GRP("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType),
+                // The phone number of the patient’s insurance company
+                phone: function(type) {
+                    var value;
+                    if (value === undefined) {
+                        value = _mel.melFunc('{INS_PHONE("' + type + '")}');
+                    }
+                    return value;
+                }(insuranceType)
+            };
+            return objectProperty;
+        }
+        //-------------- /classes --------------
 
 
     var document = window.document,
@@ -696,25 +702,26 @@
     // Usage: $mdObject.clinicalDocument.variables = {"alex":1}; - create object with variable alex and assigned value 1.
     //        $mdObject.clinicalDocument.variables["alex"]=4;  -changes value of alex to 4
     //        $mdObject.clinicalDocument.variables.save(); - saves the object with the document
-    Object.defineProperty(mdObject.clinicalDocument, 'variables', (function () {
-        var save = function () { _mel.melFunc('{DOCUMENT.mdObject_variables = "' + JSON.stringify(rawValue).replace(/"/g, '\\"') + '"}'); };
+    Object.defineProperty(mdObject.clinicalDocument, 'variables', (function() {
+        var save = function() {
+            _mel.melFunc('{DOCUMENT.mdObject_variables = "' + JSON.stringify(rawValue).replace(/"/g, '\\"') + '"}');
+        };
         var melValue,
             rawValue = new DocumentVariable({}, save),
             propertyObject = {
-                get: function () {
+                get: function() {
                     if (melValue === undefined) {
                         melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.mdObject_variables}');
                         melValue = (melValue !== '') ? melValue : JSON.stringify(rawValue);
                         try {
                             rawValue = new DocumentVariable(JSON.parse(melValue), save);
-                        }
-                        catch (e) {
+                        } catch (e) {
                             rawValue = {};
                         }
                     }
                     return rawValue;
                 },
-                set: function (val) {
+                set: function(val) {
                     for (var key in val) {
                         rawValue[key] = val[key];
                     }
@@ -725,10 +732,10 @@
         return propertyObject;
     }()));
 
-    Object.defineProperty(mdObject.clinicalDocument, 'did', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'did', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{find("DOCUMENT","DID")}');
                     return melValue;
                 }
@@ -736,10 +743,10 @@
         return propertyObject;
     }()));
 
-    Object.defineProperty(mdObject.clinicalDocument, 'xid', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'xid', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.XID}').split('.')[0];
                     return melValue;
                 }
@@ -749,10 +756,10 @@
 
     // The unique document identifier for a document within a patient chart. You can see the Doc ID on each 
     // document and on a chart update. Each document in the patient’s chart has a Doc ID.
-    Object.defineProperty(mdObject.clinicalDocument, 'documentId', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'documentId', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.VISDOCID}');
                     return melValue;
                 }
@@ -765,10 +772,10 @@
     //        A = Active
     //        H = Hold
     //        S = Signed
-    Object.defineProperty(mdObject.clinicalDocument, 'status', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'status', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.STATUS}');
                     return melValue;
                 }
@@ -778,16 +785,16 @@
 
     // The location of care of the document for the current chart update.
     mdObject.clinicalDocument.location =
-        (function () {
+        (function() {
             var locationPropertyArray = new Array(),
                 melValue = _mel.melFunc('{DOCUMENT.LOCOFCARENAME}'),
                 locationProperty = new Location(melValue, melValue, LocationType.Current);
 
             locationPropertyArray.push(locationProperty)
             locationPropertyArray.findByType =
-                (function (value) {
+                (function(value) {
                     var i;
-                    if (typeof (value) === "number") {
+                    if (typeof(value) === "number") {
                         for (i = 0; i < this.length; i++) {
                             if (this[i].locationType === value) {
                                 return this[i];
@@ -797,17 +804,17 @@
                     return undefined;
 
                 });
-            locationPropertyArray.tag = function () {
+            locationPropertyArray.tag = function() {
                 return 'DOCUMENT.LOCOFCARENAME';
             }();
 
             return locationPropertyArray;
         }());
 
-    Object.defineProperty(mdObject.clinicalDocument, 'dateOfUpdate', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'dateOfUpdate', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.CLINICALDATE}');
                     return melValue;
                 }
@@ -815,10 +822,10 @@
         return propertyObject;
     }()));
 
-    Object.defineProperty(mdObject.clinicalDocument, 'provider', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'provider', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.PROVIDER}');
                     return melValue;
                 }
@@ -826,10 +833,10 @@
         return propertyObject;
     }()));
 
-    Object.defineProperty(mdObject.clinicalDocument, 'userLoginName', (function () {
+    Object.defineProperty(mdObject.clinicalDocument, 'userLoginName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.USERLOGINNAME}');
                     return melValue;
                 }
@@ -837,41 +844,36 @@
         return propertyObject;
     }()));
 
-    var getCurrentUser = function () {
-        return _mel.melFunc('{GETUSERINFO("' + _mel.melFunc('{USER.LOGINNAME}') + '")}')
-        + '^' + _mel.melFunc('{USER.CURLOCATIONNAME}')
-        + '^' + _mel.melFunc('{USER.FIRSTNAME}')
-        + '^' + _mel.melFunc('{USER.MIDDLENAME}')
-        + '^' + _mel.melFunc('{USER.LASTNAME}');
+    var getCurrentUser = function() {
+        return _mel.melFunc('{GETUSERINFO("' + _mel.melFunc('{USER.LOGINNAME}') + '")}') + '^' + _mel.melFunc('{USER.CURLOCATIONNAME}') + '^' + _mel.melFunc('{USER.FIRSTNAME}') + '^' + _mel.melFunc('{USER.MIDDLENAME}') + '^' + _mel.melFunc('{USER.LASTNAME}');
     }
 
     /*** Users Properties ***/
-    mdObject.users.getUser = function (value) {
+    mdObject.users.getUser = function(value) {
         if (value === undefined) {
             var melValueCurrent = (melValueCurrent !== undefined) ? melValueCurrent : new User(getCurrentUser(), UserCallFunction.UserInfo);
             return melValueCurrent;
-        }
-        else {
+        } else {
             var melValue = (melValue !== undefined) ? melValue : new User(_mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
             return melValue;
         }
     };
 
-    mdObject.users.getUsers = function (locations, roles) {
+    mdObject.users.getUsers = function(locations, roles) {
         var data = _mel.melFunc('{GET_USER_LIST(USER.CURLOCATIONABBREVNAME, "","delimited", true)}'),
-        dataArray = new StringInternal(data).toList(),
-        index;
+            dataArray = new StringInternal(data).toList(),
+            index;
 
         /*jslint plusplus: true */
         for (index = 0; index < dataArray.length; index++) {
             dataArray[index] = new User(dataArray[index], UserCallFunction.UserList);
         }
 
-        dataArray.tag = function () {
+        dataArray.tag = function() {
             return 'GET_USER_LIST';
         }();
 
-        dataArray.toMelString = function () {
+        dataArray.toMelString = function() {
             return data;
         };
 
@@ -959,12 +961,12 @@
         carePlans: {}
     };
 
-    Object.defineProperty(mdObject.patient, 'protocols', (function () {
+    Object.defineProperty(mdObject.patient, 'protocols', (function() {
         var data,
             dataArray,
             index,
             propertyObject = {
-                get: function () {
+                get: function() {
                     data = (data !== undefined) ? data : _mel.melFunc('{LISTPROTOCOLSHORT("list")}');
                     if (dataArray === undefined) {
 
@@ -975,11 +977,11 @@
                             dataArray[index] = new Protocol(dataArray[index]);
                         };
 
-                        dataArray.tag = function () {
+                        dataArray.tag = function() {
                             return 'LISTPROTOCOLSHORT("list")';
                         }();
 
-                        dataArray.toMelString = function () {
+                        dataArray.toMelString = function() {
                             return data;
                         };
                     }
@@ -989,7 +991,7 @@
         return propertyObject;
     }()));
 
-    mdObject.patient.observations = function (name) {
+    mdObject.patient.observations = function(name) {
         var data;
         if (_observations[name] === undefined) {
             data = _mel.melFunc('{LIST_OBS("' + name + '","Update","Delimited","value")}');
@@ -1008,17 +1010,17 @@
             }
         }
 
-        _observations[name].tag = function () {
+        _observations[name].tag = function() {
             return 'LIST_OBS.' + name;
         }();
 
         return _observations[name];
     };
 
-    Object.defineProperty(mdObject.patient, 'patientId', (function () {
+    Object.defineProperty(mdObject.patient, 'patientId', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PATIENTID}');
                     return melValue;
                 }
@@ -1026,10 +1028,10 @@
         return propertyObject;
     }()));
 
-    Object.defineProperty(mdObject.patient, 'pid', (function () {
+    Object.defineProperty(mdObject.patient, 'pid', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{find("patient", "PID")}');
                     return melValue;
                 }
@@ -1038,10 +1040,10 @@
     }()));
 
     // Returns the patient’s medical record number.
-    Object.defineProperty(mdObject.patient, 'medicalRecordId', (function () {
+    Object.defineProperty(mdObject.patient, 'medicalRecordId', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.MEDRECNO}');
                     return melValue;
                 }
@@ -1050,10 +1052,10 @@
     }()));
 
     // Returns the patient’s ID from an external system, such as a billing or lab system
-    Object.defineProperty(mdObject.patient, 'externalId', (function () {
+    Object.defineProperty(mdObject.patient, 'externalId', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.EXTERNALID}');
                     return melValue;
                 }
@@ -1062,10 +1064,10 @@
     }()));
 
     // Returns the preferred patient ID number for printed materials.
-    Object.defineProperty(mdObject.patient, 'printId', (function () {
+    Object.defineProperty(mdObject.patient, 'printId', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PRINTID}');
                     return melValue;
                 }
@@ -1074,10 +1076,10 @@
     }()));
 
     // Returns the patient’s Social Security number.
-    Object.defineProperty(mdObject.patient, 'ssn', (function () {
+    Object.defineProperty(mdObject.patient, 'ssn', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.SOCSECNO}');
                     return melValue;
                 }
@@ -1086,10 +1088,10 @@
     }()));
 
     // Returns the patient’s first name.
-    Object.defineProperty(mdObject.patient, 'firstName', (function () {
+    Object.defineProperty(mdObject.patient, 'firstName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.FIRSTNAME}');
                     return melValue;
                 }
@@ -1098,10 +1100,10 @@
     }()));
 
     // Returns the patient’s last name.
-    Object.defineProperty(mdObject.patient, 'lastName', (function () {
+    Object.defineProperty(mdObject.patient, 'lastName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.LASTNAME}');
                     return melValue;
                 }
@@ -1110,10 +1112,10 @@
     }()));
 
     // Returns the patient’s middle name.
-    Object.defineProperty(mdObject.patient, 'middleName', (function () {
+    Object.defineProperty(mdObject.patient, 'middleName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.MIDDLENAME}');
                     return melValue;
                 }
@@ -1122,10 +1124,10 @@
     }()));
 
     // Returns the patient’s full name formatted as follows: title first middle last, suffix
-    Object.defineProperty(mdObject.patient, 'labelName', (function () {
+    Object.defineProperty(mdObject.patient, 'labelName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.LABELNAME}');
                     return melValue;
                 }
@@ -1134,10 +1136,10 @@
     }()));
 
     // Name Prefix
-    Object.defineProperty(mdObject.patient, 'namePrefix', (function () {
+    Object.defineProperty(mdObject.patient, 'namePrefix', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.TITLE}');
                     return melValue;
                 }
@@ -1146,10 +1148,10 @@
     }()));
 
     // Name Suffix
-    Object.defineProperty(mdObject.patient, 'nameSuffix', (function () {
+    Object.defineProperty(mdObject.patient, 'nameSuffix', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ENTITLEMENTS}');
                     return melValue;
                 }
@@ -1159,14 +1161,14 @@
 
     // Represent patient address object
     mdObject.patient.address =
-        (function () {
+        (function() {
             var addressProperty = {};
 
             // Returns the first line of the patient’s address
-            Object.defineProperty(addressProperty, 'address1', (function () {
+            Object.defineProperty(addressProperty, 'address1', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ADDRESS1}');
                             return melValue;
                         }
@@ -1175,10 +1177,10 @@
             }()));
 
             // Returns the second line of the patient’s address
-            Object.defineProperty(addressProperty, 'address2', (function () {
+            Object.defineProperty(addressProperty, 'address2', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ADDRESS2}');
                             return melValue;
                         }
@@ -1187,10 +1189,10 @@
             }()));
 
             // Returns the patient’s city of residence
-            Object.defineProperty(addressProperty, 'city', (function () {
+            Object.defineProperty(addressProperty, 'city', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.CITY}');
                             return melValue;
                         }
@@ -1199,10 +1201,10 @@
             }()));
 
             // Returns the patient’s state or province
-            Object.defineProperty(addressProperty, 'state', (function () {
+            Object.defineProperty(addressProperty, 'state', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.STATE}');
                             return melValue;
                         }
@@ -1211,10 +1213,10 @@
             }()));
 
             // Returns the patient’s ZIP/Postal code
-            Object.defineProperty(addressProperty, 'postCode', (function () {
+            Object.defineProperty(addressProperty, 'postCode', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ZIP}');
                             return melValue;
                         }
@@ -1223,10 +1225,10 @@
             }()));
 
             // Returns the patient’s country of residence
-            Object.defineProperty(addressProperty, 'country', (function () {
+            Object.defineProperty(addressProperty, 'country', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.COUNTRY}');
                             return melValue;
                         }
@@ -1238,10 +1240,10 @@
         }());
 
     // Patient’s sex.
-    Object.defineProperty(mdObject.patient, 'sex', (function () {
+    Object.defineProperty(mdObject.patient, 'sex', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.SEX}');
                     return melValue;
                 }
@@ -1250,10 +1252,10 @@
     }()));
 
     // Patient’s race
-    Object.defineProperty(mdObject.patient, 'race', (function () {
+    Object.defineProperty(mdObject.patient, 'race', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.RACE}');
                     return melValue;
                 }
@@ -1262,10 +1264,10 @@
     }()));
 
     // Patient’s ethnicity
-    Object.defineProperty(mdObject.patient, 'ethnicity', (function () {
+    Object.defineProperty(mdObject.patient, 'ethnicity', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ETHNICITY}');
                     return melValue;
                 }
@@ -1274,10 +1276,10 @@
     }()));
 
     // Returns the patient’s birth date/time
-    Object.defineProperty(mdObject.patient, 'dateOfBirth', (function () {
+    Object.defineProperty(mdObject.patient, 'dateOfBirth', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.DATEOFBIRTH}');
                     return melValue;
                 }
@@ -1286,10 +1288,10 @@
     }()));
 
     // Returns the patient’s date of death
-    Object.defineProperty(mdObject.patient, 'dateOfDeath', (function () {
+    Object.defineProperty(mdObject.patient, 'dateOfDeath', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.DATEOFDEATH}');
                     return melValue;
                 }
@@ -1298,10 +1300,10 @@
     }()));
 
     // Returns the patient’s marital status (Single, Married, Divorced, Widowed, Separated, Other or Undetermined)
-    Object.defineProperty(mdObject.patient, 'maritalStatus', (function () {
+    Object.defineProperty(mdObject.patient, 'maritalStatus', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.MARITALSTATUS}');
                     return melValue;
                 }
@@ -1310,10 +1312,10 @@
     }()));
 
     // Returns the patient’s preferred language
-    Object.defineProperty(mdObject.patient, 'language', (function () {
+    Object.defineProperty(mdObject.patient, 'language', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PREFLANG}');
                     return melValue;
                 }
@@ -1322,13 +1324,13 @@
     }()));
 
     mdObject.patient.phone =
-        (function () {
+        (function() {
             var addressProperty = {};
 
-            Object.defineProperty(addressProperty, 'home', (function () {
+            Object.defineProperty(addressProperty, 'home', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.ALTPHONE}');
                             return melValue;
                         }
@@ -1337,10 +1339,10 @@
             }()));
 
             // Returns the patient’s business/work telephone number
-            Object.defineProperty(addressProperty, 'business', (function () {
+            Object.defineProperty(addressProperty, 'business', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.WORKPHONE}');
                             return melValue;
                         }
@@ -1349,10 +1351,10 @@
             }()));
 
             // Returns the patient’s cell phone number
-            Object.defineProperty(addressProperty, 'mobile', (function () {
+            Object.defineProperty(addressProperty, 'mobile', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.CELLPHONE}');
                             return melValue;
                         }
@@ -1361,10 +1363,10 @@
             }()));
 
             // Returns the patient’s fax number
-            Object.defineProperty(addressProperty, 'fax', (function () {
+            Object.defineProperty(addressProperty, 'fax', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.FAXPHONE}');
                             return melValue;
                         }
@@ -1376,10 +1378,10 @@
         }());
 
     // Returns the patient’s e-mail address
-    Object.defineProperty(mdObject.patient, 'email', (function () {
+    Object.defineProperty(mdObject.patient, 'email', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.EMAIL}');
                     return melValue;
                 }
@@ -1388,10 +1390,10 @@
     }()));
 
     // Returns the patient’s contact by information
-    Object.defineProperty(mdObject.patient, 'contactBy', (function () {
+    Object.defineProperty(mdObject.patient, 'contactBy', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.CONTACTBY}');
                     return melValue;
                 }
@@ -1400,12 +1402,12 @@
     }()));
 
     // Returns a list of the contacts for the current patient
-    Object.defineProperty(mdObject.patient, 'contacts', (function () {
+    Object.defineProperty(mdObject.patient, 'contacts', (function() {
         var data,
             dataArray,
-             index,
+            index,
             propertyObject = {
-                get: function () {
+                get: function() {
                     data = (data !== undefined) ? data : _mel.melFunc('{PATIENT.CONTACTS}');
                     if (dataArray === undefined) {
 
@@ -1416,11 +1418,11 @@
                             dataArray[index] = new PatientContact(dataArray[index]);
                         }
 
-                        dataArray.tag = function () {
+                        dataArray.tag = function() {
                             return 'PATIENT.CONTACTS';
                         }();
 
-                        dataArray.toMelString = function () {
+                        dataArray.toMelString = function() {
                             return data;
                         };
                     }
@@ -1431,10 +1433,10 @@
     }()));
 
     // Returns the patient’s employment status.
-    Object.defineProperty(mdObject.patient, 'employmentStatus', (function () {
+    Object.defineProperty(mdObject.patient, 'employmentStatus', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.EMPLSTATUS}');
                     return melValue;
                 }
@@ -1443,10 +1445,10 @@
     }()));
 
     // Patient’s current status in the clinic
-    Object.defineProperty(mdObject.patient, 'clinicStatus', (function () {
+    Object.defineProperty(mdObject.patient, 'clinicStatus', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PSTATUS}');
                     return melValue;
                 }
@@ -1455,10 +1457,10 @@
     }()));
 
     // Name of the primary care physician
-    Object.defineProperty(mdObject.patient, 'primaryCarePhysicianName', (function () {
+    Object.defineProperty(mdObject.patient, 'primaryCarePhysicianName', (function() {
         var melValue,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.PCP}');
                     return melValue;
                 }
@@ -1468,13 +1470,13 @@
 
     // referring provider
     mdObject.patient.referringProvider =
-        (function () {
+        (function() {
             var providerProperty = {};
 
-            Object.defineProperty(providerProperty, 'referringProviderId', (function () {
+            Object.defineProperty(providerProperty, 'referringProviderId', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDID}');
                             return melValue;
                         }
@@ -1482,10 +1484,10 @@
                 return propertyObject;
             }()));
 
-            Object.defineProperty(providerProperty, 'firstName', (function () {
+            Object.defineProperty(providerProperty, 'firstName', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
                             return melValue;
                         }
@@ -1493,10 +1495,10 @@
                 return propertyObject;
             }()));
 
-            Object.defineProperty(providerProperty, 'lastName', (function () {
+            Object.defineProperty(providerProperty, 'lastName', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDLASTNAME}');
                             return melValue;
                         }
@@ -1504,10 +1506,10 @@
                 return propertyObject;
             }()));
 
-            Object.defineProperty(providerProperty, 'email', (function () {
+            Object.defineProperty(providerProperty, 'email', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
                             return melValue;
                         }
@@ -1516,14 +1518,14 @@
             }()));
 
             providerProperty.phone =
-                (function () {
+                (function() {
                     var phoneProperty = {};
 
                     // Office phone number of the referring provider
-                    Object.defineProperty(phoneProperty, 'office', (function () {
+                    Object.defineProperty(phoneProperty, 'office', (function() {
                         var melValue,
                             propertyObject = {
-                                get: function () {
+                                get: function() {
                                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDOFFICEPHONE}');
                                     return melValue;
                                 }
@@ -1532,10 +1534,10 @@
                     }()));
 
                     // Alternative phone number of the referring provider
-                    Object.defineProperty(phoneProperty, 'alternative', (function () {
+                    Object.defineProperty(phoneProperty, 'alternative', (function() {
                         var melValue,
                             propertyObject = {
-                                get: function () {
+                                get: function() {
                                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDALTPHONE}');
                                     return melValue;
                                 }
@@ -1544,10 +1546,10 @@
                     }()));
 
                     // Fax number of the referring physician
-                    Object.defineProperty(phoneProperty, 'fax', (function () {
+                    Object.defineProperty(phoneProperty, 'fax', (function() {
                         var melValue,
                             propertyObject = {
-                                get: function () {
+                                get: function() {
                                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDFAXPHONE}');
                                     return melValue;
                                 }
@@ -1556,10 +1558,10 @@
                     }()));
 
                     // Pager number of the referring provider
-                    Object.defineProperty(phoneProperty, 'pager', (function () {
+                    Object.defineProperty(phoneProperty, 'pager', (function() {
                         var melValue,
                             propertyObject = {
-                                get: function () {
+                                get: function() {
                                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDPAGERPHONE}');
                                     return melValue;
                                 }
@@ -1568,10 +1570,10 @@
                     }()));
 
                     // Cell phone number of the referring provider
-                    Object.defineProperty(phoneProperty, 'mobile', (function () {
+                    Object.defineProperty(phoneProperty, 'mobile', (function() {
                         var melValue,
                             propertyObject = {
-                                get: function () {
+                                get: function() {
                                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDCELLPHONE}');
                                     return melValue;
                                 }
@@ -1583,10 +1585,10 @@
                 }());
 
             // Address of the referring physician
-            Object.defineProperty(providerProperty, 'fullAddress', (function () {
+            Object.defineProperty(providerProperty, 'fullAddress', (function() {
                 var melValue,
                     propertyObject = {
-                        get: function () {
+                        get: function() {
                             melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.REFMDADDRESS}');
                             return melValue;
                         }
@@ -1597,13 +1599,13 @@
             return providerProperty;
         }());
 
-    Object.defineProperty(mdObject.patient, 'location', (function () {
+    Object.defineProperty(mdObject.patient, 'location', (function() {
         var melValue,
             melId,
             locationPropertyArray,
             locationProperty,
             propertyObject = {
-                get: function () {
+                get: function() {
                     melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
                     melId = (melId !== undefined) ? melId : _mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
                     locationProperty = (locationProperty !== undefined) ? locationProperty : new Location(melId, melValue, LocationType.Home);
@@ -1612,9 +1614,9 @@
                         locationPropertyArray.push(locationProperty);
 
                         locationPropertyArray.findByType =
-                            (function (value) {
+                            (function(value) {
                                 var i;
-                                if (typeof (value) === "number") {
+                                if (typeof(value) === "number") {
                                     for (i = 0; i < this.length; i++) {
                                         if (this[i].locationType === value) {
                                             return this[i];
@@ -1633,24 +1635,24 @@
     }()));
 
     mdObject.patient.measurements =
-        (function () {
+        (function() {
             var measurementProperty = {
                 current: {},
                 previous: {}
             };
 
-            measurementProperty.current = (function () {
+            measurementProperty.current = (function() {
                 return new Measurement(true);
             }());
 
-            measurementProperty.previous = (function () {
+            measurementProperty.previous = (function() {
                 return new Measurement(false);
             }());
 
             return measurementProperty;
         }());
 
-    mdObject.patient.carePlans = (function () {
+    mdObject.patient.carePlans = (function() {
         var data, dataArray, index;
 
         if (_carePlans === null) {
@@ -1664,10 +1666,10 @@
             _carePlans = dataArray;
         }
 
-        _carePlans.tag = function () {
+        _carePlans.tag = function() {
             return 'MEL_LIST_CARE_PLAN';
         }();
-        _carePlans.toMelString = function () {
+        _carePlans.toMelString = function() {
             return data;
         };
 
@@ -1675,14 +1677,14 @@
     }());
 
     // Allergy list
-    mdObject.patient.allergies = function () {
+    mdObject.patient.allergies = function() {
         var allergiesProperty = {
             added: {},
             removed: {},
             current: {}
         };
 
-        allergiesProperty.added = function () {
+        allergiesProperty.added = function() {
             var dataArray = new StringInternal(_mel.melFunc('{ALL_NEW("delimited")}')).toList();
             for (var i = 0; i < dataArray.length; i++) {
                 dataArray[i] = new AllergyList(dataArray[i]);
@@ -1690,7 +1692,7 @@
             return dataArray;
         };
 
-        allergiesProperty.removed = function () {
+        allergiesProperty.removed = function() {
             var dataArray = new StringInternal(_mel.melFunc('{ALL_REMOVED("delimited")}')).toList();
             for (var i = 0; i < dataArray.length; i++) {
                 dataArray[i] = new AllergyListRemoved(dataArray[i]);
@@ -1698,7 +1700,7 @@
             return dataArray;
         };
 
-        allergiesProperty.current = function () {
+        allergiesProperty.current = function() {
             var dataArray = new StringInternal(_mel.melFunc('{ALL_PRIOR("delimited")}')).toList();
             for (var i = 0; i < dataArray.length; i++) {
                 dataArray[i] = new AllergyList(dataArray[i]);
@@ -1708,10 +1710,10 @@
         return allergiesProperty;
     }();
 
-Object.defineProperty(mdObject.patient, 'insurances', (function () {
-    var insArray,
-        propertyObject = {
-                get: function () {
+    Object.defineProperty(mdObject.patient, 'insurances', (function() {
+        var insArray,
+            propertyObject = {
+                get: function() {
                     if (insArray === undefined) {
                         insArray = new Array();
                         insArray.push(new Insurance('P'));
@@ -1720,165 +1722,166 @@ Object.defineProperty(mdObject.patient, 'insurances', (function () {
                     };
 
                     return insArray;
+                }
+            };
+        return propertyObject;
+    }()));
+
+    // List all immunizations
+    Object.defineProperty(mdObject.patient, 'immunizations', (function() {
+        var data,
+            dataArray,
+            index,
+            propertyObject = {
+                get: function() {
+                    data = (data !== undefined) ? data : _mel.melFunc('{IMMUN_GETLIST()}');
+                    if (dataArray === undefined) {
+
+                        dataArray = new StringInternal(data).toList();
+
+                        /*jslint plusplus: true */
+                        for (index = 0; index < dataArray.length; index++) {
+                            dataArray[index] = new Immunization(dataArray[index]);
+                        }
+
+                        dataArray.tag = function() {
+                            return 'IMMUN_GETLIST';
+                        }();
+
+                        dataArray.toMelString = function() {
+                            return data;
+                        };
                     }
-                };
+                    return dataArray;
+                }
+            };
         return propertyObject;
-}()));
+    }()));
 
-// List all immunizations
-Object.defineProperty(mdObject.patient, 'immunizations', (function () {
-    var data,
-        dataArray,
-         index,
-             propertyObject = {
-                         get: function () {
-                 data = (data !== undefined) ? data: _mel.melFunc('{IMMUN_GETLIST()}');
-                 if (dataArray === undefined) {
+    mdObject.emr = new function() {
+        var emrProperty = {};
 
-                     dataArray = new StringInternal(data).toList();
-
-                     /*jslint plusplus: true */
-                     for (index = 0; index < dataArray.length; index++) {
-                     dataArray[index]= new Immunization(dataArray[index]);
-             }
-
-                 dataArray.tag = function () {
-                             return 'IMMUN_GETLIST';
-                             }();
-
-                 dataArray.toMelString = function () {
-                                 return data;
-                     };
-                     }
-                 return dataArray;
-                 }
-};
-        return propertyObject;
-        }()));
-
-mdObject.emr = new function () {
-        var emrProperty = { };
-
-        emrProperty.enterpriseId = function () {
+        emrProperty.enterpriseId = function() {
             return _app.enterpriseId();
-            };
+        };
 
-        emrProperty.databaseVersion = function () {
+        emrProperty.databaseVersion = function() {
             return _app.databaseVersion();
-            };
+        };
 
-                Object.defineProperty(emrProperty, 'version', (function () {
+        Object.defineProperty(emrProperty, 'version', (function() {
             var melValue,
                 propertyObject = {
-                        get: function () {
-                        melValue = (melValue !== undefined) ? melValue: _mel.melFunc('{VER_EMR()}');
-                    return melValue;
-                }
+                    get: function() {
+                        melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{VER_EMR()}');
+                        return melValue;
+                    }
                 };
             return propertyObject;
-            }()));
+        }()));
 
-        emrProperty.window = function () {
+        emrProperty.window = function() {
             var property = {
                 openDialog: function(url) {
                     ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url): _app.showUrlDialog(url);
-        },
-            // Arguments :
-            //  verb : 'GET'|'POST', defaults to "GET"
-            //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
-                open: function (url, verb, target, features, data) {
+                },
+                // Arguments :
+                //  verb : 'GET'|'POST', defaults to "GET"
+                //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
+                open: function(url, verb, target, features, data) {
                     var form = document.createElement("form");
-                form.action = url;
-                form.method = verb || 'GET';
+                    form.action = url;
+                    form.method = verb || 'GET';
                     form.target = target || "_self";
                     if (data) {
                         for (var key in data) {
                             var input = document.createElement("textarea");
                             input.name = key;
-                            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]): data[key];
-                        form.appendChild(input);
-            }
+                            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]) : data[key];
+                            form.appendChild(input);
+                        }
                     }
-                        form.style.display = 'none';
-                        document.body.appendChild(form);
+                    form.style.display = 'none';
+                    document.body.appendChild(form);
                     var w = window.open("about:blank", target, features);
-                form.submit();
-                            return w;
-            }
+                    form.submit();
+                    return w;
+                }
             };
             return property;
         }();
 
-            //"{MEL_GET_CONTENT(\"STC.IMMSLINK.SETTINGS\",\"MATCH\")}"
-            emrProperty.melContent = function (value) {
-                var data = _mel.melFunc('{MEL_GET_CONTENT(\"' +value + '\",\"MATCH\")}');
-                var dataArray = new StringInternal(data).toList();
-                for (var i = 0; i < dataArray.length; i++) {
-                    dataArray[i]= new EmrContent(dataArray[i]);
+        //"{MEL_GET_CONTENT(\"STC.IMMSLINK.SETTINGS\",\"MATCH\")}"
+        emrProperty.melContent = function(value) {
+            var data = _mel.melFunc('{MEL_GET_CONTENT(\"' + value + '\",\"MATCH\")}');
+            var dataArray = new StringInternal(data).toList();
+            for (var i = 0; i < dataArray.length; i++) {
+                dataArray[i] = new EmrContent(dataArray[i]);
             }
 
-                dataArray.tag = function () {
-                    return 'MEL_GET_CONTENT';
+            dataArray.tag = function() {
+                return 'MEL_GET_CONTENT';
             }();
-                dataArray.toMelString = function () {
+            dataArray.toMelString = function() {
                 return data;
-        };
-            return dataArray;
             };
+            return dataArray;
+        };
 
-        emrProperty.mel = function (value) {
-return _mel.melFunc(value);
-}
-        emrProperty.EmrMel = function () {
-return _mel;
-             }();
+        emrProperty.mel = function(value) {
+            return _mel.melFunc(value);
+        }
+        emrProperty.EmrMel = function() {
+            return _mel;
+        }();
         emrProperty.EmrApp = function() {
-return _app; }();
+            return _app;
+        }();
 
         return emrProperty;
-};
+    };
 
     var
     // Map over mdObject in case of overwrite
         _mdObject = window.mdObject,
 
-    // Map over the $mdObject in case of overwrite
-    _$mdObject = window.$mdObject;
+        // Map over the $mdObject in case of overwrite
+        _$mdObject = window.$mdObject;
 
-mdObject.noConflict = function (deep) {
-    if (window.$mdObject === mdObject) {
-        window.$mdObject = _$mdObject;
+    mdObject.noConflict = function(deep) {
+        if (window.$mdObject === mdObject) {
+            window.$mdObject = _$mdObject;
         }
 
         if (deep && window.mdObject === mdObject) {
             window.mdObject = _mdObject;
-}
+        }
 
         return mdObject;
-};
+    };
 
     // Expose mdObject and $mdObject identifiers, even in
     // AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
     // and CommonJS for browser emulators (#13566)
-        if (typeof noGlobal === typeof undefined) {
-            window.mdObject = window.$mdObject = mdObject;
-            }
+    if (typeof noGlobal === typeof undefined) {
+        window.mdObject = window.$mdObject = mdObject;
+    }
 
-        mdObject.Immunization = function(value) {
-            return Immunization(value);
-            };
+    mdObject.Immunization = function(value) {
+        return Immunization(value);
+    };
 
-        mdObject.Observation = function (name) {
-            return Observation(name);
-            };
+    mdObject.Observation = function(name) {
+        return Observation(name);
+    };
 
-                mdObject.User = function (value) {
+    mdObject.User = function(value) {
         return User(value);
-        };
+    };
 
     mdObject.LocationType = LocationType;
 
-    mdObject.EmrContent = function (value) {
+    mdObject.EmrContent = function(value) {
         return EmrContent(value);
     };
 
