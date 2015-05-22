@@ -111,8 +111,7 @@
             return (mel === null) ? noMelData : mel.eval(data);
         };
 
-        this.saveObservation = function(obs, value, date)
-        {
+        this.saveObservation = function (obs, value, date) {
             return (mel === null) ? noMelData : mel.OBSNOW(obs, value, date);
         }
 
@@ -165,6 +164,18 @@
     }
 
     //-------------- classes --------------
+
+    function DocumentVariable(value, saveCallback) {
+        var ar = (value === undefined) ? new Object() : value;
+        ar.save = function () {
+            if (saveCallback !== undefined) {
+                saveCallback();
+            }
+        };
+
+        return ar;
+    }
+
     function StringInternal(value, tag) {
         var sb = new String(value);
 
@@ -680,6 +691,39 @@
     };
 
     mdObject.clinicalDocument = {};
+
+    // The variables allows to save any JSON object with the clinicalDocument.
+    // Usage: $mdObject.clinicalDocument.variables = {"alex":1}; - create object with variable alex and assigned value 1.
+    //        $mdObject.clinicalDocument.variables["alex"]=4;  -changes value of alex to 4
+    //        $mdObject.clinicalDocument.variables.save(); - saves the object with the document
+    Object.defineProperty(mdObject.clinicalDocument, 'variables', (function () {
+        var save = function () { _mel.melFunc('{DOCUMENT.mdObject_variables = "' + JSON.stringify(rawValue).replace(/"/g, '\\"') + '"}'); };
+        var melValue,
+            rawValue = new DocumentVariable({}, save),
+            propertyObject = {
+                get: function () {
+                    if (melValue === undefined) {
+                        melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{DOCUMENT.mdObject_variables}');
+                        melValue = (melValue !== '') ? melValue : JSON.stringify(rawValue);
+                        try {
+                            rawValue = new DocumentVariable(JSON.parse(melValue), save);
+                        }
+                        catch (e) {
+                            rawValue = {};
+                        }
+                    }
+                    return rawValue;
+                },
+                set: function (val) {
+                    for (var key in val) {
+                        rawValue[key] = val[key];
+                    }
+
+                    _mel.melFunc('{DOCUMENT.mdObject_variables = "' + JSON.stringify(rawValue).replace(/"/g, '\\"') + '"}');
+                }
+            };
+        return propertyObject;
+    }()));
 
     Object.defineProperty(mdObject.clinicalDocument, 'did', (function () {
         var melValue,
