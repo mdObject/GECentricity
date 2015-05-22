@@ -1708,164 +1708,173 @@
         return allergiesProperty;
     }();
 
-    mdObject.patient.insurances = (function () {
-        var insArray;
-        if (insArray === undefined) {
-            insArray = new Array();
-            insArray.push(new Insurance('P'));
-            insArray.push(new Insurance('S'));
-            insArray.push(new Insurance('T'));
+Object.defineProperty(mdObject.patient, 'insurances', (function () {
+    var insArray,
+        propertyObject = {
+                get: function () {
+                    if (insArray === undefined) {
+                        insArray = new Array();
+                        insArray.push(new Insurance('P'));
+                        insArray.push(new Insurance('S'));
+                        insArray.push(new Insurance('T'));
+                    };
 
-        }
-        return insArray;
-
-    }());
-
-    // List all immunizations
-    Object.defineProperty(mdObject.patient, 'immunizations', (function () {
-        var data,
-            dataArray,
-             index,
-             propertyObject = {
-                 get: function () {
-                     data = (data !== undefined) ? data : _mel.melFunc('{IMMUN_GETLIST()}');
-                     if (dataArray === undefined) {
-
-                         dataArray = new StringInternal(data).toList();
-
-                         /*jslint plusplus: true */
-                         for (index = 0; index < dataArray.length; index++) {
-                             dataArray[index] = new Immunization(dataArray[index]);
-                         }
-
-                         dataArray.tag = function () {
-                             return 'IMMUN_GETLIST';
-                         }();
-
-                         dataArray.toMelString = function () {
-                             return data;
-                         };
-                     }
-                     return dataArray;
-                 }
-             };
+                    return insArray;
+                    }
+                };
         return propertyObject;
-    }()));
+}()));
 
-    mdObject.emr = new function () {
-        var emrProperty = {};
+// List all immunizations
+Object.defineProperty(mdObject.patient, 'immunizations', (function () {
+    var data,
+        dataArray,
+         index,
+             propertyObject = {
+                         get: function () {
+                 data = (data !== undefined) ? data: _mel.melFunc('{IMMUN_GETLIST()}');
+                 if (dataArray === undefined) {
+
+                     dataArray = new StringInternal(data).toList();
+
+                     /*jslint plusplus: true */
+                     for (index = 0; index < dataArray.length; index++) {
+                     dataArray[index]= new Immunization(dataArray[index]);
+             }
+
+                 dataArray.tag = function () {
+                             return 'IMMUN_GETLIST';
+                             }();
+
+                 dataArray.toMelString = function () {
+                                 return data;
+                     };
+                     }
+                 return dataArray;
+                 }
+};
+        return propertyObject;
+        }()));
+
+mdObject.emr = new function () {
+        var emrProperty = { };
 
         emrProperty.enterpriseId = function () {
             return _app.enterpriseId();
-        };
+            };
 
         emrProperty.databaseVersion = function () {
             return _app.databaseVersion();
-        };
+            };
 
-        Object.defineProperty(emrProperty, 'version', (function () {
+                Object.defineProperty(emrProperty, 'version', (function () {
             var melValue,
-            propertyObject = {
-                get: function () {
-                    melValue = (melValue !== undefined) ? melValue : _mel.melFunc('{VER_EMR()}');
+                propertyObject = {
+                        get: function () {
+                        melValue = (melValue !== undefined) ? melValue: _mel.melFunc('{VER_EMR()}');
                     return melValue;
                 }
-            };
+                };
             return propertyObject;
-        }()));
+            }()));
 
         emrProperty.window = function () {
             var property = {
-                openDialog: function (url) {
-                    ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url) : _app.showUrlDialog(url);
-                },
-                // Arguments :
-                //  verb : 'GET'|'POST', defaults to "GET"
-                //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
+                openDialog: function(url) {
+                    ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url): _app.showUrlDialog(url);
+        },
+            // Arguments :
+            //  verb : 'GET'|'POST', defaults to "GET"
+            //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
                 open: function (url, verb, target, features, data) {
                     var form = document.createElement("form");
-                    form.action = url;
-                    form.method = verb || 'GET';
+                form.action = url;
+                form.method = verb || 'GET';
                     form.target = target || "_self";
                     if (data) {
                         for (var key in data) {
                             var input = document.createElement("textarea");
                             input.name = key;
-                            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]) : data[key];
-                            form.appendChild(input);
-                        }
+                            input.value = typeof data[key] === "object" ? JSON.stringify(data[key]): data[key];
+                        form.appendChild(input);
+            }
                     }
-                    form.style.display = 'none';
-                    document.body.appendChild(form);
+                        form.style.display = 'none';
+                        document.body.appendChild(form);
                     var w = window.open("about:blank", target, features);
-                    form.submit();
-                    return w;
-                }
+                form.submit();
+                            return w;
+            }
             };
             return property;
         }();
 
-        //"{MEL_GET_CONTENT(\"STC.IMMSLINK.SETTINGS\",\"MATCH\")}"
-        emrProperty.melContent = function (value) {
-            var data = _mel.melFunc('{MEL_GET_CONTENT(\"' + value + '\",\"MATCH\")}');
-            var dataArray = new StringInternal(data).toList();
-            for (var i = 0; i < dataArray.length; i++) {
-                dataArray[i] = new EmrContent(dataArray[i]);
+            //"{MEL_GET_CONTENT(\"STC.IMMSLINK.SETTINGS\",\"MATCH\")}"
+            emrProperty.melContent = function (value) {
+                var data = _mel.melFunc('{MEL_GET_CONTENT(\"' +value + '\",\"MATCH\")}');
+                var dataArray = new StringInternal(data).toList();
+                for (var i = 0; i < dataArray.length; i++) {
+                    dataArray[i]= new EmrContent(dataArray[i]);
             }
 
-            dataArray.tag = function () {
-                return 'MEL_GET_CONTENT';
+                dataArray.tag = function () {
+                    return 'MEL_GET_CONTENT';
             }();
-            dataArray.toMelString = function () {
+                dataArray.toMelString = function () {
                 return data;
-            };
-            return dataArray;
         };
+            return dataArray;
+            };
 
-        emrProperty.mel = function (value) { return _mel.melFunc(value); }
-        emrProperty.EmrMel = function () { return _mel; }();
-        emrProperty.EmrApp = function () { return _app; }();
+        emrProperty.mel = function (value) {
+return _mel.melFunc(value);
+}
+        emrProperty.EmrMel = function () {
+return _mel;
+             }();
+        emrProperty.EmrApp = function() {
+return _app; }();
 
         return emrProperty;
-    };
+};
 
     var
     // Map over mdObject in case of overwrite
         _mdObject = window.mdObject,
 
-        // Map over the $mdObject in case of overwrite
-        _$mdObject = window.$mdObject;
+    // Map over the $mdObject in case of overwrite
+    _$mdObject = window.$mdObject;
 
-    mdObject.noConflict = function (deep) {
-        if (window.$mdObject === mdObject) {
-            window.$mdObject = _$mdObject;
+mdObject.noConflict = function (deep) {
+    if (window.$mdObject === mdObject) {
+        window.$mdObject = _$mdObject;
         }
 
         if (deep && window.mdObject === mdObject) {
             window.mdObject = _mdObject;
-        }
+}
 
         return mdObject;
-    };
+};
 
     // Expose mdObject and $mdObject identifiers, even in
     // AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
     // and CommonJS for browser emulators (#13566)
-    if (typeof noGlobal === typeof undefined) {
-        window.mdObject = window.$mdObject = mdObject;
-    }
+        if (typeof noGlobal === typeof undefined) {
+            window.mdObject = window.$mdObject = mdObject;
+            }
 
-    mdObject.Immunization = function (value) {
-        return Immunization(value);
-    };
+        mdObject.Immunization = function(value) {
+            return Immunization(value);
+            };
 
-    mdObject.Observation = function (name) {
-        return Observation(name);
-    };
+        mdObject.Observation = function (name) {
+            return Observation(name);
+            };
 
-    mdObject.User = function (value) {
+                mdObject.User = function (value) {
         return User(value);
-    };
+        };
 
     mdObject.LocationType = LocationType;
 
