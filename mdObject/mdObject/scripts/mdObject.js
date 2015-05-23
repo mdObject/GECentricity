@@ -561,7 +561,7 @@
                         response = _mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
                     }
                 },
-                "remove": function() {}
+                "remove": function() { }
             };
 
         Object.defineProperty(objectProperty, 'unitOfMeasure', (function() {
@@ -616,61 +616,61 @@
     }
 
     function Insurance(insuranceType) {
-            var objectProperty = {
-                // Type of insurance P = Primary S = Secondary O = Other
-                type: insuranceType,
-                // The name of the patient’s insurance carrier.
-                name: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_NAME("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType),
-                // The name and address of the patient’s insurance carrier.
-                address: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_ADDR("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType),
-                // The patient’s insurance ID number for insurance carrier.
-                insuranceId: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_ID("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType),
-                // The name of the patient’s plan for insurance
-                planName: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_PLAN("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType),
-                // The group number of the patient’s insurance carrier.
-                groupNumber: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_GRP("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType),
-                // The phone number of the patient’s insurance company
-                phone: function(type) {
-                    var value;
-                    if (value === undefined) {
-                        value = _mel.melFunc('{INS_PHONE("' + type + '")}');
-                    }
-                    return value;
-                }(insuranceType)
-            };
-            return objectProperty;
-        }
-        //-------------- /classes --------------
+        var objectProperty = {
+            // Type of insurance P = Primary S = Secondary O = Other
+            type: insuranceType,
+            // The name of the patient’s insurance carrier.
+            name: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_NAME("' + type + '")}');
+                }
+                return value;
+            }(insuranceType),
+            // The name and address of the patient’s insurance carrier.
+            address: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_ADDR("' + type + '")}');
+                }
+                return value;
+            }(insuranceType),
+            // The patient’s insurance ID number for insurance carrier.
+            insuranceId: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_ID("' + type + '")}');
+                }
+                return value;
+            }(insuranceType),
+            // The name of the patient’s plan for insurance
+            planName: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_PLAN("' + type + '")}');
+                }
+                return value;
+            }(insuranceType),
+            // The group number of the patient’s insurance carrier.
+            groupNumber: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_GRP("' + type + '")}');
+                }
+                return value;
+            }(insuranceType),
+            // The phone number of the patient’s insurance company
+            phone: function(type) {
+                var value;
+                if (value === undefined) {
+                    value = _mel.melFunc('{INS_PHONE("' + type + '")}');
+                }
+                return value;
+            }(insuranceType)
+        };
+        return objectProperty;
+    }
+    //-------------- /classes --------------
 
 
     var document = window.document,
@@ -799,7 +799,7 @@
                         locationPropertyArray.findByType =
                             (function(value) {
                                 var i;
-                                if (typeof(value) === "number") {
+                                if (typeof (value) === "number") {
                                     for (i = 0; i < this.length; i++) {
                                         if (this[i].locationType === value) {
                                             return this[i];
@@ -1622,7 +1622,7 @@
                         locationPropertyArray.findByType =
                             (function(value) {
                                 var i;
-                                if (typeof(value) === "number") {
+                                if (typeof (value) === "number") {
                                     for (i = 0; i < this.length; i++) {
                                         if (this[i].locationType === value) {
                                             return this[i];
@@ -1658,29 +1658,35 @@
             return measurementProperty;
         }());
 
-    mdObject.patient.carePlans = (function() {
-        var data, dataArray, index;
+    Object.defineProperty(mdObject.patient, 'carePlans', (function() {
+        var data,
+            dataArray,
+            index,
+            propertyObject = {
+                get: function() {
+                    data = (data !== undefined) ? data : _mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
+                    if (dataArray === undefined) {
 
-        if (_carePlans === null) {
-            data = _mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
-            dataArray = new StringInternal(data).toList();
+                        dataArray = new StringInternal(data).toList();
 
-            /*jslint plusplus: true */
-            for (index = 0; index < dataArray.length; index++) {
-                dataArray[index] = new CarePlan(dataArray[index]);
-            }
-            _carePlans = dataArray;
-        }
+                        /*jslint plusplus: true */
+                        for (index = 0; index < dataArray.length; index++) {
+                            dataArray[index] = new CarePlan(dataArray[index]);
+                        }
 
-        _carePlans.tag = function() {
-            return 'MEL_LIST_CARE_PLAN';
-        }();
-        _carePlans.toMelString = function() {
-            return data;
-        };
+                        dataArray.tag = function() {
+                            return 'MEL_LIST_CARE_PLAN';
+                        }();
 
-        return _carePlans;
-    }());
+                        dataArray.toMelString = function() {
+                            return data;
+                        };
+                    }
+                    return dataArray;
+                }
+            };
+        return propertyObject;
+    }()));
 
     // Allergy list
     mdObject.patient.allergies = function() {
@@ -1789,7 +1795,7 @@
         emrProperty.window = function() {
             var property = {
                 openDialog: function(url) {
-                    ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url): _app.showUrlDialog(url);
+                    ((new StringInternal(url.toLowerCase())).startsWith('//localserver')) ? _mel.showUrlDialog(url) : _app.showUrlDialog(url);
                 },
                 // Arguments :
                 //  verb : 'GET'|'POST', defaults to "GET"
