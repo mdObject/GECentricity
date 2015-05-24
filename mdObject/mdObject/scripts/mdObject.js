@@ -267,6 +267,28 @@
         return contactProperty;
     }
 
+    function Problem(value) {
+        var data = value === undefined ? [] : value.split('^'),
+            isNew = value === undefined ? true : false,
+            problemsProperty = {
+                type: (data.length > 0) ? data[0] : '',
+                description: (data.length > 1) ? data[1] : '',
+                codeIcd9: (data.length > 2) ? data[2] : '',
+                comment: (data.length > 3) ? data[3] : '',
+                onsetDate: (data.length > 4) ? data[4] : '',
+                stopDate: (data.length > 5) ? data[5] : '',
+                stopReason: (data.length > 6) ? data[6] : '',
+                codeIcd10: (data.length > 7) ? data[7] : '',
+                problemId: (data.length > 8) ? data[8] : '',
+                lastModifiedDate: (data.length > 9) ? data[9] : '',
+                //id: (data.length > 10) ? data[10]: ''
+
+            };
+        //trim
+        problemsProperty.problemId = (problemsProperty.problemId.indexOf('.') > 0) ? problemsProperty.problemId.substr(0, problemsProperty.problemId.indexOf('.')) : problemsProperty.problemId;
+        return problemsProperty;
+    };
+
     function Immunization(value) {
         var data = value === undefined ? [] : value.split('^'),
             isNew = value === undefined ? true : false,
@@ -462,7 +484,8 @@
     }
 
     function CarePlan(plan) {
-        var data = plan.split('^'),
+        var data = plan === undefined ? [] : plan.split('^'),
+            isNew = plan === undefined ? true : false,
             carePlanProperty = {
                 carePlanId: (data.length >= 1) ? data[0] : '',
                 goal: (data.length >= 2) ? data[1] : '',
@@ -478,8 +501,81 @@
                 recordChangedDateTime: (data.length >= 12) ? data[11] : '',
                 recordChangedBy: (data.length >= 13) ? data[12] : '',
                 patientConditionDescription: (data.length >= 14) ? data[13] : '',
-                patientConditionCode: (data.length >= 15) ? data[14] : ''
+                patientConditionCode: (data.length >= 15) ? data[14] : '',
+                save: function() {
+                    if (isNew) {
+                        var isError = this.validateAdd(), //TODO ADD VALIDATION
+                            response;
+                        if (isError === '') {
+                            response = _mel.melFunc('{MEL_ADD_CARE_PLAN(' + this.toStringAdd() + ')}');
+                            if (response < 0) {
+                                alert(carePlanAddError(response));
+                            }
+                        } else {
+                            alert(isError);
+                        }
+                    } else {
+                        //update ;
+
+                        //{MEL_UPDATE_CARE_PLAN("1691155657053120","Goal-Exercise to lose weight","","","" ,"","2013/08/03" ,"")}
+                        //err_code = Mel.eval("{MEL_UPDATE_CARE_PLAN(\"" +careplanID + "\",\"" +DB_TimeStamp + "\",\"" +goal_sel + "\",\"" +snomed_code + "\",\"" +target + "\",\"" +ins_sel + "\",\"" +sdate + "\",\"" +mdate + "\",\"" +problemID + "\")}");
+
+                    }
+                },
+                toMelString: function() {
+                    return value;
+                }
             };
+
+        carePlanProperty.validateAdd = function() {
+            var errorMessage = ' is required.';
+            // check required parameters
+            if (this.goal === '') {
+                return 'goal' + errorMessage;
+            }
+            return '';
+        };
+        //MEL symbol for adding care plan - format
+        //MEL_ADD_CARE_PLAN (Goal, SNOMEDCTCODE, Target, Instructions, GoalSetDate, GoalMetDate, PRID ( pipe separated Problem IDs selected from patient’s active problems) 
+        carePlanProperty.toStringAdd = function() {
+            return '\"' + this.goal + '\",\"' + this.snomedCTCode + '\",\"' + this.target + '\",\"' + this.instructions + '\",\"' + this.goalSetDate +
+                '\",\"' + this.goalMetDate + '\",\"' + this.patientConditionCode + '\"';
+        };
+
+        function carePlanAddError(code) {
+            var response = '';
+            switch (code) {
+                case "-1":
+                    response = "Error Code -1: Description is blank or too long.";
+                    break;
+                case "-2":
+                    response = "Error Code -2: Code is too long.";
+                    break;
+                case "-3":
+                    response = "Error Code -3: Target is too long.";
+                    break;
+                case "-4":
+                    response = "Error Code -4: Instruction is too long.";
+                    break;
+                case "-5":
+                    response = "Error Code -5: goalSetDate is invalid.";
+                    break;
+                case "-6":
+                    response = "Error Code -6: goalMetDate is invalid or less than goalSetDate.";
+                    break;
+                case "-7":
+                    response = "Error Code -7: Invalid patientConditionCode. Use $mdObject.patient.problems[index].problemId";
+                    break;
+                case "-8":
+                    response = "Error Code -8: Cannot add Care Plan for some other reason.";
+                    break;
+                case "-21":
+                    response = "Error Code -21: Service layer error.";
+                    break;
+                default:
+            }
+            return response;
+        }
 
         return carePlanProperty;
     }
@@ -1739,6 +1835,37 @@
         return propertyObject;
     }()));
 
+    //problems
+    Object.defineProperty(mdObject.patient, 'problems', (function() {
+        var data,
+            dataArray,
+            index,
+            propertyObject = {
+                get: function() {
+                    data = (data !== undefined) ? data : _mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
+                    if (dataArray === undefined) {
+
+                        dataArray = new StringInternal(data).toList();
+
+                        /*jslint plusplus: true */
+                        for (index = 0; index < dataArray.length; index++) {
+                            dataArray[index] = new Problem(dataArray[index]);
+                        }
+
+                        dataArray.tag = function() {
+                            return 'PROB_AFTER';
+                        }();
+
+                        dataArray.toMelString = function() {
+                            return data;
+                        };
+                    }
+                    return dataArray;
+                }
+            };
+        return propertyObject;
+    }()));
+
     // List all immunizations
     Object.defineProperty(mdObject.patient, 'immunizations', (function() {
         var data,
@@ -1881,6 +2008,10 @@
 
     mdObject.Immunization = function(value) {
         return Immunization(value);
+    };
+
+    mdObject.CarePlan = function(value) {
+        return CarePlan(value);
     };
 
     mdObject.Observation = function(name) {
