@@ -1,6 +1,6 @@
 ﻿/*!
  * ==============================================================================
- * mdObject JavaScript Library v1.0.11
+ * mdObject JavaScript Library v1.0.12
  * http://mdObject.com/
  *
  * Copyright (c) 2015 mdObject, Inc. and other contributors
@@ -771,7 +771,7 @@
 
     var document = window.document,
 
-        version = "1.0.11",
+        version = "1.0.12",
 
         productType = "GE",
 
@@ -795,7 +795,7 @@
     mdObject.clinicalDocument = {};
 
     // The variables allows to save any JSON object with the clinicalDocument.
-    // Usage: $mdObject.clinicalDocument.variables = {"alex":1}; - create object with variable alex and assigned value 1.
+    // Usage: $mdObject.clinicalDocument.variables = {"alex":1}; - creates object with variable alex and assigned value 1.
     //        $mdObject.clinicalDocument.variables["alex"]=4;  -changes value of alex to 4
     //        $mdObject.clinicalDocument.variables.save(); - saves the object with the document
     Object.defineProperty(mdObject.clinicalDocument, 'variables', (function() {
@@ -827,6 +827,22 @@
             };
         return propertyObject;
     }()));
+
+    // The val allows to get or set DOCUMENT variable
+    // Usage: $mdObject.clinicalDocument.val("MyVariable") return value from {DOCUMENT.MyVariable}.
+    //        $mdObject.clinicalDocument.val("MyVariable", "High") - assign value "High" to {DOCUMENT.MyVariable} and stores it with document (saves in database)
+    mdObject.clinicalDocument.val = function(key, value) {
+        if (key === undefined || key.length === 0) {
+            return undefined;
+        }
+
+        if (value === undefined) {
+            return _mel.melFunc('{DOCUMENT.' + key + '}');
+        }
+        else {
+            return _mel.melFunc('{DOCUMENT.' + key + '="' + value + '"}');
+        }
+    };
 
     Object.defineProperty(mdObject.clinicalDocument, 'did', (function() {
         var melValue,
