@@ -13,7 +13,7 @@ Regsvr32 "C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\GE.EMR.Msg.IF.dll
 
 Use IE9+ for demo. 
 
-To create new observation (jQuery is used to pull data from HTML control) :
+To create new observation (jQuery is used bellow to pull the height value from HTML control) :
 
     var currentDate = new Date();
     var obsDate = (currentDate.getMonth() + 1) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear();
