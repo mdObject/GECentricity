@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,6 +20,9 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,7 +61,71 @@
     <Content Include="scripts\prettify.css" />
     <Content Include="SimulatorXml.html" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
+    <TypeScriptCompile Include="src\bases\bases.ts" />
+    <TypeScriptCompile Include="src\bases\EmrBase.ts" />
+    <TypeScriptCompile Include="src\classes\Address.ts" />
+    <TypeScriptCompile Include="src\classes\Allergies.ts" />
+    <TypeScriptCompile Include="src\classes\AllergyData.ts" />
+    <TypeScriptCompile Include="src\classes\AllergyList.ts" />
+    <TypeScriptCompile Include="src\classes\AllergyListRemoved.ts" />
+    <TypeScriptCompile Include="src\classes\CarePlan.ts" />
+    <TypeScriptCompile Include="src\classes\classes.ts" />
+    <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\Emr.ts" />
+    <TypeScriptCompile Include="src\classes\EmrApp.ts" />
+    <TypeScriptCompile Include="src\classes\EmrContent.ts" />
+    <TypeScriptCompile Include="src\classes\EmrMel.ts" />
+    <TypeScriptCompile Include="src\classes\EmrWindow.ts" />
+    <TypeScriptCompile Include="src\classes\Immunization.ts" />
+    <TypeScriptCompile Include="src\classes\Insurance.ts" />
+    <TypeScriptCompile Include="src\classes\Location.ts" />
+    <TypeScriptCompile Include="src\classes\Measurement.ts" />
+    <TypeScriptCompile Include="src\classes\Measurements.ts" />
+    <TypeScriptCompile Include="src\classes\Observation.ts" />
+    <TypeScriptCompile Include="src\classes\ObsTermsMap.ts" />
+    <TypeScriptCompile Include="src\classes\Patient.ts" />
+    <TypeScriptCompile Include="src\classes\PatientContact.ts" />
+    <TypeScriptCompile Include="src\classes\Phone.ts" />
+    <TypeScriptCompile Include="src\classes\Problem.ts" />
+    <TypeScriptCompile Include="src\classes\ObservationType.ts" />
+    <TypeScriptCompile Include="src\classes\Protocol.ts" />
+    <TypeScriptCompile Include="src\classes\ReferringProvider.ts" />
+    <TypeScriptCompile Include="src\classes\ReferringProviderPhone.ts" />
+    <TypeScriptCompile Include="src\classes\User.ts" />
+    <TypeScriptCompile Include="src\classes\Users.ts" />
+    <TypeScriptCompile Include="src\consts\consts.ts" />
+    <TypeScriptCompile Include="src\consts\productType.ts" />
+    <TypeScriptCompile Include="src\consts\version.ts" />
+    <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
+    <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
+    <TypeScriptCompile Include="src\factories\GetActiveXErrorMessage.ts" />
+    <TypeScriptCompile Include="src\factories\GetCurrentUser.ts" />
+    <TypeScriptCompile Include="src\factories\IsActiveXSupported.ts" />
+    <TypeScriptCompile Include="src\factories\StringInternal.ts" />
+    <TypeScriptCompile Include="src\enums\enums.ts" />
+    <TypeScriptCompile Include="src\enums\LocationType.ts" />
+    <TypeScriptCompile Include="src\factories\factories.ts" />
+    <TypeScriptCompile Include="src\index.ts" />
+    <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
+    <TypeScriptCompile Include="src\interfaces\IItem.ts" />
+    <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
+    <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\classes\MdObject.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="tsconfig.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

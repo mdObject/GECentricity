@@ -1,0 +1,16 @@
+{
+    "name": "md-object",
+    "version": "0.0.0",
+    "description": "MdObject",
+    "main": "./bundles/md-object.umd.js",
+    "module": "./esm5/index.js",
+    "es2015": "./esm15/index.js",
+    "typings": "./index.d.ts",
+    "author": "mdObject",
+    "license": "MIT",
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mdObject/GECentricity.git"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "rootDir": ".",
+        "moduleResolution": "node",
+        "module": "es2015",
+        "target": "es2015",
+        "noImplicitAny": false,
+        "noEmitOnError": true,
+        "removeComments": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitReturns": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "compileOnSave": true,
+        "lib": [ "es2015", "dom" ],
+        "types": [],
+        "outDir": "./dist/bundle"
+    },
+    "files": [
+        "index.ts"
+    ]
+}
