@@ -5,8 +5,8 @@ import { StringInternal } from '../factories/factories';
 
 export class Emr {
 
-    private readonly _emrMel = new EmrMel();
-    private readonly _emrApp = new EmrApp();
+    private readonly _emrMel = new EmrMel(this.browserWindow);
+    private readonly _emrApp = new EmrApp(this.browserWindow);
     private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {};
     private _window: EmrWindow = new EmrWindow(this._emrMel, this._emrApp, this.browserWindow, this.browserDocument);
     private _version: string;
@@ -42,7 +42,7 @@ export class Emr {
             let dataArray = StringInternal(data).toList();
             let melContentArray: IArrayAdditionalMethods<EmrContent> = [];
             for (let index = 0; index < dataArray.length; index++) {
-                melContentArray.push(new EmrContent(dataArray[index], this._emrMel));
+                melContentArray.push(new EmrContent(dataArray[index], this._emrMel, this.browserWindow));
             }
             this._melContent[name] = melContentArray;
 

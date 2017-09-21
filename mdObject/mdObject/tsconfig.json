@@ -1,10 +1,14 @@
 {
+
+	"awesomeTypescriptLoaderOptions": {
+		"forkChecker": true,
+		"useWebpackText": true,
+		"useCache": false
+	},
     "compilerOptions": {
-        "baseUrl": ".",
-        "rootDir": ".",
         "moduleResolution": "node",
         "module": "es2015",
-        "target": "es2015",
+        "target": "es5",
         "noImplicitAny": false,
         "noEmitOnError": true,
         "removeComments": true,
@@ -12,15 +16,12 @@
         "noUnusedLocals": true,
         "noImplicitReturns": true,
         "sourceMap": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
         "skipLibCheck": true,
-        "compileOnSave": true,
-        "lib": [ "es2015", "dom" ],
-        "types": [],
-        "outDir": "./dist/bundle"
+        "compileOnSave": false,
+        "lib": [ "es2016", "dom" ],
+        "types": []
     },
-    "files": [
-        "index.ts"
-    ]
+	"include": [
+		"src"
+	]
 }

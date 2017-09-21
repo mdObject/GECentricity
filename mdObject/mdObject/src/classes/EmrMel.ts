@@ -9,8 +9,10 @@ export class EmrMel extends EmrBase {
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
 
-    constructor() {
-        super();
+    constructor(
+        public window: any
+    ) {
+        super(window);
 
         this.initialization();
     }

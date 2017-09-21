@@ -1,16 +1,20 @@
 {
-    "name": "md-object",
-    "version": "0.0.0",
-    "description": "MdObject",
-    "main": "./bundles/md-object.umd.js",
-    "module": "./esm5/index.js",
-    "es2015": "./esm15/index.js",
-    "typings": "./index.d.ts",
-    "author": "mdObject",
-    "license": "MIT",
-    "dependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mdObject/GECentricity.git"
-    }
+  "name": "md-object",
+  "version": "1.0.12",
+  "description": "MdObject",
+  "main": "./dist/bundle.min.js",
+  "author": "mdObject",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "awesome-typescript-loader": "3.2.3",
+    "typescript": "2.4.2",
+    "uglifyjs-webpack-plugin": "0.4.6",
+    "webpack": "3.6.0",
+    "webpack-merge": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdObject/GECentricity.git"
+  }
 }

@@ -19,11 +19,12 @@ export class EmrContent {
 
     constructor(
         public _value: string,
-        public _mel: EmrMel
+        public _mel: EmrMel,
+        public window: any
     ) { }
 
     toAddString = (encodeValue): string => {
-        let recordValue = (encodeValue === undefined) ? this.value : window.btoa(this.value);
+        let recordValue = (encodeValue === undefined) ? this.value : this.window.btoa(this.value);
         return this.key + '^' + this.name + '^' + recordValue + '^'
             + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^'
             + this._unk3 + '^' + this._unk4 + '^' + this._unk5;

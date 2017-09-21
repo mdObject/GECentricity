@@ -60,6 +60,7 @@
     <Content Include="scripts\mdObject.min.js" />
     <Content Include="scripts\prettify.css" />
     <Content Include="SimulatorXml.html" />
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
@@ -112,7 +113,6 @@
     <TypeScriptCompile Include="src\interfaces\IItem.ts" />
     <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
-    <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\classes\MdObject.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".npmignore" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

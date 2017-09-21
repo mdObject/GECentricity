@@ -14,7 +14,11 @@ export class MdObject {
     constructor(
         public window: any,
         public document: any
-    ) { }
+    ) {
+        if (typeof this.window === 'undefined' && typeof this.document === 'undefined') {
+            throw new Error("MdObject requires a window with a document");
+        }
+    }
 
     get version(): string {
         return version;

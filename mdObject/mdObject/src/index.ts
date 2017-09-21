@@ -21,3 +21,17 @@
  * ============================================================================ */
 
 export { MdObject } from './classes/classes';
+
+/* An example of use*/
+/*
+(function (window, noGlobal?: boolean) {
+
+    let _mdObject = new MdObject(window, window.document);
+
+    if (!noGlobal) {
+        window['mdObject'] = _mdObject;
+    }
+
+    return _mdObject;
+})(window);
+*/

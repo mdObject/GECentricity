@@ -9,8 +9,10 @@ export class EmrApp extends EmrBase {
     private appObjectNameSimulator = 'GE.CPO.EMR.90.Application.SIMULATOR';
     private app;
 
-    constructor() {
-        super();
+    constructor(
+        public window: any
+    ) {
+        super(window);
 
         this.initialization();
     }
@@ -19,7 +21,7 @@ export class EmrApp extends EmrBase {
         if (this.isActiveXSupported) {
             try {
                 this.app = new ActiveXObject(this.appObjectName);
-                this.app.SetPasscode(window.external['Passcode']);
+                this.app.SetPasscode(this.window.external['Passcode']);
             } catch (e) {
                 this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
             }
