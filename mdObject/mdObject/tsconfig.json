@@ -17,7 +17,6 @@
         "noImplicitReturns": true,
         "sourceMap": true,
         "skipLibCheck": true,
-        "compileOnSave": false,
         "lib": [ "es2016", "dom" ],
         "types": []
     },

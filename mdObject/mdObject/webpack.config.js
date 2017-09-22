@@ -5,6 +5,8 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 module.exports = () => {
 
     let commonConfig = {
+        stats: { modules: false },
+
         entry: "./src/index.ts",
 
         output: {

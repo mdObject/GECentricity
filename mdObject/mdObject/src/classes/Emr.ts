@@ -58,12 +58,12 @@ export class Emr {
     }
 
     get emrMel(): EmrMel {
-        let data = (this.browserWindow.opener['_melOpener'] !== undefined) ? this.browserWindow.opener['_melOpener'] : this._emrMel
+        let data = (this.browserWindow.opener != null && this.browserWindow.opener['_melOpener'] != undefined) ? this.browserWindow.opener['_melOpener'] : this._emrMel
         return data;
     }
 
     get emrApp(): EmrApp {
-        let data = (this.browserWindow.opener['_appOpener'] !== undefined) ? this.browserWindow.opener['_appOpener'] : this._emrApp
+        let data = (this.browserWindow.opener != null && this.browserWindow.opener['_appOpener'] != undefined) ? this.browserWindow.opener['_appOpener'] : this._emrApp
         return data;
     }
 }

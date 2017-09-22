@@ -20,10 +20,11 @@
  * Date: 2013-11-4
  * ============================================================================ */
 
-export { MdObject } from './classes/classes';
+export * from './public_api';
+import { MdObject } from './public_api';
 
 /* An example of use*/
-/*
+
 (function (window, noGlobal?: boolean) {
 
     let _mdObject = new MdObject(window, window.document);
@@ -34,4 +35,4 @@ export { MdObject } from './classes/classes';
 
     return _mdObject;
 })(window);
-*/
+
