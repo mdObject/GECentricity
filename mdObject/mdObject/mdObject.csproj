@@ -49,11 +49,11 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="Demo.html" />
     <Content Include="examples\angular.js\index.html" />
     <Content Include="examples\angular.js\scripts\bundle.js" />
     <Content Include="examples\angular.js\scripts\DemoController.js" />
-    <Content Include="examples\angular.js\scripts\mdObject.js" />
     <Content Include="mdObjectHelp.html" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\bootstrap.min.css" />
@@ -64,11 +64,30 @@
     <Content Include="scripts\mdObject.min.js" />
     <Content Include="scripts\prettify.css" />
     <Content Include="SimulatorXml.html" />
+    <Content Include="src\test\coverage\clover.xml" />
+    <Content Include="src\test\coverage\lcov-report\base.css" />
+    <Content Include="src\test\coverage\lcov-report\bases\ApplicationBase.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\bases\bases.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\bases\EmrBase.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\bases\index.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\DocumentVariable.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\factories.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\GetActiveXErrorMessage.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\GetCurrentUser.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\index.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\IsActiveXSupported.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\factories\StringInternal.ts.html" />
+    <Content Include="src\test\coverage\lcov-report\index.html" />
+    <Content Include="src\test\coverage\lcov-report\prettify.css" />
+    <Content Include="src\test\coverage\lcov-report\prettify.js" />
+    <Content Include="src\test\coverage\lcov-report\sort-arrow-sprite.png" />
+    <Content Include="src\test\coverage\lcov-report\sorter.js" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
     <TypeScriptCompile Include="src\bases\bases.ts" />
+    <TypeScriptCompile Include="src\bases\EmrBase.spec.ts" />
     <TypeScriptCompile Include="src\bases\EmrBase.ts" />
     <TypeScriptCompile Include="src\classes\Address.ts" />
     <TypeScriptCompile Include="src\classes\Allergies.ts" />
@@ -118,6 +137,7 @@
     <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\classes\MdObject.ts" />
+    <TypeScriptCompile Include="src\public_api.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -130,6 +150,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".npmignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="tsconfig.spec.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\test\coverage\coverage-final.json" />
+    <Content Include="src\test\coverage\lcov.info" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
