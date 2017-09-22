@@ -16,11 +16,11 @@ export class Users {
     ) { }
 
     getUser = (value: string): User => {
-        if (value !== undefined) {
-            this._user = (this._user !== undefined) ? this._user : new User(this._mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
+        if (value != null) {
+            this._user = (this._user != null) ? this._user : new User(this._mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
             return this._user;
         }
-        this._currentUser = (this._currentUser !== undefined) ? this._currentUser : new User(GetCurrentUser(this._mel), UserCallFunction.UserInfo);
+        this._currentUser = (this._currentUser != null) ? this._currentUser : new User(GetCurrentUser(this._mel), UserCallFunction.UserInfo);
         return this._currentUser;
     };
 

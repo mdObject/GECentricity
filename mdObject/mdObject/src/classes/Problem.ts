@@ -2,7 +2,7 @@
 
 export class Problem {
 
-    private data: Array<string> = (this._value === undefined) ? [] : this._value.split('^');
+    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
     private _problemId: string;
 
     type: string = (this.data.length > 0) ? this.data[0] : '';

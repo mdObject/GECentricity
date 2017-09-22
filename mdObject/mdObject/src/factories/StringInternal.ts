@@ -6,7 +6,7 @@ export function StringInternal(value: string, tag?: string): IStringInternal {
 
     // Function parse string object to array of string 
     sb.toList = (seporator?: string): Array<string> => {
-        if (seporator === undefined) {
+        if (seporator == null) {
             seporator = '|';
         }
         let dataArray = value.split(seporator);
@@ -27,7 +27,7 @@ export function StringInternal(value: string, tag?: string): IStringInternal {
         return value.slice(-str.length) === str;
     };
 
-    sb.tag = (tag !== undefined) ? tag : '';
+    sb.tag = (tag != null) ? tag : '';
 
     sb.toDate = () => {
         return new Date(value.toString());

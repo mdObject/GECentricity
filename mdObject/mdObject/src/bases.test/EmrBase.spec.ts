@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../node_modules/@types/jest/index.d.ts" />
 
-import { EmrBase } from './bases';
+import { EmrBase } from '../bases/bases';
 
 describe('Base: EmrBase', () => {
     let base: EmrBase;

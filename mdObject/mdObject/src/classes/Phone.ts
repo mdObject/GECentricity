@@ -13,25 +13,25 @@ export class Phone {
     ) { }
 
     get home() {
-        this._home = (this._home !== undefined) ? this._home : this._mel.melFunc('{PATIENT.ALTPHONE}');
+        this._home = (this._home != null) ? this._home : this._mel.melFunc('{PATIENT.ALTPHONE}');
         return this._home;
     };
 
     // Returns the patient’s business/work telephone number
     get business() {
-        this._business = (this._business !== undefined) ? this._business : this._mel.melFunc('{PATIENT.WORKPHONE}');
+        this._business = (this._business != null) ? this._business : this._mel.melFunc('{PATIENT.WORKPHONE}');
         return this._business;
     };
 
     // Returns the patient’s cell phone number
     get mobile() {
-        this._mobile = (this._mobile !== undefined) ? this._mobile : this._mel.melFunc('{PATIENT.CELLPHONE}');
+        this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.CELLPHONE}');
         return this._mobile;
     };
 
     // Returns the patient’s fax number
     get fax() {
-        this._fax = (this._fax !== undefined) ? this._fax : this._mel.melFunc('{PATIENT.FAXPHONE}');
+        this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.FAXPHONE}');
         return this._fax;
     }
 

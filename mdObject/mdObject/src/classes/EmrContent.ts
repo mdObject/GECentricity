@@ -3,8 +3,8 @@ import { EmrMel } from './classes';
 
 export class EmrContent {
 
-    private data: Array<string> = (this._value === undefined) ? [] : this._value.split('^');
-    private isNew: boolean = (this._value === undefined) ? true : false;
+    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
+    private isNew: boolean = (this._value == null) ? true : false;
 
     contentId: string = (this.data.length > 0) ? this.data[0] : '';
     key: string = (this.data.length > 1) ? this.data[1] : '';
@@ -24,7 +24,7 @@ export class EmrContent {
     ) { }
 
     toAddString = (encodeValue): string => {
-        let recordValue = (encodeValue === undefined) ? this.value : this.window.btoa(this.value);
+        let recordValue = (encodeValue == null) ? this.value : this.window.btoa(this.value);
         return this.key + '^' + this.name + '^' + recordValue + '^'
             + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^'
             + this._unk3 + '^' + this._unk4 + '^' + this._unk5;

@@ -3,8 +3,8 @@ import { EmrMel } from './classes';
 
 export class CarePlan {
 
-    private data = this._value === undefined ? [] : this._value.split('^');
-    private isNew = this._value === undefined ? true : false;
+    private data = this._value == null ? [] : this._value.split('^');
+    private isNew = this._value == null ? true : false;
 
     carePlanId: string = (this.data.length >= 1) ? this.data[0] : '';
     goal: string = (this.data.length >= 2) ? this.data[1] : '';

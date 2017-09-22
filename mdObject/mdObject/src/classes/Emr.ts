@@ -28,7 +28,7 @@ export class Emr {
     }
 
     get version() {
-        this._version = (this._version !== undefined) ? this._version : this._emrMel.melFunc('{VER_EMR()}');
+        this._version = (this._version != null) ? this._version : this._emrMel.melFunc('{VER_EMR()}');
         return this._version;
     }
 
@@ -37,7 +37,7 @@ export class Emr {
     }
 
     melContent = (name: string) => {
-        if (this._melContent[name] === undefined) {
+        if (this._melContent[name] == null) {
             let data = this._emrMel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
             let dataArray = StringInternal(data).toList();
             let melContentArray: IArrayAdditionalMethods<EmrContent> = [];

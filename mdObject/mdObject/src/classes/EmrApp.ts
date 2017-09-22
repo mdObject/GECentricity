@@ -26,7 +26,7 @@ export class EmrApp extends EmrBase {
                 this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
             }
             // Try to activate simulator
-            if (this.errorMessage !== undefined) {
+            if (this.errorMessage != null) {
                 try {
                     this.app = new ActiveXObject(this.appObjectNameSimulator);
                 } catch (e) {

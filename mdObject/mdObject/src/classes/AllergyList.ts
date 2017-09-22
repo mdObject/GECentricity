@@ -3,7 +3,7 @@ import { AllergyData } from './classes';
 
 export class AllergyList extends AllergyData {
 
-    private data: Array<string> = (this._value === undefined) ? [] : this._value.split('^');
+    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
 
     constructor(
         public _value: string

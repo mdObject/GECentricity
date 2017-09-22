@@ -3,7 +3,7 @@ import { UserCallFunction } from '../enums/enums';
 
 export class User {
 
-    private data: Array<string> = (this._value === undefined) ? [] : this._value.split('^');
+    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
 
     loginName: string;
     searchName: string;

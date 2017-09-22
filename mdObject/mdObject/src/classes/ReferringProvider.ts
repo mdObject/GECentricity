@@ -16,27 +16,27 @@ export class ReferringProvider {
 
 
     get referringProviderId() {
-        this._referringProviderId = (this._referringProviderId !== undefined) ? this._referringProviderId : this._mel.melFunc('{PATIENT.REFMDID}');
+        this._referringProviderId = (this._referringProviderId != null) ? this._referringProviderId : this._mel.melFunc('{PATIENT.REFMDID}');
         return this._referringProviderId;
     };
 
     get firstName() {
-        this._firstName = (this._firstName !== undefined) ? this._firstName : this._mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
+        this._firstName = (this._firstName != null) ? this._firstName : this._mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
         return this._firstName;
     };
 
     get lastName() {
-        this._lastName = (this._lastName !== undefined) ? this._lastName : this._mel.melFunc('{PATIENT.REFMDLASTNAME}');
+        this._lastName = (this._lastName != null) ? this._lastName : this._mel.melFunc('{PATIENT.REFMDLASTNAME}');
         return this._lastName;
     };
 
     get email() {
-        this._email = (this._email !== undefined) ? this._email : this._mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
+        this._email = (this._email != null) ? this._email : this._mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
         return this._email;
     };
 
     get fullAddress() {
-        this._fullAddress = (this._fullAddress !== undefined) ? this._fullAddress : this._mel.melFunc('{PATIENT.REFMDADDRESS}');
+        this._fullAddress = (this._fullAddress != null) ? this._fullAddress : this._mel.melFunc('{PATIENT.REFMDADDRESS}');
         return this._fullAddress;
     };
 

@@ -18,7 +18,7 @@ export class Allergies {
 
     get added() {
         if (this._addedArray.length === 0) {
-            this._added = (this._added !== undefined) ? this._added : this._mel.melFunc('{ALL_NEW("delimited")}');
+            this._added = (this._added != null) ? this._added : this._mel.melFunc('{ALL_NEW("delimited")}');
             let dataArray = StringInternal(this._added).toList();
             for (let index = 0; index < dataArray.length; index++) {
                 this._addedArray.push(new AllergyList(dataArray[index]));
@@ -29,7 +29,7 @@ export class Allergies {
     
     get removed() {
         if (this._removedArray.length === 0) {
-            this._removed = (this._removed !== undefined) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
+            this._removed = (this._removed != null) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
             let dataArray = StringInternal(this._removed).toList();
             for (let index = 0; index < dataArray.length; index++) {
                 this._removedArray.push(new AllergyListRemoved(dataArray[index]));
@@ -40,7 +40,7 @@ export class Allergies {
 
     get current() {
         if (this._currentArray.length === 0) {
-            this._current = (this._current !== undefined) ? this._current : this._mel.melFunc('{ALL_PRIOR("delimited")}');
+            this._current = (this._current != null) ? this._current : this._mel.melFunc('{ALL_PRIOR("delimited")}');
             let dataArray = StringInternal(this._current).toList();
             for (let index = 0; index < dataArray.length; index++) {
                 this._currentArray.push(new AllergyListRemoved(dataArray[index]));

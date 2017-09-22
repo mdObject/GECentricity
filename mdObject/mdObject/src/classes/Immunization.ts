@@ -3,8 +3,8 @@ import { EmrMel } from './classes'
 
 export class Immunization {
 
-    private data: Array<string> = (this._value === undefined) ? [] : this._value.split('^');
-    private isNew: boolean = this._value === undefined ? true : false;
+    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
+    private isNew: boolean = this._value == null ? true : false;
 
     immunizationId: string = (this.data.length > 0) ? this.data[0] : '';
     immunizationGroupId: string = (this.data.length > 1) ? this.data[1] : '';

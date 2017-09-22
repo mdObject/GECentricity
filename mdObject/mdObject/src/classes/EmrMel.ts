@@ -25,7 +25,7 @@ export class EmrMel extends EmrBase {
                 this.errorMessage = GetActiveXErrorMessage(this.melObjectName, e);
             }
             // Try to activate simulator
-            if (this.errorMessage !== undefined) {
+            if (this.errorMessage != null) {
                 try {
                     this.mel = new ActiveXObject(this.melObjectNameSimulator);
                 } catch (e) {
