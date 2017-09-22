@@ -1,5 +1,5 @@
 ﻿//
-import { IsActiveXSupported } from '../factories/factories';
+import { IsActiveXSupported } from '../../factories/factories';
 
 describe('factory: IsActiveXSupported', () => {
     let result;

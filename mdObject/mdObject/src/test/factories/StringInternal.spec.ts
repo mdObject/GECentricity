@@ -1,5 +1,5 @@
 ﻿//
-import { StringInternal } from '../factories/factories';
+import { StringInternal } from '../../factories/factories';
 
 describe('factory: StringInternal', () => {
     let mockString = 'qwe';

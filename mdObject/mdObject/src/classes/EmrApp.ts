@@ -1,7 +1,6 @@
 ﻿//
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
-declare var ActiveXObject: any;
 
 export class EmrApp extends EmrBase {
 
@@ -20,7 +19,7 @@ export class EmrApp extends EmrBase {
     private initialization = (): void => {
         if (this.isActiveXSupported) {
             try {
-                this.app = new ActiveXObject(this.appObjectName);
+                this.app = new this.window.ActiveXObject(this.appObjectName);
                 this.app.SetPasscode(this.window.external['Passcode']);
             } catch (e) {
                 this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
@@ -28,7 +27,7 @@ export class EmrApp extends EmrBase {
             // Try to activate simulator
             if (this.errorMessage != null) {
                 try {
-                    this.app = new ActiveXObject(this.appObjectNameSimulator);
+                    this.app = new this.window.ActiveXObject(this.appObjectNameSimulator);
                 } catch (e) {
                     alert(this.errorMessage);
                 }

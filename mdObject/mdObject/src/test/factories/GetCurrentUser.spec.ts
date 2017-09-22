@@ -1,5 +1,5 @@
 ﻿//
-import { GetCurrentUser } from '../factories/factories';
+import { GetCurrentUser } from '../../factories/factories';
 
 describe('factory: GetCurrentUser', () => {
     let result;

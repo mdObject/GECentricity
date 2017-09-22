@@ -1,10 +1,11 @@
-﻿/// <reference path="../../node_modules/@types/jest/index.d.ts" />
+﻿/// <reference path="../../../node_modules/@types/jest/index.d.ts" />
 
-import { EmrBase } from '../bases/bases';
+import { EmrBase } from '../../bases/bases';
+import { MockWindow } from '../mocks/mocks';
 
 describe('Base: EmrBase', () => {
     let base: EmrBase;
-    let window = {};
+    let window = new MockWindow();
 
     beforeEach(() => {
         base = new EmrBase(window);

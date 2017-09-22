@@ -1,5 +1,5 @@
 ﻿//
-import { GetActiveXErrorMessage } from '../factories/factories';
+import { GetActiveXErrorMessage } from '../../factories/factories';
 
 describe('factory: GetActiveXErrorMessage', () => {
     let result;

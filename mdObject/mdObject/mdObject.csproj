@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="src\test\" />
+    <Folder Include="src\test\classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -70,7 +70,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
     <TypeScriptCompile Include="src\bases\bases.ts" />
-    <TypeScriptCompile Include="src\bases.test\EmrBase.spec.ts" />
+    <TypeScriptCompile Include="src\test\bases\EmrBase.spec.ts" />
     <TypeScriptCompile Include="src\bases\EmrBase.ts" />
     <TypeScriptCompile Include="src\classes\Address.ts" />
     <TypeScriptCompile Include="src\classes\Allergies.ts" />
@@ -106,11 +106,11 @@
     <TypeScriptCompile Include="src\consts\productType.ts" />
     <TypeScriptCompile Include="src\consts\version.ts" />
     <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
-    <TypeScriptCompile Include="src\factories.test\DocumentVariable.spec.ts" />
-    <TypeScriptCompile Include="src\factories.test\GetActiveXErrorMessage.spec.ts" />
-    <TypeScriptCompile Include="src\factories.test\GetCurrentUser.spec.ts" />
-    <TypeScriptCompile Include="src\factories.test\IsActiveXSupported.spec.ts" />
-    <TypeScriptCompile Include="src\factories.test\StringInternal.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\DocumentVariable.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\GetActiveXErrorMessage.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\IsActiveXSupported.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\StringInternal.spec.ts" />
     <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
     <TypeScriptCompile Include="src\factories\GetActiveXErrorMessage.ts" />
     <TypeScriptCompile Include="src\factories\GetCurrentUser.ts" />
@@ -126,6 +126,8 @@
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\classes\MdObject.ts" />
     <TypeScriptCompile Include="src\public.ts" />
+    <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

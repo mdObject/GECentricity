@@ -1,7 +1,6 @@
 ﻿//
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
-declare var ActiveXObject: any;
 
 export class EmrMel extends EmrBase {
 
@@ -20,14 +19,14 @@ export class EmrMel extends EmrBase {
     private initialization = (): void => {
         if (this.isActiveXSupported) {
             try {
-                this.mel = new ActiveXObject(this.melObjectName);
+                this.mel = new this.window.ActiveXObject(this.melObjectName);
             } catch (e) {
                 this.errorMessage = GetActiveXErrorMessage(this.melObjectName, e);
             }
             // Try to activate simulator
             if (this.errorMessage != null) {
                 try {
-                    this.mel = new ActiveXObject(this.melObjectNameSimulator);
+                    this.mel = new this.window.ActiveXObject(this.melObjectNameSimulator);
                 } catch (e) {
                     alert(this.errorMessage);
                 }

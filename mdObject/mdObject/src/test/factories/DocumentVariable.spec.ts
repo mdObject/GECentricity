@@ -1,6 +1,6 @@
 ﻿//
-import { DocumentVariable } from '../factories/factories';
-import { ApplicationBase } from '../bases/bases';
+import { DocumentVariable } from '../../factories/factories';
+import { ApplicationBase } from '../../bases/bases';
 
 describe('factory: DocumentVariable', () => {
     let result;

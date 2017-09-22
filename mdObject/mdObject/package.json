@@ -30,8 +30,7 @@
     "jest": {
         "coverageDirectory": "src/test/coverage",
         "coveragePathIgnorePatterns": [
-            "/node_modules/",
-            "<rootDir>/src/test/.*.ts"
+            "/node_modules/"
         ],
         "transform": {
             "^.+\\.ts?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"

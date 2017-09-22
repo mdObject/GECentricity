@@ -9,8 +9,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-src/test/**.*
 dist/**
+src/test/coverage/**
 
 # Build results
 [Dd]ebug/
