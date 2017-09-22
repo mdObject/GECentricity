@@ -20,6 +20,19 @@
  * Date: 2013-11-4
  * ============================================================================ */
 
-export { MdObject } from './classes/classes';
+import { MdObject } from './classes/classes';
 
+/* initialize the module */
 
+(function (window) {
+
+    let _mdObject;
+    try {
+        _mdObject = new MdObject(window, window.document);
+        window['mdObject'] = _mdObject;
+    } catch (e) {
+        console.error(e);
+    }
+
+    return _mdObject;
+})(window);

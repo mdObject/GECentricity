@@ -4,7 +4,7 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = () => {
 
-    let commonConfig = {
+    const commonConfig = {
         stats: { modules: false },
 
         entry: "./src/index.ts",
@@ -30,7 +30,7 @@ module.exports = () => {
         }
     };
 
-    uglifyConfig = merge(commonConfig, {
+    const uglifyConfig = merge.smart(commonConfig, {
         output: {
             filename: "bundle.min.js",
             path: __dirname + "/dist"
@@ -43,6 +43,15 @@ module.exports = () => {
         ]
     });
 
+    const publicConfig = merge.smart(uglifyConfig, {
+        entry: "./src/public.ts",
 
-    return [commonConfig, uglifyConfig];
+        output: {
+            filename: "bundle.public.min.js",
+            path: __dirname + "/dist"
+        },
+    })
+
+
+    return [commonConfig, uglifyConfig, publicConfig];
 };

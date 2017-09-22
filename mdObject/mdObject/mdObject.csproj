@@ -53,7 +53,7 @@
     <Content Include=".gitignore" />
     <Content Include="Demo.html" />
     <Content Include="examples\angular.js\index.html" />
-    <Content Include="examples\angular.js\scripts\bundle.js" />
+    <Content Include="examples\angular.js\scripts\bundle.public.min.js" />
     <Content Include="examples\angular.js\scripts\DemoController.js" />
     <Content Include="mdObjectHelp.html" />
     <Content Include="scripts\angular.min.js" />
@@ -120,7 +120,7 @@
     <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\classes\MdObject.ts" />
-    <TypeScriptCompile Include="src\public_api.ts" />
+    <TypeScriptCompile Include="src\public.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

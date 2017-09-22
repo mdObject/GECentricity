@@ -1,16 +1,16 @@
 {
-    "scripts": {
-        "test": "jest",
-        "test:ci": "npm run test -- --runInBand",
-        "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
-        "test:watch": "npm run test -- --watch -- please-enter-the-name-of-the-filter"
-    },
     "name": "md-object",
     "version": "1.0.12",
     "description": "MdObject",
     "main": "./dist/bundle.min.js",
     "author": "mdObject",
     "license": "MIT",
+    "scripts": {
+        "test": "jest",
+        "test:ci": "npm run test -- --runInBand",
+        "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
+        "test:watch": "npm run test -- --watch -- please-enter-the-name-of-the-filter"
+    },
     "dependencies": {},
     "devDependencies": {
         "@types/jest": "^21.1.0",
