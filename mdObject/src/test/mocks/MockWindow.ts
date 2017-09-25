@@ -2,17 +2,19 @@
 
 export class MockWindow {
 
-    private _ActiveXObject = {
+    _ActiveXObjectMel = {
+        // mel
+        eval: (data: string) => { return data; },
+        OBSNOW: (...args: Array<string>) => { return args.join(''); },
+        OBSPREV: (data: string) => { return data; },
+    };
+
+    _ActiveXObjectApp = {
         // app
         EnterpriseID: null,
         DatabaseVersion: null,
         ShowURLDialog: (url: string) => { return url; },
         SetPasscode: (pass: string) => { return pass; },
-
-        // mel
-        eval: (data: string) => { return data; },
-        OBSNOW: (...args: Array<string>) => { return args.join(''); },
-        OBSPREV: (data: string) => { return data; },
     };
 
     opener = null;
@@ -21,10 +23,16 @@ export class MockWindow {
 
     constructor() { }
 
-    ActiveXObject = (...args: Array<any>) => {
-        if (Array.isArray(args)) {
-            return this._ActiveXObject;
+    ActiveXObject = (name: string) => {
+        if (typeof name == 'string') {
+            name = name.toLowerCase();
+            if (name.indexOf('mel') > -1) {
+                return this._ActiveXObjectMel;
+            }
+            if (name.indexOf('app') > -1) {
+                return this._ActiveXObjectApp;
+            }
         }
-        return this._ActiveXObject;
+        return {};
     }
 }

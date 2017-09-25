@@ -15,9 +15,11 @@ export class EmrWindow {
         ((StringInternal(url.toLowerCase())).startsWith('//localserver')) ? this._mel.showUrlDialog(url) : this._app.showUrlDialog(url);
     }
 
-    // Arguments :
-    //  verb : 'GET'|'POST', defaults to "GET"
-    //  target : an optional opening target (a name, or "_blank"), defaults to "_self"
+    /**
+     * Arguments :
+     * verb : 'GET'|'POST', defaults to "GET"
+     * target : an optional opening target (a name, or "_blank"), defaults to "_self"
+     */
     open = (url: string, verb: string, target: string, features: string, data: Object) => {
         let form = this.document.createElement("form");
         form.action = url;
@@ -33,9 +35,9 @@ export class EmrWindow {
         }
         form.style.display = 'none';
         this.document.body.appendChild(form);
-        let w = this.window.open("about:blank", target, features);
+        let _window = this.window.open("about:blank", target, features);
         form.submit();
-        return w;
+        return _window;
     }
 
 }

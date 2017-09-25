@@ -9,9 +9,9 @@ export class EmrApp extends EmrBase {
     private app;
 
     constructor(
-        public window: any
+        public _window: any
     ) {
-        super(window);
+        super(_window);
 
         this.initialization();
     }
@@ -19,28 +19,28 @@ export class EmrApp extends EmrBase {
     private initialization = (): void => {
         if (this.isActiveXSupported) {
             try {
-                this.app = new this.window.ActiveXObject(this.appObjectName);
-                this.app.SetPasscode(this.window.external['Passcode']);
+                this.app = new this._window.ActiveXObject(this.appObjectName);
+                this.app.SetPasscode(this._window.external['Passcode']);
             } catch (e) {
                 this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
             }
             // Try to activate simulator
             if (this.errorMessage != null) {
                 try {
-                    this.app = new this.window.ActiveXObject(this.appObjectNameSimulator);
+                    this.app = new this._window.ActiveXObject(this.appObjectNameSimulator);
                 } catch (e) {
+                    this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
                     alert(this.errorMessage);
                 }
             }
         }
     }
 
-
-    enterpriseId = (): string => {
+    get enterpriseId(): string {
         return (this.app === null) ? this.noData : this.app.EnterpriseID;
     };
 
-    databaseVersion = (): string => {
+    get databaseVersion(): string {
         return (this.app === null) ? this.noData : this.app.DatabaseVersion;
     };
 

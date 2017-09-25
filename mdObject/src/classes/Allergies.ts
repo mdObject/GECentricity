@@ -7,10 +7,10 @@ export class Allergies {
 
     private _added: string;
     private _addedArray: IArrayAdditionalMethods<AllergyList> = [];
-    private _removed: string;
-    private _removedArray: IArrayAdditionalMethods<AllergyListRemoved> = [];
     private _current: string;
     private _currentArray: IArrayAdditionalMethods<AllergyList> = [];
+    private _removed: string;
+    private _removedArray: IArrayAdditionalMethods<AllergyListRemoved> = [];
 
     constructor(
         public _mel: EmrMel
@@ -26,17 +26,6 @@ export class Allergies {
         }
         return this._addedArray;
     };
-    
-    get removed() {
-        if (this._removedArray.length === 0) {
-            this._removed = (this._removed != null) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
-            let dataArray = StringInternal(this._removed).toList();
-            for (let index = 0; index < dataArray.length; index++) {
-                this._removedArray.push(new AllergyListRemoved(dataArray[index]));
-            }
-        }
-        return this._removedArray;
-    };
 
     get current() {
         if (this._currentArray.length === 0) {
@@ -47,6 +36,17 @@ export class Allergies {
             }
         }
         return this._currentArray;
+    };
+    
+    get removed() {
+        if (this._removedArray.length === 0) {
+            this._removed = (this._removed != null) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
+            let dataArray = StringInternal(this._removed).toList();
+            for (let index = 0; index < dataArray.length; index++) {
+                this._removedArray.push(new AllergyListRemoved(dataArray[index]));
+            }
+        }
+        return this._removedArray;
     };
 
 }

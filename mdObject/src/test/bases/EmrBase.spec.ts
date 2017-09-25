@@ -5,10 +5,10 @@ import { MockWindow } from '../mocks/mocks';
 
 describe('Base: EmrBase', () => {
     let base: EmrBase;
-    let window = new MockWindow();
+    let _window = new MockWindow();
 
     beforeEach(() => {
-        base = new EmrBase(window);
+        base = new EmrBase(_window);
     });
 
     it('noData is equal',

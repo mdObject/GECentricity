@@ -47,7 +47,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="src\test\classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -106,6 +105,15 @@
     <TypeScriptCompile Include="src\consts\productType.ts" />
     <TypeScriptCompile Include="src\consts\version.ts" />
     <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
+    <TypeScriptCompile Include="src\test\classes\Address.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Allergies.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\AllergyData.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\AllergyList.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\AllergyListRemoved.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\CarePlan.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ClinicalDocument.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Emr.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\EmrApp.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\DocumentVariable.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\GetActiveXErrorMessage.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
@@ -126,6 +134,9 @@
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\classes\MdObject.ts" />
     <TypeScriptCompile Include="src\public.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockEmrApp.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockEmrMel.ts" />
+    <TypeScriptCompile Include="src\test\mocks\mockResultEmr.ts" />
     <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
   </ItemGroup>

@@ -1,2 +1,5 @@
 ﻿//
 export { MockWindow } from './MockWindow';
+export { MockEmrMel } from './MockEmrMel';
+export { MockEmrApp } from './MockEmrApp';
+export { mockResultEmr } from './mockResultEmr';

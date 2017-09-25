@@ -1,33 +1,34 @@
 ﻿//
 import { StringInternal } from '../../factories/factories';
+import { mockResultEmr } from '../mocks/mocks';
 
 describe('factory: StringInternal', () => {
-    let mockString = 'qwe';
-    let result = StringInternal(mockString);
+    let result: string = mockResultEmr;
+    let factory = StringInternal(result);
 
     beforeEach(() => {
-        result = StringInternal(mockString);
+        factory = StringInternal(result);
     });
 
-    it('return result instanceof String',
+    it('return factory instanceof String',
         () => {
-            expect(result instanceof String).toEqual(true);
+            expect(factory instanceof String).toEqual(true);
         });
 
     describe('method toList', () => {
         it('it is function',
             () => {
-                expect(typeof result.toList == 'function').toEqual(true);
+                expect(typeof factory.toList == 'function').toEqual(true);
             });
-        it('result of the method is array',
+        it('factory of the method is array',
             () => {
-                let _result = result.toList()
+                let _result = factory.toList()
                 expect(Array.isArray(_result)).toEqual(true);
             });
-        it('length of result is equal 0',
+        it('length of factory is equal 0',
             () => {
-                result = StringInternal('');
-                let _result = result.toList();
+                factory = StringInternal('');
+                let _result = factory.toList();
                 expect(_result.length).toEqual(0);
             });
     })
@@ -35,11 +36,11 @@ describe('factory: StringInternal', () => {
     describe('method startsWith', () => {
         it('it is function',
             () => {
-                expect(typeof result.startsWith == 'function').toEqual(true);
+                expect(typeof factory.startsWith == 'function').toEqual(true);
             });
         it('it is function',
             () => {
-                let _result = result.startsWith('q')
+                let _result = factory.startsWith('q')
                 expect(typeof _result == 'boolean').toEqual(true);
             });
     })
@@ -47,11 +48,11 @@ describe('factory: StringInternal', () => {
     describe('method endsWith', () => {
         it('it is function',
             () => {
-                expect(typeof result.endsWith == 'function').toEqual(true);
+                expect(typeof factory.endsWith == 'function').toEqual(true);
             });
         it('it is function',
             () => {
-                let _result = result.endsWith('e')
+                let _result = factory.endsWith('e')
                 expect(typeof _result == 'boolean').toEqual(true);
             });
     })
@@ -59,13 +60,13 @@ describe('factory: StringInternal', () => {
     describe('property tag', () => {
         it('return any string',
             () => {
-                let _result = result.tag;
+                let _result = factory.tag;
                 expect(typeof _result == 'string').toEqual(true);
             });
         it('return right string',
             () => {
-                result = StringInternal('', 'qwe');
-                let _result = result.tag;
+                factory = StringInternal('', 'qwe');
+                let _result = factory.tag;
                 expect(_result).toEqual('qwe');
             });
     })
@@ -73,11 +74,11 @@ describe('factory: StringInternal', () => {
     describe('method toDate', () => {
         it('it is function',
             () => {
-                expect(typeof result.toDate == 'function').toEqual(true);
+                expect(typeof factory.toDate == 'function').toEqual(true);
             });
         it('return Date',
             () => {
-                let _result = result.toDate()
+                let _result = factory.toDate()
                 expect(_result instanceof Date).toEqual(true);
             });
     })

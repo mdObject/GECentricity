@@ -32,10 +32,10 @@ export class Address {
         return this._city;
     }
 
-    // Returns the patient’s state or province
-    get state() {
-        this._state = (this._state != null) ? this._state : this._mel.melFunc('{PATIENT.STATE}');
-        return this._state;
+    // Returns the patient’s country of residence
+    get country() {
+        this._country = (this._country != null) ? this._country : this._mel.melFunc('{PATIENT.COUNTRY}');
+        return this._country;
     }
 
     // Returns the patient’s ZIP/Postal code
@@ -44,10 +44,11 @@ export class Address {
         return this._postCode;
     }
 
-    // Returns the patient’s country of residence
-    get country() {
-        this._country = (this._country != null) ? this._country : this._mel.melFunc('{PATIENT.COUNTRY}');
-        return this._country;
+    // Returns the patient’s state or province
+    get state() {
+        this._state = (this._state != null) ? this._state : this._mel.melFunc('{PATIENT.STATE}');
+        return this._state;
     }
+    
 }
 

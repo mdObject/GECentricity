@@ -5,44 +5,45 @@ import { StringInternal } from '../factories/factories';
 
 export class Emr {
 
-    private readonly _emrMel = new EmrMel(this.browserWindow);
-    private readonly _emrApp = new EmrApp(this.browserWindow);
+    private _emrMel: EmrMel;
+    private _emrApp: EmrApp;
     private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {};
-    private _window: EmrWindow = new EmrWindow(this._emrMel, this._emrApp, this.browserWindow, this.browserDocument);
+    private _emrWindow: EmrWindow = new EmrWindow(this.emrMel, this.emrApp, this._window, this._document);
     private _version: string;
 
     constructor(
-        public browserWindow: any,
-        public browserDocument: any
+        public _window: any,
+        public _document: any
     ) {
-        this.browserWindow['_melOpener'] = this._emrMel;
-        this.browserWindow['_appOpener'] = this._emrApp;
+        this._window['_melOpener'] = this.emrMel;
+        this._window['_appOpener'] = this.emrApp;
     }
 
     get enterpriseId() {
-        return this._emrApp.enterpriseId;
+        return this.emrApp.enterpriseId;
     }
 
     get databaseVersion() {
-        return this._emrApp.databaseVersion;
+        return this.emrApp.databaseVersion;
     }
 
     get version() {
-        this._version = (this._version != null) ? this._version : this._emrMel.melFunc('{VER_EMR()}');
+        this._version = (this._version != null) ? this._version : this.emrMel.melFunc('{VER_EMR()}');
         return this._version;
     }
 
-    get window() {
-        return this._window;
+    // this is emrWindow as modal's window
+    get emrWindow() {
+        return this._emrWindow;
     }
 
     melContent = (name: string) => {
         if (this._melContent[name] == null) {
-            let data = this._emrMel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
+            let data = this.emrMel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
             let dataArray = StringInternal(data).toList();
             let melContentArray: IArrayAdditionalMethods<EmrContent> = [];
             for (let index = 0; index < dataArray.length; index++) {
-                melContentArray.push(new EmrContent(dataArray[index], this._emrMel, this.browserWindow));
+                melContentArray.push(new EmrContent(dataArray[index], this.emrMel, this._window));
             }
             this._melContent[name] = melContentArray;
 
@@ -58,12 +59,16 @@ export class Emr {
     }
 
     get emrMel(): EmrMel {
-        let data = (this.browserWindow.opener != null && this.browserWindow.opener['_melOpener'] != undefined) ? this.browserWindow.opener['_melOpener'] : this._emrMel
-        return data;
+        this._emrMel = (this._window.opener != null && this._window.opener['_melOpener'] != undefined) ? this._window.opener['_melOpener']
+            : (this._emrMel != null) ? this._emrMel
+                : new EmrMel(this._window);
+        return this._emrMel;
     }
 
     get emrApp(): EmrApp {
-        let data = (this.browserWindow.opener != null && this.browserWindow.opener['_appOpener'] != undefined) ? this.browserWindow.opener['_appOpener'] : this._emrApp
-        return data;
+        this._emrApp = (this._window.opener != null && this._window.opener['_appOpener'] != undefined) ? this._window.opener['_appOpener']
+            : (this._emrApp != null) ? this._emrApp
+                : new EmrApp(this._window);
+        return this._emrApp;
     }
 }

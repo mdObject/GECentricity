@@ -2,21 +2,21 @@
 import { Location, EmrMel } from '../classes/classes';
 import { LocationType } from '../enums/enums';
 import { DocumentVariable } from '../factories/factories';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
+import { IArrayAdditionalMethods, IItem } from '../interfaces/interfaces';
 
 export class ClinicalDocument {
 
-    private _letiables;
-    private _did;
-    private _xid;
-    private _documentId;
-    private _status;
-    private _location;
+    private _letiables: string;
+    private _did: string;
+    private _xid: string;
+    private _documentId: string;
+    private _status: string;
+    private _location: string;
     private _locationPropertyArray: IArrayAdditionalMethods<Location> = [];
-    private _locationProperty;
-    private _dateOfUpdate;
-    private _provider;
-    private _userLoginName;
+    private _locationProperty: Location;
+    private _dateOfUpdate: string;
+    private _provider: string;
+    private _userLoginName: string;
 
     constructor(
         public _mel: EmrMel
@@ -26,7 +26,7 @@ export class ClinicalDocument {
         this._mel.melFunc('{DOCUMENT.mdObject_letiables = "' + JSON.stringify(this.rawValue).replace(/"/g, '\\"') + '"}');
     };
 
-    private rawValue = DocumentVariable({}, this.save);
+    private rawValue: IItem = DocumentVariable({}, this.save);
 
     // The letiables allows to save any JSON object with the clinicalDocument.
     // Usage: $mdObject.clinicalDocument.letiables = {"alex":1}; - creates object with letiable alex and assigned value 1.
@@ -46,7 +46,7 @@ export class ClinicalDocument {
         return this.rawValue;
     };
 
-    set letiables(val: Object) {
+    set letiables(val: IItem) {
         for (let key in val) {
             this.rawValue[key] = val[key];
         }

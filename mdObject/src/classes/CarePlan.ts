@@ -64,15 +64,20 @@ export class CarePlan {
     //MEL symbol for adding care this._value - format
     //MEL_ADD_CARE_PLAN (Goal, SNOMEDCTCODE, Target, Instructions, GoalSetDate, GoalMetDate, PRID ( pipe separated Problem IDs selected from patient’s active problems) 
     toStringAdd = (): string => {
-        return '\"' + this.goal + '\",\"' + this.snomedCTCode + '\",\"' + this.target + '\",\"' + this.instructions + '\",\"' + this.goalSetDate +
-            '\",\"' + this.goalMetDate + '\",\"' + this.patientConditionCode + '\"';
+        return '\"' + this.goal + '\",\"' +
+            this.snomedCTCode + '\",\"' +
+            this.target + '\",\"' +
+            this.instructions + '\",\"' +
+            this.goalSetDate + '\",\"' +
+            this.goalMetDate + '\",\"' +
+            this.patientConditionCode + '\"';
     };
 
     carePlanAddError = (code: string): string => {
         let response: string = '';
         switch (code) {
             case "-1":
-                response = "Error Code -1: Description is blank or too long.";
+                response = "Error Code -1: Description or blank is too long.";
                 break;
             case "-2":
                 response = "Error Code -2: Code is too long.";
