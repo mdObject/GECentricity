@@ -11,7 +11,9 @@ module.exports = () => {
 
         output: {
             filename: "bundle.js",
-            path: __dirname + "/dist"
+            path: __dirname + "/dist",
+            library: 'MdObject',
+            libraryTarget: 'umd'
         },
 
         // Enable sourcemaps for debugging webpack's output.
@@ -38,7 +40,10 @@ module.exports = () => {
         plugins: [
             new UglifyjsWebpackPlugin({
                 sourceMap: true,
-                extractComments: /\/\*\!.?\*\//
+                extractComments: /\/\*![\s\S]*\*\//,
+                uglifyOptions: {
+                    ie8: true
+                }
             })
         ]
     });

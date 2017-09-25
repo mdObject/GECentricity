@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />   
+    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="scripts/jquery-2.1.1.min.js">\x3C/script>')</script>
+
+    <script src="scripts/mdObject.min.js" type="text/javascript"></script>
+</head>
+<body>
+    *** This page helps you to build xml data for mdObjectActiveXSimulator ***
+    <br />
+    <script>
+        function htmlEncode(value) {
+            //create a in-memory div, set it's inner text(which jQuery automatically encodes)
+            //then grab the encoded contents back out.  The div never exists on the page.
+            return $('<div/>').text(value).html();
+        }
+
+        document.write("<br />"); document.write("<br />");
+
+        document.write(htmlEncode("<Patient Id=\"") + $mdObject.patient.patientId + htmlEncode("\">") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<find.PATIENT.PID>") + $mdObject.clinicalDocument.did + htmlEncode("</find.PATIENT.PID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PATIENTID>") + $mdObject.patient.patientId + htmlEncode("</PATIENT.PATIENTID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.MEDRECNO>") + $mdObject.patient.medicalRecordId + htmlEncode("</PATIENT.MEDRECNO>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.EXTERNALID>") + $mdObject.patient.externalId + htmlEncode("</PATIENT.EXTERNALID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PRINTID>") + $mdObject.patient.printId + htmlEncode("</PATIENT.PRINTID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.SOCSECNO>") + $mdObject.patient.ssn + htmlEncode("</PATIENT.SOCSECNO>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.TITLE>") + $mdObject.patient.namePrefix + htmlEncode("</PATIENT.TITLE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.FIRSTNAME>") + $mdObject.patient.firstName + htmlEncode("</PATIENT.FIRSTNAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.MIDDLENAME>") + $mdObject.patient.middleName + htmlEncode("</PATIENT.MIDDLENAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.LASTNAME>") + $mdObject.patient.lastName + htmlEncode("</PATIENT.LASTNAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ENTITLEMENTS>") + $mdObject.patient.nameSuffix + htmlEncode("</PATIENT.ENTITLEMENTS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.LABELNAME>") + $mdObject.patient.labelName + htmlEncode("</PATIENT.LABELNAME>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ADDRESS1>") + $mdObject.patient.address.address1 + htmlEncode("</PATIENT.ADDRESS1>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ADDRESS2>") + $mdObject.patient.address.address2 + htmlEncode("</PATIENT.ADDRESS2>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.CITY>") + $mdObject.patient.address.city + htmlEncode("</PATIENT.CITY>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.STATE>") + $mdObject.patient.address.state + htmlEncode("</PATIENT.STATE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ZIP>") + $mdObject.patient.address.postCode + htmlEncode("</PATIENT.ZIP>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.COUNTRY>") + $mdObject.patient.address.country + htmlEncode("</PATIENT.COUNTRY>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.SEX>") + $mdObject.patient.sex + htmlEncode("</PATIENT.SEX>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.RACE>") + $mdObject.patient.race + htmlEncode("</PATIENT.RACE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ETHNICITY>") + $mdObject.patient.ethnicity + htmlEncode("</PATIENT.ETHNICITY>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.DATEOFBIRTH>") + $mdObject.patient.dateOfBirth  + htmlEncode("</PATIENT.DATEOFBIRTH>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.DATEOFDEATH>") + $mdObject.patient.dateOfDeath + htmlEncode("</PATIENT.DATEOFDEATH>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.MARITALSTATUS>") + $mdObject.patient.maritalStatus + htmlEncode("</PATIENT.MARITALSTATUS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PREFLANG>") + $mdObject.patient.language + htmlEncode("</PATIENT.PREFLANG>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.ALTPHONE>") + $mdObject.patient.phone.home + htmlEncode("</PATIENT.ALTPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.WORKPHONE>") + $mdObject.patient.phone.business + htmlEncode("</PATIENT.WORKPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.CELLPHONE>") + $mdObject.patient.phone.mobile + htmlEncode("</PATIENT.CELLPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.FAXPHONE>") + $mdObject.patient.phone.fax + htmlEncode("</PATIENT.FAXPHONE>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.EMAIL>") + $mdObject.patient.email + htmlEncode("</PATIENT.EMAIL>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.CONTACTBY>") + $mdObject.patient.contactBy + htmlEncode("</PATIENT.CONTACTBY>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.EMPLSTATUS>") + $mdObject.patient.employmentStatus + htmlEncode("</PATIENT.EMPLSTATUS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PSTATUS>") + $mdObject.patient.clinicStatus + htmlEncode("</PATIENT.PSTATUS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PCP>") + $mdObject.patient.primaryCarePhysicianName + htmlEncode("</PATIENT.PCP>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.HOMELOCATIONNAME>") + $mdObject.patient.location.findByType($mdObject.LocationType.Home).name + htmlEncode("</PATIENT.HOMELOCATIONNAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.HOMELOCATIONABBREVNAME>") + $mdObject.patient.location.findByType($mdObject.LocationType.Home).id + htmlEncode("</PATIENT.HOMELOCATIONABBREVNAME>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDID>") + $mdObject.patient.referringProvider.referringProviderId + htmlEncode("</PATIENT.REFMDID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDFIRSTNAME>") + $mdObject.patient.referringProvider.firstName + htmlEncode("</PATIENT.REFMDFIRSTNAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDLASTNAME>") + $mdObject.patient.referringProvider.lastName + htmlEncode("</PATIENT.REFMDLASTNAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDEMAILADDRESS>") + $mdObject.patient.referringProvider.email + htmlEncode("</PATIENT.REFMDEMAILADDRESS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDOFFICEPHONE>") + $mdObject.patient.referringProvider.phone.office + htmlEncode("</PATIENT.REFMDOFFICEPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDALTPHONE>") + $mdObject.patient.referringProvider.phone.alternative + htmlEncode("</PATIENT.REFMDALTPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDFAXPHONE>") + $mdObject.patient.referringProvider.phone.fax + htmlEncode("</PATIENT.REFMDFAXPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDPAGERPHONE>") + $mdObject.patient.referringProvider.phone.pager + htmlEncode("</PATIENT.REFMDPAGERPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDCELLPHONE>") + $mdObject.patient.referringProvider.phone.mobile + htmlEncode("</PATIENT.REFMDCELLPHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REFMDADDRESS>") + $mdObject.patient.referringProvider.fullAddress + htmlEncode("</PATIENT.REFMDADDRESS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<" + $mdObject.patient.contacts.tag + ">") + htmlEncode(htmlEncode($mdObject.patient.contacts.toMelString())) + htmlEncode("</" + $mdObject.patient.contacts.tag + ">") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<" + $mdObject.patient.carePlans.tag + ">") + htmlEncode(htmlEncode($mdObject.patient.carePlans.toMelString())) + htmlEncode("</" + $mdObject.patient.carePlans.tag + ">") + "<br />");
+        // Insurance
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<Insurances>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<Insurance type=\"P\">") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_NAME>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].name)) + htmlEncode("</INS_NAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ADDR>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].address)) + htmlEncode("</INS_ADDR>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ID>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].insuranceId)) + htmlEncode("</INS_ID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PLAN>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].planName)) + htmlEncode("</INS_PLAN>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_GRP>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].groupNumber)) + htmlEncode("</INS_GRP>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PHONE>") + htmlEncode(htmlEncode($mdObject.patient.insurances[0].phone)) + htmlEncode("</INS_PHONE>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("</Insurance>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<Insurance type=\"S\">") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_NAME>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].name)) + htmlEncode("</INS_NAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ADDR>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].address)) + htmlEncode("</INS_ADDR>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ID>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].insuranceId)) + htmlEncode("</INS_ID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PLAN>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].planName)) + htmlEncode("</INS_PLAN>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_GRP>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].groupNumber)) + htmlEncode("</INS_GRP>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PHONE>") + htmlEncode(htmlEncode($mdObject.patient.insurances[1].phone)) + htmlEncode("</INS_PHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("</Insurance>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<Insurance type=\"T\">") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_NAME>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].name)) + htmlEncode("</INS_NAME>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ADDR>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].address)) + htmlEncode("</INS_ADDR>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_ID>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].insuranceId)) + htmlEncode("</INS_ID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PLAN>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].planName)) + htmlEncode("</INS_PLAN>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_GRP>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].groupNumber)) + htmlEncode("</INS_GRP>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<INS_PHONE>") + htmlEncode(htmlEncode($mdObject.patient.insurances[2].phone)) + htmlEncode("</INS_PHONE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("</Insurance>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("</Insurances>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<" + $mdObject.patient.immunizations.tag + ">") + htmlEncode(htmlEncode($mdObject.patient.immunizations.toMelString())) + htmlEncode("</" + $mdObject.patient.immunizations.tag + ">") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<" + $mdObject.clinicalDocument.location.tag + ">") + $mdObject.clinicalDocument.location.findByType($mdObject.LocationType.Current).id + htmlEncode("</" + $mdObject.clinicalDocument.location.tag + ">") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.VISDOCID>") + $mdObject.clinicalDocument.documentId + htmlEncode("</DOCUMENT.VISDOCID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.STATUS>") + $mdObject.clinicalDocument.status + htmlEncode("</DOCUMENT.STATUS>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.CLINICALDATE>") + $mdObject.clinicalDocument.dateOfUpdate + htmlEncode("</DOCUMENT.CLINICALDATE>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.PROVIDER>") + $mdObject.clinicalDocument.provider + htmlEncode("</DOCUMENT.PROVIDER>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.USERLOGINNAME>") + $mdObject.clinicalDocument.userLoginName + htmlEncode("</DOCUMENT.USERLOGINNAME>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<DOCUMENT.XID>") + $mdObject.clinicalDocument.xid + htmlEncode("</DOCUMENT.XID>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<find.DOCUMENT.DID>") + $mdObject.clinicalDocument.did + htmlEncode("</find.DOCUMENT.DID>") + "<br />");
+
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<VER_EMR>") + $mdObject.emr.version + htmlEncode("</VER_EMR>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<GETUSERINFO>") + $mdObject.users.getUser('hwinston').toMelString() + htmlEncode("</GETUSERINFO>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<GET_USER_LIST>") + $mdObject.users.getUsers().toMelString() + htmlEncode("</GET_USER_LIST>") + "<br />");
+
+        document.write(htmlEncode("</Patient>")  + "<br />");
+
+        document.write(htmlEncode("<" + $mdObject.emr.melContent('STC.IMMSLINK.SETTINGS').tag + ">") + htmlEncode(htmlEncode($mdObject.emr.melContent('STC.IMMSLINK.SETTINGS').toMelString())) + htmlEncode("</" + $mdObject.emr.melContent('STC.IMMSLINK.SETTINGS').tag + ">") + "<br />");
+        document.write(htmlEncode("<" + $mdObject.emr.melContent().tag + ">") + htmlEncode(htmlEncode($mdObject.emr.melContent().toMelString())) + htmlEncode("</" + $mdObject.emr.melContent().tag + ">") + "<br />");
+
+        document.write("<br />");
+        document.write("<br />");
+
+        
+    </script>
+    
+</body>
+</html>

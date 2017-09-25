@@ -1,9 +1,8 @@
-﻿var phonecatApp = angular.module('mdObjectDemo', []);
+﻿/// <reference path="mdObject.js" /> 
+
+var phonecatApp = angular.module('mdObjectDemo', []);
 
 phonecatApp.controller('DemoController', function ($scope, $parse) {
-
-    $mdObject = mdObject;
-    $scope.mdObject = mdObject;
 
     $scope.patient = $mdObject.patient;
     $scope.version = $mdObject.version;
