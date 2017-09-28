@@ -1,7 +1,7 @@
 ﻿//
 
-export function IsActiveXSupported(window: any) {
-    let activeXsupport = 'ActiveXObject' in window;
+export function IsActiveXSupported(_window: any) {
+    let activeXsupport = 'ActiveXObject' in _window;
     
     // Verify ActiveX support in this browser
     if (!activeXsupport) {

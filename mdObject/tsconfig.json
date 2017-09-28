@@ -1,10 +1,10 @@
 {
 
-	"awesomeTypescriptLoaderOptions": {
-		"forkChecker": true,
-		"useWebpackText": true,
-		"useCache": false
-	},
+    "awesomeTypescriptLoaderOptions": {
+        "forkChecker": true,
+        "useWebpackText": true,
+        "useCache": false
+    },
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "es2015",
@@ -18,9 +18,11 @@
         "sourceMap": true,
         "skipLibCheck": true,
         "lib": [ "es2016", "dom" ],
-        "types": []
+        "types": [],
+        "declaration": true,
+        "declarationDir": "lib"
     },
-	"include": [
-		"src"
-	]
+    "include": [
+        "src"
+    ]
 }

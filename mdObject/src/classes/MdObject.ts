@@ -5,18 +5,18 @@ import { ObsTermsMap, ClinicalDocument, Emr, Users, Patient } from './classes';
 
 export class MdObject {
 
-    private _emr = new Emr(this.window, this.document);
+    private _emr = new Emr(this._window, this._document);
     private _obsTermsMap = new ObsTermsMap();
     private _clinicalDocument = new ClinicalDocument(this.emr.emrMel);
     private _users = new Users(this.emr.emrMel);
-    private _patient = new Patient(this.obsTermsMap.weight, this.obsTermsMap.height, this.window, this.document, this.emr.emrMel);
+    private _patient = new Patient(this.obsTermsMap.weight, this.obsTermsMap.height, this._window, this._document, this.emr.emrMel);
 
     constructor(
-        public window: any,
-        public document: any
+        public _window: any,
+        public _document: any
     ) {
-        if (typeof this.window === 'undefined' && typeof this.document === 'undefined') {
-            throw new Error("MdObject requires a window with a document");
+        if (typeof this._window === 'undefined' && typeof this._document === 'undefined') {
+            throw new Error("MdObject requires a _window with a _document");
         }
     }
 

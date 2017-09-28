@@ -24,12 +24,12 @@ import { MdObject } from './classes/classes';
 
 /* initialize the module */
 
-(function (window) {
+(function (_window) {
 
     let _mdObject;
     try {
-        _mdObject = new MdObject(window, window.document);
-        window['mdObject'] = _mdObject;
+        _mdObject = new MdObject(_window, _window.document);
+        _window['mdObject'] = _mdObject;
     } catch (e) {
         console.error(e);
     }

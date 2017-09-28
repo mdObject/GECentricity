@@ -1,8 +1,9 @@
 {
     "name": "md-object",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "MdObject",
-    "main": "./dist/bundle.min.js",
+    "main": "./lib/bundle.min.js",
+    "types": "./lib/index.d.ts",
     "author": "mdObject",
     "license": "MIT",
     "scripts": {

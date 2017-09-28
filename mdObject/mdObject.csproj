@@ -46,6 +46,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="lib\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

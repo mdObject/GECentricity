@@ -1,9 +1,8 @@
-﻿coverage
-src
-test
-node_modules
+﻿Properties
 scripts
-yarn.lock
+src
+node_modules
+obj
 .vscode
 .csproj
 .csproj.user

@@ -10,6 +10,7 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 dist/**
+lib/**
 src/test/coverage/**
 
 # Build results

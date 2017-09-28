@@ -1,41 +1,36 @@
 //
 const merge = require('webpack-merge');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 module.exports = () => {
 
     const commonConfig = {
         stats: { modules: false },
-
         entry: "./src/index.ts",
-
         output: {
             filename: "bundle.js",
-            path: __dirname + "/dist",
+            path: __dirname + "/lib",
             library: 'MdObject',
             libraryTarget: 'umd'
         },
-
-        // Enable sourcemaps for debugging webpack's output.
-        devtool: "source-map",
-
+        devtool: "source-map", // Enable sourcemaps for debugging webpack's output.
         resolve: {
-            // Add '.ts' as resolvable extensions.
-            extensions: [".ts"]
+            extensions: [".ts"] // Add '.ts' as resolvable extensions.
         },
-
         module: {
-            rules: [
-                // All files with a '.ts' extension will be handled by 'awesome-typescript-loader'.
-                { test: /\.ts$/, loader: "awesome-typescript-loader" },
+            rules: [ // All files with a '.ts' extension will be handled by 'awesome-typescript-loader'.
+                { test: /\.ts$/, use: "awesome-typescript-loader" }
             ]
-        }
+        },
+        plugins: [
+            new CheckerPlugin()
+        ]
     };
 
     const uglifyConfig = merge.smart(commonConfig, {
         output: {
             filename: "bundle.min.js",
-            path: __dirname + "/dist"
         },
         plugins: [
             new UglifyjsWebpackPlugin({
@@ -50,11 +45,10 @@ module.exports = () => {
 
     const publicConfig = merge.smart(uglifyConfig, {
         entry: "./src/public.ts",
-
         output: {
             filename: "bundle.public.min.js",
-            path: __dirname + "/dist"
         },
+        plugins: []
     })
 
 
