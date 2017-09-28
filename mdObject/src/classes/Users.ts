@@ -15,7 +15,7 @@ export class Users {
         public _mel: EmrMel
     ) { }
 
-    getUser = (value: string): User => {
+    getUser = (value?: string) => {
         if (value != null) {
             this._user = (this._user != null) ? this._user : new User(this._mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
             return this._user;
@@ -24,7 +24,7 @@ export class Users {
         return this._currentUser;
     };
 
-    getUsers = (): Array<User> => {
+    getUsers = () => {
         if (this._usersArray.length === 0) {
             this._users = this._mel.melFunc('{GET_USER_LIST(USER.CURLOCATIONABBREVNAME, "", "delimited", true)}');
             let dataArray = StringInternal(this._users).toList();
@@ -34,9 +34,7 @@ export class Users {
                 this._usersArray.push(new User(dataArray[index], UserCallFunction.UserList));
             }
 
-            this._usersArray.tag = function () {
-                return 'GET_USER_LIST';
-            }();
+            this._usersArray.tag = 'GET_USER_LIST';
 
             this._usersArray.toMelString = () => {
                 return this._users;

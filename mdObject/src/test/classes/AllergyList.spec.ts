@@ -1,5 +1,5 @@
 ﻿//
-import { AllergyList, AllergyData } from '../../classes/classes';
+import { AllergyList } from '../../classes/classes';
 import { mockResultEmr } from '../mocks/mocks';
 
 describe('Class: AllergyList', () => {
@@ -10,40 +10,51 @@ describe('Class: AllergyList', () => {
         component = new AllergyList(result);
     });
 
-    it('check name',
-        () => {
+    describe('right value', () => {
+        it('check name', () => {
             expect(component.name).toEqual('0.0');
         });
-    it('check onDate',
-        () => {
+        it('check onDate', () => {
             expect(component.onDate).toEqual('0.1');
         });
-    it('check classification',
-        () => {
+        it('check classification', () => {
             expect(component.classification).toEqual('0.3');
         });
-    it('check description',
-        () => {
+        it('check description', () => {
             expect(component.description).toEqual('0.4');
         });
-    it('check gpiCode',
-        () => {
+        it('check gpiCode', () => {
             expect(component.gpiCode).toEqual('0.5');
         });
-    it('check severity',
-        () => {
+        it('check severity', () => {
             expect(component.severity).toEqual('0.6');
         });
-    it('check offDate',
-        () => {
+        it('check offDate', () => {
             expect(component.offDate).toEqual(null);
         });
-
-    it('extends AllergyData', () => {
-        expect(component instanceof AllergyData).toEqual(true);
     })
 
-    it('extends AllergyList', () => {
-        expect(component instanceof AllergyList).toEqual(true);
+    describe('default value', () => {
+        beforeAll(() => {
+            component = new AllergyList('');
+        });
+        it('check name', () => {
+            expect(component.name).toEqual('');
+        });
+        it('check onDate', () => {
+            expect(component.onDate).toEqual('');
+        });
+        it('check classification', () => {
+            expect(component.classification).toEqual('');
+        });
+        it('check description', () => {
+            expect(component.description).toEqual('');
+        });
+        it('check gpiCode', () => {
+            expect(component.gpiCode).toEqual('');
+        });
+        it('check severity', () => {
+            expect(component.severity).toEqual('');
+        });
     })
 })

@@ -21,7 +21,8 @@ export class Problem {
 
     get problemId(): string {
         this._problemId = (this.data.length > 8) ? this.data[8] : '';
-        this._problemId = (this._problemId.indexOf('.') > 0) ? this._problemId.substr(0, this._problemId.indexOf('.')) : this._problemId;
+        let index = this._problemId.indexOf('.');
+        this._problemId = (index > -1) ? this._problemId.substr(0, index) : this._problemId;
         return this._problemId;
     }
 };

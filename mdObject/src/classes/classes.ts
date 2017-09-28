@@ -7,8 +7,7 @@ export { Problem } from './Problem';
 export { Immunization } from './Immunization';
 export { ObservationType } from './ObservationType';
 export { User } from './User';
-export { AllergyData } from './AllergyData';
-export { AllergyList } from './AllergyList'; // extends AllergyData
+export { AllergyList } from './AllergyList'; // extends IAllergyData
 export { AllergyListRemoved } from './AllergyListRemoved'; // extends AllergyList
 export { Allergies } from './Allergies';
 export { Observation } from './Observation';

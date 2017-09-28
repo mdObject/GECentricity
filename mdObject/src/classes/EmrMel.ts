@@ -9,9 +9,9 @@ export class EmrMel extends EmrBase {
     private mel;
 
     constructor(
-        public window: any
+        public _window: any
     ) {
-        super(window);
+        super(_window);
 
         this.initialization();
     }
@@ -19,14 +19,14 @@ export class EmrMel extends EmrBase {
     private initialization = (): void => {
         if (this.isActiveXSupported) {
             try {
-                this.mel = new this.window.ActiveXObject(this.melObjectName);
+                this.mel = new this._window.ActiveXObject(this.melObjectName);
             } catch (e) {
                 this.errorMessage = GetActiveXErrorMessage(this.melObjectName, e);
             }
             // Try to activate simulator
             if (this.errorMessage != null) {
                 try {
-                    this.mel = new this.window.ActiveXObject(this.melObjectNameSimulator);
+                    this.mel = new this._window.ActiveXObject(this.melObjectNameSimulator);
                 } catch (e) {
                     alert(this.errorMessage);
                 }
@@ -36,15 +36,15 @@ export class EmrMel extends EmrBase {
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel === null) ? this.noData : this.mel.eval(data);
+        return (this.mel == null) ? this.noData : this.mel.eval(data);
     };
 
     saveObservation = (obs: string, value: string, date: string): string => {
-        return (this.mel === null) ? this.noData : this.mel.OBSNOW(obs, value, date);
+        return (this.mel == null) ? this.noData : this.mel.OBSNOW(obs, value, date);
     }
 
     getObs = (isCurrent: boolean, data: string): string => {
-        return (this.mel === null) ? this.noData : ((isCurrent === true) ? this.mel.OBSNOW(data, '', '') : this.mel.OBSPREV(data));
+        return (this.mel == null) ? this.noData : ((isCurrent == true) ? this.mel.OBSNOW(data, '', '') : this.mel.OBSPREV(data));
     };
 
     showUrlDialog = (url: string): void => {

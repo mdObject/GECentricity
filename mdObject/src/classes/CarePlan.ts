@@ -6,21 +6,21 @@ export class CarePlan {
     private data = this._value == null ? [] : this._value.split('^');
     private isNew = this._value == null ? true : false;
 
-    carePlanId: string = (this.data.length >= 1) ? this.data[0] : '';
-    goal: string = (this.data.length >= 2) ? this.data[1] : '';
-    snomedCTCode: string = (this.data.length >= 3) ? this.data[2] : '';
-    target: string = (this.data.length >= 4) ? this.data[3] : '';
-    instructions: string = (this.data.length >= 5) ? this.data[4] : '';
-    goalSetDate: string = (this.data.length >= 6) ? this.data[5] : '';
-    goalMetDate: string = (this.data.length >= 7) ? this.data[6] : '';
-    recordCreatedDateTime: string = (this.data.length >= 8) ? this.data[7] : '';
-    sign: string = (this.data.length >= 9) ? this.data[8] : '';
-    signedBy: string = (this.data.length >= 10) ? this.data[9] : '';
-    signedDate: string = (this.data.length >= 11) ? this.data[10] : '';
-    recordChangedDateTime: string = (this.data.length >= 12) ? this.data[11] : '';
-    recordChangedBy: string = (this.data.length >= 13) ? this.data[12] : '';
-    patientConditionDescription: string = (this.data.length >= 14) ? this.data[13] : '';
-    patientConditionCode: string = (this.data.length >= 15) ? this.data[14] : '';
+    carePlanId: string = (this.data.length > 0) ? this.data[0] : '';
+    goal: string = (this.data.length > 1) ? this.data[1] : '';
+    snomedCTCode: string = (this.data.length > 2) ? this.data[2] : '';
+    target: string = (this.data.length > 3) ? this.data[3] : '';
+    instructions: string = (this.data.length > 4) ? this.data[4] : '';
+    goalSetDate: string = (this.data.length > 5) ? this.data[5] : '';
+    goalMetDate: string = (this.data.length > 6) ? this.data[6] : '';
+    recordCreatedDateTime: string = (this.data.length > 7) ? this.data[7] : '';
+    sign: string = (this.data.length > 8) ? this.data[8] : '';
+    signedBy: string = (this.data.length > 9) ? this.data[9] : '';
+    signedDate: string = (this.data.length > 10) ? this.data[10] : '';
+    recordChangedDateTime: string = (this.data.length > 11) ? this.data[11] : '';
+    recordChangedBy: string = (this.data.length > 12) ? this.data[12] : '';
+    patientConditionDescription: string = (this.data.length > 13) ? this.data[13] : '';
+    patientConditionCode: string = (this.data.length > 14) ? this.data[14] : '';
 
     constructor(
         public _value: string,

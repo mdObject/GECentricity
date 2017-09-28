@@ -1,5 +1,5 @@
 ﻿//
-import { Emr, EmrWindow, EmrMel, EmrApp} from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Emr', () => {
@@ -16,18 +16,15 @@ describe('Class: Emr', () => {
             component.emrApp;
         });
 
-        it('enterpriseId',
-            () => {
-                expect(component.enterpriseId).toEqual(component.emrApp.enterpriseId);
-            });
-        it('databaseVersion',
-            () => {
-                expect(component.databaseVersion).toEqual(component.emrApp.databaseVersion);
-            });
-        it('emrWindow',
-            () => {
-                expect(component.emrWindow instanceof EmrWindow).toEqual(true);
-            });
+        it('enterpriseId', () => {
+            expect(component.enterpriseId).toEqual(component.emrApp.enterpriseId);
+        });
+        it('databaseVersion', () => {
+            expect(component.databaseVersion).toEqual(component.emrApp.databaseVersion);
+        });
+        it('emrWindow', () => {
+            expect(component.emrWindow instanceof EmrWindow).toEqual(true);
+        });
     })
 
     describe('emrMel and emrApp', () => {
@@ -36,14 +33,12 @@ describe('Class: Emr', () => {
                 component = new Emr(_window, _window.document);
             });
 
-            it('emrMel',
-                () => {
-                    expect(component.emrMel instanceof EmrMel).toEqual(true);
-                });
-            it('emrApp',
-                () => {
-                    expect(component.emrApp instanceof EmrApp).toEqual(true);
-                });
+            it('emrMel', () => {
+                expect(component.emrMel instanceof EmrMel).toEqual(true);
+            });
+            it('emrApp', () => {
+                expect(component.emrApp instanceof EmrApp).toEqual(true);
+            });
         })
         describe('cache', () => {
             beforeAll(() => {
@@ -52,14 +47,12 @@ describe('Class: Emr', () => {
                 component.emrApp;
             });
 
-            it('emrMel',
-                () => {
-                    expect(component.emrMel instanceof EmrMel).toEqual(true);
-                });
-            it('emrApp',
-                () => {
-                    expect(component.emrApp instanceof EmrApp).toEqual(true);
-                });
+            it('emrMel', () => {
+                expect(component.emrMel instanceof EmrMel).toEqual(true);
+            });
+            it('emrApp', () => {
+                expect(component.emrApp instanceof EmrApp).toEqual(true);
+            });
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
@@ -70,28 +63,24 @@ describe('Class: Emr', () => {
                 };
             });
 
-            it('emrMel',
-                () => {
-                    expect(component.emrMel instanceof EmrMel).toEqual(true);
-                });
-            it('emrApp',
-                () => {
-                    expect(component.emrApp instanceof EmrApp).toEqual(true);
-                });
+            it('emrMel', () => {
+                expect(component.emrMel instanceof EmrMel).toEqual(true);
+            });
+            it('emrApp', () => {
+                expect(component.emrApp instanceof EmrApp).toEqual(true);
+            });
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
                 component = new Emr(_window, _window.document);
             });
 
-            it('emrMel',
-                () => {
-                    expect(component._window['_melOpener'] instanceof EmrMel).toEqual(true);
-                });
-            it('emrApp',
-                () => {
-                    expect(component._window['_appOpener'] instanceof EmrApp).toEqual(true);
-                });
+            it('emrMel', () => {
+                expect(component._window['_melOpener'] instanceof EmrMel).toEqual(true);
+            });
+            it('emrApp', () => {
+                expect(component._window['_appOpener'] instanceof EmrApp).toEqual(true);
+            });
         })
     })
 
@@ -107,11 +96,10 @@ describe('Class: Emr', () => {
                 .returnValue(result);
         })
 
-        it('getting version from cache',
-            () => {
-                component.version;
-                expect(component.emrMel.melFunc).not.toHaveBeenCalled();
-            });
+        it('getting version from cache', () => {
+            component.version;
+            expect(component.emrMel.melFunc).not.toHaveBeenCalled();
+        });
     });
 
     describe('no caches', () => {
@@ -122,11 +110,10 @@ describe('Class: Emr', () => {
                 .returnValue(result);
         });
 
-        it('getting version from melFunc',
-            () => {
-                component.version;
-                expect((component as any)._emrMel.melFunc).toHaveBeenCalledWith('{VER_EMR()}');
-            });
+        it('getting version from melFunc', () => {
+            component.version;
+            expect((component as any)._emrMel.melFunc).toHaveBeenCalledWith('{VER_EMR()}');
+        });
     });
 
     describe('methods', () => {
@@ -137,11 +124,10 @@ describe('Class: Emr', () => {
                 .returnValue(result);
         });
 
-        it('melContent',
-            () => {
-                component.melContent(name);
-                expect((component as any)._emrMel.melFunc).toHaveBeenCalledWith('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
-            });
+        it('melContent', () => {
+            component.melContent(name);
+            expect((component as any)._emrMel.melFunc).toHaveBeenCalledWith('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
+        });
     });
 
 })

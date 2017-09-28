@@ -21,5 +21,4 @@ describe('Class: AllergyListRemoved', () => {
     it('extends AllergyListRemoved', () => {
         expect(component instanceof AllergyListRemoved).toEqual(true);
     })
-
 })

@@ -22,21 +22,18 @@ describe('Class: Allergies', () => {
                 .returnValue(result);
         })
 
-        it('getting added from cache',
-            () => {
-                component.added;
-                expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
-            });
-        it('getting current from cache',
-            () => {
-                component.current;
-                expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
-            });
-        it('getting removed from cache',
-            () => {
-                component.removed;
-                expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
-            });
+        it('getting added from cache', () => {
+            component.added;
+            expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
+        });
+        it('getting current from cache', () => {
+            component.current;
+            expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
+        });
+        it('getting removed from cache', () => {
+            component.removed;
+            expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
+        });
     });
 
     describe('no caches', () => {
@@ -49,21 +46,18 @@ describe('Class: Allergies', () => {
                 .returnValue(result);
         });
 
-        it('getting added from melFunc',
-            () => {
-                component.added;
-                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_NEW("delimited")}');
-            });
-        it('getting current from melFunc',
-            () => {
-                component.current;
-                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_PRIOR("delimited")}');
-            });
-        it('getting removed from melFunc',
-            () => {
-                component.removed;
-                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_REMOVED("delimited")}');
-            });
+        it('getting added from melFunc', () => {
+            component.added;
+            expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_NEW("delimited")}');
+        });
+        it('getting current from melFunc', () => {
+            component.current;
+            expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_PRIOR("delimited")}');
+        });
+        it('getting removed from melFunc', () => {
+            component.removed;
+            expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_REMOVED("delimited")}');
+        });
     });
 
 

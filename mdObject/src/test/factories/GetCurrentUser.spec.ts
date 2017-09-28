@@ -2,26 +2,25 @@
 import { GetCurrentUser } from '../../factories/factories';
 
 describe('factory: GetCurrentUser', () => {
-    let result;
-    let mockMel = {
+    let mockEmrMel = {
         melFunc: () => { }
     } as any;
 
     it('called 6 times',
         () => {
-            spyOn(mockMel, 'melFunc')
+            spyOn(mockEmrMel, 'melFunc')
                 .and
                 .returnValue('');
-            result = GetCurrentUser(mockMel);
-            expect(mockMel.melFunc).toHaveBeenCalledTimes(6);
+            GetCurrentUser(mockEmrMel);
+            expect(mockEmrMel.melFunc).toHaveBeenCalledTimes(6);
         });
 
     it('return 4 part of "^"',
         () => {
-            spyOn(mockMel, 'melFunc')
+            spyOn(mockEmrMel, 'melFunc')
                 .and
                 .returnValue('');
-            result = GetCurrentUser(mockMel);
-            expect(result).toEqual('^^^^');
+            let _result = GetCurrentUser(mockEmrMel);
+            expect(_result).toEqual('^^^^');
         });
 })

@@ -1,4 +1,5 @@
 ﻿//
+import { MockDocument } from './mocks';
 
 export class MockWindow {
 
@@ -18,7 +19,7 @@ export class MockWindow {
     };
 
     opener = null;
-    document = {};
+    document = new MockDocument();
     external = {};
 
     constructor() { }
@@ -34,5 +35,16 @@ export class MockWindow {
             }
         }
         return {};
+    }
+
+    btoa = (value: string) => {
+        return value;
+    }
+
+    open = (...argums: Array<string>): MockWindow => {
+        if (argums) {
+            return new MockWindow();
+        }
+        return new MockWindow();
     }
 }

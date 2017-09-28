@@ -20,24 +20,29 @@ export class EmrContent {
     constructor(
         public _value: string,
         public _mel: EmrMel,
-        public window: any
+        public _window: any
     ) { }
 
-    toAddString = (encodeValue): string => {
-        let recordValue = (encodeValue == null) ? this.value : this.window.btoa(this.value);
-        return this.key + '^' + this.name + '^' + recordValue + '^'
-            + this._unk0 + '^' + this._unk1 + '^' + this._unk2 + '^'
-            + this._unk3 + '^' + this._unk4 + '^' + this._unk5;
+    toAddString = (encodeValue: string): string => {
+        let recordValue = (encodeValue == null) ? this.value : this._window.btoa(this.value);
+        return this.key + '^' +
+            this.name + '^' +
+            recordValue + '^' +
+            this._unk0 + '^' +
+            this._unk1 + '^' +
+            this._unk2 + '^' +
+            this._unk3 + '^' +
+            this._unk4 + '^' +
+            this._unk5;
     };
 
-    save = (encodeValue): void => {
-        let response;
+    save = (encodeValue: string): void => {
         if (this.isNew) {
-            response = this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
+            this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
             this.isNew = false;
         } else {
-            response = this._mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
-            response = this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
+            this._mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
+            this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
         }
     };
 

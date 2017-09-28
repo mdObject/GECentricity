@@ -56,13 +56,13 @@ export class Patient {
     private _referringProvider = new ReferringProvider(this._mel);
     private _phone = new Phone(this._mel);
     private _address = new Address(this._mel);
-    private _emr = new Emr(this.window, this.document);
+    private _emr = new Emr(this._window, this._document);
 
     constructor(
         public _weight: string,
         public _height: string,
-        public window: any,
-        public document: any,
+        public _window: any,
+        public _document: any,
         public _mel: EmrMel
     ) { }
 
@@ -203,9 +203,7 @@ export class Patient {
                 this._contactsArray.push(new PatientContact(dataArray[index]));
             }
 
-            this._contactsArray.tag = function () {
-                return 'PATIENT.CONTACTS';
-            }();
+            this._contactsArray.tag = 'PATIENT.CONTACTS';
 
             this._contactsArray.toMelString = () => {
                 return this._contacts;
@@ -243,9 +241,7 @@ export class Patient {
                 this._problemsArray.push(new Problem(dataArray[index]));
             }
 
-            this._problemsArray.tag = function () {
-                return 'PROB_AFTER';
-            }();
+            this._problemsArray.tag = 'PROB_AFTER';
 
             this._problemsArray.toMelString = () => {
                 return this._problems;
@@ -271,9 +267,7 @@ export class Patient {
                 this._observations[name].push(new Observation(name, this.observationType.Signed, dataArrayU[index], this._mel));
             }
 
-            this._observations[name].tag = function () {
-                return 'LIST_OBS.' + name;
-            }();
+            this._observations[name].tag = 'LIST_OBS.' + name;
         }
         return this._observations[name];
     };
@@ -290,9 +284,7 @@ export class Patient {
                 this._protocolsArray.push(new Protocol(dataArray[index]))
             };
 
-            this._protocolsArray.tag = function () {
-                return 'LISTPROTOCOLSHORT("list")';
-            }();
+            this._protocolsArray.tag = 'LISTPROTOCOLSHORT("list")';
 
             this._protocolsArray.toMelString = () => {
                 return this._protocols;
@@ -322,9 +314,7 @@ export class Patient {
                 this._immunizationsArray.push(new Immunization(dataArray[index], this._mel));
             }
 
-            this._immunizationsArray.tag = function () {
-                return 'IMMUN_GETLIST';
-            }();
+            this._immunizationsArray.tag = 'IMMUN_GETLIST';
 
             this._immunizationsArray.toMelString = () => {
                 return this._immunizations;
@@ -343,9 +333,7 @@ export class Patient {
                 this._carePlansArray.push(new CarePlan(dataArray[index], this._mel));
             }
 
-            this._carePlansArray.tag = function () {
-                return 'MEL_LIST_CARE_PLAN';
-            }();
+            this._carePlansArray.tag = 'MEL_LIST_CARE_PLAN';
 
             this._carePlansArray.toMelString = () => {
                 return this._carePlans;

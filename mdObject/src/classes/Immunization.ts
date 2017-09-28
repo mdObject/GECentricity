@@ -68,7 +68,7 @@ export class Immunization {
                 alert(isError);
             }
         } else {
-            // update
+            // TODO: add updating of model
         }
     };
 
@@ -94,20 +94,53 @@ export class Immunization {
         if (this.administeredDate === '') {
             return 'administeredDate' + errorMessage;
         }
-        if (this.doseAmount.match(/[^0-9.]/g)) {
+        if (this.doseAmount.match(/[0-9]{1,25}/g) == null) {
             return 'doseAmount should be numeric.';
         }
         return '';
     };
 
     toStringAdd = (): string => {
-        return this.vaccineGroupName + '^' + this.vaccineName + '^' + this.medicalDisplayName + '^' + this.series + '^' + this.wasGiven +
-            '^' + this.reasonNotGiven + '^' + this.historical + '^' + this.historicalSource + '^' + this.vfcElegibility + '^' + this.ddid +
-            '^' + this.dnid + '^' + this.gpi + '^' + this.kdc + '^' + this.ndc + '^' + this.cvxCode + '^' + this.doseAmount + '^' + this.dosageUnitOfMeasure +
-            '^' + this.route + '^' + this.routeCode + '^' + this.site + '^' + this.siteCode + '^' + this.manufacturer + '^' + this.manufacturerCode +
-            '^' + this.lotNumber + '^' + this.expirationDate + '^' + this.visPublishedDate + '^' + this.administeredByName + '^' + this.administeredDate +
-            '^' + this.administeredDateType + '^' + this.administeredComments + '^' + this.advReactionDateTime + '^' + this.advReactionDateTimeType +
-            '^' + this.advReactionComments + '^' + this.advReactionCmtByName + '^' + this.signed + '^' + this.signedByName + '^' + this.signedDate +
-            '^' + this.reasonRemoved + '^' + this.stopDate + '^' + this.reasonNotGivenMedical + '^' + this.reasonNotGivenMedicalDetail;
+        return this.vaccineGroupName + '^' + 
+            this.vaccineName + '^' +
+            this.medicalDisplayName + '^' +
+            this.series + '^' +
+            this.wasGiven + '^' +
+            this.reasonNotGiven + '^' +
+            this.historical + '^' +
+            this.historicalSource + '^' +
+            this.vfcElegibility + '^' +
+            this.ddid + '^' +
+            this.dnid + '^' +
+            this.gpi + '^' +
+            this.kdc + '^' +
+            this.ndc + '^' +
+            this.cvxCode + '^' +
+            this.doseAmount + '^' +
+            this.dosageUnitOfMeasure + '^' +
+            this.route + '^' +
+            this.routeCode + '^' +
+            this.site + '^' +
+            this.siteCode + '^' +
+            this.manufacturer + '^' +
+            this.manufacturerCode + '^' +
+            this.lotNumber + '^' +
+            this.expirationDate + '^' +
+            this.visPublishedDate + '^' +
+            this.administeredByName + '^' +
+            this.administeredDate + '^' +
+            this.administeredDateType + '^' +
+            this.administeredComments + '^' +
+            this.advReactionDateTime + '^' +
+            this.advReactionDateTimeType + '^' +
+            this.advReactionComments + '^' +
+            this.advReactionCmtByName + '^' +
+            this.signed + '^' +
+            this.signedByName + '^' +
+            this.signedDate + '^' +
+            this.reasonRemoved + '^' +
+            this.stopDate + '^' +
+            this.reasonNotGivenMedical + '^' +
+            this.reasonNotGivenMedicalDetail;
     };
 }
