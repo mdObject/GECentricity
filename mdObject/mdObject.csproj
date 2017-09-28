@@ -56,14 +56,14 @@
     <Content Include="examples\angular.js\scripts\bundle.public.min.js" />
     <Content Include="examples\angular.js\scripts\DemoController.js" />
     <Content Include="mdObjectHelp.html" />
-    <Content Include="scripts\angular.min.js" />
-    <Content Include="scripts\bootstrap.min.css" />
-    <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\DemoController.js" />
-    <Content Include="scripts\jquery-2.1.1.min.js" />
-    <Content Include="scripts\mdObject.js" />
-    <Content Include="scripts\mdObject.min.js" />
-    <Content Include="scripts\prettify.css" />
+    <Content Include="old-scripts\angular.min.js" />
+    <Content Include="old-scripts\bootstrap.min.css" />
+    <Content Include="old-scripts\bootstrap.min.js" />
+    <Content Include="old-scripts\DemoController.js" />
+    <Content Include="old-scripts\jquery-2.1.1.min.js" />
+    <Content Include="old-scripts\mdObject.js" />
+    <Content Include="old-scripts\mdObject.min.js" />
+    <Content Include="old-scripts\prettify.css" />
     <Content Include="SimulatorXml.html" />
     <Content Include="webpack.config.js" />
   </ItemGroup>

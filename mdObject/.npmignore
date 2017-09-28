@@ -1,8 +1,10 @@
 ﻿Properties
-scripts
+old-scripts
 src
 node_modules
 obj
-.vscode
-.csproj
-.csproj.user
+*.vscode
+*.csproj
+*.csproj.user
+*.config.js
+tsconfig.*
