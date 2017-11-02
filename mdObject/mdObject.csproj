@@ -51,20 +51,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="Demo.html" />
     <Content Include="examples\angular.js\index.html" />
     <Content Include="examples\angular.js\scripts\bundle.public.min.js" />
     <Content Include="examples\angular.js\scripts\DemoController.js" />
-    <Content Include="mdObjectHelp.html" />
-    <Content Include="old-scripts\angular.min.js" />
-    <Content Include="old-scripts\bootstrap.min.css" />
-    <Content Include="old-scripts\bootstrap.min.js" />
-    <Content Include="old-scripts\DemoController.js" />
-    <Content Include="old-scripts\jquery-2.1.1.min.js" />
-    <Content Include="old-scripts\mdObject.js" />
-    <Content Include="old-scripts\mdObject.min.js" />
-    <Content Include="old-scripts\prettify.css" />
-    <Content Include="SimulatorXml.html" />
+    <Content Include="old-data\Demo.html" />
+    <Content Include="old-data\mdObjectHelp.html" />
+    <Content Include="old-data\scripts\angular.min.js" />
+    <Content Include="old-data\scripts\bootstrap.min.css" />
+    <Content Include="old-data\scripts\bootstrap.min.js" />
+    <Content Include="old-data\scripts\DemoController.js" />
+    <Content Include="old-data\scripts\jquery-2.1.1.min.js" />
+    <Content Include="old-data\scripts\mdObject.js" />
+    <Content Include="old-data\scripts\mdObject.min.js" />
+    <Content Include="old-data\scripts\prettify.css" />
+    <Content Include="old-data\SimulatorXml.html" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +177,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tsconfig.spec.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="old-data\scripts\angular.LICENSE" />
+    <Content Include="old-data\scripts\bootstrap.LICENSE" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
