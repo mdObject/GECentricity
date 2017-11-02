@@ -1,0 +1,982 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="mdObjectDemo">
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="scripts/jquery-2.1.1.min.js">\x3C/script>')</script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script>window.angular || document.write('<script src="scripts/angular.min.js">\x3C/script>')</script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>window.$.fn.modal || document.write('<script src="scripts/bootstrap.min.js">\x3C/script>')</script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        $(document).ready(function () {
+            var bodyColor = $('body').css('color');
+            if (bodyColor != 'rgb(51, 51, 51)') {
+                $("head").prepend('<link rel="stylesheet" href="/scripts/bootstrap.min.css">');
+            }
+        });
+    </script>
+
+    <script src="scripts/mdObject.min.js" type="text/javascript"></script>
+    <script src="scripts/DemoController.js" type="text/javascript"></script>
+</head>
+<body ng-controller="DemoController">
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>  GE Centricity $mdObject Demo</h1>
+            <p>
+                This is a template for a simple demo of $mdObject functionality.
+                Use it as a starting point to create something more unique.
+            </p>
+            Click <a href="#" onclick='var w = window.open(window.location, "_blank",
+                                              ["menubar=yes", "resizable=yes", "scrollbars=yes",
+                                                  "status=yes", "titlebar=yes", "toolbar=yes"].join(","));
+    '>here to open this page in Internet Explorer (IE)</a>
+            <p>$mdObject version: <span ng-bind="version"></span></p>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Patient</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">PID:</div>
+                    <div class="col-sm-3"><span>{{patient.pid}}</span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">ID:</div>
+                    <div class="col-sm-3"><span>{{patient.patientId}}</span></div>
+                    <div class="col-sm-3">Medical Record ID:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.medicalRecordId"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">External Id:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.externalId"></span></div>
+                    <div class="col-sm-3">Print ID:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.printId"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">First Name:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.firstName"></span></div>
+                    <div class="col-sm-3">Last Name:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.lastName"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Middle Name:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.middleName"></span></div>
+                    <div class="col-sm-3">SSN:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.ssn"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Label Name:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.labelName"></span></div>
+                    <div class="col-sm-3">Prefix:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.namePrefix"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Suffix:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.nameSuffix"></span></div>
+                    <div class="col-sm-3">Sex:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.sex"></span></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Patient Address</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">Address1:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.address1"></span></div>
+                                    <div class="col-sm-3">Address2:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.address2"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">City:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.city"></span></div>
+                                    <div class="col-sm-3">State:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.state"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Zip:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.postCode"></span></div>
+                                    <div class="col-sm-3">Country:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.address.country"></span></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Race:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.race"></span></div>
+                    <div class="col-sm-3">Ethnicity:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.ethnicity"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Date Of Birth:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.dateOfBirth"></span></div>
+                    <div class="col-sm-3">Date Of Death:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.dateOfDeath"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Marital Status:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.maritalStatus"></span></div>
+                    <div class="col-sm-3">Language:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.language"></span></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">Home location of care:</div>
+                    <div class="col-sm-3"><span>{{patient.location.findByType(LocationType.Home).name}}</span></div>
+                    <div class="col-sm-3">Abbreviated home location of care:</div>
+                    <div class="col-sm-3"><span>{{patient.location.findByType(LocationType.Home).id}}</span></div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Patient Phone</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">Home:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.phone.home"></span></div>
+                                    <div class="col-sm-3">Business:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.phone.business"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Mobile:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.phone.mobile"></span></div>
+                                    <div class="col-sm-3">Fax:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.phone.fax"></span></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Email:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.email"></span></div>
+                    <div class="col-sm-3">Contact By:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.contactBy"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Employment Status:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.employmentStatus"></span></div>
+                    <div class="col-sm-3">Clinic Status:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.clinicStatus"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Primary Care Physician Name:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.primaryCarePhysicianName"></span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Referring Provider</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">ID:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.referringProviderId"></span></div>
+                                    <div class="col-sm-3">Email:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.email"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">First Name:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.firstName"></span></div>
+                                    <div class="col-sm-3">Last Name:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.lastName"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Phone office:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.phone.office"></span></div>
+                                    <div class="col-sm-3">Phone alternative:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.phone.alternative"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Fax:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.phone.fax"></span></div>
+                                    <div class="col-sm-3">Pager:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.phone.pager"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Phone mobile:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.phone.mobile"></span></div>
+                                    <div class="col-sm-3">Address:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.referringProvider.fullAddress"></span></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Patient Contacts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="contact in patient.contacts">
+                                        <div class="row">
+                                            <div class="col-sm-3">Name:</div>
+                                            <div class="col-sm-3"><span ng-bind="contact.name"></span></div>
+                                            <div class="col-sm-3">Type:</div>
+                                            <div class="col-sm-3"><span ng-bind="contact.type"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Phone:</div>
+                                            <div class="col-sm-3"><span ng-bind="contact.phone"></span></div>
+                                            <div class="col-sm-3">Phone Type:</div>
+                                            <div class="col-sm-3"><span ng-bind="contact.phoneType"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Address:</div>
+                                            <div class="col-sm-9"><span ng-bind="contact.address"></span></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Measurements current</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">Weight:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.measurements.current.weight"></span></div>
+                                    <div class="col-sm-3">Height:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.measurements.current.height"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Measurements previous</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">Weight:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.measurements.previous.weight"></span></div>
+                                    <div class="col-sm-3">Height:</div>
+                                    <div class="col-sm-3"><span ng-bind="patient.measurements.previous.height"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Immunizations</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="imms in patient.immunizations">
+                                        <div class="row">
+                                            <div class="col-sm-3">Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.immunizationId"></span></div>
+                                            <div class="col-sm-3">Group Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.immunizationGroupId"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Vaccine Group Name:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.vaccineGroupName"></span></div>
+                                            <div class="col-sm-3">Series:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.series"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Vaccine Name:</div>
+                                            <div class="col-sm-9"><span ng-bind="imms.vaccineName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Medical Display Name:</div>
+                                            <div class="col-sm-9"><span ng-bind="imms.medicalDisplayName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Was Given:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.wasGiven"></span></div>
+                                            <div class="col-sm-3">Reason Not Given:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGiven"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Historical:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.historical"></span></div>
+                                            <div class="col-sm-3">Historical Source:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.historicalSource"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">VFC Elegibility:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.vfcElegibility"></span></div>
+                                            <div class="col-sm-3">CVX Code:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.cvxCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Dose Amount:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.doseAmount"></span></div>
+                                            <div class="col-sm-3">Unit Of Measure:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.dosageUnitOfMeasure"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">route:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.route"></span></div>
+                                            <div class="col-sm-3">routeCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.routeCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">site:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.site"></span></div>
+                                            <div class="col-sm-3">siteCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.siteCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">manufacturer:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.manufacturer"></span></div>
+                                            <div class="col-sm-3">manufacturerCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.manufacturerCode"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">lotNumber:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.lotNumber"></span></div>
+                                            <div class="col-sm-3">expirationDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.expirationDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">visPublishedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.visPublishedDate"></span></div>
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-3"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">administeredByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredByName"></span></div>
+                                            <div class="col-sm-3">administeredDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">administeredDateType:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredDateType"></span></div>
+                                            <div class="col-sm-3">administeredComments:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.administeredComments"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">advReactionDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionDateTime"></span></div>
+                                            <div class="col-sm-3">advReactionDateTimeType:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionDateTimeType"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">advReactionComments:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionComments"></span></div>
+                                            <div class="col-sm-3">advReactionCmtByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.advReactionCmtByName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signed:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signed"></span></div>
+                                            <div class="col-sm-3">signedByName:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signedByName"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.signedDate"></span></div>
+                                            <div class="col-sm-3">reasonRemoved:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonRemoved"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">stopDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.stopDate"></span></div>
+                                            <div class="col-sm-3">reasonNotGivenMedical:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGivenMedical"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">reasonNotGivenMedicalDetail:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.reasonNotGivenMedicalDetail"></span></div>
+                                            <div class="col-sm-3">ndc:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.ndc"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">ddid:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.ddid"></span></div>
+                                            <div class="col-sm-3">dnid:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.dnid"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">gpi:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.gpi"></span></div>
+                                            <div class="col-sm-3">kdc:</div>
+                                            <div class="col-sm-3"><span ng-bind="imms.kdc"></span></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Care Plan</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="plan in patient.carePlans">
+                                        <div class="row">
+                                            <div class="col-sm-3">ID:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.carePlanId"></span></div>
+                                            <div class="col-sm-3">goal:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goal"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">snomedCTCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.snomedCTCode"></span></div>
+                                            <div class="col-sm-3">target:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.target"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">instructions:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.instructions"></span></div>
+                                            <div class="col-sm-3">goalSetDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goalSetDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">goalMetDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.goalMetDate"></span></div>
+                                            <div class="col-sm-3">recordCreatedDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordCreatedDateTime"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">sign:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.sign"></span></div>
+                                            <div class="col-sm-3">signedBy:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.signedBy"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">signedDate:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.signedDate"></span></div>
+                                            <div class="col-sm-3">recordChangedDateTime:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordChangedDateTime"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">recordChangedBy:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.recordChangedBy"></span></div>
+                                            <div class="col-sm-3">patientConditionDescription:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.patientConditionDescription"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">patientConditionCode:</div>
+                                            <div class="col-sm-3"><span ng-bind="plan.patientConditionCode"></span></div>
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-3"></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Problems</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="problem in patient.problems">
+                                        <div class="row">
+                                            <div class="col-sm-3">ID:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.problemId"></span></div>
+                                            <div class="col-sm-3">Description:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.description"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">ICD9 Code:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.codeIcd9"></span></div>
+                                            <div class="col-sm-3">ICD10 Code:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.codeIcd10"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Comment:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.comment"></span></div>
+                                            <div class="col-sm-3">onset Date:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.onsetDate"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">stop Date:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.stopDate"></span></div>
+                                            <div class="col-sm-3">stop Reason:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.stopReason"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">last Modified Date:</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.lastModifiedDate"></span></div>
+                                            <div class="col-sm-3">Problem Type</div>
+                                            <div class="col-sm-3"><span ng-bind="problem.type"></span></div>
+                                        </div>
+                                        
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Insurances</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat="ins in patient.insurances">
+                                        <div class="row">
+                                            <div class="col-sm-3">Name:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.name"></span></div>
+                                            <div class="col-sm-3">Type:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.type"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Phone:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.phone"></span></div>
+                                            <div class="col-sm-3">Id:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.insuranceId"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">planName:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.planName"></span></div>
+                                            <div class="col-sm-3">groupNumber:</div>
+                                            <div class="col-sm-3"><span ng-bind="ins.groupNumber"></span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">Address:</div>
+                                            <div class="col-sm-9"><span ng-bind="ins.address"></span></div>
+                                        </div>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Document</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">DID:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.did"></span></div>
+                    <div class="col-sm-3">XID:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.xid"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Status:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.status"></span></div>
+                    <div class="col-sm-3">Location:</div>
+                    <div class="col-sm-3"><span>{{clinicalDocument.location.findByType(LocationType.Current).id}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Date:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.dateOfUpdate"></span></div>
+                    <div class="col-sm-3">Provider:</div>
+                    <div class="col-sm-3"><span>{{clinicalDocument.provider}}</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">User Login Name:</div>
+                    <div class="col-sm-3"><span ng-bind="clinicalDocument.userLoginName"></span></div>
+                    <div class="col-sm-3">DocumentId</div>
+                    <div class="col-sm-3">{{clinicalDocument.documentId}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Current User</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">Login Name:</div>
+                    <div class="col-sm-3">{{currentUser.loginName}}</div>
+                    <div class="col-sm-3">Full Name:</div>
+                    <div class="col-sm-3">{{currentUser.searchName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Phone:</div>
+                    <div class="col-sm-3">{{currentUser.phoneNumber}}</div>
+                    <div class="col-sm-3">Home Location</div>
+                    <div class="col-sm-3">{{currentUser.homeLocation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">group:</div>
+                    <div class="col-sm-3">{{currentUser.group}}</div>
+                    <div class="col-sm-3">jobTitle</div>
+                    <div class="col-sm-3">{{currentUser.jobTitle}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Specialty:</div>
+                    <div class="col-sm-3">{{currentUser.specialty}}</div>
+                    <div class="col-sm-3">NPI:</div>
+                    <div class="col-sm-3">{{currentUser.npi}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Roles:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="role in currentUser.roles">
+                                <span ng-bind="role"></span>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">prescriberId:</div>
+                    <div class="col-sm-3">{{currentUser.prescriberId}}</div>
+                    <div class="col-sm-3">deaId:</div>
+                    <div class="col-sm-3">{{currentUser.deaId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">State Licence Id:</div>
+                    <div class="col-sm-3">{{currentUser.stateLicenceId}}</div>
+                    <div class="col-sm-3">memberLogin:</div>
+                    <div class="col-sm-3">{{currentUser.memberLogin}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">data2000:</div>
+                    <div class="col-sm-3">{{currentUser.data2000}}</div>
+                    <div class="col-sm-3">Unique Physician Identification Number:</div>
+                    <div class="col-sm-3">{{currentUser.uniquePhysicianId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">activationDate:</div>
+                    <div class="col-sm-3">{{currentUser.activationDate}}</div>
+                    <div class="col-sm-3">expirationDate:</div>
+                    <div class="col-sm-3">{{currentUser.expirationDate}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">First Name:</div>
+                    <div class="col-sm-3">{{currentUser.firstName}}</div>
+                    <div class="col-sm-3">Middle Name:</div>
+                    <div class="col-sm-3">{{currentUser.middleName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Last Name:</div>
+                    <div class="col-sm-3">{{currentUser.lastName}}</div>
+                    <div class="col-sm-3">Current Location:</div>
+                    <div class="col-sm-3">{{currentUser.currentLocation}}</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">User hwinston</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">Login Name:</div>
+                    <div class="col-sm-3">{{hwinstonUser.loginName}}</div>
+                    <div class="col-sm-3">Full Name:</div>
+                    <div class="col-sm-3">{{hwinstonUser.searchName}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Phone:</div>
+                    <div class="col-sm-3">{{hwinstonUser.phoneNumber}}</div>
+                    <div class="col-sm-3">Home Location</div>
+                    <div class="col-sm-3">{{hwinstonUser.homeLocation}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">group:</div>
+                    <div class="col-sm-3">{{hwinstonUser.group}}</div>
+                    <div class="col-sm-3">jobTitle</div>
+                    <div class="col-sm-3">{{hwinstonUser.jobTitle}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Specialty:</div>
+                    <div class="col-sm-3">{{hwinstonUser.specialty}}</div>
+                    <div class="col-sm-3">NPI:</div>
+                    <div class="col-sm-3">{{hwinstonUser.npi}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Roles:</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="role in hwinstonUser.roles">
+                                <span ng-bind="role"></span>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">prescriberId:</div>
+                    <div class="col-sm-3">{{hwinstonUser.prescriberId}}</div>
+                    <div class="col-sm-3">deaId:</div>
+                    <div class="col-sm-3">{{hwinstonUser.deaId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">State Licence Id:</div>
+                    <div class="col-sm-3">{{hwinstonUser.stateLicenceId}}</div>
+                    <div class="col-sm-3">memberLogin:</div>
+                    <div class="col-sm-3">{{hwinstonUser.memberLogin}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">data2000:</div>
+                    <div class="col-sm-3">{{hwinstonUser.data2000}}</div>
+                    <div class="col-sm-3">Unique Physician Identification Number:</div>
+                    <div class="col-sm-3">{{hwinstonUser.uniquePhysicianId}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">activationDate:</div>
+                    <div class="col-sm-3">{{hwinstonUser.activationDate}}</div>
+                    <div class="col-sm-3">expirationDate:</div>
+                    <div class="col-sm-3">{{hwinstonUser.expirationDate}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <br />
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Users</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="user in usersInCurrentLocation">
+                        <div class="row">
+                            <div class="col-sm-3">Login Name:</div>
+                            <div class="col-sm-3">{{user.loginName}}</div>
+                            <div class="col-sm-3">Full Name:</div>
+                            <div class="col-sm-3">{{user.searchName}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">Phone:</div>
+                            <div class="col-sm-3">{{user.phoneNumber}}</div>
+                            <div class="col-sm-3">Home Location</div>
+                            <div class="col-sm-3">{{user.homeLocation}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">group:</div>
+                            <div class="col-sm-3">{{user.group}}</div>
+                            <div class="col-sm-3">jobTitle</div>
+                            <div class="col-sm-3">{{user.jobTitle}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">Specialty:</div>
+                            <div class="col-sm-3">{{user.specialty}}</div>
+                            <div class="col-sm-3">NPI:</div>
+                            <div class="col-sm-3">{{user.npi}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">prescriberId:</div>
+                            <div class="col-sm-3">{{user.prescriberId}}</div>
+                            <div class="col-sm-3">deaId:</div>
+                            <div class="col-sm-3">{{user.deaId}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">State Licence Id:</div>
+                            <div class="col-sm-3">{{user.stateLicenceId}}</div>
+                            <div class="col-sm-3">memberLogin:</div>
+                            <div class="col-sm-3">{{user.memberLogin}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">data2000:</div>
+                            <div class="col-sm-3">{{user.data2000}}</div>
+                            <div class="col-sm-3">Unique Physician Id Number:</div>
+                            <div class="col-sm-3">{{user.uniquePhysicianId}}</div>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">EMR</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">Version:</div>
+                    <div class="col-sm-3"><span ng-bind="emr.version"></span></div>
+                    <div class="col-sm-3">Database version:</div>
+                    <div class="col-sm-3"><span ng-bind="emr.databaseVersion"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Enterprise Id:</div>
+                    <div class="col-sm-3"><span ng-bind="emr.enterpriseId"></span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"><span></span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Observations: [weight]</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="obs in patient.observations('weight')">
+                                <div class="row">
+                                    <div class="col-sm-3">Name:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.name"></span></div>
+                                    <div class="col-sm-3">Value:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.value"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Date:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.date"></span></div>
+                                    <div class="col-sm-3">Time:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.time"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">signingUser:</div>
+                                    <div class="col-sm-9"><span ng-bind="obs.signingUser"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">enteringUser:</div>
+                                    <div class="col-sm-9"><span ng-bind="obs.enteringUser"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">flags:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.flags"></span></div>
+                                    <div class="col-sm-3">comment:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.comment"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">state:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.state"></span></div>
+                                    <div class="col-sm-3">locationOfCare:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.locationOfCare"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">documentType:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.documentType"></span></div>
+                                    <div class="col-sm-3">DocumentId:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.documentId"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">unitOfMeasure:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.unitOfMeasure"></span></div>
+                                    <div class="col-sm-3">Tag:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.tag"></span></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">Type:</div>
+                                    <div class="col-sm-3"><span ng-bind="obs.type"></span></div>
+                                    <div class="col-sm-3"> </div>
+                                    <div class="col-sm-3"> </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Protocol</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="pro in patient.protocols">
+                                <div class="row">
+                                    <div class="col-sm-3">Name:</div>
+                                    <div class="col-sm-9"><span ng-bind="pro.name"></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
