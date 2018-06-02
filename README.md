@@ -20,12 +20,12 @@ EMR9.8 Evaluation:
 
 To setup demo page:
 	1. Create a new folder in the "Default location for your own HTML Encounter forms" called mdObject
-	2. Create a subfolder called mdObjectDemo
-	3. Copy content of the ..\mdObject\examples\angular.js\ folder into the mdObjectDemo folder.
+	2. Create a subfolder called __mdObjectDemo__
+	3. Copy content of the __..\mdObject\examples\angular.js\__ folder into the __mdObjectDemo__ folder.
 	4. Add a Quick Text as following:
-		.mdObjectDemo {show_html_form("//localserver/mdObject/mdObjectDemo/index.html","$mdObject Feature Demo Page")}
+		__.mdObjectDemo__  __{show_html_form("//localserver/mdObject/mdObjectDemo/index.html","$mdObject Feature Demo Page")}__
 	5. Open patient chart and a new document 
-	6. Type .mdObjectDemo and press Enter key.
+	6. Type __.mdObjectDemo__ and press Enter key.
 
 
 
