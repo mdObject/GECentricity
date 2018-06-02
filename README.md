@@ -1,3 +1,4 @@
+
 GECentricity
 ============
 
@@ -5,17 +6,19 @@ Centricity is a brand of healthcare IT software solutions from GE Healthcare, a 
 
 The GECentricity is subproject of mdObject initiative to simplify patient medical record exchange.
 The $mdObject is simple JSON stricture that is easy to implement and to use.
-The mdObject is stand for [M]edical [D]ata Object. 
+The mdObject is stand for [__M__]edical [__D__]ata __Object__. 
 
 For users of GE Centricity EMR9.8 Evaluation version, execute the following line to enable ActiveX component:  
 
-Regsvr32 "C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\GE.EMR.Msg.IF.dll"
+	Regsvr32 "C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\GE.EMR.Msg.IF.dll"
 
-Use IE9+ for demo. 
+Use IE9+ for the demo below. 
 
-Default location for your own HTML Encounter forms in CPS12+: 
+Default location for your own HTML Encounter forms in CPS12+:
+
 	%JBOSS.SERVER.HOME.DIR%\server\default\deploy\demo.ear\CentricityPracticeWS.war\
 EMR9.8 Evaluation: 
+	
 	C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\jboss\server\default\deploy\Default.ear\CentricityPracticeWS.war\
 
 To setup demo page:
