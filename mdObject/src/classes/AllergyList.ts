@@ -1,4 +1,3 @@
-﻿//
 import { IAllergyData } from '../interfaces/interfaces';
 
 export class AllergyList implements IAllergyData {

@@ -1,4 +1,3 @@
-﻿//
 import { MockElement } from './mocks';
 
 export class MockDocument {
@@ -14,5 +13,4 @@ export class MockDocument {
     createElement = (): HTMLElement => {
         return this._element as any;
     }
-
 }

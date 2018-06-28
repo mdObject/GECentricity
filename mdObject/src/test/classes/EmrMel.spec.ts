@@ -1,9 +1,9 @@
-﻿// 
 import { EmrBase } from '../../bases/bases';
 import { EmrMel } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrMel', () => {
+
     let component: EmrMel;
     let _window = new MockWindow();
     let name: string = 'qwe';

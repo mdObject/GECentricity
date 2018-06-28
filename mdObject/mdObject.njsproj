@@ -1,0 +1,236 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>mdObject</Name>
+    <RootNamespace>_MdObject</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>a6fef15c-0b1d-4759-99ec-cf0100010497</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>false</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="examples\" />
+    <Folder Include="examples\angular.js\" />
+    <Folder Include="examples\angular.js\scripts\" />
+    <Folder Include="examples\old\" />
+    <Folder Include="examples\old\scripts\" />
+    <Folder Include="old-data\" />
+    <Folder Include="old-data\scripts\" />
+    <Folder Include="src\" />
+    <Folder Include="src\bases\" />
+    <Folder Include="src\classes\" />
+    <Folder Include="src\consts\" />
+    <Folder Include="src\enums\" />
+    <Folder Include="src\factories\" />
+    <Folder Include="src\interfaces\" />
+    <Folder Include="src\test\" />
+    <Folder Include="src\test\bases\" />
+    <Folder Include="src\test\classes\" />
+    <Folder Include="src\test\factories\" />
+    <Folder Include="src\test\mocks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".editorconfig" />
+    <Content Include=".gitignore" />
+    <Content Include=".npmignore" />
+    <Content Include="examples\angular.js\index.html" />
+    <Content Include="examples\old\Demo.html" />
+    <Content Include="examples\old\scripts\angular.LICENSE" />
+    <Content Include="examples\old\scripts\bootstrap.LICENSE" />
+    <Content Include="examples\old\scripts\bootstrap.min.css" />
+    <Content Include="examples\old\scripts\prettify.css" />
+    <Content Include="src\LICENSE" />
+    <Content Include="src\package.json" />
+    <Content Include="LICENSE" />
+    <Content Include="old-data\Demo.html" />
+    <Content Include="old-data\mdObjectHelp.html" />
+    <Content Include="old-data\scripts\angular.LICENSE" />
+    <Content Include="old-data\scripts\bootstrap.LICENSE" />
+    <Content Include="old-data\scripts\bootstrap.min.css" />
+    <Content Include="old-data\scripts\prettify.css" />
+    <Content Include="old-data\SimulatorXml.html" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tsconfig.spec.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="examples\angular.js\scripts\bundle.public.min.js" />
+    <Compile Include="examples\angular.js\scripts\DemoController.js" />
+    <Compile Include="examples\old\scripts\angular.min.js" />
+    <Compile Include="examples\old\scripts\bootstrap.min.js" />
+    <Compile Include="examples\old\scripts\DemoController.js" />
+    <Compile Include="examples\old\scripts\jquery-2.1.1.min.js" />
+    <Compile Include="examples\old\scripts\mdObject.js" />
+    <Compile Include="examples\old\scripts\mdObject.min.js" />
+    <Compile Include="old-data\scripts\angular.min.js" />
+    <Compile Include="old-data\scripts\bootstrap.min.js" />
+    <Compile Include="old-data\scripts\DemoController.js" />
+    <Compile Include="old-data\scripts\jquery-2.1.1.min.js" />
+    <Compile Include="old-data\scripts\mdObject.js" />
+    <Compile Include="old-data\scripts\mdObject.min.js" />
+    <Compile Include="webpack.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
+    <TypeScriptCompile Include="src\bases\bases.ts" />
+    <TypeScriptCompile Include="src\bases\EmrBase.ts" />
+    <TypeScriptCompile Include="src\classes\Address.ts" />
+    <TypeScriptCompile Include="src\classes\Allergies.ts" />
+    <TypeScriptCompile Include="src\classes\AllergyList.ts" />
+    <TypeScriptCompile Include="src\classes\AllergyListRemoved.ts" />
+    <TypeScriptCompile Include="src\classes\CarePlan.ts" />
+    <TypeScriptCompile Include="src\classes\classes.ts" />
+    <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\Emr.ts" />
+    <TypeScriptCompile Include="src\classes\EmrApp.ts" />
+    <TypeScriptCompile Include="src\classes\EmrContent.ts" />
+    <TypeScriptCompile Include="src\classes\EmrMel.ts" />
+    <TypeScriptCompile Include="src\classes\EmrWindow.ts" />
+    <TypeScriptCompile Include="src\classes\Immunization.ts" />
+    <TypeScriptCompile Include="src\classes\Insurance.ts" />
+    <TypeScriptCompile Include="src\classes\Location.ts" />
+    <TypeScriptCompile Include="src\classes\MdObject.ts" />
+    <TypeScriptCompile Include="src\classes\Measurement.ts" />
+    <TypeScriptCompile Include="src\classes\Measurements.ts" />
+    <TypeScriptCompile Include="src\classes\Observation.ts" />
+    <TypeScriptCompile Include="src\classes\ObservationType.ts" />
+    <TypeScriptCompile Include="src\classes\ObsTermsMap.ts" />
+    <TypeScriptCompile Include="src\classes\Patient.ts" />
+    <TypeScriptCompile Include="src\classes\PatientContact.ts" />
+    <TypeScriptCompile Include="src\classes\Phone.ts" />
+    <TypeScriptCompile Include="src\classes\Problem.ts" />
+    <TypeScriptCompile Include="src\classes\Protocol.ts" />
+    <TypeScriptCompile Include="src\classes\ReferringProvider.ts" />
+    <TypeScriptCompile Include="src\classes\ReferringProviderPhone.ts" />
+    <TypeScriptCompile Include="src\classes\User.ts" />
+    <TypeScriptCompile Include="src\classes\Users.ts" />
+    <TypeScriptCompile Include="src\consts\consts.ts" />
+    <TypeScriptCompile Include="src\consts\productType.ts" />
+    <TypeScriptCompile Include="src\consts\version.ts" />
+    <TypeScriptCompile Include="src\enums\enums.ts" />
+    <TypeScriptCompile Include="src\enums\LocationType.ts" />
+    <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
+    <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
+    <TypeScriptCompile Include="src\factories\factories.ts" />
+    <TypeScriptCompile Include="src\factories\GetActiveXErrorMessage.ts" />
+    <TypeScriptCompile Include="src\factories\GetCurrentUser.ts" />
+    <TypeScriptCompile Include="src\factories\IsActiveXSupported.ts" />
+    <TypeScriptCompile Include="src\factories\StringInternal.ts" />
+    <TypeScriptCompile Include="src\index.ts" />
+    <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
+    <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
+    <TypeScriptCompile Include="src\interfaces\IItem.ts" />
+    <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
+    <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
+    <TypeScriptCompile Include="src\public.ts" />
+    <TypeScriptCompile Include="src\test\bases\EmrBase.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Address.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Allergies.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\AllergyList.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\AllergyListRemoved.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\CarePlan.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ClinicalDocument.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Emr.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\EmrApp.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\EmrContent.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\EmrMel.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\EmrWindow.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Immunization.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Insurance.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Location.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\MdObject.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Measurement.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Measurements.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Observation.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ObservationType.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ObsTermsMap.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Patient.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\PatientContact.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Phone.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Problem.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Protocol.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ReferringProvider.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\ReferringProviderPhone.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\User.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Users.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\DocumentVariable.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\GetActiveXErrorMessage.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\IsActiveXSupported.spec.ts" />
+    <TypeScriptCompile Include="src\test\factories\StringInternal.spec.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockDocument.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockElement.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockEmrApp.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockEmrMel.ts" />
+    <TypeScriptCompile Include="src\test\mocks\mockResultEmr.ts" />
+    <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

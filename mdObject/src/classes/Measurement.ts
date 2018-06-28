@@ -1,4 +1,3 @@
-﻿//
 import { ObsTermsMap, EmrMel } from './classes';
 
 export class Measurement implements ObsTermsMap {

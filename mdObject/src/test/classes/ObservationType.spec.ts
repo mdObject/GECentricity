@@ -1,7 +1,7 @@
-﻿//
 import { ObservationType } from '../../classes/classes';
 
 describe('Class: ObservationType', () => {
+
     let component: ObservationType;
 
     describe('check', () => {
@@ -20,5 +20,4 @@ describe('Class: ObservationType', () => {
             expect(component.DocumentUnsigned).toEqual('Update');
         });
     });
-
 })

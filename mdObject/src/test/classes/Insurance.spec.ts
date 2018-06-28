@@ -1,8 +1,8 @@
-﻿//
 import { Insurance } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Insurance', () => {
+
     let component: Insurance;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -85,7 +85,4 @@ describe('Class: Insurance', () => {
             expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{INS_PHONE("' + component.insuranceType + '")}');
         });
     });
-
-
-
 })

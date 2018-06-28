@@ -1,5 +1,3 @@
-﻿//
-
 export class MockElement {
 
     action = null;
@@ -11,8 +9,7 @@ export class MockElement {
 
     constructor() { }
 
-    appendChild = () => { };
+    appendChild = () => { }
 
-    submit = () => { };
-
+    submit = () => { }
 }

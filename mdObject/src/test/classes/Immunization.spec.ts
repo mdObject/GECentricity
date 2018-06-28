@@ -1,8 +1,8 @@
-﻿//
 import { Immunization } from '../../classes/classes';
 import { mockResultEmr, MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Immunization', () => {
+
     let component: Immunization;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -55,7 +55,6 @@ describe('Class: Immunization', () => {
         it('check stopDate', () => { expect(component.stopDate).toEqual('0.40'); })
         it('check reasonNotGivenMedical', () => { expect(component.reasonNotGivenMedical).toEqual('0.41'); })
         it('check reasonNotGivenMedicalDetail', () => { expect(component.reasonNotGivenMedicalDetail).toEqual('0.42'); })
-
     })
 
     describe('default value', () => {
@@ -106,7 +105,6 @@ describe('Class: Immunization', () => {
         it('check stopDate', () => { expect(component.stopDate).toEqual(''); })
         it('check reasonNotGivenMedical', () => { expect(component.reasonNotGivenMedical).toEqual(''); })
         it('check reasonNotGivenMedicalDetail', () => { expect(component.reasonNotGivenMedicalDetail).toEqual(''); })
-
     })
 
     describe('methods', () => {
@@ -244,7 +242,5 @@ describe('Class: Immunization', () => {
                 component.reasonNotGivenMedicalDetail;
             expect(_result).toEqual(__result)
         })
-
     })
-
 })

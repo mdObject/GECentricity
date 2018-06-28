@@ -1,8 +1,8 @@
-﻿//
 import { ClinicalDocument } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: ClinicalDocument', () => {
+
     let component: ClinicalDocument;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -144,5 +144,4 @@ describe('Class: ClinicalDocument', () => {
             })
         })
     })
-
 })

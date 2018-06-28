@@ -1,8 +1,8 @@
-﻿//
 import { Allergies } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Allergies', () => {
+
     let component: Allergies;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -59,7 +59,4 @@ describe('Class: Allergies', () => {
             expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{ALL_REMOVED("delimited")}');
         });
     });
-
-
-
 })

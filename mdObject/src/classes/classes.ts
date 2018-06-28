@@ -1,4 +1,3 @@
-﻿//
 export { ObsTermsMap } from './ObsTermsMap';
 export { Location } from './Location';
 export { EmrContent } from './EmrContent';

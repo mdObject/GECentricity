@@ -1,4 +1,3 @@
-﻿//
 export { MockElement } from './MockElement';
 export { MockDocument } from './MockDocument';
 export { MockWindow } from './MockWindow';

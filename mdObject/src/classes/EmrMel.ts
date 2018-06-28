@@ -1,4 +1,3 @@
-﻿//
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
 
@@ -37,7 +36,7 @@ export class EmrMel extends EmrBase {
     // Implements MEL eval 
     melFunc = (data: string): string => {
         return (this.mel == null) ? this.noData : this.mel.eval(data);
-    };
+    }
 
     saveObservation = (obs: string, value: string, date: string): string => {
         return (this.mel == null) ? this.noData : this.mel.OBSNOW(obs, value, date);
@@ -45,10 +44,9 @@ export class EmrMel extends EmrBase {
 
     getObs = (isCurrent: boolean, data: string): string => {
         return (this.mel == null) ? this.noData : ((isCurrent == true) ? this.mel.OBSNOW(data, '', '') : this.mel.OBSPREV(data));
-    };
+    }
 
     showUrlDialog = (url: string): void => {
         this.melFunc('{SHOWHTMLFORM("' + url + '","test")}');
-    };
-
+    }
 }

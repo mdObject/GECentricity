@@ -1,8 +1,8 @@
-﻿//
 import { Emr, EmrWindow, EmrMel, EmrApp } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Emr', () => {
+
     let component: Emr;
     let _window = new MockWindow();
     let result: string = mockResultEmr;
@@ -60,7 +60,7 @@ describe('Class: Emr', () => {
                 _window.opener = {
                     _melOpener: new EmrMel(_window),
                     _appOpener: new EmrApp(_window)
-                };
+                }
             });
 
             it('emrMel', () => {
@@ -129,5 +129,4 @@ describe('Class: Emr', () => {
             expect((component as any)._emrMel.melFunc).toHaveBeenCalledWith('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
         });
     });
-
 })

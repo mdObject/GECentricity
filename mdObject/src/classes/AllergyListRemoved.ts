@@ -1,5 +1,3 @@
-﻿//
-
 import { AllergyList } from './classes';
 
 export class AllergyListRemoved extends AllergyList {

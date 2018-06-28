@@ -1,8 +1,8 @@
-﻿//
 import { PatientContact } from '../../classes/classes';
 import { mockResultEmr } from '../mocks/mocks';
 
 describe('Class: PatientContact', () => {
+
     let component: PatientContact;
     let result: string = mockResultEmr;
 
@@ -54,5 +54,4 @@ describe('Class: PatientContact', () => {
             expect(_result).toEqual(result)
         })
     })
-
 })

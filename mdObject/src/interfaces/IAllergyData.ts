@@ -1,5 +1,3 @@
-﻿//
-
 export interface IAllergyData {
     name: string
     onDate: string

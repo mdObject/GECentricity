@@ -1,4 +1,3 @@
-//
 const merge = require('webpack-merge');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader')
@@ -26,7 +25,7 @@ module.exports = () => {
         plugins: [
             new CheckerPlugin()
         ]
-    };
+    }
 
     const uglifyConfig = merge.smart(commonConfig, {
         output: {
@@ -51,6 +50,5 @@ module.exports = () => {
         plugins: []
     })
 
-
     return [commonConfig, uglifyConfig, publicConfig];
-};
+}

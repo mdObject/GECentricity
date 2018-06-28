@@ -1,4 +1,3 @@
-﻿//
 import { UserCallFunction } from '../enums/enums';
 
 export class User {
@@ -53,7 +52,7 @@ export class User {
             this.firstName = (this.data.length > 18) ? this.data[18] : '';
             this.middleName = (this.data.length > 19) ? this.data[19] : '';
             this.lastName = (this.data.length > 20) ? this.data[20] : '';
-        };
+        }
 
         if (callFunction === UserCallFunction.UserList) {
             this.loginName = (this.data.length > 0) ? this.data[0] : '';
@@ -73,11 +72,10 @@ export class User {
             this.activationDate = (this.data.length > 14) ? this.data[14] : '';
             this.expirationDate = (this.data.length > 15) ? this.data[15] : '';
             this.roles = [];
-        };
+        }
     }
 
     toMelString = () => {
         return this._value;
     }
 }
-

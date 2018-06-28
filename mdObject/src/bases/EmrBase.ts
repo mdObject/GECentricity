@@ -1,4 +1,3 @@
-﻿//
 import { IsActiveXSupported } from '../factories/factories';
 
 export class EmrBase {
@@ -10,5 +9,4 @@ export class EmrBase {
     constructor(
         public _window: any
     ) { }
-
 }

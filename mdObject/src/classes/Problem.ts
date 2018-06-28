@@ -1,5 +1,3 @@
-﻿//
-
 export class Problem {
 
     private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
@@ -25,4 +23,4 @@ export class Problem {
         this._problemId = (index > -1) ? this._problemId.substr(0, index) : this._problemId;
         return this._problemId;
     }
-};
+}

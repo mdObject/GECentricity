@@ -1,9 +1,9 @@
-﻿//
 import { MdObject, Emr, ObsTermsMap, ClinicalDocument, Users, Patient } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
 import { version, productType } from '../../consts/consts'
 
 describe('Class: MdObject', () => {
+
     let component: MdObject;
     let _window = new MockWindow;
 
@@ -44,5 +44,4 @@ describe('Class: MdObject', () => {
             }
         })
     })
-
 })

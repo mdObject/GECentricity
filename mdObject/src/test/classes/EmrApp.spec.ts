@@ -1,9 +1,9 @@
-﻿//
 import { EmrBase } from '../../bases/bases';
 import { EmrApp } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrApp', () => {
+
     let component: EmrApp;
     let _window = new MockWindow();
 
@@ -18,7 +18,6 @@ describe('Class: EmrApp', () => {
     it('extends AllergyListRemoved', () => {
         expect(component instanceof EmrApp).toEqual(true);
     })
-
 
     describe('methods', () => {
         describe('initialization', () => {

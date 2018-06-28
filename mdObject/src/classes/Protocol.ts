@@ -1,5 +1,3 @@
-﻿//
-
 export class Protocol {
 
     name: string = (this._value != null) ? this._value : '';
@@ -7,5 +5,4 @@ export class Protocol {
     constructor(
         public _value: string
     ) { }
-
 }

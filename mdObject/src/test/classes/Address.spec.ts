@@ -1,8 +1,8 @@
-﻿//
 import { Address } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Address', () => {
+
     let component: Address;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -85,7 +85,4 @@ describe('Class: Address', () => {
             expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PATIENT.STATE}');
         });
     });
-
-
-
 })

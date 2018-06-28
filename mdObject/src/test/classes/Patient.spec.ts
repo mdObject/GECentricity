@@ -1,8 +1,8 @@
-﻿//
 import { Patient, Measurements, Allergies, ReferringProvider, Phone, Address, Emr } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr, MockWindow } from '../mocks/mocks';
 
 describe('Class: Patient', () => {
+
     let component: Patient;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -250,5 +250,4 @@ describe('Class: Patient', () => {
             })
         })
     })
-
 })

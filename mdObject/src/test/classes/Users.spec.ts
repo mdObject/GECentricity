@@ -1,13 +1,12 @@
-﻿//
 import { Users, User } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Users', () => {
+
     let component: Users;
     let mockEmrMel = new MockEmrMel();
     let result = mockResultEmr;
     let name = 'name';
-
 
     describe('methods', () => {
         beforeEach(() => {
@@ -79,8 +78,5 @@ describe('Class: Users', () => {
                 expect(_result.toMelString()).toEqual(result + '|' + result);
             })
         })
-
-
     });
-
 })

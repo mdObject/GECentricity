@@ -1,8 +1,8 @@
-﻿//
 import { EmrWindow } from '../../classes/classes';
 import { MockEmrMel, MockEmrApp, MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrWindow', () => {
+
     let component: EmrWindow;
     let mockEmrMel = new MockEmrMel();
     let mockEmrApp = new MockEmrApp();
@@ -13,7 +13,7 @@ describe('Class: EmrWindow', () => {
     let features: string = '';
     let data = {
         qwe: 123
-    };
+    }
 
     describe('methods', () => {
         beforeAll(() => {

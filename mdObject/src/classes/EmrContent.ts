@@ -1,4 +1,3 @@
-﻿//
 import { EmrMel } from './classes';
 
 export class EmrContent {
@@ -34,7 +33,7 @@ export class EmrContent {
             this._unk3 + '^' +
             this._unk4 + '^' +
             this._unk5;
-    };
+    }
 
     save = (encodeValue: string): void => {
         if (this.isNew) {
@@ -44,9 +43,9 @@ export class EmrContent {
             this._mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
             this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
         }
-    };
+    }
 
     remove = (): void => {
         this._mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}');
-    };
+    }
 }

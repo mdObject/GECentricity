@@ -1,8 +1,8 @@
-﻿//
 import { Measurements, Measurement } from '../../classes/classes';
 import { MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Measurements', () => {
+
     let component: Measurements;
     let mockEmrMel = new MockEmrMel();
 
@@ -28,5 +28,4 @@ describe('Class: Measurements', () => {
             expect(component.previous instanceof Measurement).toEqual(true);
         })
     })
-
 })

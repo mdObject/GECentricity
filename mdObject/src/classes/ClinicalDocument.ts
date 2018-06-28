@@ -1,4 +1,3 @@
-﻿//
 import { Location, EmrMel } from '../classes/classes';
 import { LocationType } from '../enums/enums';
 import { DocumentVariable } from '../factories/factories';
@@ -24,15 +23,14 @@ export class ClinicalDocument {
 
     private save = (): void => {
         this._mel.melFunc('{DOCUMENT.mdObject_letiables = "' + JSON.stringify(this.rawValue).replace(/"/g, '\\"') + '"}');
-    };
+    }
 
     private rawValue: IItem = DocumentVariable({}, this.save);
 
     // The letiables allows to save any JSON object with the clinicalDocument.
-    // Usage: $mdObject.clinicalDocument.letiables = {"alex":1}; - creates object with letiable alex and assigned value 1.
+    // Usage: $mdObject.clinicalDocument.letiables = {"alex":1} - creates object with letiable alex and assigned value 1.
     //        $mdObject.clinicalDocument.letiables["alex"]=4;  -changes value of alex to 4
     //        $mdObject.clinicalDocument.letiables.save(); - saves the object with the document
-
     get letiables() {
         if (this._letiables == null) {
             this._letiables = (this._letiables != null) ? this._letiables : this._mel.melFunc('{DOCUMENT.mdObject_letiables}');
@@ -40,18 +38,18 @@ export class ClinicalDocument {
             try {
                 this.rawValue = DocumentVariable(JSON.parse(this._letiables), this.save);
             } catch (e) {
-                this.rawValue = {};
+                this.rawValue = {}
             }
         }
         return this.rawValue;
-    };
+    }
 
     set letiables(val: IItem) {
         for (let key in val) {
             this.rawValue[key] = val[key];
         }
         this._mel.melFunc('{DOCUMENT.mdObject_letiables = "' + JSON.stringify(this.rawValue).replace(/"/g, '\\"') + '"}');
-    };
+    }
 
     // The val allows to get or set DOCUMENT letiable
     // Usage: $mdObject.clinicalDocument.val("MyVariable") return value from {DOCUMENT.MyVariable}.
@@ -66,7 +64,7 @@ export class ClinicalDocument {
         } else {
             return this._mel.melFunc('{DOCUMENT.' + key + '="' + value + '"}');
         }
-    };
+    }
 
     get did() {
         this._did = (this._did != null) ? this._did : this._mel.melFunc('{find("DOCUMENT","DID")}');
@@ -111,27 +109,27 @@ export class ClinicalDocument {
                                 return this[i];
                             }
                         }
-                    };
+                    }
                     return undefined;
 
                 });
         }
 
         return this._locationPropertyArray;
-    };
+    }
 
     get dateOfUpdate() {
         this._dateOfUpdate = (this._dateOfUpdate != null) ? this._dateOfUpdate : this._mel.melFunc('{DOCUMENT.CLINICALDATE}');
         return this._dateOfUpdate;
-    };
+    }
 
     get provider() {
         this._provider = (this._provider != null) ? this._provider : this._mel.melFunc('{DOCUMENT.PROVIDER}');
         return this._provider;
-    };
+    }
 
     get userLoginName() {
         this._userLoginName = (this._userLoginName != null) ? this._userLoginName : this._mel.melFunc('{DOCUMENT.USERLOGINNAME}');
         return this._userLoginName;
-    };
+    }
 }

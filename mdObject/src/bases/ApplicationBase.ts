@@ -1,5 +1,1 @@
-﻿//
-
-export class ApplicationBase {
-
-}
+export class ApplicationBase { }

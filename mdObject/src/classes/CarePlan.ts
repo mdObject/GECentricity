@@ -1,4 +1,3 @@
-﻿//
 import { EmrMel } from './classes';
 
 export class CarePlan {
@@ -39,18 +38,17 @@ export class CarePlan {
             } else {
                 alert(isError);
             }
-        } else {
+        }
+        else {
             //update ;
-
             //{MEL_UPDATE_CARE_PLAN("1691155657053120","Goal-Exercise to lose weight","","","" ,"","2013/08/03" ,"")}
             //err_code = Mel.eval("{MEL_UPDATE_CARE_PLAN(\"" +careplanID + "\",\"" +DB_TimeStamp + "\",\"" +goal_sel + "\",\"" +snomed_code + "\",\"" +target + "\",\"" +ins_sel + "\",\"" +sdate + "\",\"" +mdate + "\",\"" +problemID + "\")}");
-
         }
-    };
+    }
 
     toMelString = (): string => {
         return this._value;
-    };
+    }
 
     validateAdd = (): string => {
         let errorMessage: string = ' is required.';
@@ -59,7 +57,7 @@ export class CarePlan {
             return 'goal' + errorMessage;
         }
         return '';
-    };
+    }
 
     //MEL symbol for adding care this._value - format
     //MEL_ADD_CARE_PLAN (Goal, SNOMEDCTCODE, Target, Instructions, GoalSetDate, GoalMetDate, PRID ( pipe separated Problem IDs selected from patient’s active problems) 
@@ -71,7 +69,7 @@ export class CarePlan {
             this.goalSetDate + '\",\"' +
             this.goalMetDate + '\",\"' +
             this.patientConditionCode + '\"';
-    };
+    }
 
     carePlanAddError = (code: string): string => {
         let response: string = '';
@@ -106,6 +104,5 @@ export class CarePlan {
             default:
         }
         return response;
-    };
-
+    }
 }

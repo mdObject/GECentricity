@@ -1,9 +1,9 @@
-﻿//
 import { User } from '../../classes/classes';
 import { mockResultEmr } from '../mocks/mocks';
 import { UserCallFunction } from '../../enums/enums';
 
 describe('Class: User', () => {
+
     let component: User;
     let result: string = mockResultEmr;
 
@@ -123,5 +123,4 @@ describe('Class: User', () => {
             expect(_result).toEqual(component._value);
         })
     })
-
 })

@@ -1,4 +1,3 @@
-﻿//
 import { AllergyList, AllergyListRemoved, EmrMel } from './classes';
 import { StringInternal } from '../factories/factories';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
@@ -25,7 +24,7 @@ export class Allergies {
             }
         }
         return this._addedArray;
-    };
+    }
 
     get current() {
         if (this._currentArray.length === 0) {
@@ -36,7 +35,7 @@ export class Allergies {
             }
         }
         return this._currentArray;
-    };
+    }
     
     get removed() {
         if (this._removedArray.length === 0) {
@@ -47,6 +46,5 @@ export class Allergies {
             }
         }
         return this._removedArray;
-    };
-
+    }
 }

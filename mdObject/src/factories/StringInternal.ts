@@ -1,11 +1,10 @@
-﻿//
 import { IStringInternal } from '../interfaces/interfaces';
 
 export function StringInternal(value: string, tag?: string): IStringInternal {
-    let sb: IStringInternal = new String(value) as IStringInternal;
+    let result: IStringInternal = new String(value) as IStringInternal;
 
     // Function parse string object to array of string 
-    sb.toList = (seporator?: string): Array<string> => {
+    result.toList = (seporator?: string): Array<string> => {
         if (seporator == null) {
             seporator = '|';
         }
@@ -15,23 +14,23 @@ export function StringInternal(value: string, tag?: string): IStringInternal {
             return item.length !== 0;
         });
         return dataArray;
-    };
+    }
 
     // String helper function to validate that string start with specified string
-    sb.startsWith = (str: string) => {
+    result.startsWith = (str: string) => {
         return value.slice(0, str.length) === str;
-    };
+    }
 
     // String helper function to validate that string end with specified string
-    sb.endsWith = (str: string) => {
+    result.endsWith = (str: string) => {
         return value.slice(-str.length) === str;
-    };
+    }
 
-    sb.tag = (tag != null) ? tag : '';
+    result.tag = (tag != null) ? tag : '';
 
-    sb.toDate = () => {
+    result.toDate = () => {
         return new Date(value.toString());
-    };
+    }
 
-    return sb;
+    return result;
 }

@@ -1,4 +1,3 @@
-﻿//
 import { LocationType } from '../enums/enums';
 
 export class Location {
@@ -12,5 +11,4 @@ export class Location {
         this.name = (this.name != null) ? this.name : '';
         this.locationType = (this.locationType != null) ? this.locationType : LocationType.None
     }
-
 }

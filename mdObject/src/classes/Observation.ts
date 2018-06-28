@@ -1,4 +1,3 @@
-﻿//
 import { ObservationType, EmrMel } from './classes';
 
 export class Observation {
@@ -37,22 +36,21 @@ export class Observation {
         if (this.comment != null && this.comment != '') {
             response = this._mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
         }
-    };
+    }
 
     remove = (): void => {
 
-    };
+    }
 
     get unitOfMeasure() {
         this._unitOfMeasure = (this._unitOfMeasure != null) ? this._unitOfMeasure : this._mel.melFunc('{OBSUNIT("' + this.name + '")}');
         return this._unitOfMeasure;
-    };
+    }
 
     get tag() {
         this._tag = (this._tag != null) ? this._tag
             : (this._observationType === this.observationType.DocumentUnsigned) ? this._mel.melFunc('{OBSTAGNOW("' + this.name + '")}')
                 : '';
         return this._tag;
-    };
-
+    }
 }

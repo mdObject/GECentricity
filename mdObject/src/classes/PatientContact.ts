@@ -1,5 +1,3 @@
-﻿//
-
 export class PatientContact {
 
     private data = (this._value == null) ? [] : this._value.split('^');

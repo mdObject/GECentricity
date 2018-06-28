@@ -1,8 +1,8 @@
-﻿//
 import { Problem } from '../../classes/classes';
 import { mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Problem', () => {
+
     let component: Problem;
     let result: string = mockResultEmr;
 
@@ -79,5 +79,4 @@ describe('Class: Problem', () => {
             expect(component.problemId).toEqual('');
         });
     })
-
 })

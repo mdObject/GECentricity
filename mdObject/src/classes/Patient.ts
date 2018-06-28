@@ -1,4 +1,3 @@
-﻿//
 import { StringInternal } from '../factories/factories';
 import {
     Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements,
@@ -6,7 +5,6 @@ import {
 } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
-
 
 // TODO: string = PATIENT.REGNOTE; REGGUARANTOR
 export class Patient {
@@ -40,7 +38,7 @@ export class Patient {
     private _primaryCarePhysicianName: string;
     private _problems: string;
     private _problemsArray: IArrayAdditionalMethods<Problem> = [];
-    private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {};
+    private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {}
     private _protocols: string;
     private _protocolsArray: IArrayAdditionalMethods<Protocol> = [];
     private _insurances: IArrayAdditionalMethods<Insurance> = [];
@@ -70,7 +68,7 @@ export class Patient {
     get patientId() {
         this._patientId = (this._patientId != null) ? this._patientId : this._mel.melFunc('{PATIENT.PATIENTID}');
         return this._patientId;
-    };
+    }
 
     // Returns the internal PID number for patient record
     get pid() {
@@ -184,13 +182,13 @@ export class Patient {
     get email() {
         this._email = (this._email != null) ? this._email : this._mel.melFunc('{PATIENT.EMAIL}');
         return this._email;
-    };
+    }
 
     // Returns the patient’s contact by information
     get contactBy() {
         this._contactBy = (this._contactBy != null) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
         return this._contactBy;
-    };
+    }
 
     // Returns a list of the contacts for the current patient
     get contacts() {
@@ -207,7 +205,7 @@ export class Patient {
 
             this._contactsArray.toMelString = () => {
                 return this._contacts;
-            };
+            }
         }
         return this._contactsArray;
     }
@@ -216,19 +214,19 @@ export class Patient {
     get employmentStatus() {
         this._employmentStatus = (this._employmentStatus != null) ? this._employmentStatus : this._mel.melFunc('{PATIENT.EMPLSTATUS}');
         return this._employmentStatus;
-    };
+    }
 
     // Patient’s current status in the clinic
     get clinicStatus() {
         this._clinicStatus = (this._clinicStatus != null) ? this._clinicStatus : this._mel.melFunc('{PATIENT.PSTATUS}');
         return this._clinicStatus;
-    };
+    }
 
     // Name of the primary care physician
     get primaryCarePhysicianName() {
         this._primaryCarePhysicianName = (this._primaryCarePhysicianName != null) ? this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
         return this._primaryCarePhysicianName;
-    };
+    }
 
     // Lists all problems 
     get problems() {
@@ -245,7 +243,7 @@ export class Patient {
 
             this._problemsArray.toMelString = () => {
                 return this._problems;
-            };
+            }
         }
         return this._problemsArray;
     }
@@ -270,7 +268,7 @@ export class Patient {
             this._observations[name].tag = 'LIST_OBS.' + name;
         }
         return this._observations[name];
-    };
+    }
 
     // Protocols tell you when a patient is due for a particular action; based on factors that include sex; age; current problems; and current medications. 
     // The protocols contains array of observations required for this patient; as indicated by protocols set up in this clinic.
@@ -282,13 +280,13 @@ export class Patient {
             /*jslint plusplus: true */
             for (let index = 0; index < dataArray.length; index++) {
                 this._protocolsArray.push(new Protocol(dataArray[index]))
-            };
+            }
 
             this._protocolsArray.tag = 'LISTPROTOCOLSHORT("list")';
 
             this._protocolsArray.toMelString = () => {
                 return this._protocols;
-            };
+            }
         }
         return this._protocolsArray;
     }
@@ -299,7 +297,7 @@ export class Patient {
             this._insurances.push(new Insurance('P', this._mel));
             this._insurances.push(new Insurance('S', this._mel));
             this._insurances.push(new Insurance('T', this._mel));
-        };
+        }
         return this._insurances;
     }
 
@@ -318,7 +316,7 @@ export class Patient {
 
             this._immunizationsArray.toMelString = () => {
                 return this._immunizations;
-            };
+            }
         }
         return this._immunizationsArray;
     }
@@ -337,10 +335,10 @@ export class Patient {
 
             this._carePlansArray.toMelString = () => {
                 return this._carePlans;
-            };
+            }
         }
         return this._carePlansArray;
-    };
+    }
 
     get locations() {
         if (this._locationsArray.length === 0) {
@@ -357,7 +355,7 @@ export class Patient {
                                 return this[index];
                             }
                         }
-                    };
+                    }
                     return undefined;
                 });
         }
@@ -401,5 +399,4 @@ export class Patient {
     appointments: Object;
     // List all medications and refills
     medications: Object;
-};
-    
+}

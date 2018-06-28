@@ -1,7 +1,7 @@
-﻿//
 import { ObsTermsMap } from '../../classes/classes';
 
 describe('Class: ObsTermsMap', () => {
+
     let component: ObsTermsMap;
 
     describe('check', () => {
@@ -17,5 +17,4 @@ describe('Class: ObsTermsMap', () => {
             expect(component.height).toEqual('Height');
         });
     });
-
 })

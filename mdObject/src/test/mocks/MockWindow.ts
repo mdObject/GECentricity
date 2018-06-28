@@ -1,4 +1,3 @@
-﻿//
 import { MockDocument } from './mocks';
 
 export class MockWindow {
@@ -8,7 +7,7 @@ export class MockWindow {
         eval: (data: string) => { return data; },
         OBSNOW: (...args: Array<string>) => { return args.join(''); },
         OBSPREV: (data: string) => { return data; },
-    };
+    }
 
     _ActiveXObjectApp = {
         // app
@@ -16,11 +15,11 @@ export class MockWindow {
         DatabaseVersion: null,
         ShowURLDialog: (url: string) => { return url; },
         SetPasscode: (pass: string) => { return pass; },
-    };
+    }
 
     opener = null;
     document = new MockDocument();
-    external = {};
+    external = {}
 
     constructor() { }
 
@@ -34,7 +33,7 @@ export class MockWindow {
                 return this._ActiveXObjectApp;
             }
         }
-        return {};
+        return {}
     }
 
     btoa = (value: string) => {

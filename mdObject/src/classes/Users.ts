@@ -1,4 +1,3 @@
-﻿//
 import { User, EmrMel } from '../classes/classes';
 import { StringInternal, GetCurrentUser } from '../factories/factories';
 import { UserCallFunction } from '../enums/enums';
@@ -22,7 +21,7 @@ export class Users {
         }
         this._currentUser = (this._currentUser != null) ? this._currentUser : new User(GetCurrentUser(this._mel), UserCallFunction.UserInfo);
         return this._currentUser;
-    };
+    }
 
     getUsers = () => {
         if (this._usersArray.length === 0) {
@@ -38,8 +37,8 @@ export class Users {
 
             this._usersArray.toMelString = () => {
                 return this._users;
-            };
+            }
         }
         return this._usersArray;
-    };
+    }
 }

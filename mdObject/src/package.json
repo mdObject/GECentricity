@@ -1,0 +1,18 @@
+{
+    "name": "@mdobject/mdobject",
+    "version": "1.0.20",
+    "description": "MdObject",
+    "main": "./bundle.min.js",
+    "types": "./index.d.ts",
+    "author": "mdObject",
+    "license": "MS-PL",
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mdObject/GECentricity.git"
+    },
+    "bugs": {
+        "url": "https://github.com/mdObject/GECentricity/issues"
+    },
+    "homepage": "https://github.com/mdObject/GECentricity#readme"
+}

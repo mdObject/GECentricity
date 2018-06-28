@@ -1,5 +1,4 @@
 {
-
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true,
         "useWebpackText": true,

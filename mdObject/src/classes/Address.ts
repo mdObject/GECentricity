@@ -1,4 +1,3 @@
-﻿//
 import { EmrMel } from './classes';
 
 export class Address {
@@ -49,6 +48,4 @@ export class Address {
         this._state = (this._state != null) ? this._state : this._mel.melFunc('{PATIENT.STATE}');
         return this._state;
     }
-    
 }
-

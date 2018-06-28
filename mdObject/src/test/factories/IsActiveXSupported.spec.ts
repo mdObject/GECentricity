@@ -1,7 +1,7 @@
-﻿//
 import { IsActiveXSupported } from '../../factories/factories';
 
 describe('factory: IsActiveXSupported', () => {
+
     let result;
     let mockWindow;
 
@@ -9,16 +9,14 @@ describe('factory: IsActiveXSupported', () => {
         mockWindow = new Object();
     });
 
-    it('return false',
-        () => {
-            result = IsActiveXSupported(mockWindow);
-            expect(result).toEqual(false);
-        });
+    it('return false', () => {
+        result = IsActiveXSupported(mockWindow);
+        expect(result).toEqual(false);
+    });
 
-    it('return true',
-        () => {
-            mockWindow = { ActiveXObject: null };
-            result = IsActiveXSupported(mockWindow);
-            expect(result).toEqual(true);
-        });
+    it('return true', () => {
+        mockWindow = { ActiveXObject: null }
+        result = IsActiveXSupported(mockWindow);
+        expect(result).toEqual(true);
+    });
 })

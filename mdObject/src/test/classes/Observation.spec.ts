@@ -1,8 +1,8 @@
-﻿//
 import { Observation, ObservationType } from '../../classes/classes';
 import { mockResultEmr, MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Observation', () => {
+
     let component: Observation;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;

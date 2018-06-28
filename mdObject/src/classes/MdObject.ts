@@ -1,5 +1,3 @@
-﻿//
-// temporary variables
 import { version, productType } from '../consts/consts'
 import { ObsTermsMap, ClinicalDocument, Emr, Users, Patient } from './classes';
 

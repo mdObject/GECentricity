@@ -1,4 +1,3 @@
-﻿//
 import { EmrMel } from './classes'
 
 export class Immunization {
@@ -70,11 +69,11 @@ export class Immunization {
         } else {
             // TODO: add updating of model
         }
-    };
+    }
 
     toMelString = (): string => {
         return this._value;
-    };
+    }
 
     validateAdd = (): string => {
         let errorMessage = ' is required.';
@@ -98,7 +97,7 @@ export class Immunization {
             return 'doseAmount should be numeric.';
         }
         return '';
-    };
+    }
 
     toStringAdd = (): string => {
         return this.vaccineGroupName + '^' + 
@@ -142,5 +141,5 @@ export class Immunization {
             this.stopDate + '^' +
             this.reasonNotGivenMedical + '^' +
             this.reasonNotGivenMedicalDetail;
-    };
+    }
 }

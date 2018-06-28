@@ -1,8 +1,8 @@
-﻿//
 import { AllergyListRemoved, AllergyList } from '../../classes/classes';
 import { mockResultEmr } from '../mocks/mocks';
 
 describe('Class: AllergyListRemoved', () => {
+
     let component: AllergyListRemoved;
     let result: string = mockResultEmr;
 

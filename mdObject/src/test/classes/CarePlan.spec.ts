@@ -1,8 +1,8 @@
-﻿//
 import { CarePlan } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: CarePlan', () => {
+
     let component: CarePlan;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
@@ -167,8 +167,6 @@ describe('Class: CarePlan', () => {
                 expect(mockEmrMel.melFunc).not.toHaveBeenCalled()
             })
         })
-
-
 
         it('toMelString', () => {
             let _result = component.toMelString();

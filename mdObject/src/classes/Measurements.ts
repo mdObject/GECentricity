@@ -1,4 +1,3 @@
-﻿//
 import { Measurement, EmrMel } from './classes';
 
 export class Measurements {
@@ -19,6 +18,4 @@ export class Measurements {
     get previous() {
         return (this._previous != null) ? this._previous : new Measurement(false, this._weight, this._height, this._mel);
     }
-
 }
-

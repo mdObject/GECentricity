@@ -1,4 +1,3 @@
-﻿//
 import { EmrApp, EmrMel, EmrWindow, EmrContent } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
@@ -7,7 +6,7 @@ export class Emr {
 
     private _emrMel: EmrMel;
     private _emrApp: EmrApp;
-    private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {};
+    private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {}
     private _emrWindow: EmrWindow = new EmrWindow(this.emrMel, this.emrApp, this._window, this._document);
     private _version: string;
 
@@ -53,7 +52,7 @@ export class Emr {
 
             this._melContent[name].toMelString = () => {
                 return data;
-            };
+            }
         }
         return this._melContent[name];
     }

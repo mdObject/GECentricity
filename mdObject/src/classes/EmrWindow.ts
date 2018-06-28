@@ -1,4 +1,3 @@
-﻿//
 import { StringInternal } from '../factories/factories';
 import { EmrMel, EmrApp } from '../classes/classes';
 
@@ -39,5 +38,4 @@ export class EmrWindow {
         form.submit();
         return _window;
     }
-
 }

@@ -1,5 +1,3 @@
-﻿//
-
 export class ObservationType {
 
     None: string = 'Undefined';

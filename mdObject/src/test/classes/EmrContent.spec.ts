@@ -1,8 +1,8 @@
-﻿//
 import { EmrContent } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr, MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrContent', () => {
+
     let component: EmrContent;
     let mockEmrMel = new MockEmrMel();
     let _window = new MockWindow();

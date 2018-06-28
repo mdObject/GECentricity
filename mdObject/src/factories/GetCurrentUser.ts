@@ -1,4 +1,3 @@
-﻿//
 import { EmrMel } from '../classes/classes';
 
 export function GetCurrentUser(_mel: EmrMel) {

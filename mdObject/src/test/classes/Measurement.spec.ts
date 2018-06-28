@@ -1,8 +1,8 @@
-﻿//
 import { Measurement } from '../../classes/classes';
 import { MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Measurement', () => {
+
     let component: Measurement;
     let mockEmrMel = new MockEmrMel();
 
@@ -26,5 +26,4 @@ describe('Class: Measurement', () => {
             expect(component._mel.getObs).toHaveBeenCalledWith(component.isCurrent, component._height)
         })
     })
-
 })

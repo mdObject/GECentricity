@@ -1,4 +1,3 @@
-﻿//
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
 
@@ -38,13 +37,13 @@ export class EmrApp extends EmrBase {
 
     get enterpriseId(): string {
         return (this.app == null) ? this.noData : this.app.EnterpriseID;
-    };
+    }
 
     get databaseVersion(): string {
         return (this.app == null) ? this.noData : this.app.DatabaseVersion;
-    };
+    }
 
     showUrlDialog = (url: string): string => {
         return (this.app == null) ? this.noData : this.app.ShowURLDialog(url);
-    };
+    }
 }
