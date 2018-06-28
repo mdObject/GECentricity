@@ -66,7 +66,6 @@
     <Content Include="examples\old\scripts\prettify.css" />
     <Content Include="src\LICENSE" />
     <Content Include="src\package.json" />
-    <Content Include="LICENSE" />
     <Content Include="old-data\Demo.html" />
     <Content Include="old-data\mdObjectHelp.html" />
     <Content Include="old-data\scripts\angular.LICENSE" />
@@ -76,6 +75,7 @@
     <Content Include="old-data\SimulatorXml.html" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="src\README.md" />
     <Content Include="tsconfig.json" />
     <Content Include="tsconfig.spec.json" />
   </ItemGroup>

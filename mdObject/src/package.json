@@ -1,6 +1,6 @@
 {
     "name": "@mdobject/mdobject",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "description": "MdObject",
     "main": "./bundle.min.js",
     "types": "./index.d.ts",
