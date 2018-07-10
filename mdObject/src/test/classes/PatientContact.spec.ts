@@ -23,7 +23,7 @@ describe('Class: PatientContact', () => {
             expect(component.phoneType).toEqual('0.3');
         });
         it('check address', () => {
-            expect(component.address).toEqual('0.4');
+            expect(component.address).toEqual('0.4 0.5');
         });
     })
 

@@ -172,6 +172,9 @@
     <TypeScriptCompile Include="src\test\classes\ObsTermsMap.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Patient.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\PatientContact.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\PatientContactAddress.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\classes\Phone.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Problem.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Protocol.spec.ts" />
@@ -188,6 +191,9 @@
     <TypeScriptCompile Include="src\test\mocks\MockElement.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockEmrApp.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockEmrMel.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockResultAddress.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\mockResultEmr.ts" />
     <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
