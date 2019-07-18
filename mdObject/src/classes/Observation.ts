@@ -28,7 +28,7 @@ export class Observation {
         public _mel: EmrMel
     ) { }
 
-    save = (): void => {
+    save = (): string => {
         let response = this._mel.saveObservation(this.name, this.value, this.date); //  this._mel.melFunc('{OBSNOW("' + this.name + '","' + this.value + '")}');
         if (this.tag != null && this.tag != '') {
             response = this._mel.melFunc('{OBSTAGNOW("' + this.name + '","' + this.tag + '")}');
@@ -36,6 +36,7 @@ export class Observation {
         if (this.comment != null && this.comment != '') {
             response = this._mel.melFunc('{OBSMODIFIERNOW("' + this.name + '","' + this.comment + '")}');
         }
+        return response;
     }
 
     remove = (): void => {

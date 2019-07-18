@@ -7,55 +7,42 @@
     "author": "mdObject",
     "license": "MS-PL",
     "scripts": {
-        "prepublishOnly": "npm run test && webpack",
+        "prepublishOnly": "npm run test && copyfiles && webpack",
         "test": "jest",
         "test:ci": "npm run test -- --runInBand",
         "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
         "test:watch": "npm run test -- --watch -- please-enter-the-name-of-the-filter",
-        "clean": "rimraf ./lib"
-    },
-    "dependencies": {},
-    "devDependencies": {
-        "@types/jest": "^21.1.0",
-        "awesome-typescript-loader": "3.2.3",
-        "http-server": "^0.10.0",
-        "jest": "^21.1.0",
-        "ts-jest": "^21.0.1",
-        "typescript": "2.4.2",
-        "uglifyjs-webpack-plugin": "0.4.6",
-        "webpack": "3.6.0",
-        "webpack-merge": "^4.1.0",
-        "rimraf": "~2.6.2"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/mdObject/GECentricity.git"
+        "webpack": "node node_modules/webpack/bin/webpack.js",
+        "clean": "rimraf ./lib",
+        "copyfiles": "./node_modules/.bin/copyfiles -f ./src/README.md ./src/LICENSE ./src/package.json ./lib"
     },
     "jest": {
+        "preset": "ts-jest",
         "coverageDirectory": "src/test/coverage",
+        "setupFilesAfterEnv": ["<rootDir>/src/test/jest-mocks.ts"],
         "coveragePathIgnorePatterns": [
             "/node_modules/",
             "src/test/mocks"
         ],
-        "transform": {
-            "^.+\\.ts?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-        },
-        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
-        "moduleFileExtensions": [
-            "ts",
-            "js"
-        ],
         "globals": {
             "ts-jest": {
-                "tsConfigFile": "tsconfig.spec.json"
+                "tsConfig": "tsconfig.spec.json"
             }
         }
     },
-    "bugs": {
-        "url": "https://github.com/mdObject/GECentricity/issues"
-    },
-    "homepage": "https://github.com/mdObject/GECentricity#readme",
-    "directories": {
-        "example": "examples"
+    "devDependencies": {
+        "@types/jest": "^24.0.15",
+        "@types/node": "12.6.8",
+        "awesome-typescript-loader": "^5.2.1",
+        "copyfiles": "^2.1.1",
+        "http-server": "^0.11.1",
+        "jest": "^24.8.0",
+        "rimraf": "~2.6.3",
+        "ts-jest": "^24.0.2",
+        "typescript": "~3.5.3",
+        "uglifyjs-webpack-plugin": "^2.1.3",
+        "webpack": "4.36.1",
+        "webpack-cli": "^3.3.6",
+        "webpack-merge": "^4.2.1"
     }
 }
