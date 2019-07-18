@@ -1,10 +1,6 @@
 {
     "name": "@mdobject/mdobject",
-    "version": "1.0.21",
-    "description": "MdObject",
-    "main": "./lib/bundle.min.js",
-    "types": "./lib/index.d.ts",
-    "author": "mdObject",
+    "version": "0.0.0",
     "license": "MS-PL",
     "scripts": {
         "prepublishOnly": "npm run clean && npm run test && npm run copyfiles && webpack",
