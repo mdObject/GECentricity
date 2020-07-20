@@ -38,8 +38,10 @@ jobs:
 
     - name: Build with npm
       run: |
+         cd ./mdObject/
          npm run webpack
 
     - name: Test with jest
       run: |
+         cd ./mdObject/
          npm run test:ci
