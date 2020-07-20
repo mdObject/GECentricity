@@ -1,0 +1,38 @@
+name: mdObject - Master
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  NODE_VERSION: '12.x'                # set this to the node version to use
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2 
+
+    - name: Cache web node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+           ${{ runner.os }}-node-
+    
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Build with npm
+      run: |
+         cd ./mdObject/
+         npm install
+         npm run webpack
