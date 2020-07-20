@@ -1,4 +1,4 @@
-const { smart } = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
@@ -27,7 +27,7 @@ module.exports = () => {
         plugins: [new CheckerPlugin()]
     };
 
-    const uglifyConfig = smart(commonConfig, {
+    const uglifyConfig = merge(commonConfig, {
         mode: 'production',
         output: { filename: 'bundle.min.js' },
         plugins: [
@@ -41,7 +41,7 @@ module.exports = () => {
         ]
     });
 
-    const publicConfig = smart(uglifyConfig, {
+    const publicConfig = merge(uglifyConfig, {
         entry: './src/public.ts',
         output: { filename: 'bundle.public.min.js' },
         plugins: []
