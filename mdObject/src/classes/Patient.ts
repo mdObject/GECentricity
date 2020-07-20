@@ -55,6 +55,7 @@ export class Patient {
     private _phone = new Phone(this._mel);
     private _address = new Address(this._mel);
     private _emr = new Emr(this._window, this._document);
+    private _registrationNote: string;
 
     constructor(
         public _weight: string,
@@ -188,6 +189,11 @@ export class Patient {
     get contactBy() {
         this._contactBy = (this._contactBy != null) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
         return this._contactBy;
+    }
+
+    get registrationNote() {
+        this._registrationNote = (this._registrationNote != null) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
+        return this._registrationNote;
     }
 
     // Returns a list of the contacts for the current patient
