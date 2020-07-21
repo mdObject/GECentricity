@@ -45,5 +45,5 @@ Here is the example how to create a new observation (jQuery is used below to pul
     heightObs.date = obsDate;
     heightObs.save();
 
-## Release 1.1.2.
+## Release 1.1.3
 Added registrationNote to patient object. Sync version with npm.
