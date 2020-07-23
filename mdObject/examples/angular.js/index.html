@@ -48,14 +48,14 @@
         </div>
 
         <!--<p>
-            ----------------------------------------------------------------------
-        </p>
-        <p>
-            !{{mdObject}}!
-        </p>
-        <p>
-            ----------------------------------------------------------------------
-        </p>-->
+        ----------------------------------------------------------------------
+    </p>
+    <p>
+        !{{mdObject}}!
+    </p>
+    <p>
+        ----------------------------------------------------------------------
+    </p>-->
 
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -899,6 +899,33 @@
 
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Flowsheet Observations</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="obs in patient.flowsheetObservations">
+                                <div class="row">
+                                    <div class="col-sm-2">Name:</div>
+                                    <div class="col-sm-2"><span ng-bind="obs.name"></span></div>
+                                    <div class="col-sm-2">Value:</div>
+                                    <div class="col-sm-2"><span ng-bind="obs.value"></span></div>
+                                    <div class="col-sm-2">Date:</div>
+                                    <div class="col-sm-2"><span ng-bind="obs.date"></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
 
         <br />
         <div class="row">

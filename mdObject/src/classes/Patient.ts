@@ -1,6 +1,6 @@
 import { StringInternal } from '../factories/factories';
 import {
-    Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements,
+    Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements, FlowsheetObservation,
     PatientContact, ReferringProvider, Problem, Insurance, CarePlan, Location, Allergies, Emr, EmrMel
 } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
@@ -39,6 +39,8 @@ export class Patient {
     private _problems: string;
     private _problemsArray: IArrayAdditionalMethods<Problem> = [];
     private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {}
+    private _observationList: string;
+    private _observatiosArray: IArrayAdditionalMethods<FlowsheetObservation> = [];
     private _protocols: string;
     private _protocolsArray: IArrayAdditionalMethods<Protocol> = [];
     private _insurances: IArrayAdditionalMethods<Insurance> = [];
@@ -254,7 +256,7 @@ export class Patient {
         return this._problemsArray;
     }
 
-    // Lists all observations. 
+    // Lists observations by name. 
     observations = (name: string) => {
         if (this._observations[name] == null) {
             let updateData = this._mel.melFunc('{LIST_OBS("' + name + '","Update","Delimited","value")}');
@@ -274,6 +276,26 @@ export class Patient {
             this._observations[name].tag = 'LIST_OBS.' + name;
         }
         return this._observations[name];
+    }
+
+    // Lists all FLOWSHEET observations. 
+    get flowsheetObservations() {
+        if (this._observatiosArray.length === 0) {
+            this._observationList = (this._observationList != null) ? this._observationList : this._mel.melFunc('{GET_FLOWSHEET_VALUES(_EncodeViewNameBS,"DELIM")}');
+            let dataArray = StringInternal(this._observationList).toList();
+
+            /*jslint plusplus: true */
+            for (let index = 0; index < dataArray.length; index++) {
+                this._observatiosArray.push(new FlowsheetObservation(dataArray[index]));
+            }
+
+            this._observatiosArray.tag = 'GET_FLOWSHEET_VALUES';
+
+            this._observatiosArray.toMelString = () => {
+                return this._observationList;
+            }
+        }
+        return this._observatiosArray;
     }
 
     // Protocols tell you when a patient is due for a particular action; based on factors that include sex; age; current problems; and current medications. 
