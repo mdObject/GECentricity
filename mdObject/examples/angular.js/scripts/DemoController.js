@@ -1,8 +1,16 @@
-﻿/// <reference path="bundle.public.min.js" /> 
+/// <reference path="bundle.public.min.js" /> 
 
 var phonecatApp = angular.module('mdObjectDemo', []);
 
 phonecatApp.controller('DemoController', function ($scope, $parse) {
+
+    $scope.flowsheets = [
+        { name: "Internal Medicine", value: "Enterprise\\Medicine\\Internal Medicine" },
+        { name: "Immunizations", value: "Enterprise\\Interfaces\\CCD\\Immunizations" },
+        { name: "Metabolic Panel", value: "Enterprise\\Medicalogic\\Metabolic Panel" },
+        { name: "Prenatal Visit", value: "Enterprise\\Medicalogic\\OB/GYN\\Prenatal Visit" },
+        { name: "Vital signs", value: "Enterprise\\Medicine\\Vital signs" }
+    ];
 
     if (mdObject != null) {
         $scope.patient = mdObject.patient;

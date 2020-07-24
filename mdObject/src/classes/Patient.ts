@@ -205,6 +205,7 @@ export class Patient {
             let dataArray = StringInternal(this._contacts).toList();
 
             /*jslint plusplus: true */
+            this._contactsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._contactsArray.push(new PatientContact(dataArray[index]));
             }
@@ -243,6 +244,7 @@ export class Patient {
             let dataArray = StringInternal(this._problems).toList();
 
             /*jslint plusplus: true */
+            this._problemsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._problemsArray.push(new Problem(dataArray[index]));
             }
@@ -279,17 +281,27 @@ export class Patient {
     }
 
     // Lists all FLOWSHEET observations. 
-    get flowsheetObservations() {
-        if (this._observatiosArray.length === 0) {
-            this._observationList = (this._observationList != null) ? this._observationList : this._mel.melFunc('{GET_FLOWSHEET_VALUES(_EncodeViewNameBS,"DELIM")}');
+    flowsheetObservations(flowsheet?: string) {
+        let flowsheetValue = '';
+        if (flowsheet) {
+            console.log('flowsheet defined')
+            flowsheetValue = flowsheet;
+        }
+        else {
+            console.log('flowsheet undefined')
+            flowsheetValue = this._mel.melFunc('{_EncodeViewNameBS}');
+        }
+        if (this._observatiosArray.length === 0 || this._observatiosArray.tag != 'GET_FLOWSHEET_VALUES:' + flowsheetValue) {
+            this._observationList = this._mel.melFunc('{GET_FLOWSHEET_VALUES("' + flowsheetValue + '","DELIM")}');
             let dataArray = StringInternal(this._observationList).toList();
 
             /*jslint plusplus: true */
+            this._observatiosArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._observatiosArray.push(new FlowsheetObservation(dataArray[index]));
             }
 
-            this._observatiosArray.tag = 'GET_FLOWSHEET_VALUES';
+            this._observatiosArray.tag = 'GET_FLOWSHEET_VALUES:' + flowsheetValue;
 
             this._observatiosArray.toMelString = () => {
                 return this._observationList;
@@ -306,6 +318,7 @@ export class Patient {
             let dataArray = StringInternal(this._protocols).toList('\r\n');
 
             /*jslint plusplus: true */
+            this._protocolsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._protocolsArray.push(new Protocol(dataArray[index]))
             }
@@ -336,6 +349,7 @@ export class Patient {
             let dataArray = StringInternal(this._immunizations).toList();
 
             /*jslint plusplus: true */
+            this._immunizationsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._immunizationsArray.push(new Immunization(dataArray[index], this._mel));
             }
@@ -355,6 +369,7 @@ export class Patient {
             let dataArray = StringInternal(this._carePlans).toList();
 
             /*jslint plusplus: true */
+            this._carePlansArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._carePlansArray.push(new CarePlan(dataArray[index], this._mel));
             }

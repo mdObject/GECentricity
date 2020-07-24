@@ -904,11 +904,18 @@
             <div class="col-sm-12">
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Flowsheet Observations</h3>
+                        <h3 class="panel-title">
+
+                            <label for="flowsheetObs">Flowsheet Observations:</label>
+
+                            <select ng-model="selectedFlowsheet" name="flowsheetObs" id="flowsheetObs">
+                                <option ng-repeat="x in flowsheets" value="{{x.value}}">{{x.name}}</option>
+                            </select>
+                        </h3> 
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="obs in patient.flowsheetObservations">
+                            <li class="list-group-item" ng-repeat="obs in patient.flowsheetObservations(selectedFlowsheet)">
                                 <div class="row">
                                     <div class="col-sm-2">Name:</div>
                                     <div class="col-sm-2"><span ng-bind="obs.name"></span></div>
