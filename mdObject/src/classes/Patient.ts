@@ -284,11 +284,9 @@ export class Patient {
     flowsheetObservations(flowsheet?: string) {
         let flowsheetValue = '';
         if (flowsheet) {
-            console.log('flowsheet defined')
             flowsheetValue = flowsheet;
         }
         else {
-            console.log('flowsheet undefined')
             flowsheetValue = this._mel.melFunc('{_EncodeViewNameBS}');
         }
         if (this._observatiosArray.length === 0 || this._observatiosArray.tag != 'GET_FLOWSHEET_VALUES:' + flowsheetValue) {

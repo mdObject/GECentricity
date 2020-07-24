@@ -1,11 +1,12 @@
 import { Patient, Measurements, Allergies, ReferringProvider, Phone, Address, Emr } from '../../classes/classes';
-import { MockEmrMel, mockResultEmr, MockWindow } from '../mocks/mocks';
+import { MockEmrMel, mockResultEmr, MockWindow, mockResultFlowsheet } from '../mocks/mocks';
 
 describe('Class: Patient', () => {
 
     let component: Patient;
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
+    let resultFlowsheet: string = mockResultFlowsheet;
     let _window = new MockWindow();
     let weight = '1';
     let height = '2';
@@ -249,5 +250,44 @@ describe('Class: Patient', () => {
                 expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{LIST_OBS("' + name + '","Signed","Delimited","value")}');
             })
         })
+
+        describe('flowsheetObservations', () => {
+            it('from cache', () => {
+                spyOn(mockEmrMel, 'melFunc')
+                    .and
+                    .returnValue(resultFlowsheet);
+                component.flowsheetObservations(name);
+
+                let _result = component.flowsheetObservations(name);
+                expect(Array.isArray(_result)).toEqual(true);
+
+                expect(_result.length).toEqual(39);
+                expect(_result.tag).toEqual('GET_FLOWSHEET_VALUES:' + name);
+                expect(mockEmrMel.melFunc).toBeCalledTimes(1);
+            })
+            it('from mel', () => {
+                spyOn(mockEmrMel, 'melFunc')
+                    .and
+                    .returnValue(resultFlowsheet);
+                let _result = component.flowsheetObservations(name);
+                expect(Array.isArray(_result)).toEqual(true);
+                expect(_result.length).toEqual(39);
+                expect(_result.tag).toEqual('GET_FLOWSHEET_VALUES:' + name);
+                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{GET_FLOWSHEET_VALUES("' + name + '","DELIM")}');
+            })
+            it('default', () => {
+                spyOn(mockEmrMel, 'melFunc')
+                    .and
+                    .returnValue(resultFlowsheet);
+                let _result = component.flowsheetObservations();
+                expect(Array.isArray(_result)).toEqual(true);
+                expect(_result.length).toEqual(39);
+                expect(_result.tag).toEqual('GET_FLOWSHEET_VALUES:' + resultFlowsheet);
+                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{_EncodeViewNameBS}');
+                expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{GET_FLOWSHEET_VALUES("' + resultFlowsheet + '","DELIM")}');
+            })
+        })
+
+
     })
 })
