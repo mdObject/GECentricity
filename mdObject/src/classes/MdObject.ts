@@ -1,4 +1,5 @@
 import { version, productType } from '../consts/consts'
+import { LocationType, UserCallFunction } from '../enums/enums'
 import { ObsTermsMap, ClinicalDocument, Emr, Users, Patient } from './classes';
 
 export class MdObject {
@@ -44,5 +45,13 @@ export class MdObject {
 
     get patient() {
         return this._patient;
+    }
+
+    get LocationType() {
+        return LocationType;
+    }
+
+    get UserCallFunction() {
+        return UserCallFunction;
     }
 }
