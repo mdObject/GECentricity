@@ -81,6 +81,7 @@
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.EMPLSTATUS>") + mdObject.patient.employmentStatus + htmlEncode("</PATIENT.EMPLSTATUS>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PSTATUS>") + mdObject.patient.clinicStatus + htmlEncode("</PATIENT.PSTATUS>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.PCP>") + mdObject.patient.primaryCarePhysicianName + htmlEncode("</PATIENT.PCP>") + "<br />");
+        document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.REGNOTE>") + mdObject.patient.registrationNote + htmlEncode("</PATIENT.REGNOTE>") + "<br />");
 
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.HOMELOCATIONNAME>") + mdObject.patient.locations.findByType(mdObject.LocationType.Home).name + htmlEncode("</PATIENT.HOMELOCATIONNAME>") + "<br />");
         document.write("&nbsp;&nbsp;&nbsp;&nbsp;" + htmlEncode("<PATIENT.HOMELOCATIONABBREVNAME>") + mdObject.patient.locations.findByType(mdObject.LocationType.Home).id + htmlEncode("</PATIENT.HOMELOCATIONABBREVNAME>") + "<br />");
