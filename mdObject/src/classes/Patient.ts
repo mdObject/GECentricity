@@ -1,6 +1,6 @@
 import { StringInternal } from '../factories/factories';
 import {
-    Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements,
+    Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements, FlowsheetObservation,
     PatientContact, ReferringProvider, Problem, Insurance, CarePlan, Location, Allergies, Emr, EmrMel
 } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
@@ -39,6 +39,8 @@ export class Patient {
     private _problems: string;
     private _problemsArray: IArrayAdditionalMethods<Problem> = [];
     private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {}
+    private _observationList: string;
+    private _observatiosArray: IArrayAdditionalMethods<FlowsheetObservation> = [];
     private _protocols: string;
     private _protocolsArray: IArrayAdditionalMethods<Protocol> = [];
     private _insurances: IArrayAdditionalMethods<Insurance> = [];
@@ -55,6 +57,7 @@ export class Patient {
     private _phone = new Phone(this._mel);
     private _address = new Address(this._mel);
     private _emr = new Emr(this._window, this._document);
+    private _registrationNote: string;
 
     constructor(
         public _weight: string,
@@ -190,6 +193,11 @@ export class Patient {
         return this._contactBy;
     }
 
+    get registrationNote() {
+        this._registrationNote = (this._registrationNote != null) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
+        return this._registrationNote;
+    }
+
     // Returns a list of the contacts for the current patient
     get contacts() {
         if (this._contactsArray.length === 0) {
@@ -197,6 +205,7 @@ export class Patient {
             let dataArray = StringInternal(this._contacts).toList();
 
             /*jslint plusplus: true */
+            this._contactsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._contactsArray.push(new PatientContact(dataArray[index]));
             }
@@ -235,6 +244,7 @@ export class Patient {
             let dataArray = StringInternal(this._problems).toList();
 
             /*jslint plusplus: true */
+            this._problemsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._problemsArray.push(new Problem(dataArray[index]));
             }
@@ -248,7 +258,7 @@ export class Patient {
         return this._problemsArray;
     }
 
-    // Lists all observations. 
+    // Lists observations by name. 
     observations = (name: string) => {
         if (this._observations[name] == null) {
             let updateData = this._mel.melFunc('{LIST_OBS("' + name + '","Update","Delimited","value")}');
@@ -270,6 +280,34 @@ export class Patient {
         return this._observations[name];
     }
 
+    // Lists all FLOWSHEET observations. 
+    flowsheetObservations(flowsheet?: string) {
+        let flowsheetValue = '';
+        if (flowsheet) {
+            flowsheetValue = flowsheet;
+        }
+        else {
+            flowsheetValue = this._mel.melFunc('{_EncodeViewNameBS}');
+        }
+        if (this._observatiosArray.length === 0 || this._observatiosArray.tag != 'GET_FLOWSHEET_VALUES:' + flowsheetValue) {
+            this._observationList = this._mel.melFunc('{GET_FLOWSHEET_VALUES("' + flowsheetValue + '","DELIM")}');
+            let dataArray = StringInternal(this._observationList).toList();
+
+            /*jslint plusplus: true */
+            this._observatiosArray = [];
+            for (let index = 0; index < dataArray.length; index++) {
+                this._observatiosArray.push(new FlowsheetObservation(dataArray[index]));
+            }
+
+            this._observatiosArray.tag = 'GET_FLOWSHEET_VALUES:' + flowsheetValue;
+
+            this._observatiosArray.toMelString = () => {
+                return this._observationList;
+            }
+        }
+        return this._observatiosArray;
+    }
+
     // Protocols tell you when a patient is due for a particular action; based on factors that include sex; age; current problems; and current medications. 
     // The protocols contains array of observations required for this patient; as indicated by protocols set up in this clinic.
     get protocols() {
@@ -278,6 +316,7 @@ export class Patient {
             let dataArray = StringInternal(this._protocols).toList('\r\n');
 
             /*jslint plusplus: true */
+            this._protocolsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._protocolsArray.push(new Protocol(dataArray[index]))
             }
@@ -308,6 +347,7 @@ export class Patient {
             let dataArray = StringInternal(this._immunizations).toList();
 
             /*jslint plusplus: true */
+            this._immunizationsArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._immunizationsArray.push(new Immunization(dataArray[index], this._mel));
             }
@@ -327,6 +367,7 @@ export class Patient {
             let dataArray = StringInternal(this._carePlans).toList();
 
             /*jslint plusplus: true */
+            this._carePlansArray = [];
             for (let index = 0; index < dataArray.length; index++) {
                 this._carePlansArray.push(new CarePlan(dataArray[index], this._mel));
             }

@@ -27,3 +27,4 @@ export { Patient } from './Patient'
 export { ClinicalDocument } from './ClinicalDocument';
 export { Users } from './Users';
 export { MdObject } from './MdObject';
+export { FlowsheetObservation } from './FlowsheetObservation';

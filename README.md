@@ -2,6 +2,8 @@
 GECentricity
 ============
 
+![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Master/badge.svg)
+
 Centricity is a brand of healthcare IT software solutions from GE Healthcare, a division of General Electric.
 
 The GECentricity is subproject of mdObject initiative to simplify patient medical record exchange.
@@ -44,3 +46,6 @@ Here is the example how to create a new observation (jQuery is used below to pul
     heightObs.value = height;
     heightObs.date = obsDate;
     heightObs.save();
+
+## Release 1.1.2
+Added registrationNote to patient object. Sync version with npm.
