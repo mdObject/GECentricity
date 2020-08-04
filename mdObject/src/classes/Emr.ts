@@ -9,6 +9,8 @@ export class Emr {
     private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {}
     private _emrWindow: EmrWindow = new EmrWindow(this.emrMel, this.emrApp, this._window, this._document);
     private _version: string;
+    private _external: any;
+    private _baseServicesUrl: string;
 
     constructor(
         public _window: any,
@@ -20,6 +22,13 @@ export class Emr {
 
     get enterpriseId() {
         return this.emrApp.enterpriseId;
+    }
+
+    get external(): any {
+        this._external = this._external ? this._external :
+            ((this._window.opener && this._window.opener.external) ?
+                this._window.opener.external : this._window.external);
+        return this._external;
     }
 
     get databaseVersion() {
@@ -69,5 +78,14 @@ export class Emr {
             : (this._emrApp != null) ? this._emrApp
                 : new EmrApp(this._window);
         return this._emrApp;
+    }
+
+
+    get baseServicesUrl(): string 
+    {
+        this._baseServicesUrl = (this._baseServicesUrl) ? this._baseServicesUrl
+            : ((this.external) ? this.external.BaseServicesUrl : this._baseServicesUrl);
+
+        return this._baseServicesUrl;
     }
 }
