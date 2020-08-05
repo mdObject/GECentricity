@@ -1,5 +1,6 @@
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
+import { System } from './classes';
 
 export class EmrApp extends EmrBase {
 
@@ -27,6 +28,7 @@ export class EmrApp extends EmrBase {
             if (this.errorMessage != null) {
                 try {
                     this.app = new this._window.ActiveXObject(this.appObjectNameSimulator);
+                    System.isSimulator = true;
                 } catch (e) {
                     this.errorMessage = GetActiveXErrorMessage(this.appObjectName, e);
                     alert(this.errorMessage);
@@ -45,5 +47,9 @@ export class EmrApp extends EmrBase {
 
     showUrlDialog = (url: string): string => {
         return (this.app == null) ? this.noData : this.app.ShowURLDialog(url);
+    }
+
+    get external(): any {
+        return (this.app == null) ? this.noData : this.app.external;
     }
 }

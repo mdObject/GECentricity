@@ -1,4 +1,4 @@
-import { EmrApp, EmrMel, EmrWindow, EmrContent } from './classes';
+import { EmrApp, EmrMel, EmrWindow, EmrContent, System } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
 
@@ -25,9 +25,10 @@ export class Emr {
     }
 
     get external(): any {
-        this._external = this._external ? this._external :
-            ((this._window.opener && this._window.opener.external) ?
-                this._window.opener.external : this._window.external);
+        this._external = this._external ? this._external
+            : System.isSimulator ? this.emrApp.external 
+                : (this._window.opener && this._window.opener.external) ? this._window.opener.external
+                    : this._window.external;
         return this._external;
     }
 

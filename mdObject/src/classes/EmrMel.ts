@@ -1,4 +1,5 @@
 import { EmrBase } from '../bases/bases'
+import { System } from './classes';
 import { GetActiveXErrorMessage } from '../factories/factories';
 
 export class EmrMel extends EmrBase {
@@ -26,6 +27,7 @@ export class EmrMel extends EmrBase {
             if (this.errorMessage != null) {
                 try {
                     this.mel = new this._window.ActiveXObject(this.melObjectNameSimulator);
+                    System.isSimulator = true;
                 } catch (e) {
                     alert(this.errorMessage);
                 }

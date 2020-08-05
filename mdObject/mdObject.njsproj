@@ -133,6 +133,7 @@
     <TypeScriptCompile Include="src\classes\Users.ts" />
     <TypeScriptCompile Include="src\consts\consts.ts" />
     <TypeScriptCompile Include="src\consts\productType.ts" />
+    <TypeScriptCompile Include="src\classes\System.ts" />
     <TypeScriptCompile Include="src\consts\version.ts" />
     <TypeScriptCompile Include="src\enums\enums.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
