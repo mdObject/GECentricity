@@ -1,6 +1,7 @@
 import { EmrApp, EmrMel, EmrWindow, EmrContent, System } from './classes';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
+import { DemographicsExport } from './exports';
 
 export class Emr {
 
@@ -91,11 +92,11 @@ export class Emr {
         return this._baseServicesUrl;
     }
 
-    get demographics(): string {
+    get demographics(): DemographicsExport {
         this._demographics = (this._demographics) ? this._demographics
             : ((this.external) ? this.external.Demographics : this._demographics);
 
-        return this._demographics;
+        return new DemographicsExport(this._demographics);
     }
 
 }

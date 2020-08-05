@@ -44,6 +44,7 @@
     <Folder Include="src\" />
     <Folder Include="src\bases\" />
     <Folder Include="src\classes\" />
+    <Folder Include="src\classes\exports\" />
     <Folder Include="src\consts\" />
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
@@ -107,7 +108,8 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
-    <TypeScriptCompile Include="src\classes\Demographics.ts">
+    <TypeScriptCompile Include="src\classes\exports\PersonExport.ts" />
+    <TypeScriptCompile Include="src\classes\exports\DemographicsExport.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\Emr.ts" />
@@ -115,6 +117,9 @@
     <TypeScriptCompile Include="src\classes\EmrContent.ts" />
     <TypeScriptCompile Include="src\classes\EmrMel.ts" />
     <TypeScriptCompile Include="src\classes\EmrWindow.ts" />
+    <TypeScriptCompile Include="src\classes\exports.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\FlowsheetObservation.ts" />
     <TypeScriptCompile Include="src\classes\Immunization.ts" />
     <TypeScriptCompile Include="src\classes\Insurance.ts" />
