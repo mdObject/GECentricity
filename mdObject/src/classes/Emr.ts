@@ -11,6 +11,7 @@ export class Emr {
     private _version: string;
     private _external: any;
     private _baseServicesUrl: string;
+    private _demographics: string;
 
     constructor(
         public _window: any,
@@ -89,4 +90,12 @@ export class Emr {
 
         return this._baseServicesUrl;
     }
+
+    get demographics(): string {
+        this._demographics = (this._demographics) ? this._demographics
+            : ((this.external) ? this.external.Demographics : this._demographics);
+
+        return this._demographics;
+    }
+
 }
