@@ -107,6 +107,9 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\Demographics.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\Emr.ts" />
     <TypeScriptCompile Include="src\classes\EmrApp.ts" />
     <TypeScriptCompile Include="src\classes\EmrContent.ts" />
