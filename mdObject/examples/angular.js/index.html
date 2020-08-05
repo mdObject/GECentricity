@@ -32,6 +32,8 @@
                 "_blank",
                 features);
         }
+        
+
     </script>
 </head>
 <body ng-controller="DemoController">
@@ -60,6 +62,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Patient</h3>
+                <img style="width:100px;height:100px;border:1px solid #000;" ng-src="{{emr.demographics.patientPicture}}" />
             </div>
             <div class="panel-body">
                 <div class="row">

@@ -26,4 +26,5 @@ phonecatApp.controller('DemoController', function ($scope, $parse) {
     } else {
         alert('The "mdObject" is not defined.')
     }
+
 });

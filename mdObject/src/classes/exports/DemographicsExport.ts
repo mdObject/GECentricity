@@ -23,7 +23,7 @@ export class DemographicsExport {
     organization: any;
     patientKey: number;
     patientKeySpecified: boolean;
-    patientPicture: [][][];
+    patientPicture: string;
     person: PersonExport;
     personAge: {};
     preferredLanguage: string;
@@ -58,7 +58,7 @@ export class DemographicsExport {
         this.organization = obj.organization;
         this.patientKey = obj.patientKey;
         this.patientKeySpecified = obj.patientKeySpecified;
-        this.patientPicture = obj.patientPicture;
+        this.patientPicture = System.toImage(obj.patientPicture);
         this.person = obj.person;
         this.personAge = obj.personAge;
         this.preferredLanguage = obj.preferredLanguage;
