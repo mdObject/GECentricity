@@ -4,23 +4,24 @@
         "useWebpackText": true,
         "useCache": false
     },
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "module": "es2015",
-        "target": "es5",
-        "noImplicitAny": false,
-        "noEmitOnError": true,
-        "removeComments": true,
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "noImplicitReturns": true,
-        "sourceMap": true,
-        "skipLibCheck": true,
-        "lib": [ "es2016", "dom" ],
-        "types": [],
-        "declaration": true,
-        "declarationDir": "lib"
-    },
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2015",
+    "target": "es5",
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "lib": [ "es2016", "dom" ],
+    "types": [],
+    "declaration": true,
+    "declarationDir": "lib",
+    "baseUrl": "./"
+  },
     "include": [
         "src"
     ]
