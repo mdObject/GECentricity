@@ -1,7 +1,7 @@
 import { MdObject } from './classes/classes';
 
 (function (window) {
-    var mdObject;
+    var mdObject: MdObject;
     try {
         mdObject = new MdObject(window, window.document);
         window['mdObject'] = mdObject;

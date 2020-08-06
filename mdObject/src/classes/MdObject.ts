@@ -27,23 +27,23 @@ export class MdObject {
         return productType;
     }
 
-    get emr() {
+    get emr():Emr {
         return this._emr;
     }
 
-    get obsTermsMap() {
+    get obsTermsMap():ObsTermsMap {
         return this._obsTermsMap;
     }
 
-    get clinicalDocument() {
+    get clinicalDocument():ClinicalDocument {
         return this._clinicalDocument;
     }
 
-    get users() {
+    get users():Users {
         return this._users;
     }
 
-    get patient() {
+    get patient():Patient {
         return this._patient;
     }
 
