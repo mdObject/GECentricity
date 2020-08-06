@@ -1,6 +1,6 @@
 import { EmrBase } from '../bases/bases'
 import { GetActiveXErrorMessage } from '../factories/factories';
-import { System } from './classes';
+import { System } from './system';
 
 export class EmrApp extends EmrBase {
 

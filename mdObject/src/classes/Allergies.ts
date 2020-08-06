@@ -1,4 +1,6 @@
-import { AllergyList, AllergyListRemoved, EmrMel } from './classes';
+import { AllergyList } from './AllergyList';
+import { AllergyListRemoved } from './AllergyListRemoved';
+import { EmrMel } from './EmrMel';
 import { StringInternal } from '../factories/factories';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 

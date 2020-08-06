@@ -1,4 +1,4 @@
-import { AllergyList } from './classes';
+import { AllergyList } from './AllergyList';
 
 export class AllergyListRemoved extends AllergyList {
 

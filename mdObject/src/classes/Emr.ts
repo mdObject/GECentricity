@@ -1,4 +1,8 @@
-import { EmrApp, EmrMel, EmrWindow, EmrContent, System } from './classes';
+import { EmrApp } from './EmrApp';
+import { EmrMel } from './EmrMel';
+import { EmrWindow } from './EmrWindow';
+import { EmrContent } from './EmrContent';
+import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
 import { DemographicsExport } from './exports';

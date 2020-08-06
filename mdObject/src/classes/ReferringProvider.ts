@@ -1,4 +1,5 @@
-import { ReferringProviderPhone, EmrMel } from './classes';
+import { ReferringProviderPhone } from './ReferringProviderPhone';
+import { EmrMel } from './EmrMel';
 
 export class ReferringProvider {
 

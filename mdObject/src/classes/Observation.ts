@@ -1,4 +1,5 @@
-import { ObservationType, EmrMel } from './classes';
+import { ObservationType } from './ObservationType';
+import { EmrMel } from './EmrMel';
 
 export class Observation {
 

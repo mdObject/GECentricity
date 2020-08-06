@@ -1,8 +1,21 @@
 import { StringInternal } from '../factories/factories';
-import {
-    Protocol, Observation, ObservationType, Address, Phone, Immunization, Measurements, FlowsheetObservation,
-    PatientContact, ReferringProvider, Problem, Insurance, CarePlan, Location, Allergies, Emr, EmrMel
-} from './classes';
+import { Protocol } from './Protocol';
+import { Observation } from './Observation';
+import { ObservationType } from './ObservationType';
+import { Address } from './Address';
+import { Phone } from './Phone';
+import { Immunization } from './Immunization';
+import { Measurements } from './Measurements';
+import { FlowsheetObservation } from './FlowsheetObservation';
+import { PatientContact } from './PatientContact';
+import { ReferringProvider } from './ReferringProvider';
+import { Problem } from './Problem';
+import { Insurance } from './Insurance';
+import { CarePlan } from './CarePlan';
+import { Location } from './Location';
+import { Allergies } from './Allergies';
+import { Emr } from './Emr';
+import { EmrMel } from './EmrMel';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
 
