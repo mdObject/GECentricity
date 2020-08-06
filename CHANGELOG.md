@@ -1,6 +1,7 @@
-## Release 2.0.0
+## Release 2.0.0-alpha.1.0
 Implemented windows external methods: Demographics, BaseServicesUrl 
-Compile library with Angular9 compiler
+Compile library with Angular CLI compiler version 10x
+Entry point file "bundle.public.min.js" renamed to "mdobject-mdobject.umd.min.js" 
 
 ## Release 1.1.4
 Added flowsheetObservation to the Patient object
