@@ -37,10 +37,6 @@
     <Folder Include="examples\" />
     <Folder Include="examples\angular.js\" />
     <Folder Include="examples\angular.js\scripts\" />
-    <Folder Include="examples\old\" />
-    <Folder Include="examples\old\scripts\" />
-    <Folder Include="old-data\" />
-    <Folder Include="old-data\scripts\" />
     <Folder Include="src\" />
     <Folder Include="src\bases\" />
     <Folder Include="src\classes\" />
@@ -61,21 +57,12 @@
     <Content Include=".npmignore" />
     <Content Include="angular.json" />
     <Content Include="examples\angular.js\index.html" />
-    <Content Include="examples\old\Demo.html" />
-    <Content Include="examples\old\scripts\angular.LICENSE" />
-    <Content Include="examples\old\scripts\bootstrap.LICENSE" />
-    <Content Include="examples\old\scripts\bootstrap.min.css" />
-    <Content Include="examples\old\scripts\prettify.css" />
+    <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
+    <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js.map" />
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />
-    <Content Include="old-data\Demo.html" />
-    <Content Include="old-data\mdObjectHelp.html" />
-    <Content Include="old-data\scripts\angular.LICENSE" />
-    <Content Include="old-data\scripts\bootstrap.LICENSE" />
-    <Content Include="old-data\scripts\bootstrap.min.css" />
-    <Content Include="old-data\scripts\prettify.css" />
-    <Content Include="old-data\SimulatorXml.html" />
+    <Content Include="examples\mdObjectHelp.html" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="src\tsconfig.app.json" />
@@ -85,20 +72,7 @@
     <Content Include="tsconfig.spec.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\angular.js\scripts\bundle.public.min.js" />
-    <Compile Include="examples\angular.js\scripts\DemoController.js" />
-    <Compile Include="examples\old\scripts\angular.min.js" />
-    <Compile Include="examples\old\scripts\bootstrap.min.js" />
-    <Compile Include="examples\old\scripts\DemoController.js" />
-    <Compile Include="examples\old\scripts\jquery-2.1.1.min.js" />
-    <Compile Include="examples\old\scripts\mdObject.js" />
-    <Compile Include="examples\old\scripts\mdObject.min.js" />
-    <Compile Include="old-data\scripts\angular.min.js" />
-    <Compile Include="old-data\scripts\bootstrap.min.js" />
-    <Compile Include="old-data\scripts\DemoController.js" />
-    <Compile Include="old-data\scripts\jquery-2.1.1.min.js" />
-    <Compile Include="old-data\scripts\mdObject.js" />
-    <Compile Include="old-data\scripts\mdObject.min.js" />
+    <None Include="examples\angular.js\scripts\DemoController.js" />
     <Compile Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>

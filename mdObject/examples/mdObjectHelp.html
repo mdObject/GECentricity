@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>GE Centricity mdObject Help</title>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="scripts/jquery-2.1.1.min.js">\x3C/script>')</script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>window.$.fn.modal || document.write('<script src="scripts/bootstrap.min.js">\x3C/script>')</script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+    $(document).ready(function () {
+        var bodyColor = $('body').css('color');
+        if (bodyColor != 'rgb(51, 51, 51)') {
+            $("head").prepend('<link rel="stylesheet" href="/scripts/bootstrap.min.css">');
+        }
+    });
+    </script>
+    <link href="/scripts/prettify.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1>GE Centricity mdObject Help</h1>
+            <p>
+                The mdObject is object oriented JavaScript GE Centricity HTML Form component.
+            </p>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Patient Object: mdObject.patient</h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>patientId</strong></code> returns the patient’s ID number.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>pid</strong></code> returns the internal PID number for patient record.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>medicalRecordId</strong></code> returns the patient’s medical record number.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>externalId</strong></code> returns the patient’s ID from an external system, such as a billing or lab system.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>printId</strong></code> returns the preferred patient ID number for printed materials.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>ssn</strong></code> returns the patient’s Social Security number.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>firstName</strong></code> the patient’s first name.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>middleName</strong></code> the patient’s middle name.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>lastName</strong></code> the patient’s last name.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>labelName</strong></code> returns the patient’s full name formatted as follows: title first middle last, suffix.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>namePrefix</strong></code> returns the patient’s preferred title. for example:  Mr., Mrs., Ms., Miss, Dr.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>nameSuffix</strong></code> returns the title used after the patient’s name. For example: MD, Ph.D..
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>sex</strong></code> returns the patient’s sex.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>address</strong></code> returns patient address object.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>address</strong></code> returns patient's address object.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>race</strong></code> returns patient's race.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>ethnicity</strong></code> returns patient's ethnicity.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>dateOfBirth</strong></code> returns patient's date of birth. The value is in MM/DD/YYYY format.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>dateOfDeath</strong></code> returns patient's date of death. The value is in MM/DD/YYYY format.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>maritalStatus</strong></code> returns the patient’s marital status (Single, Married, Divorced, Widowed, Separated, Other or Undetermined).
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>language</strong></code> returns the patient’s preferred language.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>email</strong></code> returns the patient’s e-mail address.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>phone</strong></code> returns the patient’s phone object.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>contactBy</strong></code> returns the patient’s contact by information.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>location</strong></code> returns the array of patient’s Location objects. 
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>employmentStatus</strong></code> returns the patient’s employment status.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>clinicStatus</strong></code> returns the patient’s current status in the clinic.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>primaryCarePhysicianName</strong></code> returns the name of the primary care physician.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>referringProvider</strong></code> returns the patient’s referring provider object.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>observations</strong></code> returns the array of patient’s observations. Usage: <code class="tag">mdObject.patient.observations('weight')</code> return array of <code class="tag">Observation</code> object containing the patient's weight. The unsigned, current chart observations are first in the list.
+                    The observations are signed and unsigned in the current document. 
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>insurances</strong></code> returns the patient’s insurances array. The array contains 3 <code class="tag">Insurance</code> objects: primary, secondary and third insurance. 
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>immunizations</strong></code> returns the array of patient’s immunizations. The array  contains <code class="tag">Immunization</code> objects.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>carePlans</strong></code> returns the array of patient’s care plans. The array  contains <code class="tag">CarePlan</code> objects.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>allergies</strong></code> returns the array of patient’s allergies. Rework in next release.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>medications</strong></code> returns the patient’s medications. Not implemented.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>problems</strong></code> returns the patient’s problems. Not implemented.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>orders</strong></code> returns the patient’s orders. Not implemented.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>protocols</strong></code> returns the patient’s protocols. Not implemented.
+                </p>
+                <p>
+                    The <code class=" tag">mdObject.patient.<strong>directives</strong></code> returns the patient’s orders. Not implemented.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
