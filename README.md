@@ -7,6 +7,7 @@ GECentricity
 Centricity is a brand of healthcare IT software solutions from GE Healthcare, a division of General Electric.
 
 The Centricity products been accvired by Athenahealth and remaned to:
+
     Centricity Practice Solution => athenaPractice (tm)
     Centricity EMR => athenaFlow (tm)
     Centricity EDI => athenaEDI (tm)
