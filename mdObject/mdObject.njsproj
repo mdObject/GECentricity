@@ -59,13 +59,16 @@
     <Content Include=".editorconfig" />
     <Content Include=".gitignore" />
     <Content Include=".npmignore" />
+    <Content Include="angular.json" />
     <Content Include="examples\angular.js\index.html" />
     <Content Include="examples\old\Demo.html" />
     <Content Include="examples\old\scripts\angular.LICENSE" />
     <Content Include="examples\old\scripts\bootstrap.LICENSE" />
     <Content Include="examples\old\scripts\bootstrap.min.css" />
     <Content Include="examples\old\scripts\prettify.css" />
+    <Content Include="src\index.html" />
     <Content Include="src\LICENSE" />
+    <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />
     <Content Include="old-data\Demo.html" />
     <Content Include="old-data\mdObjectHelp.html" />
@@ -77,6 +80,9 @@
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="src\README.md" />
+    <Content Include="src\tsconfig.app.json" />
+    <Content Include="src\tsconfig.lib.json" />
+    <Content Include="src\tsconfig.lib.prod.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tsconfig.spec.json" />
   </ItemGroup>

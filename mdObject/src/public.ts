@@ -11,3 +11,5 @@ import { MdObject } from './classes/classes';
     }
     return mdObject;
 })(window);
+
+export { MdObject } from './classes/classes';

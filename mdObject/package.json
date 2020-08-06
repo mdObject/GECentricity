@@ -1,47 +1,57 @@
 {
-    "name": "@mdobject/mdobject",
-    "version": "0.0.0",
-    "license": "MS-PL",
-    "scripts": {
-        "prepublishOnly": "npm run clean && npm run test && npm run copyfiles && webpack",
-        "test": "jest",
-        "test:ci": "npm run test -- --runInBand",
-        "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
-        "test:watch": "npm run test -- --watch -- please-enter-the-name-of-the-filter",
-        "webpack": "node node_modules/webpack/bin/webpack.js",
-        "clean": "rimraf ./lib",
-        "copyfiles": "./node_modules/.bin/copyfiles -f ./src/README.md ./src/LICENSE ./src/package.json ./lib"
-    },
-    "jest": {
-        "preset": "ts-jest",
-        "coverageDirectory": "src/test/coverage",
-        "setupFilesAfterEnv": [
-            "<rootDir>/src/test/jest-mocks.ts"
-        ],
-        "coveragePathIgnorePatterns": [
-            "/node_modules/",
-            "src/test/mocks"
-        ],
-        "globals": {
-            "ts-jest": {
-                "tsConfig": "tsconfig.spec.json"
-            }
-        }
-    },
-    "devDependencies": {
-        "@types/jest": "^26.0.5",
-        "@types/node": "12.12.50",
-        "awesome-typescript-loader": "^5.2.1",
-        "copyfiles": "^2.3.0",
-        "http-server": "^0.12.3",
-        "jest": "^26.1.0",
-        "rimraf": "~2.6.3",
-        "ts-jest": "^26.1.3",
-        "typescript": "3.8.3",
-        "uglifyjs-webpack-plugin": "^2.2.0",
-        "webpack": "4.43.0",
-        "webpack-cli": "^3.3.12",
-        "webpack-merge": "^5.0.9"
-    },
-    "dependencies": {}
+  "name": "@mdobject/mdobject",
+  "version": "0.0.0",
+  "license": "MS-PL",
+  "scripts": {
+    "prepublishOnly": "npm run clean && npm run test && npm run copyfiles && webpack",
+    "test": "jest",
+    "test:ci": "npm run test -- --runInBand",
+    "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
+    "test:watch": "npm run test -- --watch -- please-enter-the-name-of-the-filter",
+    "webpack": "node node_modules/webpack/bin/webpack.js",
+    "clean": "rimraf ./lib",
+    "copyfiles": "./node_modules/.bin/copyfiles -f ./src/README.md ./src/LICENSE ./src/package.json ./lib",
+    "ng": "ng",
+    "build": "ng build",
+    "build:libraries": "ng build mdObject --prod "
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "coverageDirectory": "src/test/coverage",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/test/jest-mocks.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/test/mocks"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.spec.json"
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.5",
+    "@types/node": "12.12.50",
+    "awesome-typescript-loader": "^5.2.1",
+    "copyfiles": "^2.3.0",
+    "http-server": "^0.12.3",
+    "jest": "^26.1.0",
+    "rimraf": "~2.6.3",
+    "ts-jest": "^26.1.3",
+    "typescript": "3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.0.9",
+    "@angular/cli": "9.1.12",
+    "@angular-devkit/build-angular": "~0.901.4",
+    "@angular-devkit/build-ng-packagr": "~0.901.4",
+    "@angular/compiler-cli": "9.1.12",
+    "@angular/compiler": "9.1.12",
+    "@angular/core": "9.1.12",
+    "ng-packagr": "9.1.5"
+  },
+  "dependencies": {}
 }
