@@ -1,4 +1,4 @@
-/// <reference path="bundle.public.min.js" /> 
+/// <reference types="../../../lib/mdobject-mdobject" />
 
 var phonecatApp = angular.module('mdObjectDemo', []);
 

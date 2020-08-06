@@ -96,7 +96,7 @@
         }
       }
     },
-    "mdObject": {
+    "mdObjectLib": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "library",

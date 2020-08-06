@@ -1,10 +1,10 @@
 {
   "name": "@mdobject/mdobject",
-  "version": "2.0.0",
-  "description": "MdObject",
-  "main": "./bundle.min.js",
-  "types": "./index.d.ts",
   "author": "mdObject, Inc",
+  "version": "2.0.0-alpha.1.0",
+  "description": "mdObject Centricity EMP/CPS component",
+  "main": "./bundles/mdobject-mdobject.umd.min.js",
+  "types": "./mdobject-mdobject.d.ts",
   "license": "MS-PL",
   "repository": {
     "type": "git",
