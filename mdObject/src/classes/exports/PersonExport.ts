@@ -1,4 +1,4 @@
-//import { System } from "../system";
+import { PersonNameExport } from "./PersonNameExport";
 
 export class PersonExport {
     birthDate: string;
@@ -33,7 +33,7 @@ export class PersonExport {
     personDeathCauseCode: any;
     personKey: string;
     personKeySpecified: boolean;
-    personNameList: [];
+    personNameList: PersonNameExport[];
     personRelationshipList: any;
     portalEmailAddressList: any;
     providerCredentialList: any;

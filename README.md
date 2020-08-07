@@ -55,7 +55,7 @@ Here is the example how to create a new observation (jQuery is used below to pul
     heightObs.save();
 
 ## To build library
-npm install
-npm run build:libraries
+    npm install
+    npm run build:libraries
 
 

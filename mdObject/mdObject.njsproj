@@ -88,6 +88,7 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\exports\PersonNameExport.ts" />
     <TypeScriptCompile Include="src\classes\exports\PersonExport.ts" />
     <TypeScriptCompile Include="src\classes\exports\DemographicsExport.ts">
       <SubType>Code</SubType>
