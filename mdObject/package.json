@@ -10,7 +10,7 @@
     "test:watch": "npm run test -- --watch",
     "webpack": "node node_modules/webpack/bin/webpack.js",
     "clean": "rimraf ./lib",
-    "copyfiles": "./node_modules/.bin/copyfiles -f ../README.md ../LICENSE.md ../CHANGELOG.md ./src/package.json ./lib",
+    "copyfiles": "./node_modules/.bin/copyfiles -f ../README.md ../LICENSE ../CHANGELOG.md ./src/package.json ./lib",
     "ng": "ng",
     "build:libraries": "ng build mdObjectLib --prod  && npm run copyfiles"
   },
