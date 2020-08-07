@@ -4,7 +4,12 @@ export class System {
     static isSimulator: boolean = false;
 
     static toDate(value: string): Date {
-        return new Date(parseInt(value.substr(6)));
+        if (value) {
+            return new Date(parseInt(value.substr(6)));
+        }
+        else {
+            return null;
+        }
     }
 
     static toImage(arrayBuffer:[]){

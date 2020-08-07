@@ -178,6 +178,7 @@
     <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\IsActiveXSupported.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\StringInternal.spec.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockExternal.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockDocument.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockElement.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockEmrApp.ts" />

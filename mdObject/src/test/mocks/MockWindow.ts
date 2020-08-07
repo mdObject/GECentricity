@@ -1,4 +1,5 @@
 import { MockDocument } from './mocks';
+import { MockExternal } from './MockExternal';
 
 export class MockWindow {
 
@@ -19,7 +20,7 @@ export class MockWindow {
 
     opener = null;
     document = new MockDocument();
-    external = {}
+    external = new MockExternal();
 
     constructor() { }
 
