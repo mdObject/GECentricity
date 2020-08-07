@@ -37,6 +37,7 @@
     <Folder Include="examples\" />
     <Folder Include="examples\angular.js\" />
     <Folder Include="examples\angular.js\scripts\" />
+    <Folder Include="examples\Angular\" />
     <Folder Include="src\" />
     <Folder Include="src\bases\" />
     <Folder Include="src\classes\" />
@@ -59,6 +60,7 @@
     <Content Include="examples\angular.js\index.html" />
     <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
     <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js.map" />
+    <Content Include="examples\Angular\README.md" />
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />

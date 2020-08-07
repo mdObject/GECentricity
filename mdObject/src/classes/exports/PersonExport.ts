@@ -30,6 +30,16 @@ export class PersonExport {
     multibirthIndSpecified: boolean;
     multibirthOrderNbr: number;
     multibirthOrderNbrSpecified: boolean;
+    personDeathCauseCode: any;
+    personKey: string;
+    personKeySpecified: boolean;
+    personNameList: [];
+    personRelationshipList: any;
+    portalEmailAddressList: any;
+    providerCredentialList: any;
+    raceList: any;
+    religionCode: any;
+    subjectHealthIssueList: any;
 
     constructor(
         public obj: any
@@ -64,6 +74,16 @@ export class PersonExport {
         this.multibirthIndSpecified = obj.multibirthIndSpecified;
         this.multibirthOrderNbr = obj.multibirthOrderNbr;
         this.multibirthOrderNbrSpecified = obj.multibirthOrderNbrSpecified;
+        this.personDeathCauseCode = obj.personDeathCauseCode;
+        this.personKey = obj.personKey;
+        this.personKeySpecified = obj.personKeySpecified;
+        this.personNameList = obj.personNameList;
+        this.personRelationshipList = obj.personRelationshipList;
+        this.portalEmailAddressList = obj.portalEmailAddressList;
+        this.providerCredentialList = obj.providerCredentialList;
+        this.raceList = obj.raceList;
+        this.religionCode = obj.religionCode;
+        this.subjectHealthIssueList = obj.subjectHealthIssueList;
 
     }
 }

@@ -1,3 +1,6 @@
+## Release 2.0.0-alpha.1.1
+Updated license year.
+
 ## Release 2.0.0-alpha.1.0
 Implemented windows external methods: Demographics, BaseServicesUrl 
 Compile library with Angular CLI compiler version 10x

@@ -19,6 +19,7 @@ import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
 import { DemographicsExport } from './exports';
 import { emptyImage } from '../consts/consts';
+import { System } from './system';
 
 // TODO: string = PATIENT.REGNOTE; REGGUARANTOR
 export class Patient {
@@ -86,6 +87,10 @@ export class Patient {
             this._lastOfficeVisit = _demographics.lastOfficeVisitDate;
             this._registrationNote = _demographics.registrationNote;
             this._language = _demographics.preferredLanguage;
+            if (_demographics.person) {
+                let birthDate = System.formatDate(_demographics.person.birthDate);
+                this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
+            }
         }
     }
 

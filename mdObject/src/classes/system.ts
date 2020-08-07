@@ -20,4 +20,13 @@ export class System {
             return emptyImage;
         }
     }
+
+    static formatDate(value: string): string {
+        if (value) {
+            if (value.length == 8) {
+                return value.substr(4, 2) + '/' + value.substr(6, 2) + '/' + value.substr(0, 4);
+            }
+        }
+        return null;
+    }
 }
