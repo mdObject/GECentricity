@@ -1,3 +1,5 @@
+import { emptyImage } from "../consts/consts";
+
 export class System {
     static isSimulator: boolean = false;
 
@@ -10,7 +12,7 @@ export class System {
             return "data:image/jpg;base64," + btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
         }
         else {
-            return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII===";
+            return emptyImage;
         }
     }
 }

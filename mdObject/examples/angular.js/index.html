@@ -63,7 +63,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Patient</h3>
-                <img style="width:100px;height:100px;border:1px solid #000;" ng-src="{{emr.demographics.patientPicture}}" />
+                <img style="width:100px;height:100px;border:1px solid #000;" ng-src="{{patient.patientPicture}}" />
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -206,7 +206,13 @@
                     <div class="col-sm-3">Primary Care Physician Name:</div>
                     <div class="col-sm-3"><span ng-bind="patient.primaryCarePhysicianName"></span></div>
                     <div class="col-sm-3">Registration Note:</div>
-                    <div class="col-sm-3"><span ng-bind="patient.registrationNote"></div>
+                    <div class="col-sm-3"><span ng-bind="patient.registrationNote"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Last Office Visit:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.lastOfficeVisit|date"></span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"><span ng-bind=""></span></div>
                 </div>
                 <br />
                 <div class="row">

@@ -12,7 +12,7 @@ export class MdObject {
     private _obsTermsMap = new ObsTermsMap();
     private _clinicalDocument = new ClinicalDocument(this.emr.emrMel);
     private _users = new Users(this.emr.emrMel);
-    private _patient = new Patient(this.obsTermsMap.weight, this.obsTermsMap.height, this._window, this._document, this.emr.emrMel);
+    private _patient = new Patient(this.obsTermsMap.weight, this.obsTermsMap.height, this.emr.emrMel, this.emr.demographics);
 
     constructor(
         public _window: any,

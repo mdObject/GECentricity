@@ -14,10 +14,11 @@ import { Insurance } from './Insurance';
 import { CarePlan } from './CarePlan';
 import { Location } from './Location';
 import { Allergies } from './Allergies';
-import { Emr } from './Emr';
 import { EmrMel } from './EmrMel';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
+import { DemographicsExport } from './exports';
+import { emptyImage } from '../consts/consts';
 
 // TODO: string = PATIENT.REGNOTE; REGGUARANTOR
 export class Patient {
@@ -69,16 +70,34 @@ export class Patient {
     private _referringProvider = new ReferringProvider(this._mel);
     private _phone = new Phone(this._mel);
     private _address = new Address(this._mel);
-    private _emr = new Emr(this._window, this._document);
     private _registrationNote: string;
+    private _patientPicture: string;
+    private _lastOfficeVisit: Date;
 
     constructor(
         public _weight: string,
         public _height: string,
-        public _window: any,
-        public _document: any,
-        public _mel: EmrMel
-    ) { }
+        public _mel: EmrMel,
+        public _demographics?: DemographicsExport
+    )
+    {
+        if (_demographics) {
+            this._patientPicture = _demographics.patientPicture;
+            this._lastOfficeVisit = _demographics.lastOfficeVisitDate;
+            this._registrationNote = _demographics.registrationNote;
+            this._language = _demographics.preferredLanguage;
+        }
+    }
+
+    get lastOfficeVisit() {
+        return this._lastOfficeVisit;
+    }
+
+    get patientPicture() {
+        this._patientPicture = (this._patientPicture != null) ? this._patientPicture
+            : emptyImage;
+        return this._patientPicture;
+    }
 
     // Returns the patient’s ID number
     get patientId() {
@@ -436,10 +455,6 @@ export class Patient {
     // Represent patient address object
     get address() {
         return this._address;
-    }
-
-    get emr() {
-        return this._emr;
     }
 
 
