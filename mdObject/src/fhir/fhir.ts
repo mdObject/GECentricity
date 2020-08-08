@@ -1,3 +1,4 @@
 export { HumanName } from './HumanName';
 export { Address } from './Address';
-import { Attachment } from "./Attachment";
+export { Attachment } from "./Attachment";
+export { Person } from "./Person";
