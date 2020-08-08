@@ -9,6 +9,14 @@ ng new eform --legacyBrowsers=true
 cd eform
 npm i @mdobject/mdobject
 ```
+To open your Angular application in VS Code, open another terminal (or command prompt) and navigate to the eform folder
+```
+cd eform
+```
+and type
+```
+code .
+```
 
 Remove from index.html file:
 ```
