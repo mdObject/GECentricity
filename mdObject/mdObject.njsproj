@@ -46,6 +46,7 @@
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
     <Folder Include="src\interfaces\" />
+    <Folder Include="src\fhir\" />
     <Folder Include="src\test\" />
     <Folder Include="src\test\bases\" />
     <Folder Include="src\test\classes\" />
@@ -136,6 +137,21 @@
     <TypeScriptCompile Include="src\factories\GetCurrentUser.ts" />
     <TypeScriptCompile Include="src\factories\IsActiveXSupported.ts" />
     <TypeScriptCompile Include="src\factories\StringInternal.ts" />
+    <TypeScriptCompile Include="src\fhir\Address.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Attachment.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\fhir.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\HumanName.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Person.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts" />
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
     <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
