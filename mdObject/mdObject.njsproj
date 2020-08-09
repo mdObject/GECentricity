@@ -90,6 +90,12 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\external\Identifier.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\IdentifierDomain.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\PersonNameExternal.ts" />
     <TypeScriptCompile Include="src\classes\external\PersonExternal.ts" />
     <TypeScriptCompile Include="src\classes\external\DemographicsExternal.ts">

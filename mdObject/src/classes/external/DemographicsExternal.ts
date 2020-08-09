@@ -1,5 +1,6 @@
 import { System } from "../system";
 import { PersonExternal } from './PersonExternal';
+import { Identifier } from "./Identifier";
 
 export class DemographicsExternal {
     confidentialityCode: any;
@@ -12,7 +13,7 @@ export class DemographicsExternal {
     hasPatientAccess: boolean;
     hasPatientAccessSpecified: boolean;
     healthIssueList: any;
-    identifierList: [];
+    identifierList: Identifier[];
     lastOfficeVisitDate: Date;
     lastOfficeVisitDateSpecified: boolean;
     mailingAddressList: any;
