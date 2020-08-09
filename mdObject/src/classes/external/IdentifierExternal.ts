@@ -1,11 +1,11 @@
-import { IdentifierDomain } from "./IdentifierDomain";
+import { IdentifierDomainExternal } from "./IdentifierDomainExternal";
 
-export class Identifier {
+export class IdentifierExternal {
     effectEndTime: Date;
     effectEndTimeSpecified: boolean;
     effectStartTime: Date;
     effectStartTimeSpecified: boolean;
-    identifierDomain: IdentifierDomain;
+    identifierDomain: IdentifierDomainExternal;
     identifierKey: number;
     identifierKeySpecified: boolean;
     idStatusCode: any;

@@ -1,6 +1,7 @@
 import { System } from "../system";
 import { PersonExternal } from './PersonExternal';
-import { Identifier } from "./Identifier";
+import { IdentifierExternal } from "./IdentifierExternal";
+import { PersonAgeExternal } from "./PersonAgeExternal";
 
 export class DemographicsExternal {
     confidentialityCode: any;
@@ -13,7 +14,7 @@ export class DemographicsExternal {
     hasPatientAccess: boolean;
     hasPatientAccessSpecified: boolean;
     healthIssueList: any;
-    identifierList: Identifier[];
+    identifierList: IdentifierExternal[];
     lastOfficeVisitDate: Date;
     lastOfficeVisitDateSpecified: boolean;
     mailingAddressList: any;
@@ -26,7 +27,7 @@ export class DemographicsExternal {
     patientKeySpecified: boolean;
     patientPicture: string;
     person: PersonExternal;
-    personAge: {};
+    personAge: PersonAgeExternal;
     preferredLanguage: string;
     primaryProviderRelationshipList: [];
     registrationNote: string;

@@ -1,4 +1,4 @@
-export class IdentifierDomain {
+export class IdentifierDomainExternal {
     domainId: string;
     domainName: string;
     domainStatusCode: any;
