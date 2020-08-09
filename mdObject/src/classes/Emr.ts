@@ -5,7 +5,7 @@ import { EmrContent } from './EmrContent';
 import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
-import { DemographicsExport } from './exports';
+import { DemographicsExternal } from './external/external';
 
 export class Emr {
 
@@ -96,11 +96,11 @@ export class Emr {
         return this._baseServicesUrl;
     }
 
-    get demographics(): DemographicsExport {
+    get demographics(): DemographicsExternal {
         this._demographics = (this._demographics) ? this._demographics
             : ((this.external) ? this.external.Demographics : this._demographics);
 
-        return new DemographicsExport(this._demographics);
+        return new DemographicsExternal(this._demographics);
     }
 
 }

@@ -1,4 +1,4 @@
-export class PersonNameExport {
+export class PersonNameExternal {
     effectEndTime: any;
     effectStartTime: any;
     familyName: string;

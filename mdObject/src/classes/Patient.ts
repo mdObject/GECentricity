@@ -17,7 +17,7 @@ import { Allergies } from './Allergies';
 import { EmrMel } from './EmrMel';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
-import { DemographicsExport } from './exports';
+import { DemographicsExternal } from './external/external';
 import { emptyImage } from '../consts/consts';
 import { System } from './system';
 
@@ -79,7 +79,7 @@ export class Patient {
         public _weight: string,
         public _height: string,
         public _mel: EmrMel,
-        public _demographics?: DemographicsExport
+        public _demographics?: DemographicsExternal
     )
     {
         if (_demographics) {

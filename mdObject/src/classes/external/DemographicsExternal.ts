@@ -1,7 +1,7 @@
 import { System } from "../system";
-import { PersonExport } from './PersonExport';
+import { PersonExternal } from './PersonExternal';
 
-export class DemographicsExport {
+export class DemographicsExternal {
     confidentialityCode: any;
     contactList: any;
     electronicAddressList: any;
@@ -24,7 +24,7 @@ export class DemographicsExport {
     patientKey: number;
     patientKeySpecified: boolean;
     patientPicture: string;
-    person: PersonExport;
+    person: PersonExternal;
     personAge: {};
     preferredLanguage: string;
     primaryProviderRelationshipList: [];

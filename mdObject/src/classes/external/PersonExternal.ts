@@ -1,6 +1,6 @@
-import { PersonNameExport } from "./PersonNameExport";
+import { PersonNameExternal } from "./PersonNameExternal";
 
-export class PersonExport {
+export class PersonExternal {
     birthDate: string;
     birthPlaceName: any;
     birthTime: number;
@@ -33,7 +33,7 @@ export class PersonExport {
     personDeathCauseCode: any;
     personKey: string;
     personKeySpecified: boolean;
-    personNameList: PersonNameExport[];
+    personNameList: PersonNameExternal[];
     personRelationshipList: any;
     portalEmailAddressList: any;
     providerCredentialList: any;
