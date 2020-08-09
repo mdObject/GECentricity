@@ -8,7 +8,7 @@ import { Address } from "./Address";
 import { Attachment } from "./Attachment";
 
 export class Person {
-//    "resourceType": "Person",
+    get resourceType(): string { return "Person" };
     // from Resource: id, meta, implicitRules, and language
     // from DomainResource: text, contained, extension, and modifierExtension
 //    "identifier": [{ Identifier }], // A human identifier for this person
