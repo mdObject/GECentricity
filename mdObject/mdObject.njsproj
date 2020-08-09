@@ -45,6 +45,7 @@
     <Folder Include="src\consts\" />
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
+    <Folder Include="src\fhir\codes\" />
     <Folder Include="src\interfaces\" />
     <Folder Include="src\fhir\" />
     <Folder Include="src\test\" />
@@ -143,10 +144,22 @@
     <TypeScriptCompile Include="src\fhir\Attachment.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\codes\CommunicationCode.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\codes\GenderCode.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\ContactPoint.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\fhir.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\HumanName.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Patient.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\Person.ts">
