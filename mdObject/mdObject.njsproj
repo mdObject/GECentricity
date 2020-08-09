@@ -112,6 +112,12 @@
     <TypeScriptCompile Include="src\classes\external\external.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PrimaryProviderRelationshipExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PrimaryProviderRelationshipItemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\FlowsheetObservation.ts" />
     <TypeScriptCompile Include="src\classes\Immunization.ts" />
     <TypeScriptCompile Include="src\classes\Insurance.ts" />

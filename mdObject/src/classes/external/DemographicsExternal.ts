@@ -2,6 +2,7 @@ import { System } from "../system";
 import { PersonExternal } from './PersonExternal';
 import { IdentifierExternal } from "./IdentifierExternal";
 import { PersonAgeExternal } from "./PersonAgeExternal";
+import { PrimaryProviderRelationshipExternal } from "./PrimaryProviderRelationshipExternal";
 
 export class DemographicsExternal {
     confidentialityCode: any;
@@ -29,7 +30,7 @@ export class DemographicsExternal {
     person: PersonExternal;
     personAge: PersonAgeExternal;
     preferredLanguage: string;
-    primaryProviderRelationshipList: [];
+    primaryProviderRelationshipList: PrimaryProviderRelationshipExternal[];
     registrationNote: string;
     statusCode: string;
     vipCode: string;
