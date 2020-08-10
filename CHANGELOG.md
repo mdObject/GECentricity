@@ -5,7 +5,9 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* Replaced [name]Export to [name]External
 	New features:
 		DemographicsExternal, PersonExternal, IdentifierDomainExternal, IdentifierExternal, PersonAgeExternal, PrimaryProviderRelationshipExternal,
-		PrimaryProviderRelationshipItemExternal
+		PrimaryProviderRelationshipItemExternal, ElectronicAddressExternal, InsurancePolicyExternal, 
+		InsuranceSetExternal, InsuranceSetItemExternal, MailingAddressExternal, PayorExternal
+
 ## Release 2.0.0-alpha.1.0
 	Implemented windows external methods: Demographics, BaseServicesUrl 
 	Compile library with Angular CLI compiler version 10x
