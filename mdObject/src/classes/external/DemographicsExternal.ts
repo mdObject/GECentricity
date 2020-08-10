@@ -6,6 +6,7 @@ import { PrimaryProviderRelationshipExternal } from "./PrimaryProviderRelationsh
 import { MailingAddressExternal } from "./MailingAddressExternal";
 
 export class DemographicsExternal {
+    private _json: string;
         confidentialityCode: any;
         contactList: any;
         electronicAddressList: any;
@@ -40,6 +41,7 @@ export class DemographicsExternal {
         public json: string
     ) {
         if (json) {
+            this._json = json;
             let obj = JSON.parse(json);
             this.confidentialityCode = obj.confidentialityCode;
             this.contactList = obj.contactList;
@@ -72,4 +74,6 @@ export class DemographicsExternal {
             this.vipCode = obj.vipCode;
         }
     }
+
+    toJson = (): string => { return this._json;}
 }

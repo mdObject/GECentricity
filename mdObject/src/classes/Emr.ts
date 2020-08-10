@@ -117,4 +117,9 @@ export class Emr {
         }
         return this._allergyExternalList;
     }
+    allergiesJson = (): string => {
+        this._allergies = (this._allergies) ? this._allergies
+            : ((this.external) ? this.external.Allergies : this._allergies);
+        return this._allergies;
+    }
 }

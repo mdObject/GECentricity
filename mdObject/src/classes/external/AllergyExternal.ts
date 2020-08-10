@@ -1,6 +1,7 @@
 import { UserDetailExternal } from "./UserDetailExternal";
 
 export class AllergyExternal {
+    private _json: string;
     allclass: string;
     allergyGroupID: number;
     allergyGroupIDSpecified: boolean;
@@ -72,6 +73,7 @@ export class AllergyExternal {
         public json: string
     ) {
         if (json) {
+            this._json = json;
             let obj = JSON.parse(json);
             this.allclass = obj.allclass;
             this.allergyGroupID = obj.allergyGroupID;
@@ -141,4 +143,6 @@ export class AllergyExternal {
             this.userSortSpecified = obj.userSortSpecified;
         }
     }
+
+    toJson = ():string => { return this._json; }
 }
