@@ -90,10 +90,28 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\external\ElectronicAddressExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\IdentifierExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\IdentifierDomainExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsurancePolicyExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsuranceSetExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsuranceSetItemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\MailingAddressExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PayorExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\PersonAgeExternal.ts">
