@@ -5,7 +5,7 @@ import { EmrContent } from './EmrContent';
 import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
-import { DemographicsExternal } from './external/external';
+import { DemographicsExternal, AllergyExternal } from './external/external';
 
 export class Emr {
 
@@ -17,6 +17,8 @@ export class Emr {
     private _external: any;
     private _baseServicesUrl: string;
     private _demographics: string;
+    private _allergies: string;
+    private _allergyExternalList: AllergyExternal[];
 
     constructor(
         public _window: any,
@@ -103,4 +105,16 @@ export class Emr {
         return new DemographicsExternal(this._demographics);
     }
 
+    get allergies(): AllergyExternal[] {
+        if (!this._allergyExternalList) {
+
+            this._allergies = (this._allergies) ? this._allergies
+                : ((this.external) ? this.external.Allergies : this._allergies);
+
+            if (this._allergies) {
+                this._allergyExternalList = JSON.parse(this._allergies) as AllergyExternal[];
+            }
+        }
+        return this._allergyExternalList;
+    }
 }

@@ -12,6 +12,5 @@ export { InsuranceSetExternal } from './InsuranceSetExternal';
 export { InsuranceSetItemExternal } from './InsuranceSetItemExternal';
 export { MailingAddressExternal } from './MailingAddressExternal';
 export { PayorExternal } from './PayorExternal';
-
 export { AllergyExternal } from './AllergyExternal';
-export { UserDetailExternal } from './DemographicsExternal';
+export { UserDetailExternal } from './UserDetailExternal';
