@@ -90,6 +90,9 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\external\AllergyExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\ElectronicAddressExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -134,6 +137,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\PrimaryProviderRelationshipItemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\UserDetailExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\FlowsheetObservation.ts" />
