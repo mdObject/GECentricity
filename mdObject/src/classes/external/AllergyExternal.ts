@@ -1,8 +1,8 @@
 import { UserDetailExternal } from "./UserDetailExternal";
+import { System } from "../system";
 
 export class AllergyExternal {
-    private _json: string;
-    allclass: string;
+    allclass: string; //IAllergyData.classification.substr(0,1)
     allergyGroupID: number;
     allergyGroupIDSpecified: boolean;
     allergyID: number;
@@ -14,7 +14,7 @@ export class AllergyExternal {
     dbCreateDateSpecified: boolean;
     dbUpdatedDate: Date;
     dbUpdatedDateSpecified: boolean;
-    description: string;
+    description: string; //IAllergyData.description
     documentDetail: any;
     drugDescID: number;
     drugDescIDSpecified: boolean;
@@ -31,10 +31,10 @@ export class AllergyExternal {
     knowledgeBaseDrugCode: string;
     knowledgeBaseDrugCodeSpecified: boolean;
     medicationInfo: any;
-    name: string;
+    name: string; //IAllergyData.name
     ndclabprod: any;
     ndcpackage: any;
-    onsetdate: Date;
+    onsetdate: Date; //IAllergyData.onDate
     onsetdateSpecified: boolean;
     other: any;
     pendUserIndent: number;
@@ -69,80 +69,77 @@ export class AllergyExternal {
     userSort: number;
     userSortSpecified: boolean;
 
-    constructor(
-        public json: string
-    ) {
-        if (json) {
-            this._json = json;
-            let obj = JSON.parse(json);
-            this.allclass = obj.allclass;
-            this.allergyGroupID = obj.allergyGroupID;
-            this.allergyGroupIDSpecified = obj.allergyGroupIDSpecified;
-            this.allergyID = obj.allergyID;
-            this.annotate = obj.annotate;
-            this.aproxonsetdate = obj.aproxonsetdate;
-            this.change = obj.change;
-            this.changeSpecified = obj.changeSpecified;
-            this.dbCreateDate = obj.dbCreateDate;
-            this.dbCreateDateSpecified = obj.dbCreateDateSpecified;
-            this.dbUpdatedDate = obj.dbUpdatedDate;
-            this.dbUpdatedDateSpecified = obj.dbUpdatedDateSpecified;
-            this.description = obj.description;
-            this.documentDetail = obj.documentDetail;
-            this.drugDescID = obj.drugDescID;
-            this.drugDescIDSpecified = obj.drugDescIDSpecified;
-            this.errorDetails = obj.errorDetails;
-            this.expirationID = obj.expirationID;
-            this.extAllergyID = obj.extAllergyID;
-            this.extAllergyIDSpecified = obj.extAllergyIDSpecified;
-            this.externalAllergyInfoDetail = obj.externalAllergyInfoDetail;
-            this.genericProductIndex = obj.genericProductIndex;
-            this.gi = obj.gi;
-            this.heme = obj.heme;
-            this.iscritical = obj.iscritical;
-            this.kind = obj.kind;
-            this.knowledgeBaseDrugCode = obj.knowledgeBaseDrugCode;
-            this.knowledgeBaseDrugCodeSpecified = obj.knowledgeBaseDrugCodeSpecified;
-            this.medicationInfo = obj.medicationInfo;
-            this.name = obj.name;
-            this.ndclabprod = obj.ndclabprod;
-            this.ndcpackage = obj.ndcpackage;
-            this.onsetdate = obj.onsetdate;
-            this.onsetdateSpecified = obj.onsetdateSpecified;
-            this.other = obj.other;
-            this.pendUserIndent = obj.pendUserIndent;
-            this.pendUserIndentSpecified = obj.pendUserIndentSpecified;
-            this.pendUserSort = obj.pendUserSort;
-            this.pendUserSortSpecified = obj.pendUserSortSpecified;
-            this.personID = obj.personID;
-            this.pubtime = obj.pubtime;
-            this.pubtimeSpecified = obj.pubtimeSpecified;
-            this.pubUser = obj.pubUser;
-            this.pubUserDetail = obj.pubUserDetail;
-            this.pubUserSpecified = obj.pubUserSpecified;
-            this.rash = obj.rash;
-            this.resp = obj.resp;
-            this.result = obj.result;
-            this.resultSpecified = obj.resultSpecified;
-            this.searchCriteria = obj.searchCriteria;
-            this.secondaryDocumentID = obj.secondaryDocumentID;
-            this.secondaryDocumentIDSpecified = obj.secondaryDocumentIDSpecified;
-            this.severity = obj.severity;
-            this.shock = obj.shock;
-            this.snomedID = obj.snomedID;
-            this.snomedIDSpecified = obj.snomedIDSpecified;
-            this.stopdate = obj.stopdate;
-            this.stopdateSpecified = obj.stopdateSpecified;
-            this.stopreason = obj.stopreason;
-            this.userDetail = obj.userDetail;
-            this.userID = obj.userID;
-            this.userIDSpecified = obj.userIDSpecified;
-            this.userIndent = obj.userIndent;
-            this.userIndentSpecified = obj.userIndentSpecified;
-            this.userSort = obj.userSort;
-            this.userSortSpecified = obj.userSortSpecified;
-        }
-    }
+    static fromExternal(
+        _obj: any
+    ): AllergyExternal {
+        let allergyExternal = new AllergyExternal();
+        allergyExternal.allclass = _obj.allclass;
+        allergyExternal.allergyGroupID = _obj.allergyGroupID;
+        allergyExternal.allergyGroupIDSpecified = _obj.allergyGroupIDSpecified;
+        allergyExternal.allergyID = _obj.allergyID;
+        allergyExternal.annotate = _obj.annotate;
+        allergyExternal.aproxonsetdate = _obj.aproxonsetdate;
+        allergyExternal.change = _obj.change;
+        allergyExternal.changeSpecified = _obj.changeSpecified;
+        allergyExternal.dbCreateDate = System.toDate(_obj.dbCreateDate);
+        allergyExternal.dbCreateDateSpecified = _obj.dbCreateDateSpecified;
+        allergyExternal.dbUpdatedDate = System.toDate(_obj.dbUpdatedDate);
+        allergyExternal.dbUpdatedDateSpecified = _obj.dbUpdatedDateSpecified;
+        allergyExternal.description = _obj.description;
+        allergyExternal.documentDetail = _obj.documentDetail;
+        allergyExternal.drugDescID = _obj.drugDescID;
+        allergyExternal.drugDescIDSpecified = _obj.drugDescIDSpecified;
+        allergyExternal.errorDetails = _obj.errorDetails;
+        allergyExternal.expirationID = _obj.expirationID;
+        allergyExternal.extAllergyID = _obj.extAllergyID;
+        allergyExternal.extAllergyIDSpecified = _obj.extAllergyIDSpecified;
+        allergyExternal.externalAllergyInfoDetail = _obj.externalAllergyInfoDetail;
+        allergyExternal.genericProductIndex = _obj.genericProductIndex;
+        allergyExternal.gi = _obj.gi;
+        allergyExternal.heme = _obj.heme;
+        allergyExternal.iscritical = _obj.iscritical;
+        allergyExternal.kind = _obj.kind;
+        allergyExternal.knowledgeBaseDrugCode = _obj.knowledgeBaseDrugCode;
+        allergyExternal.knowledgeBaseDrugCodeSpecified = _obj.knowledgeBaseDrugCodeSpecified;
+        allergyExternal.medicationInfo = _obj.medicationInfo;
+        allergyExternal.name = _obj.name;
+        allergyExternal.ndclabprod = _obj.ndclabprod;
+        allergyExternal.ndcpackage = _obj.ndcpackage;
+        allergyExternal.onsetdate = System.toDate(_obj.onsetdate);
+        allergyExternal.onsetdateSpecified = _obj.onsetdateSpecified;
+        allergyExternal.other = _obj.other;
+        allergyExternal.pendUserIndent = _obj.pendUserIndent;
+        allergyExternal.pendUserIndentSpecified = _obj.pendUserIndentSpecified;
+        allergyExternal.pendUserSort = _obj.pendUserSort;
+        allergyExternal.pendUserSortSpecified = _obj.pendUserSortSpecified;
+        allergyExternal.personID = _obj.personID;
+        allergyExternal.pubtime = _obj.pubtime;
+        allergyExternal.pubtimeSpecified = _obj.pubtimeSpecified;
+        allergyExternal.pubUser = _obj.pubUser;
+        allergyExternal.pubUserDetail = _obj.pubUserDetail;
+        allergyExternal.pubUserSpecified = _obj.pubUserSpecified;
+        allergyExternal.rash = _obj.rash;
+        allergyExternal.resp = _obj.resp;
+        allergyExternal.result = _obj.result;
+        allergyExternal.resultSpecified = _obj.resultSpecified;
+        allergyExternal.searchCriteria = _obj.searchCriteria;
+        allergyExternal.secondaryDocumentID = _obj.secondaryDocumentID;
+        allergyExternal.secondaryDocumentIDSpecified = _obj.secondaryDocumentIDSpecified;
+        allergyExternal.severity = _obj.severity;
+        allergyExternal.shock = _obj.shock;
+        allergyExternal.snomedID = _obj.snomedID;
+        allergyExternal.snomedIDSpecified = _obj.snomedIDSpecified;
+        allergyExternal.stopdate = System.toDate(_obj.stopdate);
+        allergyExternal.stopdateSpecified = _obj.stopdateSpecified;
+        allergyExternal.stopreason = _obj.stopreason;
+        allergyExternal.userDetail = _obj.userDetail;
+        allergyExternal.userID = _obj.userID;
+        allergyExternal.userIDSpecified = _obj.userIDSpecified;
+        allergyExternal.userIndent = _obj.userIndent;
+        allergyExternal.userIndentSpecified = _obj.userIndentSpecified;
+        allergyExternal.userSort = _obj.userSort;
+        allergyExternal.userSortSpecified = _obj.userSortSpecified;
 
-    toJson = ():string => { return this._json; }
+        return allergyExternal;
+    }
 }

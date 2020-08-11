@@ -18,7 +18,7 @@ export class Emr {
     private _baseServicesUrl: string;
     private _demographics: string;
     private _allergies: string;
-    private _allergyExternalList: AllergyExternal[];
+    private _allergyExternalList: AllergyExternal[] = [];
 
     constructor(
         public _window: any,
@@ -40,11 +40,11 @@ export class Emr {
         return this._external;
     }
 
-    get databaseVersion() {
+    get databaseVersion():string {
         return this.emrApp.databaseVersion;
     }
 
-    get version() {
+    get version():string {
         this._version = (this._version != null) ? this._version : this.emrMel.melFunc('{VER_EMR()}');
         return this._version;
     }
@@ -106,17 +106,21 @@ export class Emr {
     }
 
     get allergies(): AllergyExternal[] {
-        if (!this._allergyExternalList) {
+        if (this._allergyExternalList.length === 0) {
 
             this._allergies = (this._allergies) ? this._allergies
                 : ((this.external) ? this.external.Allergies : this._allergies);
 
             if (this._allergies) {
-                this._allergyExternalList = JSON.parse(this._allergies) as AllergyExternal[];
+                let dataArray = JSON.parse(this._allergies) as [];
+                for (let index = 0; index < dataArray.length; index++) {
+                    this._allergyExternalList.push(AllergyExternal.fromExternal(dataArray[index]));
+                }
             }
         }
         return this._allergyExternalList;
     }
+
     allergiesJson = (): string => {
         this._allergies = (this._allergies) ? this._allergies
             : ((this.external) ? this.external.Allergies : this._allergies);

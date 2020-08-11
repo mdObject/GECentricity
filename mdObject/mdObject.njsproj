@@ -61,7 +61,6 @@
     <Content Include="angular.json" />
     <Content Include="examples\angular.js\index.html" />
     <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
-    <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js.map" />
     <Content Include="examples\Angular\README.md" />
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
