@@ -93,10 +93,16 @@
     <TypeScriptCompile Include="src\classes\external\AllergyExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\CodeDetailExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\ElectronicAddressExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\enums\AllergyClassCode.ts" />
+    <TypeScriptCompile Include="src\classes\external\ProblemsExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\IdentifierExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
