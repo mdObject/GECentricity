@@ -3,6 +3,7 @@ GECentricity
 ============
 
 ![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Master/badge.svg)
+![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Feature/badge.svg)
 
 Centricity is a brand of healthcare IT software solutions from GE Healthcare, a division of General Electric.
 
