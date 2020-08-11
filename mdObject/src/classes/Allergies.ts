@@ -11,7 +11,7 @@ export class Allergies {
     private _current: string;
     private _currentArray: IArrayAdditionalMethods<AllergyList> = [];
     private _removed: string;
-    private _removedArray: IArrayAdditionalMethods<AllergyListRemoved> = [];
+    private _removedArray: IArrayAdditionalMethods<AllergyList> = [];
 
     constructor(
         public _mel: EmrMel
@@ -33,7 +33,7 @@ export class Allergies {
             this._current = (this._current != null) ? this._current : this._mel.melFunc('{ALL_PRIOR("delimited")}');
             let dataArray = StringInternal(this._current).toList();
             for (let index = 0; index < dataArray.length; index++) {
-                this._currentArray.push(new AllergyListRemoved(dataArray[index]));
+                this._currentArray.push(new AllergyList(dataArray[index]));
             }
         }
         return this._currentArray;

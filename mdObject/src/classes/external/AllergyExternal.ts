@@ -2,13 +2,13 @@ import { UserDetailExternal } from "./UserDetailExternal";
 import { System } from "../system";
 
 export class AllergyExternal {
-    allclass: string; //IAllergyData.classification.substr(0,1)
+    allclass: string; //IAllergyData.classification.substr(0,1) See: AllergyClassCode
     allergyGroupID: number;
     allergyGroupIDSpecified: boolean;
     allergyID: number;
     annotate: any;
     aproxonsetdate: any;
-    change: number;
+    change: number; //4 - deleted; 6 - added; 2 - current
     changeSpecified: boolean;
     dbCreateDate: Date;
     dbCreateDateSpecified: boolean;
@@ -34,7 +34,7 @@ export class AllergyExternal {
     name: string; //IAllergyData.name
     ndclabprod: any;
     ndcpackage: any;
-    onsetdate: Date; //IAllergyData.onDate
+    onsetdate: Date; //IAllergyData.onSetDate
     onsetdateSpecified: boolean;
     other: any;
     pendUserIndent: number;
@@ -58,7 +58,7 @@ export class AllergyExternal {
     shock: any;
     snomedID: number;
     snomedIDSpecified: boolean;
-    stopdate: Date;
+    stopdate: Date; //IAllergyData.stopDate
     stopdateSpecified: boolean;
     stopreason: any;
     userDetail: UserDetailExternal;

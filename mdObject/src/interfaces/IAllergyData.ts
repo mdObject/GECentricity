@@ -1,10 +1,11 @@
 export interface IAllergyData {
     name: string
-    onDate: string
-    //criticalIndicator: string // not always works
+    onSetDate: string
+    criticalIndicator: string
     classification: string
     description: string
     gpiCode: string
     severity: string
-    offDate: string
+    stopDate: string
+    allergyId: string
 }

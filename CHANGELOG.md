@@ -3,6 +3,9 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
+	* Replaced Allergey.onDate to Allergey.onSetDate
+	* Replaced Allergey.offDate to Allergey.stopDate
+
 	New objects:
 		DemographicsExternal, PersonExternal, IdentifierDomainExternal, IdentifierExternal, PersonAgeExternal, PrimaryProviderRelationshipExternal,
 		PrimaryProviderRelationshipItemExternal, ElectronicAddressExternal, InsurancePolicyExternal, AllergyExternal

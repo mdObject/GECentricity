@@ -42,6 +42,7 @@
     <Folder Include="src\bases\" />
     <Folder Include="src\classes\" />
     <Folder Include="src\classes\external\" />
+    <Folder Include="src\classes\external\enums\" />
     <Folder Include="src\consts\" />
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
@@ -95,6 +96,7 @@
     <TypeScriptCompile Include="src\classes\external\ElectronicAddressExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\enums\AllergyClassCode.ts" />
     <TypeScriptCompile Include="src\classes\external\IdentifierExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
