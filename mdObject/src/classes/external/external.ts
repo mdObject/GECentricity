@@ -14,3 +14,5 @@ export { MailingAddressExternal } from './MailingAddressExternal';
 export { PayorExternal } from './PayorExternal';
 export { AllergyExternal } from './AllergyExternal';
 export { UserDetailExternal } from './UserDetailExternal';
+export { ProblemExternal } from './ProblemExternal';
+export { CodeDetailExternal } from './CodeDetailExternal';

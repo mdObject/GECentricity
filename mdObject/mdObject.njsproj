@@ -100,7 +100,7 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\enums\AllergyClassCode.ts" />
-    <TypeScriptCompile Include="src\classes\external\ProblemsExternal.ts">
+    <TypeScriptCompile Include="src\classes\external\ProblemExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\IdentifierExternal.ts">

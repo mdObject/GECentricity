@@ -116,7 +116,7 @@ export class AllergyExternal {
         allergyExternal.pubtime = _obj.pubtime;
         allergyExternal.pubtimeSpecified = _obj.pubtimeSpecified;
         allergyExternal.pubUser = _obj.pubUser;
-        allergyExternal.pubUserDetail = _obj.pubUserDetail;
+        allergyExternal.pubUserDetail = UserDetailExternal.fromExternal(_obj.pubUserDetail);
         allergyExternal.pubUserSpecified = _obj.pubUserSpecified;
         allergyExternal.rash = _obj.rash;
         allergyExternal.resp = _obj.resp;
@@ -132,7 +132,7 @@ export class AllergyExternal {
         allergyExternal.stopdate = System.toDate(_obj.stopdate);
         allergyExternal.stopdateSpecified = _obj.stopdateSpecified;
         allergyExternal.stopreason = _obj.stopreason;
-        allergyExternal.userDetail = _obj.userDetail;
+        allergyExternal.userDetail = UserDetailExternal.fromExternal(_obj.userDetail);
         allergyExternal.userID = _obj.userID;
         allergyExternal.userIDSpecified = _obj.userIDSpecified;
         allergyExternal.userIndent = _obj.userIndent;

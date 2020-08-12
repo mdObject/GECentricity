@@ -5,7 +5,7 @@ import { EmrContent } from './EmrContent';
 import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
-import { DemographicsExternal, AllergyExternal } from './external/external';
+import { DemographicsExternal, AllergyExternal, ProblemExternal } from './external/external';
 
 export class Emr {
 
@@ -17,8 +17,10 @@ export class Emr {
     private _external: any;
     private _baseServicesUrl: string;
     private _demographics: string;
-    private _allergies: string;
+    private _allergiesJson: string;
+    private _problemsJson: string;
     private _allergyExternalList: AllergyExternal[] = [];
+    private _problemExternalList: ProblemExternal[] = [];
 
     constructor(
         public _window: any,
@@ -105,14 +107,13 @@ export class Emr {
         return new DemographicsExternal(this._demographics);
     }
 
-    get allergies(): AllergyExternal[] {
+    public get allergies(): AllergyExternal[] {
         if (this._allergyExternalList.length === 0) {
 
-            this._allergies = (this._allergies) ? this._allergies
-                : ((this.external) ? this.external.Allergies : this._allergies);
+            let allergiesJson = this.allergiesJson()
 
-            if (this._allergies) {
-                let dataArray = JSON.parse(this._allergies) as [];
+            if (allergiesJson) {
+                let dataArray = JSON.parse(allergiesJson) as [];
                 for (let index = 0; index < dataArray.length; index++) {
                     this._allergyExternalList.push(AllergyExternal.fromExternal(dataArray[index]));
                 }
@@ -122,8 +123,30 @@ export class Emr {
     }
 
     allergiesJson = (): string => {
-        this._allergies = (this._allergies) ? this._allergies
-            : ((this.external) ? this.external.Allergies : this._allergies);
-        return this._allergies;
+        this._allergiesJson = (this._allergiesJson) ? this._allergiesJson
+            : ((this.external) ? this.external.Allergies : this._allergiesJson);
+        return this._allergiesJson;
     }
+
+    public get problems(): ProblemExternal[] {
+        if (this._problemExternalList.length === 0) {
+
+            let problemsJson = this.problemsJson();
+
+            if (problemsJson) {
+                let dataArray = JSON.parse(problemsJson) as [];
+                for (let index = 0; index < dataArray.length; index++) {
+                    this._problemExternalList.push(ProblemExternal.fromExternal(dataArray[index]));
+                }
+            }
+        }
+        return this._problemExternalList;
+    }
+
+    problemsJson = (): string => {
+        this._problemsJson = (this._problemsJson) ? this._problemsJson
+            : ((this.external) ? this.external.Problems : this._problemsJson);
+        return this._problemsJson;
+    }
+
 }

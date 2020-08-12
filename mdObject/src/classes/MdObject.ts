@@ -31,7 +31,7 @@ export class MdObject {
         return productType;
     }
 
-    get emr():Emr {
+    public get emr():Emr {
         return this._emr;
     }
 
