@@ -4,8 +4,11 @@ GECentricity
 
 ![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Master/badge.svg)
 ![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Feature/badge.svg)
-[![npm version](https://img.shields.io/npm/v/@mdobject/mdobject?color=47B91C&label=npm%20package)](https://www.npmjs.com/package/@mdobject/mdobject)
+============
+
 [![license](https://img.shields.io/badge/license-MSPL-blue.svg)](https://opensource.org/licenses/MS-PL)
+[![npm version](https://img.shields.io/npm/v/@mdobject/mdobject?color=008000&label=npm%20package)](https://www.npmjs.com/package/@mdobject/mdobject)
+[![npm downloads](https://img.shields.io/npm/dm/@mdobject/mdobject.svg?color=008000&label=npm%20downloads)](https://www.npmjs.com/package/@mdobject/mdobject)
 
 
 
