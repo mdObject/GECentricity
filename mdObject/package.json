@@ -8,7 +8,6 @@
     "test:ci": "npm run test -- --runInBand",
     "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
     "test:watch": "npm run test -- --watch",
-    "webpack": "node node_modules/webpack/bin/webpack.js",
     "clean": "rimraf ./lib",
     "copyfiles": "./node_modules/.bin/copyfiles -f ../README.md ../LICENSE ../CHANGELOG.md ./src/package.json ./lib",
     "ng": "ng",
@@ -32,7 +31,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.5",
-    "@types/node": "12.12.50",
+    "@types/node": "12.12.54",
     "awesome-typescript-loader": "^5.2.1",
     "copyfiles": "^2.3.0",
     "http-server": "^0.12.3",
@@ -40,17 +39,13 @@
     "rimraf": "~2.6.3",
     "ts-jest": "^26.1.3",
     "typescript": "3.9.7",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "webpack": "4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-merge": "^5.1.1",
     "@angular/cli": "10.0.5",
-    "@angular-devkit/build-angular": "~0.1000.5",
-    "@angular-devkit/build-ng-packagr": "~0.1000.5",
-    "@angular/compiler-cli": "10.0.8",
-    "@angular/compiler": "10.0.8",
-    "@angular/core": "10.0.8",
-    "ng-packagr": "10.0.3"
+    "@angular-devkit/build-angular": "~0.1000.6",
+    "@angular-devkit/build-ng-packagr": "~0.1000.6",
+    "@angular/compiler-cli": "10.0.9",
+    "@angular/compiler": "10.0.9",
+    "@angular/core": "10.0.9",
+    "ng-packagr": "10.0.4"
   },
   "dependencies": {}
 }
