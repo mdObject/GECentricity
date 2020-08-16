@@ -23,7 +23,7 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptToolsVersion>3.9</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
     <StartWebBrowser>false</StartWebBrowser>
   </PropertyGroup>
@@ -63,6 +63,9 @@
     <Content Include="examples\angular.js\index.html" />
     <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
     <Content Include="examples\Angular\README.md" />
+    <Content Include="src\classes\Allergy.ts">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />
@@ -77,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="examples\angular.js\scripts\DemoController.js" />
-    <Compile Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
@@ -176,6 +178,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\consts\version.ts" />
     <TypeScriptCompile Include="src\enums\enums.ts" />
+    <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
     <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
     <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
