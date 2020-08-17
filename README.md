@@ -32,6 +32,8 @@ Use IE9+ for the demo below.
 Default location for your own HTML Encounter forms in CPS12+:
 
 	%JBOSS.SERVER.HOME.DIR%\server\default\deploy\demo.ear\CentricityPracticeWS.war\
+    or
+    C:\Program Files\Centricity Practice Solution\jboss\standalone\deployments\demo.ear\CentricityPracticeWS.war
 EMR9.8 Evaluation: 
 	
 	C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\jboss\server\default\deploy\Default.ear\CentricityPracticeWS.war\

@@ -29,3 +29,4 @@ export { Users } from './Users';
 export { MdObject } from './MdObject';
 export { FlowsheetObservation } from './FlowsheetObservation';
 export { System } from './system';
+export { Allergy } from './Allergy';

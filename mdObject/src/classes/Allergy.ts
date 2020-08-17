@@ -5,16 +5,16 @@ import { ObjectState } from "../enums/objectState";
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
 
-    name: string;
+    name: string = '';
     onSetDate: string;
-    criticalIndicator: string;
-    classification: string;
-    description: string;
-    gpiCode: string;
-    severity: string;
-    stopDate: string;
-    allergyId: string;
-    reaction: string;
+    criticalIndicator: string = '';
+    classification: string = '';
+    description: string = '';
+    gpiCode: string = '';
+    severity: string = '';
+    stopDate: string = '';
+    allergyId: string = '';
+    reaction: string = '';
 
     constructor(
         public _mel: EmrMel
@@ -23,7 +23,7 @@ export class Allergy implements IAllergyData {
     save = (): void => {
         switch (this.state) {
             case ObjectState.Add: {
-                this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toAddString() + '")}');
+                this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}');
                 this.state = ObjectState.None;
                 break;
             }
@@ -47,10 +47,10 @@ export class Allergy implements IAllergyData {
         return this.name + '","' +
             this.description + '","' +
             this.onSetDate + '","' +
-            this.allergyId + '","' +
-            this.reaction + '","' +
+            this.allergyId + '",' +
+            this.reaction + ',"' +
             this.gpiCode + '","' +
-            this.stopDate + '",,"' +
+            this.stopDate + '","' +
             this.criticalIndicator + '","' +
             this.classification;
     }
