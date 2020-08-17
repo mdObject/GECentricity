@@ -1,0 +1,29 @@
+<p>allergy works!</p>
+<div>
+  Name:
+  <input type="text" class="form-control" id="name"
+         required
+         [(ngModel)]="allergy.name" name="name">
+
+  {{allergy.name}}  <br />
+
+  OnSet: <input type="text" class="form-control" id="onSetDate"
+                required
+                [(ngModel)]="allergy.onSetDate" name="onSetDate">
+
+
+         <mat-form-field class="example-full-width" appearance="fill">
+           <mat-label>Choose an OnSet Date:</mat-label>
+           <input matInput [matDatepicker]="picker" />
+           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+           <mat-datepicker #picker></mat-datepicker>
+         </mat-form-field>
+
+
+  Reaction: <input type="text" class="form-control" id="reaction"
+  required
+  [(ngModel)]="allergy.reaction" name="reaction">
+
+  <button mat-button id="save" (click)="save()">Save</button>
+</div>
+<p>allergy works!!!</p>
