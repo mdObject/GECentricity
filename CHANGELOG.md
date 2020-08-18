@@ -3,13 +3,18 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
-	* Replaced Allergey.onDate to Allergey.onSetDate
-	* Replaced Allergey.offDate to Allergey.stopDate
+	* Replaced Allergies.onDate to Allergies.onSetDate
+	* Replaced Allergies.offDate to Allergies.stopDate
 
 	New objects:
 		DemographicsExternal, PersonExternal, IdentifierDomainExternal, IdentifierExternal, PersonAgeExternal, PrimaryProviderRelationshipExternal,
-		PrimaryProviderRelationshipItemExternal, ElectronicAddressExternal, InsurancePolicyExternal, AllergyExternal
+		PrimaryProviderRelationshipItemExternal, ElectronicAddressExternal, InsurancePolicyExternal, AllergyExternal,
 		InsuranceSetExternal, InsuranceSetItemExternal, MailingAddressExternal, PayorExternal, UserDetailExternal, 
+		Allergy
+
+	New features:
+		Add new allergy with the Allergy object. Call save method to save a new allergy.
+		Angular 10 demo project.
 
 ## Release 2.0.0-alpha.1.0
 	Implemented windows external methods: Demographics, BaseServicesUrl 
