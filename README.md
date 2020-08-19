@@ -72,5 +72,5 @@ Here is the example how to create a new observation (jQuery is used below to pul
 
 Show your support by adding a **built with mdObject** badge to your projects README or website.
 
-[![Built with mdObject](https://img.shields.io/badge/built%20with-mdObject-blue.svg)](https://mdObject.com/)
+[![Built with mdObject](./build-with-mdobject.svg)](https://mdObject.com/)
 
