@@ -1,20 +1,22 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
 import { ObjectState } from "../enums/objectState";
+import { AllergyClassification } from "../enums/AllergyClassification";
+import { AllergyCriticality } from "../enums/AllergyCriticality";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
 
     name: string = '';
     onSetDate: string;
-    criticalIndicator: string = '';
-    classification: string = '';
-    description: string = '';
+    criticalIndicator: AllergyCriticality = AllergyCriticality.undefined;
+    classification: AllergyClassification = AllergyClassification.none;
+    description: string = ''; // Use this field for reaction
     gpiCode: string = '';
     severity: string = '';
     stopDate: string = '';
     allergyId: string = '';
-    reaction: string = '';
+    reactionCode: number = 32; // OTHER=32
 
     constructor(
         public _mel: EmrMel
@@ -23,7 +25,12 @@ export class Allergy implements IAllergyData {
     save = (): void => {
         switch (this.state) {
             case ObjectState.Add: {
-                this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}');
+                let code: string = this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}');
+                if (code !== '') {
+                    let error = 'Allergy.save error. Code is ' + code;
+                    console.error(error);
+                    throw new Error('Allergy not saved. ' + error);
+                }
                 this.state = ObjectState.None;
                 break;
             }
@@ -48,7 +55,7 @@ export class Allergy implements IAllergyData {
             this.description + '","' +
             this.onSetDate + '","' +
             this.allergyId + '",' +
-            this.reaction + ',"' +
+            this.reactionCode + ',"' +
             this.gpiCode + '","' +
             this.stopDate + '","' +
             this.criticalIndicator + '","' +

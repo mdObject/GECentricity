@@ -177,6 +177,12 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\consts\version.ts" />
+    <TypeScriptCompile Include="src\enums\AllergyClassification.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\enums\AllergyCriticality.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\enums\enums.ts" />
     <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />

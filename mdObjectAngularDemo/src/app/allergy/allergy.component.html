@@ -1,29 +1,37 @@
-<p>allergy works!</p>
 <div>
   Name:
   <input type="text" class="form-control" id="name"
          required
          [(ngModel)]="allergy.name" name="name">
 
-  {{allergy.name}}  <br />
+  <br />
 
   OnSet: <input type="text" class="form-control" id="onSetDate"
                 required
                 [(ngModel)]="allergy.onSetDate" name="onSetDate">
 
-
-         <mat-form-field class="example-full-width" appearance="fill">
-           <mat-label>Choose an OnSet Date:</mat-label>
-           <input matInput [matDatepicker]="picker" />
-           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-           <mat-datepicker #picker></mat-datepicker>
-         </mat-form-field>
-
-
+  <br />
   Reaction: <input type="text" class="form-control" id="reaction"
-  required
-  [(ngModel)]="allergy.reaction" name="reaction">
+                   required
+                   [(ngModel)]="allergy.description" name="reaction">
+  <br />
+  Classification:
+  <select [(ngModel)]="allergy.classification">
+    <option *ngFor="let item of allergyClassification | enumToArray" [value]="item.value">
+      {{item.name | titlecase }}
+    </option>
+  </select>
+  <br />
 
-  <button mat-button id="save" (click)="save()">Save</button>
+  Criticality:
+  <select [(ngModel)]="allergy.criticalIndicator">
+    <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.value">
+      {{item.name | titlecase }}
+    </option>
+  </select>
+  <br />
+  <br />
+  <br />
+
+  <button mat-button id="save" (click)="save()">Add Allergy</button>
 </div>
-<p>allergy works!!!</p>
