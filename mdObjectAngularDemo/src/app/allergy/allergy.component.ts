@@ -2,6 +2,7 @@ import { MdObject, Allergy } from '../../../../mdObject/src/classes/classes'
 import { AllergyClassification, AllergyCriticality } from '../../../../mdObject/src/enums/enums'
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { ObjectState } from '../../../../mdObject/src/enums/objectState';
+import { MdObjectServiceService } from '../md-object-service.service';
 
 @Pipe({ name: 'enumToArray'})
 export class EnumToArrayPipe implements PipeTransform {
@@ -18,11 +19,13 @@ export class EnumToArrayPipe implements PipeTransform {
 
 export class AllergyComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private mdObjectServiceService: MdObjectServiceService
+    ) { }
 
-  mdObject = new MdObject(window, document);
+  mdObject: MdObject = this.mdObjectServiceService.mdObject;
 
-  allergy = new Allergy(this.mdObject.emr.emrMel);
+  allergy: Allergy = new Allergy(this.mdObject.emr.emrMel);
 
   allergyClassification = AllergyClassification;
 
