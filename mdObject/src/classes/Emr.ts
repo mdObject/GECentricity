@@ -21,6 +21,7 @@ export class Emr {
     private _problemsJson: string;
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
+    private _isSimulator: boolean;
 
     constructor(
         public _window: any,
@@ -28,6 +29,7 @@ export class Emr {
     ) {
         this._window['_melOpener'] = this.emrMel;
         this._window['_appOpener'] = this.emrApp;
+        this._window['_isSimulator'] = this.isSimulator;
     }
 
     get enterpriseId() {
@@ -35,8 +37,9 @@ export class Emr {
     }
 
     get external(): any {
+        let isSimulator = this.isSimulator;
         this._external = this._external ? this._external
-            : System.isSimulator ? this.emrApp.external 
+            : isSimulator ? this.emrApp.external 
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
         return this._external;
@@ -82,6 +85,13 @@ export class Emr {
             : (this._emrMel != null) ? this._emrMel
                 : new EmrMel(this._window);
         return this._emrMel;
+    }
+
+    get isSimulator(): boolean {
+        this._isSimulator = (this._window.opener != null && this._window.opener['_isSimulator'] != undefined) ? this._window.opener['_isSimulator']
+            : (this._isSimulator) ? this._isSimulator
+                : System.isSimulator;
+        return this._isSimulator;
     }
 
     get emrApp(): EmrApp {
