@@ -1,8 +1,6 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
-import { ObjectState } from "../enums/objectState";
-import { AllergyClassification } from "../enums/AllergyClassification";
-import { AllergyCriticality } from "../enums/AllergyCriticality";
+import { ObjectState, AllergyClassification, AllergyCriticality } from "../enums/enums";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
