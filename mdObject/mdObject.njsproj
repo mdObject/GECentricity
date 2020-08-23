@@ -230,6 +230,9 @@
     <TypeScriptCompile Include="src\test\bases\EmrBase.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Address.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Allergies.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Allergy.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\classes\AllergyList.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\AllergyListRemoved.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\CarePlan.spec.ts" />
