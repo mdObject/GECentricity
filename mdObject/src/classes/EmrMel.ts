@@ -33,11 +33,19 @@ export class EmrMel extends EmrBase {
                 }
             }
         }
+        else {
+            if (this.isExternalSupported) {
+
+            }
+            else {
+                alert(this.errorMessage);
+            }
+        }
     }
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel == null) ? this.noData : this.mel.eval(data);
+        return (this.mel) ? this.mel.eval(data) : this.external.EvaluateMel(data);
     }
 
     saveObservation = (obs: string, value: string, date: string): string => {
