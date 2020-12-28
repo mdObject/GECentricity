@@ -59,7 +59,7 @@ describe('Class: EmrMel', () => {
             it('not call eval', () => {
                 (component as any).mel = null;
                 let _result = component.melFunc(name);
-                expect(_result).toEqual(component.noData);
+                expect(_result).toEqual(name);
 
             })
         })

@@ -7,7 +7,7 @@ export abstract class EmrBase {
     readonly noData: string = 'Data Access Error';
     errorMessage: string;
 
-    readonly isExternalSupported: boolean = (this.external()) ? true : false;
+    readonly isExternalSupported: boolean = (this.external) ? true : false;
     private _external: any;
     private _isSimulator: boolean;
 
