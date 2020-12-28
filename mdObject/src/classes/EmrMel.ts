@@ -59,4 +59,8 @@ export class EmrMel extends EmrBase {
     showUrlDialog = (url: string): void => {
         this.melFunc('{SHOWHTMLFORM("' + url + '","test")}');
     }
+
+    get externalSimulator(): any {
+        return (this.mel == null) ? this.noData : this.mel.external;
+    }
 }

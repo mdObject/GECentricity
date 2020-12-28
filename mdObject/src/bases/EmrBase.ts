@@ -1,7 +1,7 @@
 import { IsActiveXSupported } from '../factories/factories';
 import { System } from '../classes/system';
 
-export class EmrBase {
+export abstract class EmrBase {
 
     readonly isActiveXSupported = IsActiveXSupported(this._window);
     readonly noData: string = 'Data Access Error';
@@ -13,10 +13,11 @@ export class EmrBase {
 
     get external(): any {
         let isSimulator = this.isSimulator;
-        this._external = this._external ? this._external
-            : isSimulator ? this.emrApp.external
+        this._external = this._external ? this._external    // if the _external set, use it
+            : isSimulator ? this.externalSimulator            // if the simulator set, use simulatot
+                // if window.opener.external exists, use it 
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
-                    : this._window.external;
+                    : this._window.external;                // otherwise use the window.external
         return this._external;
     }
 
@@ -32,4 +33,6 @@ export class EmrBase {
     ) {
         this._window['_isSimulator'] = this.isSimulator;
     }
+
+    abstract get externalSimulator(): any;
 }

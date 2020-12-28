@@ -49,7 +49,7 @@ export class EmrApp extends EmrBase {
         return (this.app == null) ? this.noData : this.app.ShowURLDialog(url);
     }
 
-    get external(): any {
+    get externalSimulator(): any {
         return (this.app == null) ? this.noData : this.app.external;
     }
 }
