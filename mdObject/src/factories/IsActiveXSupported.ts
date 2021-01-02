@@ -3,7 +3,7 @@ export function IsActiveXSupported(_window: any) {
     
     // Verify ActiveX support in this browser
     if (!result) {
-        alert("Your browser does not support ActiveX objects");
+        console.log("Your browser does not support ActiveX objects");
     }
     return result;
 }
