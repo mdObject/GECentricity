@@ -6,6 +6,8 @@ import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
 import { DemographicsExternal, AllergyExternal, ProblemExternal } from './external/external';
+import { Patient } from './Patient';
+import { Users } from './Users';
 
 export class Emr {
 
@@ -22,6 +24,9 @@ export class Emr {
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
     private _isSimulator: boolean;
+
+    private _patient: Patient;
+    private _users: Users;
 
     constructor(
         public _window: any,
@@ -157,6 +162,20 @@ export class Emr {
         this._problemsJson = (this._problemsJson) ? this._problemsJson
             : ((this.external) ? this.external.Problems : this._problemsJson);
         return this._problemsJson;
+    }
+
+    get patient(): Patient {
+        if (this._patient === undefined) {
+            this._patient = new Patient(this.emrMel, this.demographics);
+        }
+        return this._patient;
+    }
+
+    get users(): Users {
+        if (this._users === undefined) {
+            this._users = new Users(this.emrMel);
+        }
+        return this._users;
     }
 
 }

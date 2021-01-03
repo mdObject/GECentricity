@@ -18,5 +18,5 @@ export class PatientHeaderComponent implements OnInit {
 
   mdObject: MdObject = this.mdObjectServiceService.mdObject;
 
-  patient: Patient = this.mdObject.patient;
+  patient: Patient = this.mdObject.emr.patient;
 }

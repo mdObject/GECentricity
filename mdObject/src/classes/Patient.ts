@@ -66,7 +66,6 @@ export class Patient {
     private _locations: string;
     private _locationsId: string;
     private _locationsArray: IArrayAdditionalMethods<Location> = [];
-    private _measurements = new Measurements(this._weight, this._height, this._mel);
     private _allergies = new Allergies(this._mel);
     private _referringProvider = new ReferringProvider(this._mel);
     private _phone = new Phone(this._mel);
@@ -76,8 +75,6 @@ export class Patient {
     private _lastOfficeVisit: Date;
 
     constructor(
-        public _weight: string,
-        public _height: string,
         public _mel: EmrMel,
         public _demographics?: DemographicsExternal
     )
@@ -438,10 +435,6 @@ export class Patient {
                 });
         }
         return this._locationsArray;
-    }
-
-    get measurements() {
-        return this._measurements;
     }
 
     get allergies() {

@@ -1,5 +1,17 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+## Release 2.0.0-alpha.1.2
+	The following objects are moved from MdObject to Emr:
+	* patient: Patient (use: mdObject.emr.patient)
+	* users: Users (use: mdObject.emr.users)
+	* clinicalDocument:ClinicalDocument
+	* obsTermsMap:ObsTermsMap
+	* LocationType: LocationType
+	* UserCallFunction: UserCallFunction
+
+	Patient object costractor changed. The weight and height removed. 
+	The measurements: Measurements object removed from the Patient. 
+
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
