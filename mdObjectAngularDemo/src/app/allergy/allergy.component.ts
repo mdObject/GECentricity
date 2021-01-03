@@ -1,7 +1,7 @@
 import { MdObject, Allergy } from '../../../../mdObject/src/classes/classes'
 import { AllergyClassification, AllergyCriticality } from '../../../../mdObject/src/enums/enums'
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { ObjectState } from '../../../../mdObject/src/enums/objectState';
+import { ObjectState } from '../../../../mdObject/src/enums/enums';
 import { MdObjectServiceService } from '../md-object-service.service';
 
 @Pipe({ name: 'enumToArray'})
