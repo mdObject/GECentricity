@@ -8,6 +8,7 @@ import { StringInternal } from '../factories/factories';
 import { DemographicsExternal, AllergyExternal, ProblemExternal } from './external/external';
 import { Patient } from './Patient';
 import { Users } from './Users';
+import { Simulator } from '../simulator/simulator';
 
 export class Emr {
 
@@ -24,6 +25,7 @@ export class Emr {
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
     private _isSimulator: boolean;
+    private _simulator: Simulator = new Simulator(this._window);
 
     private _patient: Patient;
     private _users: Users;
@@ -42,9 +44,27 @@ export class Emr {
     }
 
     get external(): any {
-        let isSimulator = this.isSimulator;
-        this._external = this._external ? this._external
-            : isSimulator ? this.emrApp.external 
+        if (this._external) {
+            return this._external;
+        }
+
+        this._external = this._external ? this._external        // if the _external is set, then use it
+            : this._simulator.isSimulator ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
+            //: isSimulator ? this.emrApp.external 
+                : (this._window.opener && this._window.opener.external) ? this._window.opener.external
+                    : this._window.external;
+        return this._external;
+    }
+
+    externalAsync = async (): Promise<any> => {
+
+        if (this._external) {
+            return this._external;
+        }
+
+        this._external = this._external ? this._external        // if the _external is set, then use it
+            : (await this._simulator.isSimulator()) ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
+                //: isSimulator ? this.emrApp.external 
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
         return this._external;
@@ -122,6 +142,13 @@ export class Emr {
         return new DemographicsExternal(this._demographics);
     }
 
+    demographicsAsync = async (): Promise<DemographicsExternal> => {
+        this._demographics = (this._demographics) ? this._demographics
+            : ((await this.externalAsync()) ? await this.externalAsync().then(e=> e.Demographics()) : this._demographics);
+
+        return new DemographicsExternal(this._demographics);
+    }
+
     public get allergies(): AllergyExternal[] {
         if (this._allergyExternalList.length === 0) {
 
@@ -167,6 +194,13 @@ export class Emr {
     get patient(): Patient {
         if (this._patient === undefined) {
             this._patient = new Patient(this.emrMel, this.demographics);
+        }
+        return this._patient;
+    }
+
+    patientAsync = async (): Promise<Patient> => {
+        if (this._patient === undefined) {
+            this._patient = new Patient(this.emrMel, await this.demographicsAsync());
         }
         return this._patient;
     }

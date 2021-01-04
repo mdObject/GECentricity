@@ -87,6 +87,12 @@ export class Patient {
             if (_demographics.person) {
                 let birthDate = System.formatDate(_demographics.person.birthDate);
                 this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
+                if (_demographics.person.personNameList[0]) {
+                    this._firstName = _demographics.person.personNameList[0].givenName;
+                    this._lastName = _demographics.person.personNameList[0].familyName;
+                    this._middleName = _demographics.person.personNameList[0].middleName;
+                }
+
             }
         }
     }

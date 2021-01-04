@@ -1,12 +1,15 @@
 import { EmrBase } from '../bases/bases'
 import { System } from './system';
 import { GetActiveXErrorMessage } from '../factories/factories';
+import { Simulator } from '../simulator/simulator';
 
 export class EmrMel extends EmrBase {
 
     private melObjectName = 'GE.CPO.EMR.80.MEL';
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
+
+    private simulator: Simulator = new Simulator(this._window);
 
     constructor(
         public _window: any
@@ -45,7 +48,11 @@ export class EmrMel extends EmrBase {
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel) ? this.mel.eval(data) : this.isExternalSupported ? this.external.EvaluateMel(data) : this.noData;
+//        this.simulator.getObjectChrome();
+        //let isChromeExtension: boolean
+        //Simulator.isChromeExtension().then(e => isChromeExtension = e);
+        //console.log(isChromeExtension);
+        return (this.mel) ? this.mel.eval(data) : Simulator.isChromeExtension && this.isExternalSupported ? this.external.EvaluateMel(data) :  this.noData;
     }
 
     saveObservation = (obs: string, value: string, date: string): string => {
@@ -61,6 +68,7 @@ export class EmrMel extends EmrBase {
     }
 
     get externalSimulator(): any {
-        return (this.mel == null) ? this.noData : this.mel.external;
+        Simulator.isChromeExtension;
+        return (this.mel == null) ? Simulator.isChromeExtension ? this.simulator.external : this.noData : this.mel.external;
     }
 }

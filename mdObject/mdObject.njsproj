@@ -49,6 +49,7 @@
     <Folder Include="src\fhir\codes\" />
     <Folder Include="src\interfaces\" />
     <Folder Include="src\fhir\" />
+    <Folder Include="src\simulator\" />
     <Folder Include="src\test\" />
     <Folder Include="src\test\bases\" />
     <Folder Include="src\test\classes\" />
@@ -227,6 +228,12 @@
     <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\public.ts" />
+    <TypeScriptCompile Include="src\simulator\ExtensionExternalSimulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\simulator\simulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\bases\EmrBase.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Address.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Allergies.spec.ts" />
