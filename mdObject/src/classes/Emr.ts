@@ -64,7 +64,6 @@ export class Emr {
 
         this._external = this._external ? this._external        // if the _external is set, then use it
             : (await this._simulator.isSimulator()) ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
-                //: isSimulator ? this.emrApp.external 
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
         return this._external;

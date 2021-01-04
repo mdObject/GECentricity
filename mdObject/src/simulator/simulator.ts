@@ -64,21 +64,6 @@ export class Simulator {
         return (this._isSimulator) ? ((!this._isActiveX) ? this._ExtensionExternalSimulator : (this.app) ? this.app.external : this.noData) : this.noData;
     }
 
-    private static _isChromeExtension?: boolean;
-
-     static isChromeExtension = async (): Promise<boolean>  => {
-        if (Simulator._isChromeExtension === undefined) {
-            if (chrome) {
-                Simulator._isChromeExtension = await Simulator.sendMessage(editorExtensionId, { greeting: "hello" });
-            }
-            else {
-                Simulator._isChromeExtension = false;
-            }
-        }
-
-        return Simulator._isChromeExtension;
-    }
-
     private static sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
         if (chrome) {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
