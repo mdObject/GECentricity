@@ -13,7 +13,7 @@ describe('Class: Patient', () => {
 
     describe('get from cache', () => {
         beforeAll(() => {
-            component = new Patient(weight, height, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             component.patientId;
             component.pid;
             component.medicalRecordId;
@@ -124,7 +124,7 @@ describe('Class: Patient', () => {
 
     describe('get from mel', () => {
         beforeEach(() => {
-            component = new Patient(weight, height, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             spyOn(mockEmrMel, 'melFunc')
                 .and
                 .returnValue(result);
@@ -211,7 +211,6 @@ describe('Class: Patient', () => {
     });
 
     describe('check', () => {
-        it('measurements', () => { expect(component.measurements instanceof Measurements).toEqual(true); })
         it('allergies', () => { expect(component.allergies instanceof Allergies).toEqual(true); })
         it('referringProvider', () => { expect(component.referringProvider instanceof ReferringProvider).toEqual(true); })
         it('phone', () => { expect(component.phone instanceof Phone).toEqual(true); })
@@ -220,7 +219,7 @@ describe('Class: Patient', () => {
 
     describe('methods', () => {
         beforeEach(() => {
-            component = new Patient(weight, height, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             
         });
 

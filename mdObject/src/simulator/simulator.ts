@@ -65,7 +65,7 @@ export class Simulator {
     }
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
-        if (chrome) {
+        if (chrome !== undefined) {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
                 if (response) {
                     resolve(true);
@@ -79,24 +79,4 @@ export class Simulator {
             resolve(false);
         }
     });
-
-    myObjectExtension: any;
-    public getObjectChrome() {
-        let myFoo = function (response) {
-            console.log(response);
-            this.myObjectExtension = response;
-        }
-        chrome.runtime.sendMessage(editorExtensionId, { greeting: "hello" }, myFoo.bind(this));
-    }
-
-    external = (_data: any): any => {
-        if (chrome) {
-            chrome.runtime.sendMessage(editorExtensionId, { greeting: "hello" },
-                function (response) {
-                    console.log(response.farewell);
-                    if (response.success)
-                        console.log("success!!!!!!!");
-                });
-        }
-    }
 }
