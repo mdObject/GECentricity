@@ -5,7 +5,6 @@ import { ObservationType } from './ObservationType';
 import { Address } from './Address';
 import { Phone } from './Phone';
 import { Immunization } from './Immunization';
-import { Measurements } from './Measurements';
 import { FlowsheetObservation } from './FlowsheetObservation';
 import { PatientContact } from './PatientContact';
 import { ReferringProvider } from './ReferringProvider';
