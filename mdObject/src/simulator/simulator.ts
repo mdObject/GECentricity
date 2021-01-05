@@ -18,7 +18,7 @@ export class Simulator {
         }
         else {
             if (!this._isExtensionEvaluated) {
-                this._isSimulator = await Simulator.sendMessage(editorExtensionId, { greeting: "hello" });
+                this._isSimulator = await this.sendMessage(editorExtensionId, { greeting: "hello" });
                 this._isExtensionEvaluated = true;
             }
             return this._isSimulator;
@@ -64,7 +64,7 @@ export class Simulator {
         return (this._isSimulator) ? ((!this._isActiveX) ? this._ExtensionExternalSimulator : (this.app) ? this.app.external : this.noData) : this.noData;
     }
 
-    private static sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
+    private sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
         if (chrome) {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
                 if (response) {
