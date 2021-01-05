@@ -1,4 +1,4 @@
-import { Patient, Measurements, Allergies, ReferringProvider, Phone, Address } from '../../classes/classes';
+import { Patient, Allergies, ReferringProvider, Phone, Address } from '../../classes/classes';
 import { MockEmrMel, mockResultEmr, mockResultFlowsheet } from '../mocks/mocks';
 
 describe('Class: Patient', () => {
@@ -7,8 +7,6 @@ describe('Class: Patient', () => {
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
     let resultFlowsheet: string = mockResultFlowsheet;
-    let weight = '1';
-    let height = '2';
     let name = 'name';
 
     describe('get from cache', () => {

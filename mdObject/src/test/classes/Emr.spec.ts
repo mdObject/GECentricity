@@ -1,4 +1,4 @@
-import { Emr, EmrWindow, EmrMel, EmrApp } from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Emr', () => {
@@ -53,6 +53,14 @@ describe('Class: Emr', () => {
             it('emrApp', () => {
                 expect(component.emrApp instanceof EmrApp).toEqual(true);
             });
+
+            it('check users', () => {
+                expect(component.users instanceof Users).toEqual(true);
+            });
+            it('check patient', () => {
+                expect(component.patient instanceof Patient).toEqual(true);
+            });
+
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
