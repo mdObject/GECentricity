@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="col-md-1">
-    <img style="width:100px;height:100px;border:1px solid #000;" src="{{patient.patientPicture}}" class="card-img" alt="patient image" />
+    <img style="width:100px;height:100px;border:1px solid #000;" src="{{(patient | async)?.patientPicture}}" class="card-img" alt="patient image" />
     
   </div>
 </div>
