@@ -1,13 +1,15 @@
 /// <reference types="chrome"/>
+
+import { simulatorChromeExtensionId } from "../consts/consts";
+
 export class ExtensionExternalSimulator {
-    private editorExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
 
     EvaluateMel = (data: any): Promise<any> => {
-        return this.sendMessage(this.editorExtensionId, data);
+        return this.sendMessage(simulatorChromeExtensionId, data);
     }
 
     Demographics = (): Promise<any> => {
-        return this.sendMessage(this.editorExtensionId, { type: 'Demographics' } );
+        return this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' } );
     }
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<any>((resolve, reject) => {

@@ -1,3 +1,3 @@
 export { version } from './version';
 export { productType } from './productType';
-export { emptyImage } from './strings';
+export { emptyImage, simulatorChromeExtensionId } from './strings';

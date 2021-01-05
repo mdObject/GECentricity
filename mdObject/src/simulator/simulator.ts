@@ -1,10 +1,10 @@
 /// <reference types="chrome"/>
+import { simulatorChromeExtensionId } from "../consts/consts";
 import { GetActiveXErrorMessage } from "../factories/factories";
 import { IsActiveXSupported } from "../factories/IsActiveXSupported";
 import { ExtensionExternalSimulator } from "./ExtensionExternalSimulator";
 
 export class Simulator {
-    private _editorExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
     private appObjectNameSimulator = 'GE.CPO.EMR.90.Application.SIMULATOR';
     private _isExtensionEvaluated: boolean = false; // holds validation for async call to the Chrome Extension
     private _isActiveX: boolean = false;            // true for activeX simulator
@@ -19,7 +19,7 @@ export class Simulator {
         }
         else {
             if (!this._isExtensionEvaluated) {
-                this._isSimulator = await this.sendMessage(this._editorExtensionId, { greeting: "hello" });
+                this._isSimulator = await this.sendMessage(simulatorChromeExtensionId, { greeting: "hello" });
                 this._isExtensionEvaluated = true;
             }
             return this._isSimulator;
@@ -53,7 +53,7 @@ export class Simulator {
         if (typeof (chrome) !== 'undefined') {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
                 if (response) {
-                    console.info('mdObject is using Chrome Extension Simulator: ' + this._editorExtensionId);
+                    console.info('mdObject is using Chrome Extension Simulator: ' + simulatorChromeExtensionId);
                     resolve(true);
                 }
                 else {

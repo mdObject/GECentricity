@@ -9,6 +9,7 @@ import { DemographicsExternal, AllergyExternal, ProblemExternal } from './extern
 import { Patient } from './Patient';
 import { Users } from './Users';
 import { Simulator } from '../simulator/simulator';
+import { ClinicalDocument } from './ClinicalDocument';
 
 export class Emr {
 
@@ -26,6 +27,7 @@ export class Emr {
     private _problemExternalList: ProblemExternal[] = [];
     private _isSimulator: boolean;
     private _simulator: Simulator = new Simulator(this._window);
+    private _clinicalDocument = new ClinicalDocument(this.emrMel);
 
     private _patient: Patient;
     private _users: Users;
@@ -211,4 +213,7 @@ export class Emr {
         return this._users;
     }
 
+    get clinicalDocument(): ClinicalDocument {
+        return this._clinicalDocument;
+    }
 }

@@ -12,6 +12,11 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Patient object costractor changed. The weight and height removed. 
 	The measurements: Measurements object removed from the Patient. 
 
+	New async in Emr:
+	* patientAsync(): Promise<Patient>
+	* demographicsAsync(): Promise<DemographicsExternal>
+	* externalAsync(): Promise<any>
+
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
