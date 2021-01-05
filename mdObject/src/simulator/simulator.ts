@@ -3,8 +3,6 @@ import { GetActiveXErrorMessage } from "../factories/factories";
 import { IsActiveXSupported } from "../factories/IsActiveXSupported";
 import { ExtensionExternalSimulator } from "./ExtensionExternalSimulator";
 
-
-
 export class Simulator {
     private _editorExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
     private appObjectNameSimulator = 'GE.CPO.EMR.90.Application.SIMULATOR';
