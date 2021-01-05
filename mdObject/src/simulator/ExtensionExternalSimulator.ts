@@ -1,5 +1,4 @@
-declare var chrome;
-
+/// <reference types="chrome"/>
 export class ExtensionExternalSimulator {
     private editorExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
 
@@ -12,7 +11,7 @@ export class ExtensionExternalSimulator {
     }
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<any>((resolve, reject) => {
-        if (chrome) {
+        if (typeof (chrome) !== 'undefined') {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
                 if (response) {
                     resolve(response);

@@ -1,10 +1,10 @@
+/// <reference types="chrome"/>
 import { GetActiveXErrorMessage } from "../factories/factories";
 import { IsActiveXSupported } from "../factories/IsActiveXSupported";
 import { ExtensionExternalSimulator } from "./ExtensionExternalSimulator";
 
 var editorExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
 
-declare var chrome;
 
 export class Simulator {
     private _isExtensionEvaluated: boolean = false;
@@ -65,7 +65,7 @@ export class Simulator {
     }
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
-        if (chrome !== undefined) {
+        if (typeof (chrome) !== 'undefined') {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
                 if (response) {
                     resolve(true);
