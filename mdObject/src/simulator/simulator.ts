@@ -57,6 +57,7 @@ export class Simulator {
                     resolve(true);
                 }
                 else {
+                    console.info('mdObject: Chrome Extension Simulator is missing or inactive');
                     resolve(false);
                 }
             });

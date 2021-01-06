@@ -26,9 +26,9 @@ export class Emr {
     private _problemsJson: string;
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
-    private _simulator: Simulator = new Simulator(this._window);
+    private _simulator: Simulator;
     private _clinicalDocument = new ClinicalDocument(this.emrMel);
-    private _obsTermsMap = new ObsTermsMap();
+    private _obsTermsMap: ObsTermsMap;
 
     private _patient: Patient;
     private _users: Users;
@@ -39,6 +39,8 @@ export class Emr {
     ) {
         this._window['_melOpener'] = this.emrMel;
         this._window['_appOpener'] = this.emrApp;
+        this._simulator = new Simulator(this._window);
+        this._obsTermsMap = new ObsTermsMap();
     }
 
     get enterpriseId() {
