@@ -2,11 +2,13 @@
   <div class="col-md-11">
     <div class="card-body row">
       <h5 class="card-title col-12 text-primary">{{ (patient | async)?.firstName + ' ' + (patient | async)?.middleName  + ' ' + (patient | async)?.lastName }}</h5>
-      <!--<div class="card-text col-4">{{patient.address.address1 + ' ' + patient.address.address2 }}<br>{{patient.address.city + ' ' + patient.address.state +', '+ patient.address.postCode}}</div>
-  <div class="card-text col"><strong>Sex:</strong><br>{{patient.sex}}</div>-->
+      <!--<div class="card-text col-4">{{(patient | async)?.address.address1 + ' ' + (patient | async)?.address.address2 }}<br>{{(patient | async)?.address.city + ' ' + (patient | async)?.address.state +', '+ (patient | async)?.address.postCode}}</div>-->
+      <div class="card-text col"><strong>Sex:</strong><br>{{(patient | async)?.sex}}</div>
       <div class="card-text col"><strong>DOB:</strong><br>{{(patient | async)?.dateOfBirth}}</div>
-      <!--<div class="card-text col-2"><strong>Home:</strong><br>{{patient.phone.home}}</div>
-  <div class="card-text col-2"><strong>Work:</strong><br>{{patient.phone.home}}</div>-->
+      <!--<div class="card-text col-2"><strong>Home:</strong><br>{{(patient | async)?.phone.home}}</div>
+      <div class="card-text col-2"><strong>Work:</strong><br>{{(patient | async)?.phone.home}}</div>-->
+      
+
     </div>
   </div>
   <div class="col-md-1">
