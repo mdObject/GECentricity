@@ -1,4 +1,4 @@
-import { MdObject, Emr, ObsTermsMap, ClinicalDocument } from '../../classes/classes';
+import { MdObject, Emr, ObsTermsMap } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
 import { version, productType } from '../../consts/consts'
 
@@ -23,9 +23,6 @@ describe('Class: MdObject', () => {
         });
         it('check description', () => {
             expect(component.obsTermsMap instanceof ObsTermsMap).toEqual(true);
-        });
-        it('check gpiCode', () => {
-            expect(component.clinicalDocument instanceof ClinicalDocument).toEqual(true);
         });
     })
 

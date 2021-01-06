@@ -1,4 +1,4 @@
-import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient } from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Emr', () => {
@@ -60,7 +60,9 @@ describe('Class: Emr', () => {
             it('check patient', () => {
                 expect(component.patient instanceof Patient).toEqual(true);
             });
-
+            it('check gpiCode', () => {
+                expect(component.clinicalDocument instanceof ClinicalDocument).toEqual(true);
+            });
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
