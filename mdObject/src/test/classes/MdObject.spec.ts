@@ -12,13 +12,13 @@ describe('Class: MdObject', () => {
     });
 
     describe('right value', () => {
-        it('check name', () => {
+        it('check version', () => {
             expect(component.version).toEqual(version);
         });
-        it('check onDate', () => {
+        it('check productType', () => {
             expect(component.productType).toEqual(productType);
         });
-        it('check classification', () => {
+        it('check emr', () => {
             expect(component.emr instanceof Emr).toEqual(true);
         });
     })
