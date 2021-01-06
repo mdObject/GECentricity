@@ -30,8 +30,8 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^26.0.5",
-    "@types/node": "12.12.54",
+    "@types/jest": "^26.0.19",
+    "@types/node": "12.12.70",
     "@types/chrome": "0.0.127",
     "awesome-typescript-loader": "^5.2.1",
     "copyfiles": "^2.3.0",
