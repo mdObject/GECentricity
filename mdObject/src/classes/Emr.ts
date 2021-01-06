@@ -2,7 +2,6 @@ import { EmrApp } from './EmrApp';
 import { EmrMel } from './EmrMel';
 import { EmrWindow } from './EmrWindow';
 import { EmrContent } from './EmrContent';
-import { System } from './system';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
 import { DemographicsExternal, AllergyExternal, ProblemExternal } from './external/external';
@@ -27,7 +26,6 @@ export class Emr {
     private _problemsJson: string;
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
-    private _isSimulator: boolean;
     private _simulator: Simulator = new Simulator(this._window);
     private _clinicalDocument = new ClinicalDocument(this.emrMel);
     private _obsTermsMap = new ObsTermsMap();
@@ -41,7 +39,6 @@ export class Emr {
     ) {
         this._window['_melOpener'] = this.emrMel;
         this._window['_appOpener'] = this.emrApp;
-        this._window['_isSimulator'] = this.isSimulator;
     }
 
     get enterpriseId() {
@@ -54,7 +51,7 @@ export class Emr {
         }
 
         this._external = this._external ? this._external        // if the _external is set, then use it
-            : this._simulator.isSimulator ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
+            : this._simulator.isSimulatorAsync ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
             //: isSimulator ? this.emrApp.external 
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
@@ -68,7 +65,7 @@ export class Emr {
         }
 
         this._external = this._external ? this._external        // if the _external is set, then use it
-            : (await this._simulator.isSimulator()) ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
+            : (await this._simulator.isSimulatorAsync()) ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
         return this._external;
@@ -114,13 +111,6 @@ export class Emr {
             : (this._emrMel != null) ? this._emrMel
                 : new EmrMel(this._window);
         return this._emrMel;
-    }
-
-    get isSimulator(): boolean {
-        this._isSimulator = (this._window.opener != null && this._window.opener['_isSimulator'] != undefined) ? this._window.opener['_isSimulator']
-            : (this._isSimulator) ? this._isSimulator
-                : System.isSimulator;
-        return this._isSimulator;
     }
 
     get emrApp(): EmrApp {

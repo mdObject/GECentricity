@@ -10,10 +10,11 @@ export class Simulator {
     private _isActiveX: boolean = false;            // true for activeX simulator
     private app: any;
     private readonly noData: string = 'Data Access Error';
+    private _isSimulator: boolean = false;
 
     private _ExtensionExternalSimulator: ExtensionExternalSimulator = new ExtensionExternalSimulator();
 
-    public isSimulator = async (): Promise<boolean> => {
+    public isSimulatorAsync = async (): Promise<boolean> => {
         if (this._isSimulator) {
             return this._isSimulator;
         }
@@ -25,7 +26,6 @@ export class Simulator {
             return this._isSimulator;
         }
     }
-    private _isSimulator: boolean = false;
 
     constructor(public _window: any) {
         this.initialization();
