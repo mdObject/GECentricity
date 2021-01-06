@@ -5,11 +5,11 @@ import { IsActiveXSupported } from "../factories/IsActiveXSupported";
 import { ExtensionExternalSimulator } from "./ExtensionExternalSimulator";
 
 export class Simulator {
-    private appObjectNameSimulator = 'GE.CPO.EMR.90.Application.SIMULATOR';
+    private readonly appObjectNameSimulator = 'GE.CPO.EMR.90.Application.SIMULATOR';
+    private readonly noData: string = 'Data Access Error';
     private _isExtensionEvaluated: boolean = false; // holds validation for async call to the Chrome Extension
     private _isActiveX: boolean = false;            // true for activeX simulator
     private app: any;
-    private readonly noData: string = 'Data Access Error';
     private _isSimulator: boolean = false;
 
     private _ExtensionExternalSimulator: ExtensionExternalSimulator = new ExtensionExternalSimulator();
