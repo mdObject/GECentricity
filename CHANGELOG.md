@@ -17,6 +17,10 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* demographicsAsync(): Promise<DemographicsExternal>
 	* externalAsync(): Promise<any>
 
+	Additional features:
+	* ActiveX alert message replaced with log notification
+	* Added version log output 
+
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
