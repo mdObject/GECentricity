@@ -10,6 +10,8 @@ import { Patient } from './Patient';
 import { Users } from './Users';
 import { Simulator } from '../simulator/simulator';
 import { ClinicalDocument } from './ClinicalDocument';
+import { LocationType, UserCallFunction } from '../enums/enums'
+import { ObsTermsMap } from './ObsTermsMap';
 
 export class Emr {
 
@@ -28,6 +30,7 @@ export class Emr {
     private _isSimulator: boolean;
     private _simulator: Simulator = new Simulator(this._window);
     private _clinicalDocument = new ClinicalDocument(this.emrMel);
+    private _obsTermsMap = new ObsTermsMap();
 
     private _patient: Patient;
     private _users: Users;
@@ -215,5 +218,17 @@ export class Emr {
 
     get clinicalDocument(): ClinicalDocument {
         return this._clinicalDocument;
+    }
+
+    get obsTermsMap(): ObsTermsMap {
+        return this._obsTermsMap;
+    }
+
+    get LocationType() {
+        return LocationType;
+    }
+
+    get UserCallFunction() {
+        return UserCallFunction;
     }
 }

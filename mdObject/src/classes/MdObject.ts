@@ -1,12 +1,9 @@
 import { version, productType } from '../consts/consts'
-import { LocationType, UserCallFunction } from '../enums/enums'
-import { ObsTermsMap } from './ObsTermsMap';
 import { Emr } from './Emr';
 
 export class MdObject {
 
     private _emr: Emr;
-    private _obsTermsMap = new ObsTermsMap();
 
     constructor(
         public _window: any,
@@ -30,17 +27,5 @@ export class MdObject {
 
     public get emr():Emr {
         return this._emr;
-    }
-
-    get obsTermsMap():ObsTermsMap {
-        return this._obsTermsMap;
-    }
-
-    get LocationType() {
-        return LocationType;
-    }
-
-    get UserCallFunction() {
-        return UserCallFunction;
     }
 }

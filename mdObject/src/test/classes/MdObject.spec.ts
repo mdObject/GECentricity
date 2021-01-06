@@ -1,4 +1,4 @@
-import { MdObject, Emr, ObsTermsMap } from '../../classes/classes';
+import { MdObject, Emr } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
 import { version, productType } from '../../consts/consts'
 
@@ -20,9 +20,6 @@ describe('Class: MdObject', () => {
         });
         it('check classification', () => {
             expect(component.emr instanceof Emr).toEqual(true);
-        });
-        it('check description', () => {
-            expect(component.obsTermsMap instanceof ObsTermsMap).toEqual(true);
         });
     })
 

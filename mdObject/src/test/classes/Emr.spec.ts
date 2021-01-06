@@ -1,4 +1,4 @@
-import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument } from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument, ObsTermsMap } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Emr', () => {
@@ -63,6 +63,10 @@ describe('Class: Emr', () => {
             it('check gpiCode', () => {
                 expect(component.clinicalDocument instanceof ClinicalDocument).toEqual(true);
             });
+            it('check obsTermsMap', () => {
+                expect(component.obsTermsMap instanceof ObsTermsMap).toEqual(true);
+            });
+
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
