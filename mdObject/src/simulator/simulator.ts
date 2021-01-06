@@ -20,7 +20,7 @@ export class Simulator {
         }
         else {
             if (!this._isExtensionEvaluated) {
-                this._isSimulator = await this.sendMessage(simulatorChromeExtensionId, { greeting: "hello" });
+                this._isSimulator = await this.sendMessage(simulatorChromeExtensionId, { type: "version" });
                 this._isExtensionEvaluated = true;
             }
             return this._isSimulator;
