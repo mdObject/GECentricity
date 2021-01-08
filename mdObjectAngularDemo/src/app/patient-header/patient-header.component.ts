@@ -10,16 +10,16 @@ import { MdObjectServiceService } from '../md-object-service.service';
 export class PatientHeaderComponent implements OnInit {
 
   patient: Promise<Patient> | null = null;
-  mdObject: MdObject = this.mdObjectServiceService.mdObject;
+  mdObject: MdObject;
 
   constructor(
     private mdObjectServiceService: MdObjectServiceService
   ) {
-
+    this.mdObject = this.mdObjectServiceService.mdObject;
   }
 
   ngOnInit(): void {
-    this.patient = this.mdObject.emr.patientAsync(); //.then(e => this.patient = e);
+    this.patient = this.mdObjectServiceService.patient; //.then(e => this.patient = e);
   }
 
 //  patient: Patient = this.mdObject.emr.patient;
