@@ -13,15 +13,15 @@ phonecatApp.controller('DemoController', function ($scope, $parse) {
     ];
 
     if (mdObject != null) {
-        $scope.patient = mdObject.patient;
+        $scope.patient = mdObject.emr.patient;
         $scope.version = mdObject.version;
-        $scope.clinicalDocument = mdObject.clinicalDocument;
-        $scope.LocationType = mdObject.LocationType;
+        $scope.clinicalDocument = mdObject.emr.clinicalDocument;
+        $scope.LocationType = mdObject.emr.LocationType;
         $scope.emr = mdObject.emr;
-        $scope.emrUsers = mdObject.users;
-        $scope.hwinstonUser = mdObject.users.getUser('hwinston');
-        $scope.usersInCurrentLocation = mdObject.users.getUsers();
-        $scope.currentUser = mdObject.users.getUser();
+        $scope.emrUsers = mdObject.emr.users;
+        $scope.hwinstonUser = mdObject.emr.users.getUser('hwinston');
+        $scope.usersInCurrentLocation = mdObject.emr.users.getUsers();
+        $scope.currentUser = mdObject.emr.users.getUser();
         $scope.mel = mdObject.emr.mel;
     } else {
         alert('The "mdObject" is not defined.')
