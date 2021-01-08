@@ -1,0 +1,44 @@
+<div class="panel panel-primary">
+  <div class="row">
+    <div class="col-sm-3">PID:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.pid}}</span></div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">ID:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.patientId}}</span></div>
+    <div class="col-sm-3">Medical Record ID:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.medicalRecordId}}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">External Id:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.externalId}}</span></div>
+    <div class="col-sm-3">Print ID:</div>
+    <div class="col-sm-3"><span ng-bind="(patient | async)?.printId"></span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">First Name:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.firstName}}</span></div>
+    <div class="col-sm-3">Last Name:</div>
+    <div class="col-sm-3"><span >{{(patient | async)?.lastName}}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">Middle Name:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.middleName}}</span></div>
+    <div class="col-sm-3">SSN:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.ssn}}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">Label Name:</div>
+    <div class="col-sm-3"><span ng-bind="(patient | async)?.labelName"></span></div>
+    <div class="col-sm-3">Prefix:</div>
+    <div class="col-sm-3"><span ng-bind="(patient | async)?.namePrefix"></span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">Suffix:</div>
+    <div class="col-sm-3"><span ng-bind="(patient | async)?.nameSuffix"></span></div>
+    <div class="col-sm-3">Sex:</div>
+    <div class="col-sm-3"><span ng-bind="(patient | async)?.sex"></span></div>
+  </div>
+</div>

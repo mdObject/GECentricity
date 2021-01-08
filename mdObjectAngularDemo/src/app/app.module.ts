@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TitleCasePipe } from '@angular/common';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
+import { PatientPersonalInformationComponent } from './components/patient-personal-information/patient-personal-information.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
     AllergyComponent,
     EnumToArrayPipe,
     PatientHeaderComponent,
+    PatientPersonalInformationComponent,
     
   ],
   imports: [

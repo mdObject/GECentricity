@@ -83,7 +83,17 @@ export class Patient {
             this._lastOfficeVisit = _demographics.lastOfficeVisitDate;
             this._registrationNote = _demographics.registrationNote;
             this._language = _demographics.preferredLanguage;
-            if (_demographics.person) {
+            if (_demographics.identifierList) {
+                let patientId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.700");
+                this._patientId = (patientId) ? patientId.idValue : this._patientId;
+
+                let externalId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.200");
+                this._externalId = (externalId) ? externalId.idValue : this._externalId;
+
+                let medicalRecordId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.400");
+                this._medicalRecordId = (medicalRecordId) ? medicalRecordId.idValue : this._medicalRecordId;
+            }
+           if (_demographics.person) {
                 let birthDate = System.formatDate(_demographics.person.birthDate);
                 this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
                 this._sex = _demographics.person.genderCode;
@@ -92,6 +102,11 @@ export class Patient {
                     this._lastName = _demographics.person.personNameList[0].familyName;
                     this._middleName = _demographics.person.personNameList[0].middleName;
                 }
+                this._pid = _demographics.patientKeySpecified ? _demographics.patientKey.toString() : this._pid;
+               if (_demographics.person.identifierList) {
+                   let ssn = _demographics.person.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.300");
+                   this._ssn = (ssn) ? ssn.idValue : this._ssn;
+               }
             }
         }
     }
@@ -120,7 +135,7 @@ export class Patient {
 
     // Returns the patient’s medical record number.
     get medicalRecordId() {
-        this._medicalRecordId = (this._medicalRecordId != null) ? this._medicalRecordId : this._mel.melFunc('{PATIENT.MEDRECNO}');
+        this._medicalRecordId = (this._medicalRecordId) ? this._medicalRecordId : this._mel.melFunc('{PATIENT.MEDRECNO}');
         return this._medicalRecordId;
     }
 

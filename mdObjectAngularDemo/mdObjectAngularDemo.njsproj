@@ -24,6 +24,8 @@
     <Content Include="package.json" />
     <Content Include="src\app\allergy\allergy.component.scss" />
     <Content Include="src\app\app.component.scss" />
+    <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.html" />
+    <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.scss" />
     <Content Include="src\app\patient-header\patient-header.component.html" />
     <Content Include="src\app\patient-header\patient-header.component.scss" />
     <Content Include="src\styles.scss" />
@@ -57,11 +59,15 @@
     <Folder Include="src" />
     <Folder Include="src\app" />
     <Folder Include="src\app\allergy" />
+    <Folder Include="src\app\components\" />
+    <Folder Include="src\app\components\patient-personal-information\" />
     <Folder Include="src\app\patient-header\" />
     <Folder Include="src\assets" />
     <Folder Include="src\environments" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.spec.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.ts" />
     <TypeScriptCompile Include="src\app\patient-header\patient-header.component.spec.ts" />
