@@ -27,7 +27,7 @@ export class Emr {
     private _allergyExternalList: AllergyExternal[] = [];
     private _problemExternalList: ProblemExternal[] = [];
     private _simulator: Simulator;
-    private _clinicalDocument = new ClinicalDocument(this.emrMel);
+    private _clinicalDocument: ClinicalDocument;
     private _obsTermsMap: ObsTermsMap;
 
     private _patient: Patient;
@@ -209,6 +209,16 @@ export class Emr {
     }
 
     get clinicalDocument(): ClinicalDocument {
+        if (this._clinicalDocument === undefined) {
+            this._clinicalDocument = new ClinicalDocument(this.emrMel, this);
+        }
+        return this._clinicalDocument;
+    }
+
+    clinicalDocumentAsync = async (): Promise<ClinicalDocument> => {
+        if (this._clinicalDocument === undefined) {
+            this._clinicalDocument = new ClinicalDocument(this.emrMel, await this);
+        }
         return this._clinicalDocument;
     }
 
@@ -222,5 +232,10 @@ export class Emr {
 
     get UserCallFunction() {
         return UserCallFunction;
+    }
+
+    // Implements MEL eval 
+    melFuncAsync = async (data: string): Promise<string> => {
+        return await this.externalAsync().then(e => e.EvaluateMel(data));
     }
 }
