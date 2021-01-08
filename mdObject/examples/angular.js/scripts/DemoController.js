@@ -4,11 +4,6 @@ var phonecatApp = angular.module('mdObjectDemo', []);
 
 phonecatApp.controller('DemoController', function ($scope, $parse) {
 
-    const getPatient = async function (mdObject) {
-        $scope.patient = await mdObject.emr.patientAsync();
-       // $scope.$apply();  // don't forget this!
-    }
-
     $scope.flowsheets = [
         { name: "Internal Medicine", value: "Enterprise\\Medicine\\Internal Medicine" },
         { name: "Immunizations", value: "Enterprise\\Interfaces\\CCD\\Immunizations" },
@@ -18,16 +13,16 @@ phonecatApp.controller('DemoController', function ($scope, $parse) {
     ];
 
     if (mdObject != null) {
-        getPatient(mdObject);
+        $scope.patient = mdObject.emr.patient;
         $scope.version = mdObject.version;
         $scope.clinicalDocument = mdObject.emr.clinicalDocument;
         $scope.LocationType = mdObject.emr.LocationType;
         $scope.emr = mdObject.emr;
         $scope.emrUsers = mdObject.emr.users;
-//        $scope.hwinstonUser = mdObject.emr.users.getUser('hwinston');
-//        $scope.usersInCurrentLocation = mdObject.emr.users.getUsers();
-//        $scope.currentUser = mdObject.emr.users.getUser();
-//        $scope.mel = mdObject.emr.mel;
+        $scope.hwinstonUser = mdObject.emr.users.getUser('hwinston');
+        $scope.usersInCurrentLocation = mdObject.emr.users.getUsers();
+        $scope.currentUser = mdObject.emr.users.getUser();
+        $scope.mel = mdObject.emr.mel;
     } else {
         alert('The "mdObject" is not defined.')
     }
