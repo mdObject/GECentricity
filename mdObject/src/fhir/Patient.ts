@@ -5,7 +5,7 @@
 import { HumanName } from "./HumanName";
 import { Address } from "./Address";
 import { Attachment } from "./Attachment";
-import { GenderCode } from "./codes/GenderCode";
+import { AdministrativeGenderCode } from "./codes/AdministrativeGenderCode";
 import { ContactPoint } from "./ContactPoint";
 
 export class Patient {
@@ -16,7 +16,7 @@ export class Patient {
     active: boolean; // Whether this patient's record is in active use
     name: HumanName[]; // A name associated with the patient
     telecom: ContactPoint[]; // A contact detail for the individual
-    gender: GenderCode; // male | female | other | unknown
+    gender: AdministrativeGenderCode; // male | female | other | unknown
     birthDate: Date; // The date of birth for the individual
     // deceased[x]: Indicates if the individual is deceased or not. One of these 2:
     deceasedBoolean: boolean;

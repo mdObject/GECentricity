@@ -203,7 +203,7 @@
     <TypeScriptCompile Include="src\fhir\codes\CommunicationCode.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\fhir\codes\GenderCode.ts">
+    <TypeScriptCompile Include="src\fhir\codes\AdministrativeGenderCode.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\ContactPoint.ts">

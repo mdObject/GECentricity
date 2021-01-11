@@ -28,4 +28,8 @@ export class MdObject {
     public get emr():Emr {
         return this._emr;
     }
+
+    public get fhir():any {
+        return "Not implemented";
+    }
 }
