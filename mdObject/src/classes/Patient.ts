@@ -196,13 +196,13 @@ export class Patient {
 
     // Name Prefix
     get namePrefix() {
-        this._namePrefix = (!this._namePrefix) ? this._namePrefix : this._mel.melFunc('{PATIENT.TITLE}');
+        this._namePrefix = (this._namePrefix !== undefined) ? this._namePrefix : this._mel.melFunc('{PATIENT.TITLE}');
         return this._namePrefix;
     }
 
     // Name Suffix
     get nameSuffix() {
-        this._nameSuffix = (!this._nameSuffix) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
+        this._nameSuffix = (!this._nameSuffix !== undefined) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
         return this._nameSuffix;
     }
 
