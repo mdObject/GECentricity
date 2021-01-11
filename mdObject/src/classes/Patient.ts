@@ -68,7 +68,7 @@ export class Patient {
     private _allergies = new Allergies(this._mel);
     private _referringProvider = new ReferringProvider(this._mel);
     private _phone = new Phone(this._mel);
-    private _address = new Address(this._mel);
+    private _address: Address;
     private _registrationNote: string;
     private _patientPicture: string;
     private _lastOfficeVisit: Date;
@@ -97,6 +97,9 @@ export class Patient {
                 let birthDate = System.formatDate(_demographics.person.birthDate);
                 this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
                 this._sex = _demographics.person.genderCode;
+                if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
+                    this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
+                }
                 if (_demographics.person.personNameList && _demographics.person.personNameList[0]) {
                     this._firstName = _demographics.person.personNameList[0].givenName;
                     this._lastName = _demographics.person.personNameList[0].familyName;
@@ -117,6 +120,8 @@ export class Patient {
                 }
             }
         }
+
+        this._address = (this._address) ? this._address : new Address(this._mel);
     }
 
     get lastOfficeVisit() {

@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { TitleCasePipe } from '@angular/common';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { PatientPersonalInformationComponent } from './components/patient-personal-information/patient-personal-information.component';
+import { PatientAddressComponent } from './components/patient-address/patient-address.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PatientPersonalInformationComponent } from './components/patient-person
     EnumToArrayPipe,
     PatientHeaderComponent,
     PatientPersonalInformationComponent,
+    PatientAddressComponent,
     
   ],
   imports: [
