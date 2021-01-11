@@ -76,8 +76,7 @@ export class Patient {
     constructor(
         public _mel: EmrMel,
         public _demographics?: DemographicsExternal
-    )
-    {
+    ) {
         if (_demographics) {
             this._patientPicture = _demographics.patientPicture;
             this._lastOfficeVisit = _demographics.lastOfficeVisitDate;
@@ -86,6 +85,7 @@ export class Patient {
             if (_demographics.identifierList) {
                 let patientId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.700");
                 this._patientId = (patientId) ? patientId.idValue : this._patientId;
+                this._printId = this._patientId;
 
                 let externalId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.200");
                 this._externalId = (externalId) ? externalId.idValue : this._externalId;
@@ -93,7 +93,7 @@ export class Patient {
                 let medicalRecordId = _demographics.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.400");
                 this._medicalRecordId = (medicalRecordId) ? medicalRecordId.idValue : this._medicalRecordId;
             }
-           if (_demographics.person) {
+            if (_demographics.person) {
                 let birthDate = System.formatDate(_demographics.person.birthDate);
                 this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
                 this._sex = _demographics.person.genderCode;
@@ -101,12 +101,20 @@ export class Patient {
                     this._firstName = _demographics.person.personNameList[0].givenName;
                     this._lastName = _demographics.person.personNameList[0].familyName;
                     this._middleName = _demographics.person.personNameList[0].middleName;
+
+                    this._labelName = _demographics.person.personNameList[0].givenName
+                        + ' ' + _demographics.person.personNameList[0].middleName
+                        + ' ' + _demographics.person.personNameList[0].familyName;
+
+                    this._namePrefix = _demographics.person.personNameList[0].prefixName;
+                    this._nameSuffix = _demographics.person.personNameList[0].suffixName;
                 }
                 this._pid = _demographics.patientKeySpecified ? _demographics.patientKey.toString() : this._pid;
-               if (_demographics.person.identifierList) {
-                   let ssn = _demographics.person.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.300");
-                   this._ssn = (ssn) ? ssn.idValue : this._ssn;
-               }
+                if (_demographics.person.identifierList) {
+                    let ssn = _demographics.person.identifierList.find(e => e.identifierDomain.domainId === "1.2.3.4.300");
+                    this._ssn = (ssn) ? ssn.idValue : this._ssn;
+                    this._ssn = (this._ssn) ? this._ssn.replace(/(\d{3})(\d{3})(\d+)/, '$1-$2-$3') : this._ssn;
+                }
             }
         }
     }
@@ -183,13 +191,13 @@ export class Patient {
 
     // Name Prefix
     get namePrefix() {
-        this._namePrefix = (this._namePrefix != null) ? this._namePrefix : this._mel.melFunc('{PATIENT.TITLE}');
+        this._namePrefix = (!this._namePrefix) ? this._namePrefix : this._mel.melFunc('{PATIENT.TITLE}');
         return this._namePrefix;
     }
 
     // Name Suffix
     get nameSuffix() {
-        this._nameSuffix = (this._nameSuffix != null) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
+        this._nameSuffix = (!this._nameSuffix) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
         return this._nameSuffix;
     }
 
