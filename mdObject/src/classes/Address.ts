@@ -1,5 +1,5 @@
 import { EmrMel } from './classes';
-import { MailingAddressExternal } from './external/external';
+import { MailingAddressExternal } from './external/MailingAddressExternal';
 
 export class Address {
 
