@@ -129,68 +129,68 @@ export class Patient {
     }
 
     get patientPicture() {
-        this._patientPicture = (this._patientPicture != null) ? this._patientPicture
+        this._patientPicture = (this._patientPicture !== undefined) ? this._patientPicture
             : emptyImage;
         return this._patientPicture;
     }
 
     // Returns the patient’s ID number
     get patientId() {
-        this._patientId = (this._patientId != null) ? this._patientId : this._mel.melFunc('{PATIENT.PATIENTID}');
+        this._patientId = (this._patientId !== undefined) ? this._patientId : this._mel.melFunc('{PATIENT.PATIENTID}');
         return this._patientId;
     }
 
     // Returns the internal PID number for patient record
     get pid() {
-        this._pid = (this._pid != null) ? this._pid : this._mel.melFunc('{find("patient", "PID")}');
+        this._pid = (this._pid !== undefined) ? this._pid : this._mel.melFunc('{find("patient", "PID")}');
         return this._pid;
     }
 
     // Returns the patient’s medical record number.
     get medicalRecordId() {
-        this._medicalRecordId = (this._medicalRecordId) ? this._medicalRecordId : this._mel.melFunc('{PATIENT.MEDRECNO}');
+        this._medicalRecordId = (this._medicalRecordId !== undefined) ? this._medicalRecordId : this._mel.melFunc('{PATIENT.MEDRECNO}');
         return this._medicalRecordId;
     }
 
     // Returns the patient’s ID from an external system; such as a billing or lab system
     get externalId() {
-        this._externalId = (this._externalId != null) ? this._externalId : this._mel.melFunc('{PATIENT.EXTERNALID}');
+        this._externalId = (this._externalId !== undefined) ? this._externalId : this._mel.melFunc('{PATIENT.EXTERNALID}');
         return this._externalId;
     }
 
     // Returns the preferred patient ID number for printed materials.
     get printId() {
-        this._printId = (this._printId != null) ? this._printId : this._mel.melFunc('{PATIENT.PRINTID}');
+        this._printId = (this._printId !== undefined) ? this._printId : this._mel.melFunc('{PATIENT.PRINTID}');
         return this._printId;
     }
 
     // Returns the patient’s Social Security number.
     get ssn() {
-        this._ssn = (this._ssn != null) ? this._ssn : this._mel.melFunc('{PATIENT.SOCSECNO}');
+        this._ssn = (this._ssn !== undefined) ? this._ssn : this._mel.melFunc('{PATIENT.SOCSECNO}');
         return this._ssn;
     }
 
     // Returns the patient’s first name.
     get firstName() {
-        this._firstName = (this._firstName != null) ? this._firstName : this._mel.melFunc('{PATIENT.FIRSTNAME}');
+        this._firstName = (this._firstName !== undefined) ? this._firstName : this._mel.melFunc('{PATIENT.FIRSTNAME}');
         return this._firstName;
     }
 
     // Returns the patient’s last name.
     get lastName() {
-        this._lastName = (this._lastName != null) ? this._lastName : this._mel.melFunc('{PATIENT.LASTNAME}');
+        this._lastName = (this._lastName !== undefined) ? this._lastName : this._mel.melFunc('{PATIENT.LASTNAME}');
         return this._lastName;
     }
 
     // Returns the patient’s middle name.
     get middleName() {
-        this._middleName = (this._middleName != null) ? this._middleName : this._mel.melFunc('{PATIENT.MIDDLENAME}');
+        this._middleName = (this._middleName !== undefined) ? this._middleName : this._mel.melFunc('{PATIENT.MIDDLENAME}');
         return this._middleName;
     }
 
     // Returns the patient’s full name formatted as follows: string = title first middle last; suffix
     get labelName() {
-        this._labelName = (this._labelName != null) ? this._labelName : this._mel.melFunc('{PATIENT.LABELNAME}');
+        this._labelName = (this._labelName !== undefined) ? this._labelName : this._mel.melFunc('{PATIENT.LABELNAME}');
         return this._labelName;
     }
 
@@ -202,73 +202,73 @@ export class Patient {
 
     // Name Suffix
     get nameSuffix() {
-        this._nameSuffix = (!this._nameSuffix !== undefined) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
+        this._nameSuffix = (this._nameSuffix !== undefined) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
         return this._nameSuffix;
     }
 
     // Patient’s sex.
     get sex() {
-        this._sex = (this._sex != null) ? this._sex : this._mel.melFunc('{PATIENT.SEX}');
+        this._sex = (this._sex  !== undefined) ? this._sex : this._mel.melFunc('{PATIENT.SEX}');
         return this._sex;
     }
 
     // Patient’s race
     get race() {
-        this._race = (this._race != null) ? this._race : this._mel.melFunc('{PATIENT.RACE}');
+        this._race = (this._race  !== undefined) ? this._race : this._mel.melFunc('{PATIENT.RACE}');
         return this._race;
     }
 
     // Patient’s ethnicity
     get ethnicity() {
-        this._ethnicity = (this._ethnicity != null) ? this._ethnicity : this._mel.melFunc('{PATIENT.ETHNICITY}');
+        this._ethnicity = (this._ethnicity  !== undefined) ? this._ethnicity : this._mel.melFunc('{PATIENT.ETHNICITY}');
         return this._ethnicity;
     }
 
     // Returns the patient’s birth date/time
     get dateOfBirth() {
-        this._dateOfBirth = (this._dateOfBirth != null) ? this._dateOfBirth : this._mel.melFunc('{PATIENT.DATEOFBIRTH}');
+        this._dateOfBirth = (this._dateOfBirth  !== undefined) ? this._dateOfBirth : this._mel.melFunc('{PATIENT.DATEOFBIRTH}');
         return this._dateOfBirth;
     }
 
     // Returns the patient’s date of death
     get dateOfDeath() {
-        this._dateOfDeath = (this._dateOfDeath != null) ? this._dateOfDeath : this._mel.melFunc('{PATIENT.DATEOFDEATH}');
+        this._dateOfDeath = (this._dateOfDeath  !== undefined) ? this._dateOfDeath : this._mel.melFunc('{PATIENT.DATEOFDEATH}');
         return this._dateOfDeath;
     }
 
     // Returns the patient’s marital status (Single; Married; Divorced; Widowed; Separated; Other or Undetermined)
     get maritalStatus() {
-        this._maritalStatus = (this._maritalStatus != null) ? this._maritalStatus : this._mel.melFunc('{PATIENT.MARITALSTATUS}');
+        this._maritalStatus = (this._maritalStatus  !== undefined) ? this._maritalStatus : this._mel.melFunc('{PATIENT.MARITALSTATUS}');
         return this._maritalStatus;
     }
 
     // Returns the patient’s preferred language
     get language() {
-        this._language = (this._language != null) ? this._language : this._mel.melFunc('{PATIENT.PREFLANG}');
+        this._language = (this._language  !== undefined) ? this._language : this._mel.melFunc('{PATIENT.PREFLANG}');
         return this._language;
     }
 
     // Returns the patient’s e-mail address
     get email() {
-        this._email = (this._email != null) ? this._email : this._mel.melFunc('{PATIENT.EMAIL}');
+        this._email = (this._email  !== undefined) ? this._email : this._mel.melFunc('{PATIENT.EMAIL}');
         return this._email;
     }
 
     // Returns the patient’s contact by information
     get contactBy() {
-        this._contactBy = (this._contactBy != null) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
+        this._contactBy = (this._contactBy  !== undefined) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
         return this._contactBy;
     }
 
     get registrationNote() {
-        this._registrationNote = (this._registrationNote != null) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
+        this._registrationNote = (this._registrationNote  !== undefined) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
         return this._registrationNote;
     }
 
     // Returns a list of the contacts for the current patient
     get contacts() {
         if (this._contactsArray.length === 0) {
-            this._contacts = (this._contacts != null) ? this._contacts : this._mel.melFunc('{PATIENT.CONTACTS}');
+            this._contacts = (this._contacts  !== undefined) ? this._contacts : this._mel.melFunc('{PATIENT.CONTACTS}');
             let dataArray = StringInternal(this._contacts).toList();
 
             /*jslint plusplus: true */
@@ -288,26 +288,26 @@ export class Patient {
 
     // Returns the patient’s employment status.
     get employmentStatus() {
-        this._employmentStatus = (this._employmentStatus != null) ? this._employmentStatus : this._mel.melFunc('{PATIENT.EMPLSTATUS}');
+        this._employmentStatus = (this._employmentStatus  !== undefined) ? this._employmentStatus : this._mel.melFunc('{PATIENT.EMPLSTATUS}');
         return this._employmentStatus;
     }
 
     // Patient’s current status in the clinic
     get clinicStatus() {
-        this._clinicStatus = (this._clinicStatus != null) ? this._clinicStatus : this._mel.melFunc('{PATIENT.PSTATUS}');
+        this._clinicStatus = (this._clinicStatus  !== undefined) ? this._clinicStatus : this._mel.melFunc('{PATIENT.PSTATUS}');
         return this._clinicStatus;
     }
 
     // Name of the primary care physician
     get primaryCarePhysicianName() {
-        this._primaryCarePhysicianName = (this._primaryCarePhysicianName != null) ? this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
+        this._primaryCarePhysicianName = (this._primaryCarePhysicianName  !== undefined) ? this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
         return this._primaryCarePhysicianName;
     }
 
     // Lists all problems 
     get problems() {
         if (this._problemsArray.length === 0) {
-            this._problems = (this._problems != null) ? this._problems : this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
+            this._problems = (this._problems  !== undefined) ? this._problems : this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
             let dataArray = StringInternal(this._problems).toList();
 
             /*jslint plusplus: true */
@@ -379,7 +379,7 @@ export class Patient {
     // The protocols contains array of observations required for this patient; as indicated by protocols set up in this clinic.
     get protocols() {
         if (this._protocolsArray.length === 0) {
-            this._protocols = (this._protocols != null) ? this._protocols : this._mel.melFunc('{LISTPROTOCOLSHORT("list")}');
+            this._protocols = (this._protocols  !== undefined) ? this._protocols : this._mel.melFunc('{LISTPROTOCOLSHORT("list")}');
             let dataArray = StringInternal(this._protocols).toList('\r\n');
 
             /*jslint plusplus: true */
@@ -410,7 +410,7 @@ export class Patient {
     // List of patient immunizations 
     get immunizations() {
         if (this._immunizationsArray.length === 0) {
-            this._immunizations = (this._immunizations != null) ? this._immunizations : this._mel.melFunc('{IMMUN_GETLIST()}');
+            this._immunizations = (this._immunizations  !== undefined) ? this._immunizations : this._mel.melFunc('{IMMUN_GETLIST()}');
             let dataArray = StringInternal(this._immunizations).toList();
 
             /*jslint plusplus: true */
@@ -430,7 +430,7 @@ export class Patient {
 
     get carePlans() {
         if (this._carePlansArray.length === 0) {
-            this._carePlans = (this._carePlans != null) ? this._carePlans : this._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
+            this._carePlans = (this._carePlans  !== undefined) ? this._carePlans : this._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
             let dataArray = StringInternal(this._carePlans).toList();
 
             /*jslint plusplus: true */
@@ -450,8 +450,8 @@ export class Patient {
 
     get locations() {
         if (this._locationsArray.length === 0) {
-            this._locations = (this._locations != null) ? this._locations : this._mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
-            this._locationsId = (this._locationsId != null) ? this._locationsId : this._mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
+            this._locations = (this._locations  !== undefined) ? this._locations : this._mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
+            this._locationsId = (this._locationsId  !== undefined) ? this._locationsId : this._mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
             let locationProperty = new Location(this._locationsId, this._locations, LocationType.Home);
             this._locationsArray.push(locationProperty);
             this._locationsArray.findByType =
