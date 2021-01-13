@@ -22,6 +22,7 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* Added version log output 
 
 	EmrMel and EmrApp have a new constructor parameter: Simulator 
+	The old angular.js demo requires the polyfills.js (included in the project). 
 
 ## Release 2.0.0-alpha.1.1
 	Updated license year.

@@ -10,7 +10,7 @@
     "test:watch": "npm run test -- --watch",
     "clean": "rimraf ./lib",
     "copyfiles": "./node_modules/.bin/copyfiles -f ../README.md ../LICENSE ../CHANGELOG.md ./src/package.json ./lib",
-    "copydemofiles": "./node_modules/.bin/copyfiles -f ./lib/bundles/mdobject-mdobject.umd.min.js  ./lib/bundles/mdobject-mdobject.umd.min.js.map ./examples/angular.js/scripts",
+    "copydemofiles": "./node_modules/.bin/copyfiles -f ./lib/bundles/mdobject-mdobject.umd.min.js  ./lib/bundles/mdobject-mdobject.umd.min.js.map ./lib/bundles/mdobject-mdobject.umd.js  ./lib/bundles/mdobject-mdobject.umd.js.map ./examples/angular.js/scripts",
     "ng": "ng",
     "build:libraries": "ng build mdObjectLib --prod  && npm run copyfiles && npm run copydemofiles",
     "startdemo": "http-server ./examples/angular.js/"

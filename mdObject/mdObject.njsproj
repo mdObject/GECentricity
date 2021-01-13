@@ -63,6 +63,7 @@
     <Content Include="angular.json" />
     <Content Include="examples\angular.js\index.html" />
     <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
+    <Content Include="examples\angular.js\scripts\mdobject-mdobject.umd.js" />
     <Content Include="examples\Angular\README.md" />
     <Content Include="src\classes\Allergy.ts">
       <SubType>Code</SubType>
@@ -83,6 +84,7 @@
     <None Include="examples\angular.js\scripts\DemoController.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="examples\angular.js\scripts\polyfills.ts" />
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
     <TypeScriptCompile Include="src\bases\bases.ts" />
     <TypeScriptCompile Include="src\bases\EmrBase.ts" />
