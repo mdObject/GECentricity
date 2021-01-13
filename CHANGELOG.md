@@ -1,7 +1,7 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
 ## Release 2.0.0-alpha.1.3
-
+	Added build-with-mdobject.svg to the library
 
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
