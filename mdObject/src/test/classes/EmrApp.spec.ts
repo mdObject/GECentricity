@@ -1,14 +1,16 @@
 import { EmrBase } from '../../bases/bases';
 import { EmrApp } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
+import { MockSimulator } from '../mocks/MockSimulator';
 
 describe('Class: EmrApp', () => {
 
     let component: EmrApp;
     let _window = new MockWindow();
+    let _simulator = new MockSimulator();
 
     beforeEach(() => {
-        component = new EmrApp(_window);
+        component = new EmrApp(_window, _simulator);
     });
 
     it('extends AllergyList', () => {

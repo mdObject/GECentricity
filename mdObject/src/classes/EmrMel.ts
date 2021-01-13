@@ -1,6 +1,7 @@
 import { System } from './system';
 import { GetActiveXErrorMessage, IsActiveXSupported } from '../factories/factories';
 import { EmrBase } from '../bases/EmrBase';
+import { Simulator } from '../simulator/simulator';
 
 export class EmrMel extends EmrBase {
 
@@ -12,8 +13,9 @@ export class EmrMel extends EmrBase {
 
     constructor(
         public _window: any,
+        public _simulator: Simulator
     ) {
-        super(_window);
+        super(_window, _simulator);
 
         this.initialization();
     }

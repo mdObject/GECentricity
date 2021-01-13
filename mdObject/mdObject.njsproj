@@ -286,6 +286,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\mockResultEmr.ts" />
     <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockSimulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

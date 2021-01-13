@@ -20,6 +20,6 @@ describe('Base: EmrBase', () => {
     });
 
     it('errorMessage is undefined', () => {
-        expect(typeof base.errorMessage == 'undefined').toEqual(true);
+        expect(typeof (base.errorMessage) === 'undefined').toEqual(true);
     });
 })

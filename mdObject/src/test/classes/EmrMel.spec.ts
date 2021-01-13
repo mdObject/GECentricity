@@ -1,17 +1,20 @@
 import { EmrBase } from '../../bases/bases';
 import { EmrMel } from '../../classes/classes';
 import { MockWindow } from '../mocks/mocks';
+import { MockSimulator } from '../mocks/MockSimulator';
 
 describe('Class: EmrMel', () => {
 
     let component: EmrMel;
     let _window = new MockWindow();
+    let _simulator = new MockSimulator();
+
     let name: string = 'qwe';
     let value: string = '1';
     let date: string = new Date().toISOString();
 
     beforeEach(() => {
-        component = new EmrMel(_window);
+        component = new EmrMel(_window, _simulator);
     });
 
     it('extends AllergyList', () => {
@@ -53,6 +56,7 @@ describe('Class: EmrMel', () => {
             });
 
             it('call eval', () => {
+                (component as any)._external = 'UnitTest';
                 component.melFunc(name);
                 expect((component as any).mel.eval).toHaveBeenCalledWith(name);
             })

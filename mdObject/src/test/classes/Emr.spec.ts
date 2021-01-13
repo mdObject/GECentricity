@@ -1,10 +1,13 @@
 import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument, ObsTermsMap } from '../../classes/classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
+import { MockSimulator } from '../mocks/MockSimulator';
 
 describe('Class: Emr', () => {
 
     let component: Emr;
     let _window = new MockWindow();
+    let _simulator = new MockSimulator();
+
     let result: string = mockResultEmr;
     let name: string = 'qwe';
 
@@ -72,8 +75,8 @@ describe('Class: Emr', () => {
             beforeAll(() => {
                 component = new Emr(_window, _window.document);
                 _window.opener = {
-                    _melOpener: new EmrMel(_window),
-                    _appOpener: new EmrApp(_window)
+                    _melOpener: new EmrMel(_window, _simulator),
+                    _appOpener: new EmrApp(_window, _simulator)
                 }
             });
 

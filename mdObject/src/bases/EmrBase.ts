@@ -11,9 +11,11 @@ export abstract class EmrBase {
     readonly isExternalSupported: boolean = (this.external) ? true : false;
     private _external: any;
     private _isSimulator: boolean;
-    private _simulator: Simulator;
 
     get external(): any {
+        if (this._external === 'UnitTest') {
+            return undefined;
+        }
         if (this._external) {
             return this._external;
         }
@@ -37,9 +39,9 @@ export abstract class EmrBase {
     }
 
     constructor(
-        public _window: any
+        public _window: any,
+        public _simulator: Simulator
     ) {
-        this._simulator = new Simulator(this._window); // should be the first here
 
         this._window['_isSimulator'] = this.isSimulator;
     }

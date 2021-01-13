@@ -116,14 +116,14 @@ export class Emr {
     get emrMel(): EmrMel {
         this._emrMel = (this._window.opener != null && this._window.opener['_melOpener'] != undefined) ? this._window.opener['_melOpener']
             : (this._emrMel != null) ? this._emrMel
-                : new EmrMel(this._window);
+                : new EmrMel(this._window, this._simulator);
         return this._emrMel;
     }
 
     get emrApp(): EmrApp {
         this._emrApp = (this._window.opener != null && this._window.opener['_appOpener'] != undefined) ? this._window.opener['_appOpener']
             : (this._emrApp != null) ? this._emrApp
-                : new EmrApp(this._window);
+                : new EmrApp(this._window, this._simulator);
         return this._emrApp;
     }
 
