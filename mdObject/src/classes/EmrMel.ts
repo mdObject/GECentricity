@@ -7,7 +7,7 @@ export class EmrMel  {
     private melObjectName = 'GE.CPO.EMR.80.MEL';
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
-    private errorMessage: string;
+    public errorMessage: string;
     readonly noData: string = 'Data Access Error';
     private _external: any;
     private _simulator: Simulator;
