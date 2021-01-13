@@ -1,70 +1,70 @@
 <div class="panel panel-primary">
   <div class="row">
     <div class="col-sm-3">PID:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.pid}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.pid}}</span></div>
     <div class="col-sm-3"></div>
     <div class="col-sm-3"></div>
   </div>
   <div class="row">
     <div class="col-sm-3">ID:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.patientId}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.patientId}}</span></div>
     <div class="col-sm-3">Medical Record ID:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.medicalRecordId}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.medicalRecordId}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">External Id:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.externalId}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.externalId}}</span></div>
     <div class="col-sm-3">Print ID:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.printId}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.printId}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">First Name:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.firstName}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.firstName}}</span></div>
     <div class="col-sm-3">Last Name:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.lastName}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.lastName}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">Middle Name:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.middleName}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.middleName}}</span></div>
     <div class="col-sm-3">SSN:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.ssn}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.ssn}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">Label Name:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.labelName}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.labelName}}</span></div>
     <div class="col-sm-3">Prefix:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.namePrefix}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.namePrefix}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">Suffix:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.nameSuffix}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.nameSuffix}}</span></div>
     <div class="col-sm-3">Sex:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.sex}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.sex}}</span></div>
   </div>
 
-  <!--<div class="row">
+  <div class="row">
     <div class="col-sm-3">Race:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.race}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.race}}</span></div>
     <div class="col-sm-3">Ethnicity:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.ethnicity}}</span></div>
-  </div>-->
+    <div class="col-sm-3"><span>{{patient?.ethnicity}}</span></div>
+  </div>
   <div class="row">
     <div class="col-sm-3">Date Of Birth:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.dateOfBirth}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.dateOfBirth}}</span></div>
     <div class="col-sm-3">Date Of Death:</div>
-    <div class="col-sm-3"><span>{{(patient | async)?.dateOfDeath}}</span></div>
+    <div class="col-sm-3"><span>{{patient?.dateOfDeath}}</span></div>
   </div>
   <!--<div class="row">
       <div class="col-sm-3">Marital Status:</div>
-      <div class="col-sm-3"><span>{{(patient | async)?.maritalStatus}}</span></div>
+      <div class="col-sm-3"><span>{{patient?.maritalStatus}}</span></div>
       <div class="col-sm-3">Language:</div>
-      <div class="col-sm-3"><span>{{(patient | async)?.language}}</span></div>
+      <div class="col-sm-3"><span>{{patient?.language}}</span></div>
     </div>
 
     <div class="row">
       <div class="col-sm-3">Home location of care:</div>
-      <div class="col-sm-3"><span>{{(patient | async)?.location.findByType(LocationType.Home).name}}</span></div>
+      <div class="col-sm-3"><span>{{patient?.location.findByType(LocationType.Home).name}}</span></div>
       <div class="col-sm-3">Abbreviated home location of care:</div>
-      <div class="col-sm-3"><span>{{(patient | async)?.location.findByType(LocationType.Home).id}}</span></div>
+      <div class="col-sm-3"><span>{{patient?.location.findByType(LocationType.Home).id}}</span></div>
     </div>
   </div>-->

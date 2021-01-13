@@ -225,9 +225,19 @@ export class Patient {
         return this._race;
     }
 
+    async raceAsync() {
+        this._race = (this._race !== undefined) ? this._race : await this._mel.melFunc('{PATIENT.RACE}');
+        return this._race;
+    }
+
     // Patient’s ethnicity
     get ethnicity() {
         this._ethnicity = (this._ethnicity  !== undefined) ? this._ethnicity : this._mel.melFunc('{PATIENT.ETHNICITY}');
+        return this._ethnicity;
+    }
+
+    async ethnicityAsync() {
+        this._ethnicity = (this._ethnicity !== undefined) ? this._ethnicity : await this._mel.melFunc('{PATIENT.ETHNICITY}');
         return this._ethnicity;
     }
 
@@ -240,6 +250,11 @@ export class Patient {
     // Returns the patient’s date of death
     get dateOfDeath() {
         this._dateOfDeath = (this._dateOfDeath  !== undefined) ? this._dateOfDeath : this._mel.melFunc('{PATIENT.DATEOFDEATH}');
+        return this._dateOfDeath;
+    }
+
+    async dateOfDeathAsync() {
+        this._dateOfDeath = (this._dateOfDeath !== undefined) ? this._dateOfDeath : await this._mel.melFunc('{PATIENT.DATEOFDEATH}');
         return this._dateOfDeath;
     }
 

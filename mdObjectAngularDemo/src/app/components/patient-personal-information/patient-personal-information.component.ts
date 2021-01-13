@@ -9,7 +9,9 @@ import { MdObjectServiceService } from '../../md-object-service.service';
 })
 export class PatientPersonalInformationComponent implements OnInit {
 
-  patient: Promise<Patient> | null = null;
+  //patient: Promise<Patient> | null = null;
+  patient: Patient;
+  dateOfDeath: string;
   mdObject: MdObject;
   constructor(
     private mdObjectServiceService: MdObjectServiceService
@@ -18,7 +20,13 @@ export class PatientPersonalInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.patient = this.mdObjectServiceService.patient;
+    let patientAsync = this.mdObjectServiceService.patient;
+    Promise.all([
+      patientAsync,
+      patientAsync.then(p => p.dateOfDeathAsync()),
+      patientAsync.then(p => p.raceAsync()),
+      patientAsync.then(p => p.ethnicityAsync()),
+    ]).then(e => { this.patient = e[0]; });
   }
 
 }
