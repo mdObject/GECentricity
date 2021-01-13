@@ -46,7 +46,7 @@ export class Simulator {
     }
 
     get externalSimulator(): any {
-        return (this._isSimulator) ? ((!this._isActiveX) ? this._ExtensionExternalSimulator : (this.app) ? this.app.external : this.noData) : this.noData;
+        return ((!this._isActiveX) ? this._ExtensionExternalSimulator : (this.app) ? this.app.external : this.noData);
     }
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {

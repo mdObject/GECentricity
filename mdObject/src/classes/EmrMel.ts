@@ -1,24 +1,28 @@
-import { EmrBase } from '../bases/bases'
 import { System } from './system';
-import { GetActiveXErrorMessage } from '../factories/factories';
+import { GetActiveXErrorMessage, IsActiveXSupported } from '../factories/factories';
+import { Simulator } from '../simulator/simulator';
 
-export class EmrMel extends EmrBase {
+export class EmrMel  {
 
     private melObjectName = 'GE.CPO.EMR.80.MEL';
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
+    private errorMessage: string;
+    readonly noData: string = 'Data Access Error';
+    private _external: any;
+    private _simulator: Simulator;
 
 
     constructor(
-        public _window: any
+        public _window: any,
     ) {
-        super(_window);
+        this._simulator = new Simulator(this._window); // should be the first here
 
         this.initialization();
     }
 
     private initialization = (): void => {
-        if (this.isActiveXSupported) {
+        if (IsActiveXSupported(this._window)) {
             try {
                 this.mel = new this._window.ActiveXObject(this.melObjectName);
             } catch (e) {
@@ -30,23 +34,15 @@ export class EmrMel extends EmrBase {
                     this.mel = new this._window.ActiveXObject(this.melObjectNameSimulator);
                     System.isSimulator = true;
                 } catch (e) {
-                    alert(this.errorMessage);
+                    console.log(this.errorMessage);
                 }
-            }
-        }
-        else {
-            if (this.isExternalSupported) {
-
-            }
-            else {
-                alert(this.errorMessage);
             }
         }
     }
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel) ? this.mel.eval(data) : this.isExternalSupported ? this.external.EvaluateMel(data, false) :  this.noData;
+        return (this.external) ? this.external.EvaluateMel(data, false) : (this.mel) ? this.mel.eval(data) :  this.noData;
     }
 
     saveObservation = (obs: string, value: string, date: string): string => {
@@ -64,4 +60,21 @@ export class EmrMel extends EmrBase {
     get externalSimulator(): any {
         return (this.mel == null) ? this.noData : this.mel.external;
     }
+
+    get external(): any {
+        if (this._external) {
+            return this._external;
+        }
+
+        this._external = this._external ? this._external        // if the _external is set, then use it
+            : (this._window.opener && this._window.opener.external) ? this._window.opener.external
+                : this._window.external;
+        if (this._external.IsDebugMode === undefined) {
+            // try simulator
+            this._external = this._simulator.externalSimulator;
+        }
+
+        return this._external;
+    }
+
 }

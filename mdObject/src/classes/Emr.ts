@@ -17,7 +17,7 @@ export class Emr {
     private _emrMel: EmrMel;
     private _emrApp: EmrApp;
     private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {}
-    private _emrWindow: EmrWindow = new EmrWindow(this.emrMel, this.emrApp, this._window, this._document);
+    private _emrWindow: EmrWindow;
     private _version: string;
     private _external: any;
     private _baseServicesUrl: string;
@@ -37,10 +37,12 @@ export class Emr {
         public _window: any,
         public _document: any
     ) {
+        this._simulator = new Simulator(this._window); // should be the first here
+
         this._window['_melOpener'] = this.emrMel;
         this._window['_appOpener'] = this.emrApp;
-        this._simulator = new Simulator(this._window);
         this._obsTermsMap = new ObsTermsMap();
+        this._emrWindow = new EmrWindow(this.emrMel, this.emrApp, this._window, this._document);
     }
 
     get enterpriseId() {
