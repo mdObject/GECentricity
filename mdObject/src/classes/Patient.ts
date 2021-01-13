@@ -96,18 +96,25 @@ export class Patient {
             if (_demographics.person) {
                 let birthDate = System.formatDate(_demographics.person.birthDate);
                 this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
+                this._dateOfDeath = (_demographics.person.deceaseIndSpecified && _demographics.person.deceaseInd) ?
+                    System.formatDate(_demographics.person.deceaseTime) : this._dateOfDeath;
+
                 this._sex = _demographics.person.genderCode;
+//                this._race= 
                 if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
                     this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
                 }
                 if (_demographics.person.personNameList && _demographics.person.personNameList[0]) {
-                    this._firstName = _demographics.person.personNameList[0].givenName;
-                    this._lastName = _demographics.person.personNameList[0].familyName;
-                    this._middleName = _demographics.person.personNameList[0].middleName;
+                    this._firstName = (_demographics.person.personNameList[0].givenName === null) ?
+                        '' : _demographics.person.personNameList[0].givenName;
+                    this._lastName = (_demographics.person.personNameList[0].familyName === null) ?
+                        '' : _demographics.person.personNameList[0].familyName;
+                    this._middleName = (_demographics.person.personNameList[0].middleName === null) ?
+                        '' : _demographics.person.personNameList[0].middleName;
 
-                    this._labelName = _demographics.person.personNameList[0].givenName
-                        + ' ' + _demographics.person.personNameList[0].middleName
-                        + ' ' + _demographics.person.personNameList[0].familyName;
+                    this._labelName = this._firstName
+                        + ' ' + this._middleName
+                        + ' ' + this._lastName;
 
                     this._namePrefix = _demographics.person.personNameList[0].prefixName;
                     this._nameSuffix = _demographics.person.personNameList[0].suffixName;
