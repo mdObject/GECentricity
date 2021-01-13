@@ -21,7 +21,7 @@
     <div class="col-sm-3">First Name:</div>
     <div class="col-sm-3"><span>{{(patient | async)?.firstName}}</span></div>
     <div class="col-sm-3">Last Name:</div>
-    <div class="col-sm-3"><span >{{(patient | async)?.lastName}}</span></div>
+    <div class="col-sm-3"><span>{{(patient | async)?.lastName}}</span></div>
   </div>
   <div class="row">
     <div class="col-sm-3">Middle Name:</div>
@@ -41,4 +41,30 @@
     <div class="col-sm-3">Sex:</div>
     <div class="col-sm-3"><span>{{(patient | async)?.sex}}</span></div>
   </div>
-</div>
+
+  <!--<div class="row">
+    <div class="col-sm-3">Race:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.race}}</span></div>
+    <div class="col-sm-3">Ethnicity:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.ethnicity}}</span></div>
+  </div>-->
+  <div class="row">
+    <div class="col-sm-3">Date Of Birth:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.dateOfBirth}}</span></div>
+    <div class="col-sm-3">Date Of Death:</div>
+    <div class="col-sm-3"><span>{{(patient | async)?.dateOfDeath}}</span></div>
+  </div>
+  <!--<div class="row">
+      <div class="col-sm-3">Marital Status:</div>
+      <div class="col-sm-3"><span>{{(patient | async)?.maritalStatus}}</span></div>
+      <div class="col-sm-3">Language:</div>
+      <div class="col-sm-3"><span>{{(patient | async)?.language}}</span></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">Home location of care:</div>
+      <div class="col-sm-3"><span>{{(patient | async)?.location.findByType(LocationType.Home).name}}</span></div>
+      <div class="col-sm-3">Abbreviated home location of care:</div>
+      <div class="col-sm-3"><span>{{(patient | async)?.location.findByType(LocationType.Home).id}}</span></div>
+    </div>
+  </div>-->
