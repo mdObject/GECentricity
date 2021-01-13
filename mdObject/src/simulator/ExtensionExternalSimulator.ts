@@ -4,7 +4,7 @@ import { simulatorChromeExtensionId } from "../consts/consts";
 
 export class ExtensionExternalSimulator {
 
-    EvaluateMel = (data: any): Promise<any> => {
+    EvaluateMel = (data: any, _showWait:boolean = false): Promise<any> => {
         return this.sendMessage(simulatorChromeExtensionId, { type: 'EvaluateMel', data: data });
     }
 

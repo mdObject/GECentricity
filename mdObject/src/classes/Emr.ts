@@ -53,10 +53,13 @@ export class Emr {
         }
 
         this._external = this._external ? this._external        // if the _external is set, then use it
-            : this._simulator.isSimulatorAsync ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
-            //: isSimulator ? this.emrApp.external 
-                : (this._window.opener && this._window.opener.external) ? this._window.opener.external
-                    : this._window.external;
+            : (this._window.opener && this._window.opener.external) ? this._window.opener.external
+                : this._window.external;
+        if (this._external.IsDebugMode === undefined) {
+            // try simulator
+            this._external = this._simulator.externalSimulator;
+        }
+
         return this._external;
     }
 
@@ -235,7 +238,7 @@ export class Emr {
     }
 
     // Implements MEL eval 
-    melFuncAsync = async (data: string): Promise<string> => {
-        return await this.externalAsync().then(e => e.EvaluateMel(data));
+    melFuncAsync = async (data: string, showWait: boolean = false): Promise<string> => {
+        return await this.externalAsync().then(e => e.EvaluateMel(data, showWait));
     }
 }

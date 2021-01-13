@@ -46,7 +46,7 @@ export class EmrMel extends EmrBase {
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel) ? this.mel.eval(data) : this.isExternalSupported ? this.external.EvaluateMel(data) :  this.noData;
+        return (this.mel) ? this.mel.eval(data) : this.isExternalSupported ? this.external.EvaluateMel(data, false) :  this.noData;
     }
 
     saveObservation = (obs: string, value: string, date: string): string => {
