@@ -1,22 +1,19 @@
 import { System } from './system';
 import { GetActiveXErrorMessage, IsActiveXSupported } from '../factories/factories';
-import { Simulator } from '../simulator/simulator';
+import { EmrBase } from '../bases/EmrBase';
 
-export class EmrMel  {
+export class EmrMel extends EmrBase {
 
     private melObjectName = 'GE.CPO.EMR.80.MEL';
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
     public errorMessage: string;
     readonly noData: string = 'Data Access Error';
-    private _external: any;
-    private _simulator: Simulator;
-
 
     constructor(
         public _window: any,
     ) {
-        this._simulator = new Simulator(this._window); // should be the first here
+        super(_window);
 
         this.initialization();
     }
@@ -59,22 +56,6 @@ export class EmrMel  {
 
     get externalSimulator(): any {
         return (this.mel == null) ? this.noData : this.mel.external;
-    }
-
-    get external(): any {
-        if (this._external) {
-            return this._external;
-        }
-
-        this._external = this._external ? this._external        // if the _external is set, then use it
-            : (this._window.opener && this._window.opener.external) ? this._window.opener.external
-                : this._window.external;
-        if (this._external.IsDebugMode === undefined) {
-            // try simulator
-            this._external = this._simulator.externalSimulator;
-        }
-
-        return this._external;
     }
 
 }
