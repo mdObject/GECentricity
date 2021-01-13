@@ -21,6 +21,8 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* ActiveX alert message replaced with log notification
 	* Added version log output 
 
+	EmrMel and EmrApp have a new constructor parameter: Simulator 
+
 ## Release 2.0.0-alpha.1.1
 	Updated license year.
 	* Replaced [name]Export to [name]External
