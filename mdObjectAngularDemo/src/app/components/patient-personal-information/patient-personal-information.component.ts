@@ -28,5 +28,4 @@ export class PatientPersonalInformationComponent implements OnInit {
       patientAsync.then(p => p.ethnicityAsync()),
     ]).then(e => { this.patient = e[0]; });
   }
-
 }
