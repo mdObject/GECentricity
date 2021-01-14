@@ -2,6 +2,16 @@
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
 ## Release 2.0.0-alpha.1.3
 	Added build-with-mdobject.svg to the library
+	Addess async properies to patient object. 
+	* For example: in addition to the patient.firstName:string there is a patient.firstNameAsync(): Promise<string>
+	* Use: 
+    patient: Patient;
+	Promise.all([
+      patientAsync,
+      patientAsync.then(p => p.firstNameAsync()),
+      patientAsync.then(p => p.lastNameAsync()),
+    ]).then(e => { this.patient = e[0]; });
+	to get the patient object. See: mdObjectAngularDemo 
 
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
