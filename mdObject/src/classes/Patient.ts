@@ -100,7 +100,6 @@ export class Patient {
                     System.formatDate(_demographics.person.deceaseTime) : this._dateOfDeath;
 
                 this._sex = _demographics.person.genderCode;
-//                this._race= 
                 if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
                     this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
                 }
@@ -147,9 +146,19 @@ export class Patient {
         return this._patientId;
     }
 
+    async patientIdAsync() {
+        this._patientId = (this._patientId !== undefined) ? this._patientId : await this._mel.melFunc('{PATIENT.PATIENTID}');
+        return this._patientId;
+    }
+
     // Returns the internal PID number for patient record
     get pid() {
         this._pid = (this._pid !== undefined) ? this._pid : this._mel.melFunc('{find("patient", "PID")}');
+        return this._pid;
+    }
+
+    async pidAsync() {
+        this._pid = (this._pid !== undefined) ? this._pid : await this._mel.melFunc('{find("patient", "PID")}');
         return this._pid;
     }
 
@@ -159,9 +168,19 @@ export class Patient {
         return this._medicalRecordId;
     }
 
+    async medicalRecordIdAsync() {
+        this._medicalRecordId = (this._medicalRecordId !== undefined) ? this._medicalRecordId : await this._mel.melFunc('{PATIENT.MEDRECNO}');
+        return this._medicalRecordId;
+    }
+
     // Returns the patient’s ID from an external system; such as a billing or lab system
     get externalId() {
         this._externalId = (this._externalId !== undefined) ? this._externalId : this._mel.melFunc('{PATIENT.EXTERNALID}');
+        return this._externalId;
+    }
+
+    async externalIdAsync() {
+        this._externalId = (this._externalId !== undefined) ? this._externalId : await this._mel.melFunc('{PATIENT.EXTERNALID}');
         return this._externalId;
     }
 
@@ -171,9 +190,19 @@ export class Patient {
         return this._printId;
     }
 
+    async printIdAsync() {
+        this._printId = (this._printId !== undefined) ? this._printId : await this._mel.melFunc('{PATIENT.PRINTID}');
+        return this._printId;
+    }
+
     // Returns the patient’s Social Security number.
     get ssn() {
         this._ssn = (this._ssn !== undefined) ? this._ssn : this._mel.melFunc('{PATIENT.SOCSECNO}');
+        return this._ssn;
+    }
+
+    async ssnAsync() {
+        this._ssn = (this._ssn !== undefined) ? this._ssn : await this._mel.melFunc('{PATIENT.SOCSECNO}');
         return this._ssn;
     }
 
@@ -183,9 +212,19 @@ export class Patient {
         return this._firstName;
     }
 
+    async firstNameAsync() {
+        this._firstName = (this._firstName !== undefined) ? this._firstName : await this._mel.melFunc('{PATIENT.FIRSTNAME}');
+        return this._firstName;
+    }
+
     // Returns the patient’s last name.
     get lastName() {
         this._lastName = (this._lastName !== undefined) ? this._lastName : this._mel.melFunc('{PATIENT.LASTNAME}');
+        return this._lastName;
+    }
+
+    async lastNameAsync() {
+        this._lastName = (this._lastName !== undefined) ? this._lastName : await this._mel.melFunc('{PATIENT.LASTNAME}');
         return this._lastName;
     }
 
@@ -195,9 +234,19 @@ export class Patient {
         return this._middleName;
     }
 
+    async middleNameAsync() {
+        this._middleName = (this._middleName !== undefined) ? this._middleName : await this._mel.melFunc('{PATIENT.MIDDLENAME}');
+        return this._middleName;
+    }
+
     // Returns the patient’s full name formatted as follows: string = title first middle last; suffix
     get labelName() {
         this._labelName = (this._labelName !== undefined) ? this._labelName : this._mel.melFunc('{PATIENT.LABELNAME}');
+        return this._labelName;
+    }
+
+    async labelNameAsync() {
+        this._labelName = (this._labelName !== undefined) ? this._labelName : await this._mel.melFunc('{PATIENT.LABELNAME}');
         return this._labelName;
     }
 
@@ -207,15 +256,30 @@ export class Patient {
         return this._namePrefix;
     }
 
+    async namePrefixAsync() {
+        this._namePrefix = (this._namePrefix !== undefined) ? this._namePrefix : await this._mel.melFunc('{PATIENT.TITLE}');
+        return this._namePrefix;
+    }
+
     // Name Suffix
     get nameSuffix() {
         this._nameSuffix = (this._nameSuffix !== undefined) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
         return this._nameSuffix;
     }
 
+    async nameSuffixAsync() {
+        this._nameSuffix = (this._nameSuffix !== undefined) ? this._nameSuffix : await this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
+        return this._nameSuffix;
+    }
+
     // Patient’s sex.
     get sex() {
         this._sex = (this._sex  !== undefined) ? this._sex : this._mel.melFunc('{PATIENT.SEX}');
+        return this._sex;
+    }
+
+    async sexAsync() {
+        this._sex = (this._sex !== undefined) ? this._sex : await this._mel.melFunc('{PATIENT.SEX}');
         return this._sex;
     }
 
@@ -247,6 +311,11 @@ export class Patient {
         return this._dateOfBirth;
     }
 
+    async dateOfBirthAsync() {
+        this._dateOfBirth = (this._dateOfBirth !== undefined) ? this._dateOfBirth : await this._mel.melFunc('{PATIENT.DATEOFBIRTH}');
+        return this._dateOfBirth;
+    }
+
     // Returns the patient’s date of death
     get dateOfDeath() {
         this._dateOfDeath = (this._dateOfDeath  !== undefined) ? this._dateOfDeath : this._mel.melFunc('{PATIENT.DATEOFDEATH}');
@@ -264,9 +333,19 @@ export class Patient {
         return this._maritalStatus;
     }
 
+    async maritalStatusAsync() {
+        this._maritalStatus = (this._maritalStatus !== undefined) ? this._maritalStatus : await this._mel.melFunc('{PATIENT.MARITALSTATUS}');
+        return this._maritalStatus;
+    }
+
     // Returns the patient’s preferred language
     get language() {
         this._language = (this._language  !== undefined) ? this._language : this._mel.melFunc('{PATIENT.PREFLANG}');
+        return this._language;
+    }
+
+    async languageAsync() {
+        this._language = (this._language !== undefined) ? this._language : await this._mel.melFunc('{PATIENT.PREFLANG}');
         return this._language;
     }
 
@@ -276,14 +355,29 @@ export class Patient {
         return this._email;
     }
 
+    async emailAsync() {
+        this._email = (this._email !== undefined) ? this._email : await this._mel.melFunc('{PATIENT.EMAIL}');
+        return this._email;
+    }
+
     // Returns the patient’s contact by information
     get contactBy() {
         this._contactBy = (this._contactBy  !== undefined) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
         return this._contactBy;
     }
 
+    async contactByAsync() {
+        this._contactBy = (this._contactBy !== undefined) ? this._contactBy : await this._mel.melFunc('{PATIENT.CONTACTBY}');
+        return this._contactBy;
+    }
+
     get registrationNote() {
         this._registrationNote = (this._registrationNote  !== undefined) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
+        return this._registrationNote;
+    }
+
+    async registrationNoteAsync() {
+        this._registrationNote = (this._registrationNote !== undefined) ? this._registrationNote : await this._mel.melFunc('{PATIENT.REGNOTE}');
         return this._registrationNote;
     }
 
