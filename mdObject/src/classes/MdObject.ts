@@ -1,3 +1,7 @@
+// <copyright file="MdObject.ts" company="mdObject, Inc">
+// Copyright (c) mdObject, Inc. All rights reserved.
+// Licensed under the MS-PL license. See LICENSE file in the project root for full license information.
+// </copyright>
 import { version, productType } from '../consts/consts'
 import { Fhir } from '../fhir/fhir';
 import { Emr } from './Emr';
