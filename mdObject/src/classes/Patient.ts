@@ -408,15 +408,32 @@ export class Patient {
         return this._employmentStatus;
     }
 
+    async employmentStatusAsync() {
+        this._employmentStatus = (this._employmentStatus !== undefined) ? this._employmentStatus : await this._mel.melFunc('{PATIENT.EMPLSTATUS}');
+        return this._employmentStatus;
+    }
+
     // Patient’s current status in the clinic
     get clinicStatus() {
         this._clinicStatus = (this._clinicStatus  !== undefined) ? this._clinicStatus : this._mel.melFunc('{PATIENT.PSTATUS}');
         return this._clinicStatus;
     }
 
+    async clinicStatusAsync() {
+        this._clinicStatus = (this._clinicStatus !== undefined) ? this._clinicStatus : await this._mel.melFunc('{PATIENT.PSTATUS}');
+        return this._clinicStatus;
+    }
+
     // Name of the primary care physician
     get primaryCarePhysicianName() {
-        this._primaryCarePhysicianName = (this._primaryCarePhysicianName  !== undefined) ? this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
+        this._primaryCarePhysicianName = (this._primaryCarePhysicianName !== undefined) ?
+            this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
+        return this._primaryCarePhysicianName;
+    }
+
+    async primaryCarePhysicianNameAsync() {
+        this._primaryCarePhysicianName = (this._primaryCarePhysicianName !== undefined) ?
+            this._primaryCarePhysicianName : await this._mel.melFunc('{PATIENT.PCP}');
         return this._primaryCarePhysicianName;
     }
 
