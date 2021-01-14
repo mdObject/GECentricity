@@ -12,6 +12,29 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
       patientAsync.then(p => p.lastNameAsync()),
     ]).then(e => { this.patient = e[0]; });
 	to get the patient object. See: mdObjectAngularDemo 
+	The following async method added to the Patient object:
+	* patientIdAsync
+	* pidAsync
+	* medicalRecordIdAsync
+	* externalIdAsync
+	* printIdAsync
+	* ssnAsync
+	* firstNameAsync
+	* lastNameAsync
+	* middleNameAsync
+	* labelNameAsync
+	* namePrefixAsync
+	* nameSuffixAsync
+	* sexAsync
+	* dateOfBirthAsync
+	* maritalStatusAsync
+	* languageAsync
+	* emailAsync
+	* contactByAsync
+	* registrationNoteAsync
+	* employmentStatusAsync
+	* clinicStatusAsync
+	* primaryCarePhysicianNameAsync
 
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
