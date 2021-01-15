@@ -3,13 +3,11 @@ import { MdObject, Patient } from '../../../../../mdObject/src/classes/classes';
 import { MdObjectServiceService } from '../../md-object-service.service';
 
 @Component({
-  selector: 'app-patient-personal-information',
-  templateUrl: './patient-personal-information.component.html',
-  styleUrls: ['./patient-personal-information.component.scss']
+  selector: 'app-simulator-view',
+  templateUrl: './simulator-view.component.html',
+  styleUrls: ['./simulator-view.component.scss']
 })
-export class PatientPersonalInformationComponent implements OnInit {
-
-  //patient: Promise<Patient> | null = null;
+export class SimulatorViewComponent implements OnInit {
   patient: Patient;
   dateOfDeath: string;
   mdObject: MdObject;
@@ -26,8 +24,11 @@ export class PatientPersonalInformationComponent implements OnInit {
       patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.raceAsync()),
       patientAsync.then(p => p.ethnicityAsync()),
-      patientAsync.then(p => p.maritalStatusAsync()),
-
     ]).then(e => { this.patient = e[0]; });
   }
+
+  formater = (data): string => {
+    return data.replace(/[{}]/gi, '').replace(/[."(),\s]/gi, '_').trim();
+  }
 }
+

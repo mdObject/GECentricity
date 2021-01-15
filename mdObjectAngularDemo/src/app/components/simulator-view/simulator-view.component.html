@@ -1,0 +1,14 @@
+{{ '{' }}
+<br />
+Demographics:&#x27;<span>{{patient?._demographics.json}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.PATIENTID}')}}:&#x27;<span>{{patient?.patientId}}</span>&#x27;,
+<br />
+{{formater('{find("patient", "PID")}')}}:&#x27;<span>{{patient?.pid}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.RACE}')}}:&#x27;<span>{{patient?.race}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.MARITALSTATUS}')}}:&#x27;<span>{{patient?.maritalStatus}}</span>&#x27;,
+<br />
+
+{{ '}' }}

@@ -17,6 +17,7 @@ import { TitleCasePipe } from '@angular/common';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { PatientPersonalInformationComponent } from './components/patient-personal-information/patient-personal-information.component';
 import { PatientAddressComponent } from './components/patient-address/patient-address.component';
+import { SimulatorViewComponent } from './components/simulator-view/simulator-view.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PatientAddressComponent } from './components/patient-address/patient-ad
     PatientHeaderComponent,
     PatientPersonalInformationComponent,
     PatientAddressComponent,
+    SimulatorViewComponent,
     
   ],
   imports: [
