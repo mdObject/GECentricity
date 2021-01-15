@@ -27,6 +27,11 @@ export class PatientPersonalInformationComponent implements OnInit {
       patientAsync.then(p => p.raceAsync()),
       patientAsync.then(p => p.ethnicityAsync()),
       patientAsync.then(p => p.maritalStatusAsync()),
+      patientAsync.then(p => p.emailAsync()),
+      patientAsync.then(p => p.contactByAsync()),
+      patientAsync.then(p => p.employmentStatusAsync()),
+      patientAsync.then(p => p.clinicStatusAsync()),
+      patientAsync.then(p => p.primaryCarePhysicianNameAsync()),
 
     ]).then(e => { this.patient = e[0]; });
   }
