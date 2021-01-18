@@ -13,7 +13,23 @@ export class Phone {
         public _electronicAddressExternal?: ElectronicAddressExternal[]
     ) {
         if (this._electronicAddressExternal) {
-            this._home = (this._home != null) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr?.replace(/(\d{3})(\d{3})(\d+)/, '($1) $2-$3');
+            this._home = (this._home != null) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr;
+            this._home = (this._home) ? this.formatMelPhone(this._home) : this._home;
+            this._business = (this._business != null) ? this._business : this._electronicAddressExternal.find(a => (a.addressSettingCode === "WP" && a.urlScheme === "tel"))?.urlAddr?.replace(/(\d{3})(\d{3})(\d{4})(\d+)/, '($1) $2-$3 [$4]');
+            this._business = (this._business) ? this.formatMelPhone(this._business) : this._business;
+
+        }
+    }
+
+    private formatMelPhone = (phone) => {
+        var phoneTest = new RegExp(/^((\+1)|1)? ?\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})( ?(ext\.? ?|x)(\d*))?$/);
+        phone = phone.trim();
+        var results = phoneTest.exec(phone);
+        if (results !== null && results.length > 8) {
+            return "(" + results[3] + ") " + results[4] + "-" + results[5] + (typeof results[8] !== "undefined" ? " [" + results[8] + "]" : "");
+        }
+        else {
+            return phone;
         }
     }
 
