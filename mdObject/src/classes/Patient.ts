@@ -67,7 +67,7 @@ export class Patient {
     private _locationsArray: IArrayAdditionalMethods<Location> = [];
     private _allergies = new Allergies(this._mel);
     private _referringProvider = new ReferringProvider(this._mel);
-    private _phone = new Phone(this._mel);
+    private _phone: Phone;
     private _address: Address;
     private _registrationNote: string;
     private _patientPicture: string;
@@ -103,6 +103,9 @@ export class Patient {
                 if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
                     this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
                 }
+                if (_demographics.person.electronicAddressList) {
+                    this._phone = (this._phone) ? this._phone : new Phone(this._mel, _demographics.person.electronicAddressList);
+                }
                 if (_demographics.person.personNameList && _demographics.person.personNameList[0]) {
                     this._firstName = (_demographics.person.personNameList[0].givenName === null) ?
                         '' : _demographics.person.personNameList[0].givenName;
@@ -128,6 +131,7 @@ export class Patient {
         }
 
         this._address = (this._address) ? this._address : new Address(this._mel);
+        this._phone = (this._phone) ? this._phone : new Phone(this._mel);
     }
 
     get lastOfficeVisit() {

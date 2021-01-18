@@ -19,6 +19,7 @@ import { PatientPersonalInformationComponent } from './components/patient-person
 import { PatientAddressComponent } from './components/patient-address/patient-address.component';
 import { SimulatorViewComponent } from './components/simulator-view/simulator-view.component';
 import { PatientContactsComponent } from './components/patient-contacts/patient-contacts.component';
+import { PatientPhoneComponent } from './components/patient-phone/patient-phone.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PatientContactsComponent } from './components/patient-contacts/patient-
     PatientAddressComponent,
     SimulatorViewComponent,
     PatientContactsComponent,
+    PatientPhoneComponent,
     
   ],
   imports: [

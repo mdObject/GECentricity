@@ -53,5 +53,13 @@ Demographics:&#x27;<span>{{ demographics }}</span>&#x27;,
 <br />
 {{formater('{PATIENT.CONTACTS}')}}:&#x27;<span>{{patient?.contacts.toMelString()}}</span>&#x27;,
 <br />
+{{formater('{PATIENT.ALTPHONE}')}}:&#x27;<span>{{patient?.phone.home}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.WORKPHONE}')}}:&#x27;<span>{{patient?.phone.business}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.CELLPHONE}')}}:&#x27;<span>{{patient?.phone.mobile}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.FAXPHONE}')}}:&#x27;<span>{{patient?.phone.fax}}</span>&#x27;,
+<br />
 
 {{ '}' }}

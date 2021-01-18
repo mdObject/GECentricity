@@ -30,6 +30,8 @@
     <Content Include="src\app\components\patient-contacts\patient-contacts.component.scss" />
     <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.html" />
     <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.scss" />
+    <Content Include="src\app\components\patient-phone\patient-phone.component.html" />
+    <Content Include="src\app\components\patient-phone\patient-phone.component.scss" />
     <Content Include="src\app\components\simulator-view\simulator-view.component.html" />
     <Content Include="src\app\components\simulator-view\simulator-view.component.scss" />
     <Content Include="src\app\patient-header\patient-header.component.html" />
@@ -69,6 +71,7 @@
     <Folder Include="src\app\components\patient-address\" />
     <Folder Include="src\app\components\patient-contacts\" />
     <Folder Include="src\app\components\patient-personal-information\" />
+    <Folder Include="src\app\components\patient-phone\" />
     <Folder Include="src\app\components\simulator-view\" />
     <Folder Include="src\app\patient-header\" />
     <Folder Include="src\assets" />
@@ -81,6 +84,8 @@
     <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-phone\patient-phone.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-phone\patient-phone.component.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.spec.ts" />
