@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Patient Contacts</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let contact of patient.contacts">
+            <div class="row">
+              <div class="col-sm-3">Name:</div>
+              <div class="col-sm-3"><span>{{contact.name}}</span></div>
+              <div class="col-sm-3">Type:</div>
+              <div class="col-sm-3"><span>{{contact.type}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Phone:</div>
+              <div class="col-sm-3"><span>{{contact.phone}}</span></div>
+              <div class="col-sm-3">Phone Type:</div>
+              <div class="col-sm-3"><span>{{contact.phoneType}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Address1:</div>
+              <div class="col-sm-9"><span>{{contact.address1}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Address2:</div>
+              <div class="col-sm-9"><span>{{contact.address2}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">City:</div>
+              <div class="col-sm-9"><span>{{contact.city}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">State:</div>
+              <div class="col-sm-9"><span>{{contact.state}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Zip:</div>
+              <div class="col-sm-9"><span>{{contact.zip}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Country:</div>
+              <div class="col-sm-9"><span>{{contact.country}}</span></div>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -26,6 +26,8 @@
     <Content Include="src\app\app.component.scss" />
     <Content Include="src\app\components\patient-address\patient-address.component.html" />
     <Content Include="src\app\components\patient-address\patient-address.component.scss" />
+    <Content Include="src\app\components\patient-contacts\patient-contacts.component.html" />
+    <Content Include="src\app\components\patient-contacts\patient-contacts.component.scss" />
     <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.html" />
     <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.scss" />
     <Content Include="src\app\components\simulator-view\simulator-view.component.html" />
@@ -65,6 +67,7 @@
     <Folder Include="src\app\allergy" />
     <Folder Include="src\app\components\" />
     <Folder Include="src\app\components\patient-address\" />
+    <Folder Include="src\app\components\patient-contacts\" />
     <Folder Include="src\app\components\patient-personal-information\" />
     <Folder Include="src\app\components\simulator-view\" />
     <Folder Include="src\app\patient-header\" />
@@ -74,6 +77,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.spec.ts" />

@@ -402,6 +402,26 @@ export class Patient {
         return this._contactsArray;
     }
 
+    async contactsAsync() {
+        if (this._contactsArray.length === 0) {
+            this._contacts = (this._contacts !== undefined) ? this._contacts : await this._mel.melFunc('{PATIENT.CONTACTS}');
+            let dataArray = StringInternal(this._contacts).toList();
+
+            /*jslint plusplus: true */
+            this._contactsArray = [];
+            for (let index = 0; index < dataArray.length; index++) {
+                this._contactsArray.push(new PatientContact(dataArray[index]));
+            }
+
+            this._contactsArray.tag = 'PATIENT.CONTACTS';
+
+            this._contactsArray.toMelString = () => {
+                return this._contacts;
+            }
+        }
+        return this._contactsArray;
+    }
+
     // Returns the patient’s employment status.
     get employmentStatus() {
         this._employmentStatus = (this._employmentStatus  !== undefined) ? this._employmentStatus : this._mel.melFunc('{PATIENT.EMPLSTATUS}');

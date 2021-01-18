@@ -18,6 +18,7 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
 import { PatientPersonalInformationComponent } from './components/patient-personal-information/patient-personal-information.component';
 import { PatientAddressComponent } from './components/patient-address/patient-address.component';
 import { SimulatorViewComponent } from './components/simulator-view/simulator-view.component';
+import { PatientContactsComponent } from './components/patient-contacts/patient-contacts.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SimulatorViewComponent } from './components/simulator-view/simulator-vi
     PatientPersonalInformationComponent,
     PatientAddressComponent,
     SimulatorViewComponent,
+    PatientContactsComponent,
     
   ],
   imports: [
