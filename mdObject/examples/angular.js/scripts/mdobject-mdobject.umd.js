@@ -1268,7 +1268,7 @@
         return ReferringProvider;
     }());
 
-    var version = '2.0.0-alpha.1.2';
+    var version = '2.0.0-alpha.1.3';
 
     var productType = 'GE';
 
@@ -2040,6 +2040,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.patientIdAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._patientId !== undefined)) return [3 /*break*/, 1];
+                            _b = this._patientId;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.PATIENTID}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._patientId = _b;
+                            return [2 /*return*/, this._patientId];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "pid", {
             get: function () {
                 this._pid = (this._pid !== undefined) ? this._pid : this._mel.melFunc('{find("patient", "PID")}');
@@ -2048,6 +2069,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.pidAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._pid !== undefined)) return [3 /*break*/, 1];
+                            _b = this._pid;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{find("patient", "PID")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._pid = _b;
+                            return [2 /*return*/, this._pid];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "medicalRecordId", {
             get: function () {
                 this._medicalRecordId = (this._medicalRecordId !== undefined) ? this._medicalRecordId : this._mel.melFunc('{PATIENT.MEDRECNO}');
@@ -2056,6 +2098,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.medicalRecordIdAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._medicalRecordId !== undefined)) return [3 /*break*/, 1];
+                            _b = this._medicalRecordId;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.MEDRECNO}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._medicalRecordId = _b;
+                            return [2 /*return*/, this._medicalRecordId];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "externalId", {
             get: function () {
                 this._externalId = (this._externalId !== undefined) ? this._externalId : this._mel.melFunc('{PATIENT.EXTERNALID}');
@@ -2064,6 +2127,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.externalIdAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._externalId !== undefined)) return [3 /*break*/, 1];
+                            _b = this._externalId;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.EXTERNALID}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._externalId = _b;
+                            return [2 /*return*/, this._externalId];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "printId", {
             get: function () {
                 this._printId = (this._printId !== undefined) ? this._printId : this._mel.melFunc('{PATIENT.PRINTID}');
@@ -2072,6 +2156,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.printIdAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._printId !== undefined)) return [3 /*break*/, 1];
+                            _b = this._printId;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.PRINTID}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._printId = _b;
+                            return [2 /*return*/, this._printId];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "ssn", {
             get: function () {
                 this._ssn = (this._ssn !== undefined) ? this._ssn : this._mel.melFunc('{PATIENT.SOCSECNO}');
@@ -2080,6 +2185,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.ssnAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._ssn !== undefined)) return [3 /*break*/, 1];
+                            _b = this._ssn;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.SOCSECNO}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._ssn = _b;
+                            return [2 /*return*/, this._ssn];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "firstName", {
             get: function () {
                 this._firstName = (this._firstName !== undefined) ? this._firstName : this._mel.melFunc('{PATIENT.FIRSTNAME}');
@@ -2088,6 +2214,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.firstNameAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._firstName !== undefined)) return [3 /*break*/, 1];
+                            _b = this._firstName;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.FIRSTNAME}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._firstName = _b;
+                            return [2 /*return*/, this._firstName];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "lastName", {
             get: function () {
                 this._lastName = (this._lastName !== undefined) ? this._lastName : this._mel.melFunc('{PATIENT.LASTNAME}');
@@ -2096,6 +2243,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.lastNameAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._lastName !== undefined)) return [3 /*break*/, 1];
+                            _b = this._lastName;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.LASTNAME}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._lastName = _b;
+                            return [2 /*return*/, this._lastName];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "middleName", {
             get: function () {
                 this._middleName = (this._middleName !== undefined) ? this._middleName : this._mel.melFunc('{PATIENT.MIDDLENAME}');
@@ -2104,6 +2272,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.middleNameAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._middleName !== undefined)) return [3 /*break*/, 1];
+                            _b = this._middleName;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.MIDDLENAME}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._middleName = _b;
+                            return [2 /*return*/, this._middleName];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "labelName", {
             get: function () {
                 this._labelName = (this._labelName !== undefined) ? this._labelName : this._mel.melFunc('{PATIENT.LABELNAME}');
@@ -2112,6 +2301,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.labelNameAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._labelName !== undefined)) return [3 /*break*/, 1];
+                            _b = this._labelName;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.LABELNAME}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._labelName = _b;
+                            return [2 /*return*/, this._labelName];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "namePrefix", {
             get: function () {
                 this._namePrefix = (this._namePrefix !== undefined) ? this._namePrefix : this._mel.melFunc('{PATIENT.TITLE}');
@@ -2120,6 +2330,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.namePrefixAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._namePrefix !== undefined)) return [3 /*break*/, 1];
+                            _b = this._namePrefix;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.TITLE}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._namePrefix = _b;
+                            return [2 /*return*/, this._namePrefix];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "nameSuffix", {
             get: function () {
                 this._nameSuffix = (this._nameSuffix !== undefined) ? this._nameSuffix : this._mel.melFunc('{PATIENT.ENTITLEMENTS}');
@@ -2128,6 +2359,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.nameSuffixAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._nameSuffix !== undefined)) return [3 /*break*/, 1];
+                            _b = this._nameSuffix;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.ENTITLEMENTS}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._nameSuffix = _b;
+                            return [2 /*return*/, this._nameSuffix];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "sex", {
             get: function () {
                 this._sex = (this._sex !== undefined) ? this._sex : this._mel.melFunc('{PATIENT.SEX}');
@@ -2136,6 +2388,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.sexAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._sex !== undefined)) return [3 /*break*/, 1];
+                            _b = this._sex;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.SEX}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._sex = _b;
+                            return [2 /*return*/, this._sex];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "race", {
             get: function () {
                 this._race = (this._race !== undefined) ? this._race : this._mel.melFunc('{PATIENT.RACE}');
@@ -2202,6 +2475,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.dateOfBirthAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._dateOfBirth !== undefined)) return [3 /*break*/, 1];
+                            _b = this._dateOfBirth;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.DATEOFBIRTH}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._dateOfBirth = _b;
+                            return [2 /*return*/, this._dateOfBirth];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "dateOfDeath", {
             get: function () {
                 this._dateOfDeath = (this._dateOfDeath !== undefined) ? this._dateOfDeath : this._mel.melFunc('{PATIENT.DATEOFDEATH}');
@@ -2239,6 +2533,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.maritalStatusAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._maritalStatus !== undefined)) return [3 /*break*/, 1];
+                            _b = this._maritalStatus;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.MARITALSTATUS}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._maritalStatus = _b;
+                            return [2 /*return*/, this._maritalStatus];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "language", {
             get: function () {
                 this._language = (this._language !== undefined) ? this._language : this._mel.melFunc('{PATIENT.PREFLANG}');
@@ -2247,6 +2562,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.languageAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._language !== undefined)) return [3 /*break*/, 1];
+                            _b = this._language;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.PREFLANG}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._language = _b;
+                            return [2 /*return*/, this._language];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "email", {
             get: function () {
                 this._email = (this._email !== undefined) ? this._email : this._mel.melFunc('{PATIENT.EMAIL}');
@@ -2255,6 +2591,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.emailAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._email !== undefined)) return [3 /*break*/, 1];
+                            _b = this._email;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.EMAIL}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._email = _b;
+                            return [2 /*return*/, this._email];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "contactBy", {
             get: function () {
                 this._contactBy = (this._contactBy !== undefined) ? this._contactBy : this._mel.melFunc('{PATIENT.CONTACTBY}');
@@ -2263,6 +2620,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.contactByAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._contactBy !== undefined)) return [3 /*break*/, 1];
+                            _b = this._contactBy;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.CONTACTBY}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._contactBy = _b;
+                            return [2 /*return*/, this._contactBy];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "registrationNote", {
             get: function () {
                 this._registrationNote = (this._registrationNote !== undefined) ? this._registrationNote : this._mel.melFunc('{PATIENT.REGNOTE}');
@@ -2271,6 +2649,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.registrationNoteAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._registrationNote !== undefined)) return [3 /*break*/, 1];
+                            _b = this._registrationNote;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.REGNOTE}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._registrationNote = _b;
+                            return [2 /*return*/, this._registrationNote];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "contacts", {
             get: function () {
                 var _this = this;
@@ -2299,6 +2698,27 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.employmentStatusAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._employmentStatus !== undefined)) return [3 /*break*/, 1];
+                            _b = this._employmentStatus;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.EMPLSTATUS}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._employmentStatus = _b;
+                            return [2 /*return*/, this._employmentStatus];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "clinicStatus", {
             get: function () {
                 this._clinicStatus = (this._clinicStatus !== undefined) ? this._clinicStatus : this._mel.melFunc('{PATIENT.PSTATUS}');
@@ -2307,14 +2727,57 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.clinicStatusAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._clinicStatus !== undefined)) return [3 /*break*/, 1];
+                            _b = this._clinicStatus;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.PSTATUS}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._clinicStatus = _b;
+                            return [2 /*return*/, this._clinicStatus];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "primaryCarePhysicianName", {
             get: function () {
-                this._primaryCarePhysicianName = (this._primaryCarePhysicianName !== undefined) ? this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
+                this._primaryCarePhysicianName = (this._primaryCarePhysicianName !== undefined) ?
+                    this._primaryCarePhysicianName : this._mel.melFunc('{PATIENT.PCP}');
                 return this._primaryCarePhysicianName;
             },
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.primaryCarePhysicianNameAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._primaryCarePhysicianName !== undefined)) return [3 /*break*/, 1];
+                            _b = this._primaryCarePhysicianName;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.PCP}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._primaryCarePhysicianName = _b;
+                            return [2 /*return*/, this._primaryCarePhysicianName];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "problems", {
             get: function () {
                 var _this = this;

@@ -1,5 +1,5 @@
 
-GECentricity
+mdObject For Centricity
 ============
 
 ![Build Status](https://github.com/mdObject/GECentricity/workflows/mdObject%20-%20Master/badge.svg)
@@ -34,9 +34,12 @@ Default location for your own HTML Encounter forms in CPS12+:
 	%JBOSS.SERVER.HOME.DIR%\server\default\deploy\demo.ear\CentricityPracticeWS.war\
     or
     C:\Program Files\Centricity Practice Solution\jboss\standalone\deployments\demo.ear\CentricityPracticeWS.war
+
 EMR9.8 Evaluation: 
 	
 	C:\Program Files (x86)\Centricity EMR 9.8 Evaluation\jboss\server\default\deploy\Default.ear\CentricityPracticeWS.war\
+
+
 
 Refer to https://forum.centricityusers.com/forum/anyone-have-cemr-9-8-evaluation-working-on-win-10-version-1607/ for issue with Windows10
 
@@ -50,7 +53,6 @@ __.mdobject__
 __{show_html_form("//localserver/mdObject/mdObjectDemo/index.html","$mdObject Feature Demo Page")}__
 5. Open patient chart and a new document 
 6. Type __.mdobject__ and press Enter key.
-
 
 
 Here is the example how to create a new observation (jQuery is used below to pull the height value from HTML control):

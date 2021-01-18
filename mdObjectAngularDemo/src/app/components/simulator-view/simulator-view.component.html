@@ -1,6 +1,6 @@
 {{ '{' }}
 <br />
-Demographics:&#x27;<span>{{patient?._demographics.json}}</span>&#x27;,
+Demographics:&#x27;<span>{{ demographics }}</span>&#x27;,
 <br />
 {{formater('{PATIENT.PATIENTID}')}}:&#x27;<span>{{patient?.patientId}}</span>&#x27;,
 <br />
@@ -46,6 +46,10 @@ Demographics:&#x27;<span>{{patient?._demographics.json}}</span>&#x27;,
 {{formater('{PATIENT.SEX}')}}:&#x27;<span>{{patient?.sex}}</span>&#x27;,
 <br />
 {{formater('{PATIENT.ETHNICITY}')}}:&#x27;<span>{{patient?.ethnicity}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.DATEOFBIRTH}')}}:&#x27;<span>{{patient?.dateOfBirth}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.DATEOFDEATH}')}}:&#x27;<span>{{patient?.dateOfDeath}}</span>&#x27;,
 <br />
 
 {{ '}' }}
