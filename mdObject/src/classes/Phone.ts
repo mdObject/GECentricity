@@ -13,7 +13,7 @@ export class Phone {
         public _electronicAddressExternal?: ElectronicAddressExternal[]
     ) {
         if (this._electronicAddressExternal) {
-            this._home = (this._home != null) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr;
+            this._home = (this._home != null) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr?.replace(/(\d{3})(\d{3})(\d+)/, '($1) $2-$3');
         }
     }
 
