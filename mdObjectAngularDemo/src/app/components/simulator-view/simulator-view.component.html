@@ -61,5 +61,7 @@ Demographics:&#x27;<span>{{ demographics }}</span>&#x27;,
 <br />
 {{formater('{PATIENT.FAXPHONE}')}}:&#x27;<span>{{patient?.phone.fax}}</span>&#x27;,
 <br />
+{{formater('{MEL_LIST_CARE_PLAN("delim","all","all")}')}}:&#x27;<span>{{patient?.carePlans.toMelString()}}</span>&#x27;,
+<br />
 
 {{ '}' }}

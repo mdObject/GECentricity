@@ -605,6 +605,26 @@ export class Patient {
         return this._carePlansArray;
     }
 
+    async carePlansAsync() {
+        if (this._carePlansArray.length === 0) {
+            this._carePlans = (this._carePlans !== undefined) ? this._carePlans : await this._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}');
+            let dataArray = StringInternal(this._carePlans).toList();
+
+            /*jslint plusplus: true */
+            this._carePlansArray = [];
+            for (let index = 0; index < dataArray.length; index++) {
+                this._carePlansArray.push(new CarePlan(dataArray[index], this._mel));
+            }
+
+            this._carePlansArray.tag = 'MEL_LIST_CARE_PLAN';
+
+            this._carePlansArray.toMelString = () => {
+                return this._carePlans;
+            }
+        }
+        return this._carePlansArray;
+    }
+
     get locations() {
         if (this._locationsArray.length === 0) {
             this._locations = (this._locations  !== undefined) ? this._locations : this._mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
