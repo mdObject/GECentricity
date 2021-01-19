@@ -482,6 +482,26 @@ export class Patient {
         return this._problemsArray;
     }
 
+    async problemsAsync() {
+        if (this._problemsArray.length === 0) {
+            this._problems = (this._problems !== undefined) ? this._problems : await this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
+            let dataArray = StringInternal(this._problems).toList();
+
+            /*jslint plusplus: true */
+            this._problemsArray = [];
+            for (let index = 0; index < dataArray.length; index++) {
+                this._problemsArray.push(new Problem(dataArray[index]));
+            }
+
+            this._problemsArray.tag = 'PROB_AFTER';
+
+            this._problemsArray.toMelString = () => {
+                return this._problems;
+            }
+        }
+        return this._problemsArray;
+    }
+
     // Lists observations by name. 
     observations = (name: string) => {
         if (this._observations[name] == null) {

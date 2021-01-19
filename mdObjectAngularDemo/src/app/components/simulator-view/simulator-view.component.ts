@@ -30,6 +30,7 @@ export class SimulatorViewComponent implements OnInit {
       patientAsync.then(p => p.dateOfBirthAsync()),
       patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.carePlansAsync()),
+      patientAsync.then(p => p.problemsAsync()),
     ]).then(e => { this.patient = e[0]; this.demographics = this.patient._demographics.json.replace(/\"/g, '\\"') });
   }
 

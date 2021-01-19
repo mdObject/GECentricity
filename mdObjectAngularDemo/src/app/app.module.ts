@@ -20,6 +20,7 @@ import { PatientAddressComponent } from './components/patient-address/patient-ad
 import { SimulatorViewComponent } from './components/simulator-view/simulator-view.component';
 import { PatientContactsComponent } from './components/patient-contacts/patient-contacts.component';
 import { PatientPhoneComponent } from './components/patient-phone/patient-phone.component';
+import { PatientProblemsComponent } from './components/patient-problems/patient-problems.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PatientPhoneComponent } from './components/patient-phone/patient-phone.
     SimulatorViewComponent,
     PatientContactsComponent,
     PatientPhoneComponent,
+    PatientProblemsComponent,
     
   ],
   imports: [

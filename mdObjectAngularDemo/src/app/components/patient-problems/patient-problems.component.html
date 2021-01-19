@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Problems</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let problem of patient?.problems">
+            <div class="row">
+              <div class="col-sm-3">ID:</div>
+              <div class="col-sm-3"><span>{{problem.problemId}}</span></div>
+              <div class="col-sm-3">Description:</div>
+              <div class="col-sm-3"><span>{{problem.description}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">ICD9 Code:</div>
+              <div class="col-sm-3"><span>{{problem.codeIcd9}}</span></div>
+              <div class="col-sm-3">ICD10 Code:</div>
+              <div class="col-sm-3"><span>{{problem.codeIcd10}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">Comment:</div>
+              <div class="col-sm-3"><span>{{problem.comment}}</span></div>
+              <div class="col-sm-3">onset Date:</div>
+              <div class="col-sm-3"><span>{{problem.onsetDate}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">stop Date:</div>
+              <div class="col-sm-3"><span>{{problem.stopDate}}</span></div>
+              <div class="col-sm-3">stop Reason:</div>
+              <div class="col-sm-3"><span>{{problem.stopReason}}</span></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">last Modified Date:</div>
+              <div class="col-sm-3"><span>{{problem.lastModifiedDate}}</span></div>
+              <div class="col-sm-3">Problem Type</div>
+              <div class="col-sm-3"><span>{{problem.type}}</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
