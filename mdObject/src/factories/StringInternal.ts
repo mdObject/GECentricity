@@ -1,6 +1,7 @@
 import { IStringInternal } from '../interfaces/interfaces';
 
 export function StringInternal(value: string, tag?: string): IStringInternal {
+    value = (value) ? value : '';
     let result: IStringInternal = new String(value) as IStringInternal;
 
     // Function parse string object to array of string 
