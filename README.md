@@ -7,8 +7,8 @@ mdObject For Centricity
 ============
 
 [![license](https://img.shields.io/badge/license-MSPL-blue.svg)](https://opensource.org/licenses/MS-PL)
-[![npm version](https://img.shields.io/npm/v/@mdobject/mdobject?color=008000&label=npm%20package)](https://www.npmjs.com/package/@mdobject/mdobject)
-[![npm downloads](https://img.shields.io/npm/dm/@mdobject/mdobject.svg?color=008000&label=npm%20downloads)](https://www.npmjs.com/package/@mdobject/mdobject)
+[![npm version](https://img.shields.io/npm/v/%40mdobject/mdobject?color=008000&label=npm%20package)](https://www.npmjs.com/package/%40mdobject/mdobject)
+[![npm downloads](https://img.shields.io/npm/dm/%40mdobject/mdobject.svg?color=008000&label=npm%20downloads)](https://www.npmjs.com/package/%40mdobject/mdobject)
 
 
 

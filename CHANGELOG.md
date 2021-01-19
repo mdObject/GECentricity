@@ -37,10 +37,20 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* clinicStatusAsync
 	* primaryCarePhysicianNameAsync
 	* contactsAsync
+	* problemsAsync
+	* carePlansAsync
+
+	The following async method added to the Phone object:
+	* homeAsync
+	* businessAsync
+	* mobileAsync
+	* faxAsync
 
 	Added demo components:
 	* patient-contacts.component
 	* simulator-view.component
+	* patient-problems.component
+	* patient-phone.component
 
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
