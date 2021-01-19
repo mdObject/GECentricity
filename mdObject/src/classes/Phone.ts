@@ -13,20 +13,23 @@ export class Phone {
         public _electronicAddressExternal?: ElectronicAddressExternal[]
     ) {
         if (this._electronicAddressExternal) {
-            this._home = (this._home != null) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr;
+            this._home = (this._home !== undefined) ? this._home : this._electronicAddressExternal.find(a => (a.addressSettingCode === "H" && a.urlScheme === "tel"))?.urlAddr;
             this._home = (this._home) ? this.formatMelPhone(this._home) : this._home;
-            this._business = (this._business != null) ? this._business : this._electronicAddressExternal.find(a => (a.addressSettingCode === "WP" && a.urlScheme === "tel"))?.urlAddr?.replace(/(\d{3})(\d{3})(\d{4})(\d+)/, '($1) $2-$3 [$4]');
+
+            this._business = (this._business !== undefined) ? this._business : this._electronicAddressExternal.find(a => (a.addressSettingCode === "WP" && a.urlScheme === "tel"))?.urlAddr;
             this._business = (this._business) ? this.formatMelPhone(this._business) : this._business;
 
+            this._mobile = (this._mobile !== undefined) ? this._mobile : this._electronicAddressExternal.find(a => (a.addressSettingCode === "MC" && a.urlScheme === "tel"))?.urlAddr;
+            this._mobile = (this._mobile) ? this.formatMelPhone(this._mobile) : this._mobile;
         }
     }
 
     private formatMelPhone = (phone) => {
-        var phoneTest = new RegExp(/^((\+1)|1)? ?\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})( ?(ext\.? ?|x)(\d*))?$/);
+        var phoneTest = new RegExp(/(\d{3})(\d{3})(\d{4})(\d+)?/);
         phone = phone.trim();
         var results = phoneTest.exec(phone);
-        if (results !== null && results.length > 8) {
-            return "(" + results[3] + ") " + results[4] + "-" + results[5] + (typeof results[8] !== "undefined" ? " [" + results[8] + "]" : "");
+        if (results !== null && results.length > 4) {
+            return "(" + results[1] + ") " + results[2] + "-" + results[3] + (typeof results[4] !== "undefined" ? " [" + results[4] + "]" : "");
         }
         else {
             return phone;
