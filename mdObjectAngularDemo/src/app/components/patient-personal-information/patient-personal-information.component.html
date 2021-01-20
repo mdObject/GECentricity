@@ -1,95 +1,51 @@
-<div class="panel panel-primary">
-  <div class="row">
-    <div class="col-sm-3">PID:</div>
-    <div class="col-sm-3"><span>{{patient?.pid}}</span></div>
-    <div class="col-sm-3"></div>
-    <div class="col-sm-3"></div>
+<div class="card mb-3">
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>PID:</strong><br>{{patient?.pid}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
   </div>
-  <div class="row">
-    <div class="col-sm-3">ID:</div>
-    <div class="col-sm-3"><span>{{patient?.patientId}}</span></div>
-    <div class="col-sm-3">Medical Record ID:</div>
-    <div class="col-sm-3"><span>{{patient?.medicalRecordId}}</span></div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>ID:</strong><br />{{patient?.patientId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Medical Record ID:</strong><br />{{patient?.medicalRecordId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>External Id:</strong><br />{{patient?.externalId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Print ID:</strong><br />{{patient?.printId}}</div>
   </div>
-  <div class="row">
-    <div class="col-sm-3">External Id:</div>
-    <div class="col-sm-3"><span>{{patient?.externalId}}</span></div>
-    <div class="col-sm-3">Print ID:</div>
-    <div class="col-sm-3"><span>{{patient?.printId}}</span></div>
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>First Name:</strong><br />{{patient?.firstName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Last Name:</strong><br />{{patient?.lastName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Middle Name:</strong><br />{{patient?.middleName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>SSN:</strong><br />{{patient?.ssn}}</div>
   </div>
-  <div class="row">
-    <div class="col-sm-3">First Name:</div>
-    <div class="col-sm-3"><span>{{patient?.firstName}}</span></div>
-    <div class="col-sm-3">Last Name:</div>
-    <div class="col-sm-3"><span>{{patient?.lastName}}</span></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">Middle Name:</div>
-    <div class="col-sm-3"><span>{{patient?.middleName}}</span></div>
-    <div class="col-sm-3">SSN:</div>
-    <div class="col-sm-3"><span>{{patient?.ssn}}</span></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">Label Name:</div>
-    <div class="col-sm-3"><span>{{patient?.labelName}}</span></div>
-    <div class="col-sm-3">Prefix:</div>
-    <div class="col-sm-3"><span>{{patient?.namePrefix}}</span></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">Suffix:</div>
-    <div class="col-sm-3"><span>{{patient?.nameSuffix}}</span></div>
-    <div class="col-sm-3">Sex:</div>
-    <div class="col-sm-3"><span>{{patient?.sex}}</span></div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Label Name:</strong><br />{{patient?.labelName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Prefix:</strong><br />{{patient?.namePrefix}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Suffix:</strong><br />{{patient?.nameSuffix}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Sex:</strong><br />{{patient?.sex}}</div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-3">Race:</div>
-    <div class="col-sm-3"><span>{{patient?.race}}</span></div>
-    <div class="col-sm-3">Ethnicity:</div>
-    <div class="col-sm-3"><span>{{patient?.ethnicity}}</span></div>
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Race:</strong><br />{{patient?.race}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Ethnicity:</strong><br />{{patient?.ethnicity}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Date Of Birth:</strong><br />{{patient?.dateOfBirth}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Date Of Death:</strong><br />{{patient?.dateOfDeath}}</div>
   </div>
-  <div class="row">
-    <div class="col-sm-3">Date Of Birth:</div>
-    <div class="col-sm-3"><span>{{patient?.dateOfBirth}}</span></div>
-    <div class="col-sm-3">Date Of Death:</div>
-    <div class="col-sm-3"><span>{{patient?.dateOfDeath}}</span></div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Marital Status:</strong><br />{{patient?.maritalStatus}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Language:</strong><br />{{patient?.language}}</div>
+    <!--<div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Home location of care:</strong><br />{{patient?.location.findByType(LocationType.Home).name}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Abbreviated home location of care:</strong><br />{{patient?.location.findByType(LocationType.Home).id}}</div>-->
   </div>
-  <div class="row">
-    <div class="col-sm-3">Marital Status:</div>
-    <div class="col-sm-3"><span>{{patient?.maritalStatus}}</span></div>
-    <div class="col-sm-3">Language:</div>
-    <div class="col-sm-3"><span>{{patient?.language}}</span></div>
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Email:</strong><br />{{patient?.email}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Contact By:</strong><br />{{patient?.contactBy}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Employment Status:</strong><br />{{patient?.employmentStatus}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Clinic Status:</strong><br />{{patient?.clinicStatus}}</div>
   </div>
-
-  <!--<div class="row">
-    <div class="col-sm-3">Home location of care:</div>
-    <div class="col-sm-3"><span>{{patient?.location.findByType(LocationType.Home).name}}</span></div>
-    <div class="col-sm-3">Abbreviated home location of care:</div>
-    <div class="col-sm-3"><span>{{patient?.location.findByType(LocationType.Home).id}}</span></div>
-  </div>-->
-  <div class="row">
-    <div class="col-sm-3">Email:</div>
-    <div class="col-sm-3"><span>{{patient?.email}}</span></div>
-    <div class="col-sm-3">Contact By:</div>
-    <div class="col-sm-3"><span>{{patient?.contactBy}}</span></div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Primary Care Physician Name:</strong><br />{{patient?.primaryCarePhysicianName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Registration Note:</strong><br />{{patient?.registrationNote}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Last Office Visit:</strong><br />{{patient?.lastOfficeVisit|date}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><span></span></div>
   </div>
-  <div class="row">
-    <div class="col-sm-3">Employment Status:</div>
-    <div class="col-sm-3"><span>{{patient?.employmentStatus}}</span></div>
-    <div class="col-sm-3">Clinic Status:</div>
-    <div class="col-sm-3"><span>{{patient?.clinicStatus}}</span></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">Primary Care Physician Name:</div>
-    <div class="col-sm-3"><span >{{patient?.primaryCarePhysicianName}}</span></div>
-    <div class="col-sm-3">Registration Note:</div>
-    <div class="col-sm-3"><span >{{patient?.registrationNote}}</span></div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">Last Office Visit:</div>
-    <div class="col-sm-3"><span >{{patient?.lastOfficeVisit|date}}</span></div>
-    <div class="col-sm-3"></div>
-    <div class="col-sm-3"><span ></span></div>
-  </div>
-
 </div>

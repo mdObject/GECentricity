@@ -1,24 +1,9 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Patient Phone</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-3">Home:</div>
-          <div class="col-sm-3"><span>{{patient?.phone.home}}</span></div>
-          <div class="col-sm-3">Business:</div>
-          <div class="col-sm-3"><span>{{patient?.phone.business}}</span></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">Mobile:</div>
-          <div class="col-sm-3"><span>{{patient?.phone.mobile}}</span></div>
-          <div class="col-sm-3">Fax:</div>
-          <div class="col-sm-3"><span>{{patient?.phone.fax}}</span></div>
-        </div>
-
-      </div>
-    </div>
+<div class="card mb-3">
+  <div class="card-body row">
+    <h5 class="card-title col-12 text-primary">Patient Phone</h5>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Home:</strong><br />{{patient?.phone.home}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Business:</strong><br />{{patient?.phone.business}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Mobile:</strong><br />{{patient?.phone.mobile}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Fax:</strong><br />{{patient?.phone.fax}}</div>
   </div>
 </div>

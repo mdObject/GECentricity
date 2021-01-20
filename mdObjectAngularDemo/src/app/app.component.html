@@ -1,24 +1,34 @@
-<app-patient-header></app-patient-header>
-<app-patient-personal-information></app-patient-personal-information>
-<app-patient-address></app-patient-address>
-<app-patient-contacts></app-patient-contacts>
-<app-patient-phone></app-patient-phone>
-<app-patient-problems></app-patient-problems>
-<!-- Toolbar -->
+<!---->
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side" opened="true" role="navigation">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <main role="main">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-11">
+          <button type="button" class="btn" (click)="drawer.toggle()">
+            Open Menu
+          </button>
+          <app-patient-header></app-patient-header>
+          <app-patient-personal-information></app-patient-personal-information>
+          <app-patient-address></app-patient-address>
+          <app-patient-contacts></app-patient-contacts>
+          <app-patient-phone></app-patient-phone>
+          <app-patient-problems></app-patient-problems>
+          <!-- Toolbar -->
 
-<app-simulator-view></app-simulator-view>
+          <app-simulator-view></app-simulator-view>
 
-
-<div class="content" role="main">
-
-
-  <!-- Resources -->
-  <h2>Allergy</h2>
-  <app-allergy></app-allergy>
-
-
-
-  <!-- Footer -->
-  Click <a href="#" onclick='DemoClick()'>here to open this page in Internet Explorer (IE)</a>
-
-</div>
+          <div class="content">
+            <!-- Resources -->
+            <h2>Allergy</h2>
+            <app-allergy></app-allergy>
+            <!-- Footer -->
+            Click <a href="#" class="nav-link" onclick='DemoClick()'>here to open this page in Internet Explorer (IE)</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

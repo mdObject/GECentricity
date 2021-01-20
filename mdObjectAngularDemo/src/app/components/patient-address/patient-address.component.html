@@ -1,31 +1,12 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Patient Address</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-3">Address1:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.address1}}</span></div>
-          <div class="col-sm-3">Address2:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.address2}}</span></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">City:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.city}}</span></div>
-          <div class="col-sm-3">State:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.state}}</span></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-3">Zip:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.postCode}}</span></div>
-          <div class="col-sm-3">Country:</div>
-          <div class="col-sm-3"><span>{{(patient | async)?.address.country}}</span></div>
-        </div>
-
-      </div>
+<div class="card mb-3">
+  <div class="card-body row">
+      <h5 class="card-title col-12 text-primary">Patient Address</h5>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{(patient | async)?.address.address1}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{(patient | async)?.address.address2}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{(patient | async)?.address.city}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{(patient | async)?.address.state}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{(patient | async)?.address.postCode}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{(patient | async)?.address.country}}</div>
     </div>
-  </div>
 </div>
 

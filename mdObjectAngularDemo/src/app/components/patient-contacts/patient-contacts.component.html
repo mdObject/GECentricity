@@ -1,52 +1,17 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Patient Contacts</h3>
+<div class="card mb-3">
+  <div class="card-body row">
+    <h5 class="card-title col-12 text-primary">Patient Contacts</h5>
+      <div class="card-body row" *ngFor="let contact of patient?.contacts">
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{contact.name}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Type:</strong><br />{{contact.type}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone:</strong><br />{{contact.phone}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone Type:</strong><br />{{contact.phoneType}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{contact.address1}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{contact.address2}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{contact.city}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{contact.state}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{contact.zip}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{contact.country}}</div>
       </div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let contact of patient?.contacts">
-            <div class="row">
-              <div class="col-sm-3">Name:</div>
-              <div class="col-sm-3"><span>{{contact.name}}</span></div>
-              <div class="col-sm-3">Type:</div>
-              <div class="col-sm-3"><span>{{contact.type}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Phone:</div>
-              <div class="col-sm-3"><span>{{contact.phone}}</span></div>
-              <div class="col-sm-3">Phone Type:</div>
-              <div class="col-sm-3"><span>{{contact.phoneType}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Address1:</div>
-              <div class="col-sm-9"><span>{{contact.address1}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Address2:</div>
-              <div class="col-sm-9"><span>{{contact.address2}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">City:</div>
-              <div class="col-sm-9"><span>{{contact.city}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">State:</div>
-              <div class="col-sm-9"><span>{{contact.state}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Zip:</div>
-              <div class="col-sm-9"><span>{{contact.zip}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Country:</div>
-              <div class="col-sm-9"><span>{{contact.country}}</span></div>
-            </div>
-          </li>
-        </ul>
-
-      </div>
-    </div>
   </div>
 </div>

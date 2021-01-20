@@ -1,45 +1,17 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Problems</h3>
-      </div>
-      <div class="panel-body">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let problem of patient?.problems">
-            <div class="row">
-              <div class="col-sm-3">ID:</div>
-              <div class="col-sm-3"><span>{{problem.problemId}}</span></div>
-              <div class="col-sm-3">Description:</div>
-              <div class="col-sm-3"><span>{{problem.description}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">ICD9 Code:</div>
-              <div class="col-sm-3"><span>{{problem.codeIcd9}}</span></div>
-              <div class="col-sm-3">ICD10 Code:</div>
-              <div class="col-sm-3"><span>{{problem.codeIcd10}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">Comment:</div>
-              <div class="col-sm-3"><span>{{problem.comment}}</span></div>
-              <div class="col-sm-3">onset Date:</div>
-              <div class="col-sm-3"><span>{{problem.onsetDate}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">stop Date:</div>
-              <div class="col-sm-3"><span>{{problem.stopDate}}</span></div>
-              <div class="col-sm-3">stop Reason:</div>
-              <div class="col-sm-3"><span>{{problem.stopReason}}</span></div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">last Modified Date:</div>
-              <div class="col-sm-3"><span>{{problem.lastModifiedDate}}</span></div>
-              <div class="col-sm-3">Problem Type</div>
-              <div class="col-sm-3"><span>{{problem.type}}</span></div>
-            </div>
-          </li>
-        </ul>
+<div class="card mb-3">
+  <div class="card-body row">
+    <h5 class="card-title col-12 text-primary">Problems</h5>
+    <div class="card-body row" *ngFor="let problem of patient?.problems">
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ID:</strong><br />{{problem.problemId}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{problem.description}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD9 Code:</strong><br />{{problem.codeIcd9}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD10 Code:</strong><br />{{problem.codeIcd10}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Comment:</strong><br />{{problem.comment}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>onset Date:</strong><br />{{problem.onsetDate}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Date:</strong><br />{{problem.stopDate}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Reason:</strong><br />{{problem.stopReason}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>last Modified Date:</strong><br />{{problem.lastModifiedDate}}</div>
+        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Problem Type</strong><br />{{problem.type}}</div>
       </div>
     </div>
   </div>
-</div>
