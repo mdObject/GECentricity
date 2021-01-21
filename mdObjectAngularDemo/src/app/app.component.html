@@ -1,7 +1,7 @@
 <!---->
 <mat-drawer-container>
   <mat-drawer #drawer mode="side" opened="true" role="navigation">
-    <app-sidenav></app-sidenav>
+    <app-sidenav [(sideMenu)]="sideMenu"></app-sidenav>
   </mat-drawer>
   <mat-drawer-content>
     <main role="main">
@@ -11,15 +11,15 @@
             Open Menu
           </button>
           <app-patient-header></app-patient-header>
-          <app-patient-personal-information></app-patient-personal-information>
-          <app-patient-address></app-patient-address>
-          <app-patient-contacts></app-patient-contacts>
-          <app-patient-phone></app-patient-phone>
-          <app-patient-problems></app-patient-problems>
-          <app-allergy></app-allergy>
+          <app-patient-personal-information *ngIf="sideMenu === SidebarMenu.PatientInfo"></app-patient-personal-information>
+          <app-patient-address *ngIf="sideMenu === SidebarMenu.PatientAddress"></app-patient-address>
+          <app-patient-contacts *ngIf="sideMenu === SidebarMenu.PatientContact"></app-patient-contacts>
+          <app-patient-phone *ngIf="sideMenu === SidebarMenu.PatientPhone"></app-patient-phone>
+          <app-patient-problems *ngIf="sideMenu === SidebarMenu.Problems"></app-patient-problems>
+          <app-allergy *ngIf="sideMenu === SidebarMenu.Allergy"></app-allergy>
           <!-- Toolbar -->
 
-          <app-simulator-view></app-simulator-view>
+          <app-simulator-view *ngIf="sideMenu === SidebarMenu.Simulator"></app-simulator-view>
 
           <div class="content">
             <!-- Resources -->

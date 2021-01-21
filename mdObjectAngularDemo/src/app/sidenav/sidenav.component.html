@@ -1,11 +1,12 @@
 <nav class="d-md-block sidebar">
   <ul class="nav flex-column">
-    <li class="nav-item"><a href="#" class="nav-link">Patient info</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Patient adress</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Patient contacts</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Patient Phone</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Problems</a></li>
-    <li class="nav-item"><a href="#" class="nav-link">Allergy</a></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.PatientInfo)">Patient info</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.PatientAddress)">Patient adress</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.PatientContact)">Patient contacts</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.PatientPhone)">Patient Phone</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.Problems)">Problems</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.Allergy)">Allergy</button></li>
+    <li class="nav-item"><button class="nav-link" (click)="menuClick(SidebarMenu.Simulator)">Simulator</button></li>
     <li class="nav-item" aria-current="true"><a href="#" class="nav-link active">About Demo</a></li>
   </ul>
   </nav>
