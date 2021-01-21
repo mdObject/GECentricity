@@ -7,6 +7,7 @@ import { SidebarMenu } from '../enums/sidebar-menu';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
+  // Component should be @Input/@Output to be controlled in the subcomponent
   @Input() sideMenu: SidebarMenu;
   @Output() sideMenuChange = new EventEmitter<SidebarMenu>();
 
@@ -21,6 +22,6 @@ export class SidenavComponent implements OnInit {
 
   menuClick = (itemCliked: SidebarMenu): void => {
     this.sideMenu = itemCliked;
-    this.sideMenuChange.emit(this.sideMenu);
+    this.sideMenuChange.emit(this.sideMenu); // Notify subcomponent that the value changed.
   } 
 }
