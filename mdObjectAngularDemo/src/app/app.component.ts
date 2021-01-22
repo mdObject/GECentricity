@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'mdObjectAngularDemo';
   sideMenu: SidebarMenu;
   sidenavComponent: SidenavComponent;
+  isExpanded = false;
 
   constructor() {
     this.sideMenu = SidebarMenu.PatientContact;

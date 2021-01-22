@@ -1,0 +1,26 @@
+//drawer
+mat-drawer-container {
+  mat-drawer {
+    text-align: right;
+
+    @media (max-width: 767px) {
+      text-align: left;
+
+      &.opened {
+        width: 100%;
+      }
+    }
+
+    .menu-button {
+      margin-right: 5px;
+    }
+
+    i {
+      font-size: 20px;
+    }
+  }
+
+  mat-drawer-content {
+    overflow-x: hidden;
+  }
+}

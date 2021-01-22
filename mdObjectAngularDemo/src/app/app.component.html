@@ -1,15 +1,16 @@
-<!---->
-<mat-drawer-container>
-  <mat-drawer #drawer mode="side" opened="true" role="navigation">
-    <app-sidenav [(sideMenu)]="sideMenu"></app-sidenav>
+<mat-drawer-container autosize="true" class="vh-100">
+  <mat-drawer #drawer mode="side" opened="true" [class.opened]="!isExpanded" class="py-3 shadow-sm">
+    <a class="btn btn-link" (click)="isExpanded = !isExpanded">
+      <i class="fas fa-angle-double-right" *ngIf="!isExpanded"></i>
+      <i class="fas fa-angle-double-left" *ngIf="isExpanded"></i>
+    </a>
+    <span *ngIf="!isExpanded">
+      <app-sidenav [(sideMenu)]="sideMenu"></app-sidenav>
+    </span>
   </mat-drawer>
   <mat-drawer-content>
-    <main role="main">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-11">
-          <button type="button" class="btn" (click)="drawer.toggle()">
-            Open Menu
-          </button>
+    <main role="main" class="p-4">
+      <div class="d-flex justify-content-center flex-column">
           <app-patient-header></app-patient-header>
           <app-patient-personal-information *ngIf="sideMenu === SidebarMenu.PatientInfo"></app-patient-personal-information>
           <app-patient-address *ngIf="sideMenu === SidebarMenu.PatientAddress"></app-patient-address>
@@ -27,7 +28,6 @@
             Click <a href="#" class="nav-link" onclick='DemoClick()'>here to open this page in Internet Explorer (IE)</a>
           </div>
         </div>
-      </div>
     </main>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -1,0 +1,9 @@
+.nav-link {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    min-width: 20px;
+  }
+}

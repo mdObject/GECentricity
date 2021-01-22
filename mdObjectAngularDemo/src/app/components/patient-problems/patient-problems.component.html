@@ -1,17 +1,15 @@
-<div class="card mb-3">
-  <div class="card-body row">
-    <h5 class="card-title col-12 text-primary">Problems</h5>
-    <div class="card-body row" *ngFor="let problem of patient?.problems">
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ID:</strong><br />{{problem.problemId}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{problem.description}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD9 Code:</strong><br />{{problem.codeIcd9}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD10 Code:</strong><br />{{problem.codeIcd10}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Comment:</strong><br />{{problem.comment}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>onset Date:</strong><br />{{problem.onsetDate}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Date:</strong><br />{{problem.stopDate}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Reason:</strong><br />{{problem.stopReason}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>last Modified Date:</strong><br />{{problem.lastModifiedDate}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Problem Type</strong><br />{{problem.type}}</div>
-      </div>
-    </div>
+<h4>Problems</h4>
+<div class="card mb-3 shadow-sm">
+  <div class="card-body row" *ngFor="let problem of patient?.problems">
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ID:</strong><br />{{problem.problemId}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{problem.description}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD9 Code:</strong><br />{{problem.codeIcd9}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD10 Code:</strong><br />{{problem.codeIcd10}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Comment:</strong><br />{{problem.comment}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>onset Date:</strong><br />{{problem.onsetDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Date:</strong><br />{{problem.stopDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Reason:</strong><br />{{problem.stopReason}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>last Modified Date:</strong><br />{{problem.lastModifiedDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Problem Type</strong><br />{{problem.type}}</div>
   </div>
+</div>

@@ -1,17 +1,15 @@
-<div class="card mb-3">
-  <div class="card-body row">
-    <h5 class="card-title col-12 text-primary">Patient Contacts</h5>
-      <div class="card-body row" *ngFor="let contact of patient?.contacts">
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{contact.name}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Type:</strong><br />{{contact.type}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone:</strong><br />{{contact.phone}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone Type:</strong><br />{{contact.phoneType}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{contact.address1}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{contact.address2}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{contact.city}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{contact.state}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{contact.zip}}</div>
-        <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{contact.country}}</div>
-      </div>
-  </div>
+<h4>Patient Contacts</h4>
+<div class="card mb-3 shadow-sm">
+  <div class="card-body row" *ngFor="let contact of patient?.contacts">
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{contact.name}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Type:</strong><br />{{contact.type}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone:</strong><br />{{contact.phone}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone Type:</strong><br />{{contact.phoneType}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{contact.address1}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{contact.address2}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{contact.city}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{contact.state}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{contact.zip}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{contact.country}}</div>
+    </div>
 </div>
