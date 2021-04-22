@@ -20,7 +20,7 @@ The Centricity products being acquired by Athenahealth and remand to:
     Centricity EMR => athenaFlow (tm)
     Centricity EDI => athenaEDI (tm)
 
-The GECentricity is subproject of mdObject initiative to simplify patient medical record exchange.
+The GitHub GECentricity is subproject of mdObject initiative to simplify patient medical record exchange.
 The mdObject is a simple JavaScript object stricture that is easy to implement and to use.
 
 For users of GE Centricity EMR9.8 Evaluation version, execute the following line to enable ActiveX component:  
@@ -43,7 +43,24 @@ EMR9.8 Evaluation:
 
 Refer to https://forum.centricityusers.com/forum/anyone-have-cemr-9-8-evaluation-working-on-win-10-version-1607/ for issue with Windows10
 
-To setup demo page:
+To setup Angular demo page:
+
+1. Create a new folder in the "Default location for your own HTML Encounter forms" called mdObject
+2. Create a subfolder called __mdObjectAngularDemo__
+3. Build Angular project:
+    Open Command prompt (CMD) and navigate into the __mdObjectAngularDemo__ folder. Run the following commands:
+        npm install
+        npm run build
+
+4. Copy content of the __\.\.\\mdObjectAngularDemo\\dist\\mdObjectAngularDemo\\__ folder into the __mdObjectAngularDemo__ folder.
+5. Add a Quick Text as following:
+__.mdobjectAngular__  
+__{show_html_form("//localserver/mdObject/mdObjectAngularDemo/index.html","$mdObject Angular Demo Page")}__
+5. Open patient chart and a new document 
+6. Type __.mdobjectAngular__ and press Enter key.
+
+
+To setup legacy demo page:
 
 1. Create a new folder in the "Default location for your own HTML Encounter forms" called mdObject
 2. Create a subfolder called __mdObjectDemo__
