@@ -6,7 +6,7 @@
       <input type="text" class="form-control form-control-lg" id="inputEmail" required [(ngModel)]="allergy.name" name="name">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="onSetDate" class="visually-hidden">OnSet:</label>
+      <label for="onSetDate" class="visually-hidden">OnSet Date:</label>
       <input type="text" class="form-control form-control-lg" id="onSetDate" required [(ngModel)]="allergy.onSetDate" name="onSetDate">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
@@ -14,7 +14,7 @@
       <input type="text" class="form-control form-control-lg" id="reaction" required [(ngModel)]="allergy.description" name="reaction">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="classification" class="visually-hidden">Classification:</label>
+      <label for="classification" class="visually-hidden">Category:</label>
       <select [(ngModel)]="allergy.classification" class="form-control form-control-lg" id="classification">
         <option *ngFor="let item of allergyClassification | enumToArray" [value]="item.value">
           {{item.name | titlecase }}
