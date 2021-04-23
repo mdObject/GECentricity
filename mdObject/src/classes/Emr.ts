@@ -25,7 +25,6 @@ export class Emr {
     private _demographics: string;
     private _allergiesJson: string;
     private _problemsJson: string;
-    private _allergyExternalList: AllergiesExternal = new AllergiesExternal();
     private _problemExternalList: ProblemExternal[] = [];
     private _simulator: Simulator;
     private _clinicalDocument: ClinicalDocument;
@@ -152,18 +151,10 @@ export class Emr {
     }
 
     public get allergies(): AllergiesExternal {
-        if (this._allergyExternalList.length === 0) {
+        this._allergiesJson = (this._allergiesJson) ? this._allergiesJson
+            : ((this.external) ? this.external.Allergies : this._allergiesJson);
 
-            let allergiesJson = this.allergiesJson()
-
-            if (allergiesJson) {
-                let dataArray = JSON.parse(allergiesJson) as [];
-                for (let index = 0; index < dataArray.length; index++) {
-                    this._allergyExternalList.push(AllergyExternal.fromExternal(dataArray[index]));
-                }
-            }
-        }
-        return this._allergyExternalList;
+        return new AllergiesExternal(this._allergiesJson);
     }
 
     allergiesAsync = async (): Promise<AllergiesExternal> => {
