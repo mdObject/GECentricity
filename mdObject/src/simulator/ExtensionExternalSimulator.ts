@@ -12,6 +12,10 @@ export class ExtensionExternalSimulator {
         return this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' } );
     }
 
+    Allergies = (): Promise<any> => {
+        return this.sendMessage(simulatorChromeExtensionId, { type: 'Allergies' });
+    }
+
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<any>((resolve, reject) => {
         if (typeof (chrome) !== 'undefined') {
             chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
