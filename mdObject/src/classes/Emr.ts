@@ -4,7 +4,7 @@ import { EmrWindow } from './EmrWindow';
 import { EmrContent } from './EmrContent';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { StringInternal } from '../factories/factories';
-import { DemographicsExternal, AllergyExternal, ProblemExternal } from './external/external';
+import { DemographicsExternal, ProblemExternal } from './external/external';
 import { Patient } from './Patient';
 import { Users } from './Users';
 import { Simulator } from '../simulator/simulator';
