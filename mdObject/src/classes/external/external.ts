@@ -16,3 +16,4 @@ export { AllergyExternal } from './AllergyExternal';
 export { UserDetailExternal } from './UserDetailExternal';
 export { ProblemExternal } from './ProblemExternal';
 export { CodeDetailExternal } from './CodeDetailExternal';
+export { AllergiesExternal } from './AllergiesExternal'

@@ -54,10 +54,10 @@ To setup Angular demo page:
 
 4. Copy content of the __\.\.\\mdObjectAngularDemo\\dist\\mdObjectAngularDemo\\__ folder into the __mdObjectAngularDemo__ folder.
 5. Add a Quick Text as following:
-__.mdobjectAngular__  
+__.mdObjectAngular__  
 __{show_html_form("//localserver/mdObject/mdObjectAngularDemo/index.html","$mdObject Angular Demo Page")}__
 5. Open patient chart and a new document 
-6. Type __.mdobjectAngular__ and press Enter key.
+6. Type __.mdObjectAngular__ and press Enter key.
 
 
 To setup legacy demo page:

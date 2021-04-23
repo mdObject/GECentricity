@@ -97,6 +97,9 @@
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\external\AllergiesExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\external\AllergyExternal.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

@@ -52,6 +52,9 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* patient-problems.component
 	* patient-phone.component
 
+	Added new objects:
+	* AllergiesExternal
+
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
 	* patient: Patient (use: mdObject.emr.patient)

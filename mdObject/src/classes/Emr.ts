@@ -11,6 +11,7 @@ import { Simulator } from '../simulator/simulator';
 import { ClinicalDocument } from './ClinicalDocument';
 import { LocationType, UserCallFunction } from '../enums/enums'
 import { ObsTermsMap } from './ObsTermsMap';
+import { AllergiesExternal } from './external/AllergiesExternal';
 
 export class Emr {
 
@@ -24,7 +25,7 @@ export class Emr {
     private _demographics: string;
     private _allergiesJson: string;
     private _problemsJson: string;
-    private _allergyExternalList: AllergyExternal[] = [];
+    private _allergyExternalList: AllergiesExternal = new AllergiesExternal();
     private _problemExternalList: ProblemExternal[] = [];
     private _simulator: Simulator;
     private _clinicalDocument: ClinicalDocument;
@@ -150,7 +151,7 @@ export class Emr {
         return new DemographicsExternal(this._demographics);
     }
 
-    public get allergies(): AllergyExternal[] {
+    public get allergies(): AllergiesExternal {
         if (this._allergyExternalList.length === 0) {
 
             let allergiesJson = this.allergiesJson()
@@ -163,6 +164,13 @@ export class Emr {
             }
         }
         return this._allergyExternalList;
+    }
+
+    allergiesAsync = async (): Promise<AllergiesExternal> => {
+        this._allergiesJson = (this._allergiesJson) ? this._allergiesJson
+            : ((await this.externalAsync()) ? await this.externalAsync().then(e => e.Allergies()) : this._allergiesJson);
+
+        return new AllergiesExternal(this._allergiesJson);
     }
 
     allergiesJson = (): string => {
@@ -194,14 +202,14 @@ export class Emr {
 
     get patient(): Patient {
         if (this._patient === undefined) {
-            this._patient = new Patient(this.emrMel, this.demographics);
+            this._patient = new Patient(this.emrMel, this.demographics, this.allergies);
         }
         return this._patient;
     }
 
     patientAsync = async (): Promise<Patient> => {
         if (this._patient === undefined) {
-            this._patient = new Patient(this.emrMel, await this.demographicsAsync());
+            this._patient = new Patient(this.emrMel, await this.demographicsAsync(), await this.allergiesAsync());
         }
         return this._patient;
     }

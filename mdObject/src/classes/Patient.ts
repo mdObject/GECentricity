@@ -16,7 +16,7 @@ import { Allergies } from './Allergies';
 import { EmrMel } from './EmrMel';
 import { IArrayAdditionalMethods } from '../interfaces/interfaces';
 import { LocationType } from '../enums/enums';
-import { DemographicsExternal } from './external/external';
+import { AllergiesExternal, DemographicsExternal } from './external/external';
 import { emptyImage } from '../consts/consts';
 import { System } from './system';
 
@@ -75,7 +75,8 @@ export class Patient {
 
     constructor(
         public _mel: EmrMel,
-        public _demographics?: DemographicsExternal
+        public _demographics?: DemographicsExternal,
+        public _allergiesExternal?: AllergiesExternal
     ) {
         if (_demographics) {
             this._patientPicture = _demographics.patientPicture;

@@ -12,6 +12,7 @@ export class SimulatorViewComponent implements OnInit {
   dateOfDeath: string;
   mdObject: MdObject;
   demographics: string;
+  allergies: string;
   
   constructor(
     private mdObjectServiceService: MdObjectServiceService
@@ -31,7 +32,21 @@ export class SimulatorViewComponent implements OnInit {
       patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.carePlansAsync()),
       patientAsync.then(p => p.problemsAsync()),
-    ]).then(e => { this.patient = e[0]; this.demographics = this.patient._demographics.json.replace(/\"/g, '\\"') });
+      patientAsync.then(p => p.problemsAsync()),
+    ]).then(e =>
+    {
+      this.patient = e[0];
+      this.demographics = this.jsonCleanup(this.patient._demographics.json);
+      this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
+    });
+  }
+
+  jsonCleanup = (data: string): string => {
+    return data
+      .replace(/\"/g, '\\"')
+      .replace(/\\n/g, "\\\\n")
+      .replace(/\\r/g, "\\\\r")
+      .replace(/\\t/g, "\\\\t");
   }
 
   formater = (data): string => {
