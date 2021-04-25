@@ -57,17 +57,16 @@ Allergies:&#x27;<span>{{ allergies }}</span>&#x27;,
 <br />
 {{formater('{PATIENT.ALTPHONE}')}}:&#x27;<span>{{patient?.phone.home}}</span>&#x27;,
 <br />
-{{formater('{PATIENT.WORKPHONE}')}}:&#x27;<span>{{patient?.phone.business}}</span>&#x27;,
+{{formater('{PATIENT.WORKPHONE}')}}:&#x27;<span>{{businessPhone}}</span>&#x27;,
 <br />
-{{formater('{PATIENT.CELLPHONE}')}}:&#x27;<span>{{patient?.phone.mobile}}</span>&#x27;,
+{{formater('{PATIENT.CELLPHONE}')}}:&#x27;<span>{{mobilePhone}}</span>&#x27;,
 <br />
-{{formater('{PATIENT.FAXPHONE}')}}:&#x27;<span>{{patient?.phone.fax}}</span>&#x27;,
+{{formater('{PATIENT.FAXPHONE}')}}:&#x27;<span>{{fax}}</span>&#x27;,
 <br />
 {{formater('{MEL_LIST_CARE_PLAN("delim","all","all")}')}}:&#x27;<span>{{patient?.carePlans.toMelString()}}</span>&#x27;,
 <br />
 {{formater('{PROB_AFTER("delimited","dat","com")}')}}:&#x27;<span>{{patient?.problems.toMelString()}}</span>&#x27;,
 <br />
-
 {{formater('{ALL_NEW("delimited")}')}}:&#x27;<span>{{patient?.allergies._added}}</span>&#x27;,
 <br />
 {{formater('{ALL_PRIOR("delimited")}')}}:&#x27;<span>{{patient?.allergies._current}}</span>&#x27;,
@@ -76,3 +75,5 @@ Allergies:&#x27;<span>{{ allergies }}</span>&#x27;,
 <br />
 
 {{ '}' }}
+<br />
+<br />

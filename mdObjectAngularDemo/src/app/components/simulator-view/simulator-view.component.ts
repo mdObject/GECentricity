@@ -13,7 +13,10 @@ export class SimulatorViewComponent implements OnInit {
   mdObject: MdObject;
   demographics: string;
   allergies: string;
-  
+  businessPhone: string;
+  mobilePhone: string;
+  fax: string;
+
   constructor(
     private mdObjectServiceService: MdObjectServiceService
   ) {
@@ -24,14 +27,15 @@ export class SimulatorViewComponent implements OnInit {
     let patientAsync = this.mdObjectServiceService.patient;
     Promise.all([
       patientAsync,
-      patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.raceAsync()),
       patientAsync.then(p => p.ethnicityAsync()),
+      patientAsync.then(p => p.emailAsync()),
       patientAsync.then(p => p.contactsAsync()),
       patientAsync.then(p => p.dateOfBirthAsync()),
       patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.carePlansAsync()),
       patientAsync.then(p => p.problemsAsync()),
+      patientAsync.then(p => p.clinicStatusAsync()),
     ]).then(e =>
     {
       this.patient = e[0];
@@ -40,9 +44,20 @@ export class SimulatorViewComponent implements OnInit {
     });
     Promise.all([
       patientAsync,
+      patientAsync.then(p => p.phone.businessAsync()),
+      patientAsync.then(p => p.phone.mobileAsync()),
+      patientAsync.then(p => p.phone.faxAsync()),
       patientAsync.then(p => p.allergies.addedAsync()),
       patientAsync.then(p => p.allergies.currentAsync()),
-    ]);
+      patientAsync.then(p => p.maritalStatusAsync()),
+      patientAsync.then(p => p.contactByAsync()),
+      patientAsync.then(p => p.employmentStatusAsync()),
+      patientAsync.then(p => p.primaryCarePhysicianNameAsync()),
+    ]).then(v => {
+      this.businessPhone = v[1];
+      this.mobilePhone = v[2];
+      this.fax = v[3];
+    });
   }
 
   jsonCleanup = (data: string): string => {
