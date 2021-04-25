@@ -32,13 +32,17 @@ export class SimulatorViewComponent implements OnInit {
       patientAsync.then(p => p.dateOfDeathAsync()),
       patientAsync.then(p => p.carePlansAsync()),
       patientAsync.then(p => p.problemsAsync()),
-      patientAsync.then(p => p.problemsAsync()),
     ]).then(e =>
     {
       this.patient = e[0];
       this.demographics = this.jsonCleanup(this.patient._demographics.json);
       this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
     });
+    Promise.all([
+      patientAsync,
+      patientAsync.then(p => p.allergies.addedAsync()),
+      patientAsync.then(p => p.allergies.currentAsync()),
+    ]);
   }
 
   jsonCleanup = (data: string): string => {

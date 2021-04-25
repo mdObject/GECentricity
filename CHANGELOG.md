@@ -46,6 +46,11 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* mobileAsync
 	* faxAsync
 
+	The following async method added to the Alergies object 
+	* addedAsync
+	* removedAsync
+	* currentAsync
+
 	Added demo components:
 	* patient-contacts.component
 	* simulator-view.component

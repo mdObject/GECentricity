@@ -668,7 +668,7 @@ export class Patient {
         return this._locationsArray;
     }
 
-    get allergies() {
+    get allergies(): Allergies {
         return this._allergies;
     }
 
