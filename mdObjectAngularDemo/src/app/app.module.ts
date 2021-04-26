@@ -19,6 +19,7 @@ import { SimulatorViewComponent } from './components/simulator-view/simulator-vi
 import { MdObjectServiceService } from './md-object-service.service';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
 
 
 
@@ -36,7 +37,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     PatientContactsComponent,
     PatientPhoneComponent,
     PatientProblemsComponent,
-    SidenavComponent
+    SidenavComponent,
+    PatientAlergiesComponent
 
   ],
   imports: [
