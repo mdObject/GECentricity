@@ -12,3 +12,9 @@ body {
   margin: 0;
   font-family: 'Heebo', sans-serif;
 }
+.card {
+    overflow-x: hidden;
+}
+.card-table:nth-child(even){
+  background-color: #f8f9fa;
+}
