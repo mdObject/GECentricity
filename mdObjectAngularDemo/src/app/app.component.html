@@ -11,16 +11,16 @@
   <mat-drawer-content>
     <main role="main" class="p-4">
       <div class="d-flex justify-content-center flex-column">
-          <app-patient-header></app-patient-header>
-          <app-patient-personal-information *ngIf="sideMenu === SidebarMenu.PatientInfo"></app-patient-personal-information>
-          <app-patient-address *ngIf="sideMenu === SidebarMenu.PatientAddress"></app-patient-address>
-          <app-patient-contacts *ngIf="sideMenu === SidebarMenu.PatientContact"></app-patient-contacts>
-          <app-patient-phone *ngIf="sideMenu === SidebarMenu.PatientPhone"></app-patient-phone>
-          <app-patient-problems *ngIf="sideMenu === SidebarMenu.Problems"></app-patient-problems>
-          <app-allergy *ngIf="sideMenu === SidebarMenu.Allergy"></app-allergy>
+        <container-element [ngSwitch]="sideMenu">
+          <app-patient-personal-information *ngSwitchCase="SidebarMenu.PatientInfo"></app-patient-personal-information>
+          <app-patient-address *ngSwitchCase="SidebarMenu.PatientAddress"></app-patient-address>
+          <app-patient-contacts *ngSwitchCase="SidebarMenu.PatientContact"></app-patient-contacts>
+          <app-patient-phone *ngSwitchCase="SidebarMenu.PatientPhone"></app-patient-phone>
+          <app-patient-problems *ngSwitchCase="SidebarMenu.Problems"></app-patient-problems>
+          <app-allergy *ngSwitchCase="SidebarMenu.Allergy"></app-allergy>
           <!-- Toolbar -->
-
-          <app-simulator-view *ngIf="sideMenu === SidebarMenu.Simulator"></app-simulator-view>
+          <app-simulator-view *ngSwitchCase="SidebarMenu.Simulator"></app-simulator-view>
+        </container-element>
 
           <div class="content">
             <!-- Resources -->

@@ -1,7 +1,11 @@
 <p>patient-alergies works!</p>
 <div class="card mb-3 shadow-sm">
   <div class="card-body row" *ngFor="let alergy of addedArray">
-    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{alergy.name}}</div>
-    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{alergy.description}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3">
+      <strong>Name:</strong><br />{{ alergy.name }}
+    </div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3">
+      <strong>Description:</strong><br />{{ alergy.description }}
+    </div>
   </div>
 </div>

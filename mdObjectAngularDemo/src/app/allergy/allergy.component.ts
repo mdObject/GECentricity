@@ -19,24 +19,22 @@ export class EnumToArrayPipe implements PipeTransform {
 
 export class AllergyComponent implements OnInit {
 
-  constructor(
-    private mdObjectServiceService: MdObjectServiceService
-    ) { }
-
   mdObject: MdObject = this.mdObjectServiceService.mdObject;
 
   allergy: Allergy = new Allergy(this.mdObject.emr.emrMel);
-
   allergyClassification = AllergyClassification;
-
   allergyCriticality = AllergyCriticality;
+
+  constructor(
+    private mdObjectServiceService: MdObjectServiceService
+  ) { }
 
   ngOnInit(): void {
     this.allergy.state = ObjectState.Add;
+    console.log(this.allergy);
   }
 
-  save = ()=>
-  {
+  save = (): void => {
     this.allergy.save();
     this.allergy = new Allergy(this.mdObject.emr.emrMel);
     this.allergy.state = ObjectState.Add;

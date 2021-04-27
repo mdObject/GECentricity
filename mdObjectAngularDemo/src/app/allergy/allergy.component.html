@@ -18,7 +18,7 @@
       <label for="classification" class="visually-hidden">Category:</label>
       <select [(ngModel)]="allergy.classification" class="form-control form-control-lg" id="classification">
         <option *ngFor="let item of allergyClassification | enumToArray" [value]="item.value">
-          {{item.name | titlecase }}
+          {{ item.name | titlecase }}
         </option>
       </select>
     </div>
@@ -26,7 +26,7 @@
       <label for="criticality" class="visually-hidden">Criticality:</label>
       <select [(ngModel)]="allergy.criticalIndicator" class="form-control form-control-lg" id="criticality">
         <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.value">
-          {{item.name | titlecase }}
+          {{ item.name | titlecase }}
         </option>
       </select>
     </div>

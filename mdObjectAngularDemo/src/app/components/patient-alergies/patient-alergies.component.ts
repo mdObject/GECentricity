@@ -12,7 +12,7 @@ export class PatientAlergiesComponent implements OnInit {
   patient: Patient | null = null;
   mdObject: MdObject;
 
-  private addedArray: Array<AllergyList> = [];
+  addedArray: Array<AllergyList> = [];
   private currentArray: Array<AllergyList> = [];
   private removedArray: Array<AllergyList> = [];
 
