@@ -1,6 +1,6 @@
 <h4>Patient Contacts</h4>
 <div class="card mb-3 shadow-sm">
-  <div class="card-body row" *ngFor="let contact of patient?.contacts">
+  <div class="card-body row card-table" *ngFor="let contact of patient?.contacts">
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{contact.name}}</div>
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Type:</strong><br />{{contact.type}}</div>
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone:</strong><br />{{contact.phone}}</div>

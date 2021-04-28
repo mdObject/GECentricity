@@ -8,4 +8,23 @@
       <strong>Description:</strong><br />{{ alergy.description }}
     </div>
   </div>
+
+  <div class="card-body row card-table" *ngFor="let alergy of addedArray">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{alergy.name}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{alergy.description}}</div>
+    <!--new description-->
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Substance:</strong><br />Bactrim</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Reaction:</strong><br />Dermatological</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Criticality:</strong><br />Severe</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Category:</strong><br />Drag</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Oncet Date:</strong><br />10 Apr-2021</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Uncoded:</strong><br />Y</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Entry Date:</strong><br />22 Apr-2021</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Entered By:</strong><br />Harry S. Winston MD</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Signed By:</strong><br />Harry S. Winston MD</div>
+    <div class="card-text col-12 d-flex justify-content-end">
+      <button class="btn btn-info">Edit</button>
+      <button class="btn btn-danger ml-3">Delete</button>
+    </div>
+  </div>
 </div>
