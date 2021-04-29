@@ -21,10 +21,6 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

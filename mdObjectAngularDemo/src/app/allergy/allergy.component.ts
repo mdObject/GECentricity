@@ -25,17 +25,50 @@ export class AllergyComponent implements OnInit {
   allergyClassification = AllergyClassification;
   allergyCriticality = AllergyCriticality;
 
+  addedAllergy: any;
+
   constructor(
     private mdObjectServiceService: MdObjectServiceService
   ) { }
 
   ngOnInit(): void {
     this.allergy.state = ObjectState.Add;
-    console.log(this.allergy);
   }
 
   save = (): void => {
+    this.addedAllergy = {
+      ...this.allergy,
+      allergyId: Math.floor(Math.random() * 100000).toString(),
+      type: 'add'
+    };
+
     this.allergy.save();
+    this.cancel();
+  }
+
+  edit = (item): void => {
+    if (item) {
+      this.allergy.state = ObjectState.Update;
+      this.allergy.allergyId = item.allergyId;
+      this.allergy.classification = item.classification;
+      this.allergy.criticalIndicator = item.criticalIndicator;
+      this.allergy.description = item.description;
+      this.allergy.gpiCode = item.gpiCode;
+      this.allergy.name = item.name;
+      this.allergy.severity = item.severity;
+      this.allergy.onSetDate = item.onSetDate;
+      this.allergy.stopDate = item.stopDate;
+    }
+  }
+
+  handleEdit = (): void => {
+    this.addedAllergy = { ...this.allergy, type: 'edit' };
+
+    // Reset state
+    this.cancel();
+  }
+
+  cancel = (): void => {
     this.allergy = new Allergy(this.mdObject.emr.emrMel);
     this.allergy.state = ObjectState.Add;
   }

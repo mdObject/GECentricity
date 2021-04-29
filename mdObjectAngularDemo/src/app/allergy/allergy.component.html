@@ -1,5 +1,6 @@
 <h4>Allergy</h4>
-<patient-alergies></patient-alergies>
+<patient-alergies [addedAllergy]="addedAllergy" (handleEdit)="edit($event)"></patient-alergies>
+
 <div class="card mb-3 shadow-sm">
   <div class="card-body row">
     <div class="card-text col-md-4 col-sm-6 mb-3">
@@ -31,7 +32,29 @@
       </select>
     </div>
       <div class="card-text col-md-4 col-sm-6 mb-3 d-flex align-items-end">
-        <button class="btn btn-lg btn-primary w-100" type="submit" id="save" (click)="save()">Add Allergy</button>
+        <button
+          *ngIf="allergy.state === 1; else elseBlock"
+          class="btn btn-lg btn-primary w-100"
+          type="submit"
+          id="save"
+          (click)="save()"
+        >Add Allergy</button>
+
+        <ng-template #elseBlock>
+          <button
+            class="btn btn-lg btn-primary w-100"
+            type="submit"
+            id="edit"
+            (click)="handleEdit()"
+          >Edit</button>
+
+          <button
+            class="btn btn-lg btn-warning w-100"
+            type="submit"
+            id="cancel"
+            (click)="cancel()"
+          >Cancel</button>
+        </ng-template>
       </div>
   </div>
 </div>

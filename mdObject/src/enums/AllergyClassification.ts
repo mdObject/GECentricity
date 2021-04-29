@@ -1,6 +1,6 @@
 export enum AllergyClassification {
     none = "",
-    drug = "Drug",
-    food = "Food",
-    environmental = "Environmental"
+    drug = "DRUG",
+    food = "FOOD",
+    environmental = "ENVIRONMENTAL"
 }
