@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let problem of patient?.problems">
       <td class="text-center align-middle" scope="row">{{problem.problemId}}</td>
       <td class="align-middle">{{problem.description}}</td>
       <td class="text-center align-middle">{{problem.codeIcd9}}</td>
