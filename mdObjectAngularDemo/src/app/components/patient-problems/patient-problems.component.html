@@ -1,5 +1,35 @@
 <h4>Problems</h4>
-<div class="card mb-3 shadow-sm">
+<table class="table table-hover bg-white border shadow-sm mb-3">
+  <thead class="bg-light">
+    <tr>
+      <th scope="col" class="text-center align-middle">ID</th>
+      <th scope="col" class="align-middle">Description</th>
+      <th scope="col" class="text-center align-middle">ICD9 Code</th>
+      <th scope="col" class="text-center align-middle">ICD10 Code</th>
+      <th scope="col" class="align-middle">Comment</th>
+      <th scope="col" class="text-center align-middle">Onset Date</th>
+      <th scope="col" class="text-center align-middle">Stop Date</th>
+      <th scope="col" class="align-middle">Stop Reason</th>
+      <th scope="col" class="text-center align-middle">Last Modified Date</th>
+      <th scope="col" class="text-center align-middle">Problem Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="text-center align-middle" scope="row">{{problem.problemId}}</td>
+      <td class="align-middle">{{problem.description}}</td>
+      <td class="text-center align-middle">{{problem.codeIcd9}}</td>
+      <td class="text-center align-middle">{{problem.codeIcd10}}</td>
+      <td class="align-middle">{{problem.comment}}</td>
+      <td class="text-center align-middle">{{problem.onsetDate}}</td>
+      <td class="text-center align-middle">{{problem.stopDate}}</td>
+      <td class="align-middle">{{problem.stopReason}}</td>
+      <td class="text-center align-middle">{{problem.lastModifiedDate}}</td>
+      <td class="text-center align-middle">{{problem.type}}</td>
+    </tr>
+  </tbody>
+</table>
+<!--<div class="card mb-3 shadow-sm">
   <div class="card-body row" *ngFor="let problem of patient?.problems">
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ID:</strong><br />{{problem.problemId}}</div>
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{problem.description}}</div>
@@ -12,4 +42,4 @@
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>last Modified Date:</strong><br />{{problem.lastModifiedDate}}</div>
       <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Problem Type</strong><br />{{problem.type}}</div>
   </div>
-</div>
+</div>-->
