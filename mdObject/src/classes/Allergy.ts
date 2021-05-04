@@ -1,6 +1,6 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
-import { ObjectState, AllergyClassification, AllergyCriticality } from "../enums/enums";
+import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval } from "../enums/enums";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
@@ -15,6 +15,7 @@ export class Allergy implements IAllergyData {
     stopDate: string = '';
     allergyId: string = '';
     reactionCode: number = 32; // OTHER=32
+    reasonForRemoval: AllergyReasonForRemoval = AllergyReasonForRemoval.none;
 
     constructor(
         public _mel: EmrMel
