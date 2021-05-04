@@ -34,7 +34,14 @@ export class Allergy implements IAllergyData {
                 break;
             }
             case ObjectState.Update: {
-                this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
+                let code: string = await this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
+
+                if (code !== '0') {
+                    let error = 'Allergy.save error. Code is ' + code;
+                    console.error(error);
+                    throw new Error('Allergy not saved. ' + error);
+                }
+
                 this.state = ObjectState.None;
                 break;
             }
@@ -46,7 +53,15 @@ export class Allergy implements IAllergyData {
         }
     }
 
-    private toChangeString = (): string => { return ''; }
+    private toChangeString = (): string => {
+        return this.allergyId + '","' +
+            this.description + '","' +
+            this.onSetDate + '","' +
+            (this.stopDate ? this.stopDate : '') + '","' +
+            this.criticalIndicator + '","' +
+            this.classification;
+    }
+
     private toRemoveString = (): string => { return ''; }
 
     private toAddString = (): string => {

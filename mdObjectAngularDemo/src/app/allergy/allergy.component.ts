@@ -35,7 +35,7 @@ export class AllergyComponent implements OnInit {
     this.allergy.state = ObjectState.Add;
   }
 
-  save = (): void => {
+  handleAdd = (): void => {
     this.addedAllergy = {
       ...this.allergy,
       allergyId: Math.floor(Math.random() * 100000).toString(),
@@ -64,6 +64,7 @@ export class AllergyComponent implements OnInit {
   handleEdit = (): void => {
     this.addedAllergy = { ...this.allergy, type: 'edit' };
 
+    this.allergy.save();
     // Reset state
     this.cancel();
   }
