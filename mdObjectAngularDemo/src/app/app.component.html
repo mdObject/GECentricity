@@ -11,6 +11,8 @@
   <mat-drawer-content>
     <main role="main" class="p-4">
       <div class="d-flex justify-content-center flex-column">
+        <app-patient-header></app-patient-header>
+
         <container-element [ngSwitch]="sideMenu">
           <app-patient-personal-information *ngSwitchCase="SidebarMenu.PatientInfo"></app-patient-personal-information>
           <app-patient-address *ngSwitchCase="SidebarMenu.PatientAddress"></app-patient-address>
