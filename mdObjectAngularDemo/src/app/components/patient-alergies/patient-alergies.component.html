@@ -16,7 +16,7 @@
       <td class="align-middle" scope="row">{{ allergy.name }}</td>
       <td class="align-middle">{{ allergy.description }}</td>
       <td class="align-middle">{{ allergy.classification }}</td>
-      <td class="text-center align-middle">{{ allergy.criticalIndicator | titlecase }}</td>
+      <td class="text-center align-middle">{{ allergy.severity  | titlecase }}</td>
       <td class="text-center align-middle">{{ allergy.onSetDate }}</td>
       <td class="text-center align-middle">{{ allergy.stopDate }}</td>
       <td class="text-center align-middle">
@@ -25,7 +25,7 @@
         </button>
       </td>
       <td class="text-center align-middle">
-        <button (click)="delete(i)" class="btn btn-link text-danger ml-3 p-0 position-relative" title="Delete">
+        <button (click)="openDeleteDialog(i)" class="btn btn-link text-danger ml-3 p-0 position-relative" title="Delete">
           <i class="far fa-trash-alt h5"></i>
         </button>
       </td>

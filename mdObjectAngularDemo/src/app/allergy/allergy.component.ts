@@ -46,7 +46,7 @@ export class AllergyComponent implements OnInit {
     this.cancel();
   }
 
-  edit = (item): void => {
+  setAllergy = (item): void => {
     if (item) {
       this.allergy.state = ObjectState.Update;
       this.allergy.allergyId = item.allergyId;

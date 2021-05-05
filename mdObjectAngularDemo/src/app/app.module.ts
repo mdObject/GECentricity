@@ -1,6 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { AllergyComponent, EnumToArrayPipe } from './allergy/allergy.component';
 import { AppComponent } from './app.component';
 import { PatientAddressComponent } from './components/patient-address/patient-address.component';
@@ -20,6 +22,7 @@ import { MdObjectServiceService } from './md-object-service.service';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
+import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +37,20 @@ import { PatientAlergiesComponent } from './components/patient-alergies/patient-
     PatientPhoneComponent,
     PatientProblemsComponent,
     SidenavComponent,
-    PatientAlergiesComponent
-
+    PatientAlergiesComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
   ],
   providers: [TitleCasePipe, MdObjectServiceService],
   bootstrap: [AppComponent]

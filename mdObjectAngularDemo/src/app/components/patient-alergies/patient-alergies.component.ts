@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MdObject, Patient, AllergyList } from '../../../../../mdObject/src/classes/classes';
 import { MdObjectServiceService } from '../../md-object-service.service';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'patient-alergies',
@@ -22,7 +24,8 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
   allergyList: Array<AllergyList> = [];
 
   constructor(
-    private mdObjectServiceService: MdObjectServiceService
+    private mdObjectServiceService: MdObjectServiceService,
+    public dialog: MatDialog
   ) {
     this.mdObject = this.mdObjectServiceService.mdObject;
   }
@@ -57,8 +60,16 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
     this.handleEdit.emit(this.allergyList[index]);
   }
 
-  delete = (index: number): void => {
-    this.removedArray.push(this.allergyList[index]);
-    this.allergyList.splice(index, 1);
+  openDeleteDialog = (index: number): void => {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: this.allergyList[index]
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.removedArray.push(result);
+        this.allergyList.splice(index, 1);
+      }
+    });
   }
 }

@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Remove Allergy or Adverse Reaction</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="item-wrap">
+      <span class="name">Allergic to:</span>
+      <span class="value">{{ data.classification }}</span>
+    </div>
+    <div class="item-wrap">
+      <span class="name">Onset Date:</span>
+      <span class="value">{{ data.onSetDate }}</span>
+    </div>
+    <div class="item-wrap">
+      <span class="name">End Date:</span>
+      <input class="form-control form-control-lg" required formControlName="stopDate">
+    </div>
+    <div class="item-wrap">
+      <span class="name">Reason for removal:</span>
+      <select class="form-control form-control-lg" formControlName="removalReason">
+        <option *ngFor="let item of removalReason | enumToArray" [value]="item.value">
+          {{ item.value }}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button type="submit" [disabled]="form.invalid" [mat-dialog-close]="submit()">Delete</button>
+</div>

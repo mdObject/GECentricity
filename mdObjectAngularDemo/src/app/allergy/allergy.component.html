@@ -1,15 +1,27 @@
 <h4>Allergy</h4>
-<patient-alergies [addedAllergy]="addedAllergy" (handleEdit)="edit($event)"></patient-alergies>
+<patient-alergies [addedAllergy]="addedAllergy" (handleEdit)="setAllergy($event)"></patient-alergies>
 
 <div class="card mb-3 shadow-sm">
   <div class="card-body row">
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="inputEmail" class="visually-hidden">Name:</label>
-      <input type="text" class="form-control form-control-lg" id="inputEmail" required [(ngModel)]="allergy.name" name="name">
+      <label for="name" class="visually-hidden">Name:</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="name"
+        required
+        [disabled]="allergy.state === 2"
+        [(ngModel)]="allergy.name"
+        name="name"
+      >
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="onSetDate" class="visually-hidden">OnSet Date:</label>
       <input type="text" class="form-control form-control-lg" id="onSetDate" required [(ngModel)]="allergy.onSetDate" name="onSetDate">
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3">
+      <label for="onSetDate" class="visually-hidden">Stop Date:</label>
+      <input type="text" class="form-control form-control-lg" id="stopDate" required [(ngModel)]="allergy.stopDate" name="stopDate">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="reaction" class="visually-hidden">Reaction:</label>
@@ -25,7 +37,7 @@
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="criticality" class="visually-hidden">Criticality:</label>
-      <select [(ngModel)]="allergy.criticalIndicator" class="form-control form-control-lg" id="criticality">
+      <select [(ngModel)]="allergy.severity" class="form-control form-control-lg" id="criticality">
         <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.value">
           {{ item.name | titlecase }}
         </option>
@@ -36,7 +48,7 @@
           *ngIf="allergy.state === 1; else elseBlock"
           class="btn btn-lg btn-primary w-100"
           type="submit"
-          id="save"
+          id="add"
           (click)="handleAdd()"
         >Add Allergy</button>
 
@@ -44,9 +56,9 @@
           <button
             class="btn btn-lg btn-info w-100"
             type="submit"
-            id="edit"
+            id="save"
             (click)="handleEdit()"
-          >Edit</button>
+          >Save</button>
 
           <button
             class="btn btn-lg btn-light w-100 ml-3"
