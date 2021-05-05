@@ -1,0 +1,95 @@
+.table th {
+  border-bottom: 1px solid #000;
+}
+
+.table-hover tbody tr:hover {
+  color: #212529;
+  background-color: #f8f9fa;
+}
+
+.btn.focus, .btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+@media (max-width: 992px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  .btn.btn-link.text-danger {
+    margin-left: 0 !important;
+  }
+
+  table {
+    border-color: rgba(0,0,0, 0.24);
+
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    td {
+      border: none !important;
+      border-bottom: 1px solid #dee2e6 !important;
+      position: relative;
+      padding-left: 40%;
+      text-align: left !important;
+      min-height: 49px;
+
+      @media (max-width: 400px ) {
+        font-size: 80%;
+      }
+
+      &:before {
+        position: absolute;
+        left: 15px;
+        width: 65%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+
+      &:nth-of-type(1):before {
+        content: "Name";
+      }
+
+      &:nth-of-type(2):before {
+        content: "Type";
+      }
+
+      &:nth-of-type(3):before {
+        content: "Phone";
+      }
+
+      &:nth-of-type(4):before {
+        content: "Phone Type";
+      }
+
+      &:nth-of-type(5):before {
+        content: "Address1";
+      }
+
+      &:nth-of-type(6):before {
+        content: "Address2";
+      }
+
+      &:nth-of-type(7):before {
+        content: "City";
+      }
+
+      &:nth-of-type(8):before {
+        content: "State";
+      }
+
+      &:nth-of-type(9):before {
+        content: "Zip";
+      }
+
+      &:nth-of-type(10):before {
+        content: "Country";
+      }
+    }
+  }
+}

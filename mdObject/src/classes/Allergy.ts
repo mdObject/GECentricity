@@ -1,6 +1,6 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
-import { ObjectState, AllergyClassification, AllergyCriticality } from "../enums/enums";
+import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval } from "../enums/enums";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
@@ -15,6 +15,7 @@ export class Allergy implements IAllergyData {
     stopDate: string = '';
     allergyId: string = '';
     reactionCode: number = 32; // OTHER=32
+    reasonForRemoval: AllergyReasonForRemoval = AllergyReasonForRemoval.none;
 
     constructor(
         public _mel: EmrMel
@@ -34,20 +35,46 @@ export class Allergy implements IAllergyData {
                 break;
             }
             case ObjectState.Update: {
-                this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
+                let code: string = await this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
+
+                if (code !== '0') {
+                    let error = 'Allergy.save error. Code is ' + code;
+                    console.error(error);
+                    throw new Error('Allergy not saved. ' + error);
+                }
+
                 this.state = ObjectState.None;
                 break;
             }
             case ObjectState.Remove: {
-                this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}');
+                let code: string = await this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}');
+
+                if (code !== '0') {
+                    let error = 'Allergy.save error. Code is ' + code;
+                    console.error(error);
+                    throw new Error('Allergy not saved. ' + error);
+                }
+
                 this.state = ObjectState.None;
                 break;
             }
         }
     }
 
-    private toChangeString = (): string => { return ''; }
-    private toRemoveString = (): string => { return ''; }
+    private toChangeString = (): string => {
+        return this.allergyId + '","' +
+            this.description + '","' +
+            this.onSetDate + '","' +
+            (this.stopDate ? this.stopDate : '') + '","' +
+            this.criticalIndicator + '","' +
+            this.classification;
+    }
+
+    private toRemoveString = (): string => {
+        return this.allergyId + '","' +
+            (this.stopDate ? this.stopDate : '') + '","' +
+            (this.reasonForRemoval !== AllergyReasonForRemoval.none ? this.reasonForRemoval : '');
+    }
 
     private toAddString = (): string => {
         return this.name + '","' +

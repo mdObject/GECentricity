@@ -37,19 +37,19 @@
           class="btn btn-lg btn-primary w-100"
           type="submit"
           id="save"
-          (click)="save()"
+          (click)="handleAdd()"
         >Add Allergy</button>
 
         <ng-template #elseBlock>
           <button
-            class="btn btn-lg btn-primary w-100"
+            class="btn btn-lg btn-info w-100"
             type="submit"
             id="edit"
             (click)="handleEdit()"
           >Edit</button>
 
           <button
-            class="btn btn-lg btn-warning w-100"
+            class="btn btn-lg btn-light w-100 ml-3"
             type="submit"
             id="cancel"
             (click)="cancel()"
