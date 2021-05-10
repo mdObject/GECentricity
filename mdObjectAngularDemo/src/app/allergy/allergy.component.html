@@ -16,12 +16,16 @@
       >
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="onSetDate" class="visually-hidden">OnSet Date:</label>
-      <input type="text" class="form-control form-control-lg" id="onSetDate" required [(ngModel)]="allergy.onSetDate" name="onSetDate">
+      <mat-label>OnSet Date:</mat-label>
+      <input matInput [matDatepicker]="setPicker" [(ngModel)]="allergy.onSetDate">
+      <mat-datepicker-toggle matSuffix [for]="setPicker"></mat-datepicker-toggle>
+      <mat-datepicker #setPicker></mat-datepicker>
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="onSetDate" class="visually-hidden">Stop Date:</label>
-      <input type="text" class="form-control form-control-lg" id="stopDate" required [(ngModel)]="allergy.stopDate" name="stopDate">
+      <mat-label>Stop Date:</mat-label>
+      <input matInput [matDatepicker]="stopPicker" [(ngModel)]="allergy.stopDate">
+      <mat-datepicker-toggle matSuffix [for]="stopPicker"></mat-datepicker-toggle>
+      <mat-datepicker #stopPicker></mat-datepicker>
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="reaction" class="visually-hidden">Reaction:</label>

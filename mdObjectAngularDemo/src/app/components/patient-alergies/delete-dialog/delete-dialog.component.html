@@ -10,8 +10,10 @@
       <span class="value">{{ data.onSetDate }}</span>
     </div>
     <div class="item-wrap">
-      <span class="name">End Date:</span>
-      <input class="form-control form-control-lg" required formControlName="stopDate">
+      <mat-label>End Date:</mat-label>
+      <input matInput [matDatepicker]="stopPicker" formControlName="stopDate">
+      <mat-datepicker-toggle matSuffix [for]="stopPicker"></mat-datepicker-toggle>
+      <mat-datepicker #stopPicker></mat-datepicker>
     </div>
     <div class="item-wrap">
       <span class="name">Reason for removal:</span>
