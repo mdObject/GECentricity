@@ -2,7 +2,7 @@
 <patient-alergies [addedAllergy]="addedAllergy" (handleEdit)="setAllergy($event)"></patient-alergies>
 
 <div class="card mb-3 shadow-sm">
-  <div class="card-body row">
+  <div class="card-body row d-flex justify-content-end">
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="name" class="visually-hidden">Name:</label>
       <input
@@ -17,11 +17,11 @@
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="onSetDate" class="visually-hidden">OnSet Date:</label>
-      <input type="text" class="form-control form-control-lg" id="onSetDate" required [(ngModel)]="allergy.onSetDate" name="onSetDate">
+      <input type="date" class="form-control form-control-lg" id="onSetDate" required [(ngModel)]="allergy.onSetDate" name="onSetDate">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
-      <label for="onSetDate" class="visually-hidden">Stop Date:</label>
-      <input type="text" class="form-control form-control-lg" id="stopDate" required [(ngModel)]="allergy.stopDate" name="stopDate">
+      <label for="stopDate" class="visually-hidden">Stop Date:</label>
+      <input type="date" class="form-control form-control-lg" id="stopDate" required [(ngModel)]="allergy.stopDate" name="stopDate">
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="reaction" class="visually-hidden">Reaction:</label>
