@@ -9,9 +9,9 @@
       <span class="name">Onset Date:</span>
       <span class="value">{{ data.onSetDate }}</span>
     </div>
-    <div class="item-wrap">
-      <mat-label>End Date:</mat-label>
-      <input matInput [matDatepicker]="stopPicker" formControlName="stopDate">
+    <div class="item-wrap mb-3 input-group">
+      <label for="stopDate" class="visually-hidden d-block w-100">End Date:</label>
+      <input class="form-control form-control-lg rounded" [matDatepicker]="stopPicker" formControlName="stopDate" id="stopDate">
       <mat-datepicker-toggle matSuffix [for]="stopPicker"></mat-datepicker-toggle>
       <mat-datepicker #stopPicker></mat-datepicker>
     </div>

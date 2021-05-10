@@ -15,15 +15,15 @@
         name="name"
       >
     </div>
-    <div class="card-text col-md-4 col-sm-6 mb-3">
-      <mat-label>OnSet Date:</mat-label>
-      <input matInput [matDatepicker]="setPicker" [(ngModel)]="allergy.onSetDate">
+    <div class="card-text col-md-4 col-sm-6 mb-3 input-group">
+      <label for="onSetDate" class="visually-hidden d-block w-100">OnSet Date:</label>
+      <input class="form-control form-control-lg rounded" [matDatepicker]="setPicker" [(ngModel)]="allergy.onSetDate" id="onSetDate">
       <mat-datepicker-toggle matSuffix [for]="setPicker"></mat-datepicker-toggle>
       <mat-datepicker #setPicker></mat-datepicker>
     </div>
-    <div class="card-text col-md-4 col-sm-6 mb-3">
-      <mat-label>Stop Date:</mat-label>
-      <input matInput [matDatepicker]="stopPicker" [(ngModel)]="allergy.stopDate">
+    <div class="card-text col-md-4 col-sm-6 mb-3 input-group">
+      <label for="stopDate" class="visually-hidden d-block w-100">Stop Date:</label>
+      <input class="form-control form-control-lg rounded" [matDatepicker]="stopPicker" [(ngModel)]="allergy.stopDate" id="stopDate">
       <mat-datepicker-toggle matSuffix [for]="stopPicker"></mat-datepicker-toggle>
       <mat-datepicker #stopPicker></mat-datepicker>
     </div>
