@@ -1,9 +1,10 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
-import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval } from "../enums/enums";
+import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval, ObjectStatus } from "../enums/enums";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
+    status: ObjectStatus = ObjectStatus.Unchanged;
 
     name: string = '';
     onSetDate: string;
@@ -31,6 +32,8 @@ export class Allergy implements IAllergyData {
                     console.error(error);
                     throw new Error('Allergy not saved. ' + error);
                 }
+
+                this.status = ObjectStatus.Added;
                 this.state = ObjectState.None;
                 break;
             }
@@ -43,6 +46,7 @@ export class Allergy implements IAllergyData {
                     throw new Error('Allergy not saved. ' + error);
                 }
 
+                this.status = ObjectStatus.Updated;
                 this.state = ObjectState.None;
                 break;
             }
@@ -55,6 +59,7 @@ export class Allergy implements IAllergyData {
                     throw new Error('Allergy not saved. ' + error);
                 }
 
+                this.status = ObjectStatus.Removed;
                 this.state = ObjectState.None;
                 break;
             }
