@@ -39,6 +39,8 @@ export class AllergyComponent implements OnInit {
   handleAdd = (): void => {
     this.addedAllergy = {
       ...this.allergy,
+      onSetDate: this.convertTime(new Date(this.allergy.onSetDate)),
+      stopDate: this.convertTime(new Date(this.allergy.stopDate)),
       allergyId: Math.floor(Math.random() * 100000).toString(),
       type: 'add'
     };
@@ -57,13 +59,18 @@ export class AllergyComponent implements OnInit {
       this.allergy.gpiCode = item.gpiCode;
       this.allergy.name = item.name;
       this.allergy.severity = item.severity;
-      this.allergy.onSetDate = item.onSetDate;
-      this.allergy.stopDate = item.stopDate;
+      this.allergy.onSetDate = item.onSetDate ? new Date(item.onSetDate) as any : '';
+      this.allergy.stopDate = item.stopDate ? new Date(item.stopDate) as any : '';
     }
   }
 
   handleEdit = (): void => {
-    this.addedAllergy = { ...this.allergy, type: 'edit' };
+    this.addedAllergy = {
+      ...this.allergy,
+      onSetDate: this.convertTime(this.allergy.onSetDate as any),
+      stopDate: this.convertTime(this.allergy.stopDate as any),
+      type: 'edit'
+    };
 
     this.allergy.save();
     // Reset state
@@ -73,5 +80,17 @@ export class AllergyComponent implements OnInit {
   cancel = (): void => {
     this.allergy = new Allergy(this.mdObject.emr.emrMel);
     this.allergy.state = ObjectState.Add;
+  }
+
+  convertTime = (value: Date): string => {
+    if (value) {
+      return [
+        `0${1 + value.getMonth()}`.substr(-2),
+        `0${value.getDate()}`.substr(-2),
+        `${value.getFullYear()}`
+      ].join("/");
+    }
+
+    return '';
   }
 }
