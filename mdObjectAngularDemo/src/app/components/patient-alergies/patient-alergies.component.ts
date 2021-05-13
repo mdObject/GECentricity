@@ -13,6 +13,7 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
 
   @Input() addedAllergy: any;
   @Output() handleEdit: EventEmitter<AllergyList> = new EventEmitter();
+  @Output() handleDelete: EventEmitter<AllergyList> = new EventEmitter();
 
   patient: Patient | null = null;
   mdObject: MdObject;
@@ -69,6 +70,8 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
       if (result) {
         this.removedArray.push(result);
         this.allergyList.splice(index, 1);
+
+        this.handleDelete.emit(result);
       }
     });
   }

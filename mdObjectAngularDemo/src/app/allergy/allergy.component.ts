@@ -39,8 +39,8 @@ export class AllergyComponent implements OnInit {
   handleAdd = (): void => {
     this.addedAllergy = {
       ...this.allergy,
-      onSetDate: this.convertTime(new Date(this.allergy.onSetDate)),
-      stopDate: this.convertTime(new Date(this.allergy.stopDate)),
+      onSetDate: this.allergy.onSetDate ? this.convertTime(new Date(this.allergy.onSetDate)) : '',
+      stopDate: this.allergy.stopDate ? this.convertTime(new Date(this.allergy.stopDate)) : '',
       allergyId: Math.floor(Math.random() * 100000).toString(),
       type: 'add'
     };
@@ -49,9 +49,20 @@ export class AllergyComponent implements OnInit {
     this.cancel();
   }
 
+  edit = (item): void => {
+    this.allergy.state = ObjectState.Update;
+    this.setAllergy(item);
+  }
+
+  delete = (item): void => {
+    this.allergy.state = ObjectState.Remove;
+    this.setAllergy(item);
+    this.allergy.save();
+    this.cancel();
+  }
+
   setAllergy = (item): void => {
     if (item) {
-      this.allergy.state = ObjectState.Update;
       this.allergy.allergyId = item.allergyId;
       this.allergy.classification = item.classification;
       this.allergy.criticalIndicator = item.criticalIndicator;

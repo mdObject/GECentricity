@@ -1,7 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AllergyReasonForRemoval } from '../../../../../../mdObject/src/enums/enums';
+
+@Pipe({ name: 'enumToArray'})
+export class EnumToArrayPipe implements PipeTransform {
+  transform(value) : Object {
+    return Object.keys(value).map(o => { return { name: o, value: value[o]}});
+  }
+}
 
 @Component({
   selector: 'app-delete-dialog',
