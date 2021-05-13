@@ -112,6 +112,9 @@ export class ArrayAsync<T> //implements Array<T>
         return this._data.values();
     }
 
-    //[n: number]: T { return this._data[n] }
+    //[n: number]: T;
 
+    get(n: number): T { return this._data[n] };
+
+    set(n: number, value: T) { this._data[n] = value;}    
 }
