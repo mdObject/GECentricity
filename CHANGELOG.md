@@ -60,6 +60,8 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Added new objects:
 	* AllergiesExternal
 	* ObjectState
+	* ArrayAsync - allows extend generic array with async methods
+	* Problems - Array of patient problems
 
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:

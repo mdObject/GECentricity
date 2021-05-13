@@ -65,13 +65,15 @@ Allergies:&#x27;<span>{{ allergies }}</span>&#x27;,
 <br />
 {{formater('{MEL_LIST_CARE_PLAN("delim","all","all")}')}}:&#x27;<span>{{patient?.carePlans.toMelString()}}</span>&#x27;,
 <br />
-{{formater('{PROB_AFTER("delimited","dat","com")}')}}:&#x27;<span>{{patient?.problems.toMelString()}}</span>&#x27;,
-<br />
+<!--{{formater('{PROB_AFTER("delimited","dat","com")}')}}:&#x27;<span>{{patient?.problems.toMelString()}}</span>&#x27;,
+<br />-->
 {{formater('{ALL_NEW("delimited")}')}}:&#x27;<span>{{patient?.allergies._added}}</span>&#x27;,
 <br />
 {{formater('{ALL_PRIOR("delimited")}')}}:&#x27;<span>{{patient?.allergies._current}}</span>&#x27;,
 <br />
 {{formater('{ALL_REMOVED("delimited")}')}}:&#x27;<span>{{patient?.allergies._removed}}</span>&#x27;,
+<br />
+{{formater('{PROB_PRIOR("delimited","dat","com")}')}}:&#x27;<span>{{problems}}</span>&#x27;,
 <br />
 
 {{ '}' }}
