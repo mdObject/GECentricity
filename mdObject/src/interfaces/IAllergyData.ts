@@ -8,4 +8,5 @@ export interface IAllergyData {
     severity: string
     stopDate: string
     allergyId: string
+    reactionCode: number
 }

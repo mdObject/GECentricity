@@ -13,6 +13,7 @@ export class AllergyList implements IAllergyData {
     severity = (this.data.length > 6) ? this.data[6] : '';
     allergyId = (this.data.length > 7) ? this.data[7] : '';
     stopDate = null;
+    reactionCode: number = 32; // OTHER=32
 
     constructor(
         public _value: string
