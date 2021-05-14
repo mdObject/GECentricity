@@ -3,6 +3,7 @@
   <thead class="bg-light">
     <tr>
       <th scope="col" class="text-center align-middle">ID</th>
+      <th scope="col" class="align-middle">Status</th>
       <th scope="col" class="align-middle">Description</th>
       <th scope="col" class="text-center align-middle">ICD9 Code</th>
       <th scope="col" class="text-center align-middle">ICD10 Code</th>
@@ -17,6 +18,7 @@
   <tbody>
     <tr *ngFor="let problem of problemList">
       <td class="text-center align-middle" scope="row">{{problem?.problemId}}</td>
+      <td class="text-center align-middle">{{(problem?.status === 1)?'+': (problem?.status === 3) ? 'X' : '' }}</td>
       <td class="align-middle">{{problem?.description}}</td>
       <td class="text-center align-middle">{{problem?.codeIcd9}}</td>
       <td class="text-center align-middle">{{problem?.codeIcd10}}</td>
