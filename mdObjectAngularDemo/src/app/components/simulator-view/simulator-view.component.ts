@@ -42,7 +42,7 @@ export class SimulatorViewComponent implements OnInit {
       this.patient = e[0];
       this.demographics = this.jsonCleanup(this.patient._demographics.json);
       this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
-      this.problems = this.jsonCleanup(e[8]._currentData);
+      this.problems = this.jsonCleanup(e[8].currentProblemMelData);
     });
     Promise.all([
       patientAsync,

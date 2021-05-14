@@ -5,7 +5,7 @@ import { ArrayAsync } from "../interfaces/ArrayAsync";
 
 export class Problems extends ArrayAsync<Problem>{
     private _isLoaded = false;
-    _currentData: string;
+    currentProblemMelData: string;
 
     load = (mel: EmrMel) => {
         if (!this._isLoaded) {
@@ -26,13 +26,13 @@ export class Problems extends ArrayAsync<Problem>{
     } 
 
     private _current = (mel: EmrMel) => {
-        this._currentData = (this._currentData != null) ? this._currentData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
-        this.loadMelDataToList(this._currentData, this.currentProblem);
+        this.currentProblemMelData = (this.currentProblemMelData != null) ? this.currentProblemMelData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
+        this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
     }
 
     async _currentAsync(mel: EmrMel) {
-        this._currentData = (this._currentData != null) ? this._currentData : await mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
-        this.loadMelDataToList(this._currentData, this.currentProblem);
+        this.currentProblemMelData = (this.currentProblemMelData != null) ? this.currentProblemMelData : await mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
+        this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
     }
 
     private loadMelDataToList = (data: string, predicate: (value: string)=> Problem) => {
