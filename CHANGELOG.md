@@ -63,6 +63,8 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* ArrayAsync - allows extend generic array with async methods
 	* Problems - Array of patient problems
 
+	The Problem object changed. The onsetDate and stopDate are the Date object. 
+
 ## Release 2.0.0-alpha.1.2
 	The following objects are moved from MdObject to Emr:
 	* patient: Patient (use: mdObject.emr.patient)

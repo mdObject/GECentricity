@@ -8,8 +8,8 @@ export class Problem {
     description: string = '';
     codeIcd9: string = '';
     comment: string = '';
-    onsetDate: string = '';
-    stopDate: string = '';
+    onsetDate: Date | undefined;
+    stopDate: Date | undefined;
     stopReason: string = '';
     codeIcd10: string = '';
     lastModifiedDate: string = '';

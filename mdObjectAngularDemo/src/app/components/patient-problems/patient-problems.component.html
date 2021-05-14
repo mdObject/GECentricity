@@ -21,8 +21,8 @@
       <td class="text-center align-middle">{{problem?.codeIcd9}}</td>
       <td class="text-center align-middle">{{problem?.codeIcd10}}</td>
       <td class="align-middle">{{problem?.comment}}</td>
-      <td class="text-center align-middle">{{problem?.onsetDate}}</td>
-      <td class="text-center align-middle">{{problem?.stopDate}}</td>
+      <td class="text-center align-middle">{{problem?.onsetDate | date: 'MM/dd/yyyy'}}</td>
+      <td class="text-center align-middle">{{problem?.stopDate | date: 'MM/dd/yyyy'}}</td>
       <td class="align-middle">{{problem?.stopReason}}</td>
       <td class="text-center align-middle">{{problem?.lastModifiedDate}}</td>
       <td class="text-center align-middle">{{problem?.type}}</td>

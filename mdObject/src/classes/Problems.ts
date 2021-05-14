@@ -49,8 +49,8 @@ export class Problems extends ArrayAsync<Problem>{
         problem.description = (data.length > 1) ? data[1] : '';
         problem.codeIcd9 = (data.length > 2) ? data[2] : '';
         problem.comment = (data.length > 3) ? data[3] : '';
-        problem.onsetDate = (data.length > 4) ? data[4] : '';
-        problem.stopDate = (data.length > 5) ? data[5] : '';
+        problem.onsetDate = StringInternal((data.length > 4) ? data[4] : '').toDate();
+        problem.stopDate = StringInternal((data.length > 5) ? data[5] : '').toDate();
         problem.stopReason = (data.length > 6) ? data[6] : '';
         problem.codeIcd10 = (data.length > 7) ? data[7] : '';
         problem.lastModifiedDate = (data.length > 9) ? data[9] : '';
