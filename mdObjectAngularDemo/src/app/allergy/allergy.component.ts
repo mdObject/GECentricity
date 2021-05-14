@@ -37,10 +37,10 @@ export class AllergyComponent implements OnInit {
   }
 
   handleAdd = (): void => {
+    this.allergy.onSetDate = this.allergy.onSetDate ? this.convertTime(new Date(this.allergy.onSetDate)) : '';
+    this.allergy.stopDate = this.allergy.stopDate ? this.convertTime(new Date(this.allergy.stopDate)) : '',
     this.addedAllergy = {
       ...this.allergy,
-      onSetDate: this.allergy.onSetDate ? this.convertTime(new Date(this.allergy.onSetDate)) : '',
-      stopDate: this.allergy.stopDate ? this.convertTime(new Date(this.allergy.stopDate)) : '',
       allergyId: Math.floor(Math.random() * 100000).toString(),
       type: 'add'
     };
