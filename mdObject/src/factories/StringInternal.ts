@@ -29,8 +29,13 @@ export function StringInternal(value: string, tag?: string): IStringInternal {
 
     result.tag = (tag != null) ? tag : '';
 
-    result.toDate = () => {
-        return new Date(value.toString());
+    result.toDate = (): Date | undefined => {
+        let theDate = new Date(value.toString());
+        if (theDate instanceof Date && !isNaN(theDate.valueOf())) {
+            return theDate;
+        } else {
+            return undefined;
+        }
     }
 
     return result;
