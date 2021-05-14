@@ -27,17 +27,18 @@ export class Problems extends ArrayAsync<Problem>{
 
     private _current = (mel: EmrMel) => {
         this._currentData = (this._currentData != null) ? this._currentData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
-        let dataArray = StringInternal(this._currentData).toList();
-        for (let index = 0; index < dataArray.length; index++) {
-            this.push(this.currentProblem(dataArray[index]));
-        }
+        this.loadMelDataToList(this._currentData, this.currentProblem);
     }
 
     async _currentAsync(mel: EmrMel) {
         this._currentData = (this._currentData != null) ? this._currentData : await mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
-        let dataArray = StringInternal(this._currentData).toList();
+        this.loadMelDataToList(this._currentData, this.currentProblem);
+    }
+
+    private loadMelDataToList = (data: string, predicate: (value: string)=> Problem) => {
+        let dataArray = StringInternal(data).toList();
         for (let index = 0; index < dataArray.length; index++) {
-            this.push(this.currentProblem(dataArray[index]));
+            this.push(predicate(dataArray[index]));
         }
     }
 
