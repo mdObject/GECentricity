@@ -1,5 +1,63 @@
-export class ArrayAsync<T> //implements Array<T>
+export class ArrayAsync<T> 
 {
+    [Symbol.unscopables](): { copyWithin: boolean; entries: boolean; fill: boolean; find: boolean; findIndex: boolean; keys: boolean; values: boolean; } {
+        return { copyWithin: true, entries: true, fill: true, find: true, findIndex: true, keys: true, values: true };
+    }
+    some(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean {
+        return this._data.some(predicate, thisArg);
+    }
+    map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[] {
+        return this._data.map<U>(callbackfn, thisArg);
+    }
+    filter(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): T[];
+    filter(predicate: any, thisArg?: any);
+    filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S, thisArg?: any): S[] {
+        return this._data.filter<S>(predicate, thisArg);
+    }
+
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
+    reduce(callbackfn: any, initialValue?: any);
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;
+    reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue?: U): U {
+        return this._data.reduce<U>(callbackfn, initialValue);
+    }
+
+    reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;
+    reduceRight(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
+    reduceRight(callbackfn: any, initialValue?: any);
+    reduceRight<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue?: U): U {
+        return this._data.reduceRight<U>(callbackfn, initialValue);
+    }
+
+    find(predicate: (value: T, index: number, obj: T[]) => unknown, thisArg?: any): T;
+    find(predicate: any, thisArg?: any);
+    find<S extends T>(predicate: (this: void, value: T, index: number, obj: T[]) => value is S, thisArg?: any): S {
+        return this._data.find<S>(predicate, thisArg);
+    }
+
+    findIndex(predicate: (value: T, index: number, obj: T[]) => unknown, thisArg?: any): number {
+        return this._data.findIndex(predicate, thisArg);
+    }
+    fill(value: T, start?: number, end?: number): this {
+        this._data = this._data.fill(value, start, end);
+        return this;
+    }
+    copyWithin(target: number, start: number, end?: number): this {
+        this._data = this._data.copyWithin(target, start, end);
+        return this;
+    }
+    entries(): IterableIterator<[number, T]> {
+        return this._data.entries();
+    }
+    keys(): IterableIterator<number> {
+        return this._data.keys();
+    }
+    values(): IterableIterator<T> {
+        return this._data.values();
+    }
+    includes(searchElement: T, fromIndex?: number): boolean {
+        return this._data.includes(searchElement, fromIndex);
+    }
     _data: Array<T> = new Array<T>();
 
     /**
@@ -96,8 +154,40 @@ export class ArrayAsync<T> //implements Array<T>
     splice(start: number, deleteCount: number, ...items: T[]): T[] {
         return this._data.splice(start, deleteCount, ...items);
     }
-
-
+    /**
+     * Inserts new elements at the start of an array.
+     * @param items  Elements to insert at the start of the Array.
+     */
+    unshift(...items: T[]): number {
+        return this._data.unshift(...items);
+    }
+    /**
+     * Returns the index of the first occurrence of a value in an array.
+     * @param searchElement The value to locate in the array.
+     * @param fromIndex The array index at which to begin the search. If fromIndex is omitted, the search starts at index 0.
+     */
+    indexOf(searchElement: T, fromIndex?: number): number {
+        return this._data.indexOf(searchElement, fromIndex);
+    }
+    /**
+     * Returns the index of the last occurrence of a specified value in an array.
+     * @param searchElement The value to locate in the array.
+     * @param fromIndex The array index at which to begin the search. If fromIndex is omitted, the search starts at the last index in the array.
+     */
+    lastIndexOf(searchElement: T, fromIndex?: number): number {
+        return this._data.lastIndexOf(searchElement, fromIndex);
+    }
+    /**
+     * Determines whether all the members of an array satisfy the specified test.
+     * @param predicate A function that accepts up to three arguments. The every method calls
+     * the predicate function for each element in the array until the predicate returns a value
+     * which is coercible to the Boolean value false, or until the end of the array.
+     * @param thisArg An object to which the this keyword can refer in the predicate function.
+     * If thisArg is omitted, undefined is used as the this value.
+     */
+    every(predicate: (value: T, index: number, array: T[]) => unknown, thisArg?: any): boolean {
+        return this._data.every(predicate, thisArg);
+    }
 
     /**
      * Performs the specified action for each element in an array.
@@ -111,8 +201,6 @@ export class ArrayAsync<T> //implements Array<T>
     [Symbol.iterator]() {
         return this._data.values();
     }
-
-    //[n: number]: T;
 
     get(n: number): T { return this._data[n] };
 

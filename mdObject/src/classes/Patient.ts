@@ -8,7 +8,6 @@ import { Immunization } from './Immunization';
 import { FlowsheetObservation } from './FlowsheetObservation';
 import { PatientContact } from './PatientContact';
 import { ReferringProvider } from './ReferringProvider';
-import { Problem } from './Problem';
 import { Insurance } from './Insurance';
 import { CarePlan } from './CarePlan';
 import { Location } from './Location';
@@ -51,8 +50,7 @@ export class Patient {
     private _employmentStatus: string;
     private _clinicStatus: string;
     private _primaryCarePhysicianName: string;
-    private _problems: string;
-    private _problemsArray: IArrayAdditionalMethods<Problem> = [];
+    private _problems: Problems;
     private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {}
     private _observationList: string;
     private _observatiosArray: IArrayAdditionalMethods<FlowsheetObservation> = [];
@@ -465,15 +463,19 @@ export class Patient {
 
     // Lists all problems 
     get problems() {
-        let problems = new Problems();
-        problems.load(this._mel);
-        return problems;
+        if (!this._problems) {
+            this._problems = new Problems();
+            this._problems.load(this._mel);
+        }
+        return this._problems;
     }
 
     async problemsAsync() {
-        let problems = new Problems();
-        await problems.loadAsync(this._mel);
-        return problems;
+        if (!this._problems) {
+            this._problems = new Problems();
+            await this._problems.loadAsync(this._mel);
+        }
+        return this._problems;
     }
 
     // Lists observations by name. 
