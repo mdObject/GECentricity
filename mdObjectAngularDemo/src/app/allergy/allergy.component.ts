@@ -37,8 +37,6 @@ export class AllergyComponent implements OnInit {
   }
 
   handleAdd = (): void => {
-    this.allergy.onSetDate = this.allergy.onSetDate ? this.convertTime(new Date(this.allergy.onSetDate)) : '';
-    this.allergy.stopDate = this.allergy.stopDate ? this.convertTime(new Date(this.allergy.stopDate)) : '',
     this.addedAllergy = {
       ...this.allergy,
       allergyId: Math.floor(Math.random() * 100000).toString(),
@@ -72,6 +70,7 @@ export class AllergyComponent implements OnInit {
       this.allergy.severity = item.severity;
       this.allergy.onSetDate = item.onSetDate ? new Date(item.onSetDate) as any : '';
       this.allergy.stopDate = item.stopDate ? new Date(item.stopDate) as any : '';
+      this.allergy.reasonForRemoval = item.removalReason ? item.removalReason : '';
     }
   }
 

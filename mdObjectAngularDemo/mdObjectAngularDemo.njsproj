@@ -26,6 +26,10 @@
     <Content Include="src\app\app.component.scss" />
     <Content Include="src\app\components\patient-address\patient-address.component.html" />
     <Content Include="src\app\components\patient-address\patient-address.component.scss" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.html" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.html" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.scss" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.scss" />
     <Content Include="src\app\components\patient-alergies\patient-alergies.component.html" />
     <Content Include="src\app\components\patient-alergies\patient-alergies.component.scss" />
     <Content Include="src\app\components\patient-contacts\patient-contacts.component.html" />
@@ -78,6 +82,7 @@
     <Folder Include="src\app\components\" />
     <Folder Include="src\app\components\patient-address\" />
     <Folder Include="src\app\components\patient-alergies\" />
+    <Folder Include="src\app\components\patient-alergies\delete-dialog\" />
     <Folder Include="src\app\components\patient-contacts\" />
     <Folder Include="src\app\components\patient-personal-information\" />
     <Folder Include="src\app\components\patient-phone\" />
@@ -92,6 +97,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-alergies\patient-alergies.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-alergies\patient-alergies.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.spec.ts" />
