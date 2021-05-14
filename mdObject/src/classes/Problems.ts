@@ -2,15 +2,19 @@ import { Problem } from "./Problem";
 import { StringInternal } from '../factories/factories';
 import { EmrMel } from "./EmrMel";
 import { ArrayAsync } from "../interfaces/ArrayAsync";
+import { ObjectStatus } from "../enums/enums";
 
 export class Problems extends ArrayAsync<Problem>{
     private _isLoaded = false;
     currentProblemMelData: string;
+    newProblemMelData: string;
 
     load = (mel: EmrMel) => {
         if (!this._isLoaded) {
             // Load Current
             this._current(mel);
+            // Load Added
+            this._new(mel);
 
             this._isLoaded = true;
         }
@@ -20,6 +24,9 @@ export class Problems extends ArrayAsync<Problem>{
         if (!this._isLoaded) {
             // Load Current
             await this._currentAsync(mel);
+            // Load Added
+            await this._newAsync(mel);
+
 
             this._isLoaded = true;
         }
@@ -35,6 +42,17 @@ export class Problems extends ArrayAsync<Problem>{
         this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
     }
 
+    private _new = (mel: EmrMel) => {
+        this.newProblemMelData = (this.newProblemMelData != null) ? this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
+        this.loadMelDataToList(this.newProblemMelData, this.newProblem);
+    }
+
+    async _newAsync(mel: EmrMel) {
+        this.newProblemMelData = (this.newProblemMelData != null) ? this.newProblemMelData : await mel.melFunc('{PROB_NEW("delimited","dat","com")}');
+        this.loadMelDataToList(this.newProblemMelData, this.newProblem);
+    }
+
+
     private loadMelDataToList = (data: string, predicate: (value: string)=> Problem) => {
         let dataArray = StringInternal(data).toList();
         for (let index = 0; index < dataArray.length; index++) {
@@ -46,6 +64,22 @@ export class Problems extends ArrayAsync<Problem>{
         let data: Array<string> = (value == null) ? [] : value.split('^');
         let problem: Problem = new Problem();
 
+        problem = this._locadMelDataFromString(data, problem);
+
+        return problem;
+    }
+
+    newProblem = (value: string): Problem => {
+        let data: Array<string> = (value == null) ? [] : value.split('^');
+        let problem: Problem = new Problem();
+        problem.status = ObjectStatus.Added;
+
+        problem = this._locadMelDataFromString(data, problem);
+
+        return problem;
+    }
+
+    _locadMelDataFromString = (data: Array<string>, problem: Problem) => {
         problem.type = (data.length > 0) ? data[0] : '';
         problem.description = (data.length > 1) ? data[1] : '';
         problem.codeIcd9 = (data.length > 2) ? data[2] : '';
@@ -60,7 +94,6 @@ export class Problems extends ArrayAsync<Problem>{
         let index = _problemId.indexOf('.');
         _problemId = (index > -1) ? _problemId.substr(0, index) : _problemId;
         problem.problemId = _problemId;
-        
 
         return problem;
     }
