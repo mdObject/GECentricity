@@ -8,6 +8,7 @@ export class Problems extends ArrayAsync<Problem>{
     private _isLoaded = false;
     currentProblemMelData: string;
     newProblemMelData: string;
+    removedProblemMelData: string;
 
     load = (mel: EmrMel) => {
         if (!this._isLoaded) {
@@ -15,6 +16,8 @@ export class Problems extends ArrayAsync<Problem>{
             this._current(mel);
             // Load Added
             this._new(mel);
+            // Load Removed
+            this._removed(mel);
 
             this._isLoaded = true;
         }
@@ -26,7 +29,8 @@ export class Problems extends ArrayAsync<Problem>{
             await this._currentAsync(mel);
             // Load Added
             await this._newAsync(mel);
-
+            // Load Removed
+            await this._removedAsync(mel);
 
             this._isLoaded = true;
         }
@@ -52,6 +56,16 @@ export class Problems extends ArrayAsync<Problem>{
         this.loadMelDataToList(this.newProblemMelData, this.newProblem);
     }
 
+    private _removed = (mel: EmrMel) => {
+        this.removedProblemMelData = (this.removedProblemMelData != null) ? this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
+        this.loadMelDataToList(this.removedProblemMelData, this.removedProblem);
+    }
+
+    async _removedAsync(mel: EmrMel) {
+        this.removedProblemMelData = (this.removedProblemMelData != null) ? this.removedProblemMelData : await mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
+        this.loadMelDataToList(this.removedProblemMelData, this.removedProblem);
+    }
+
 
     private loadMelDataToList = (data: string, predicate: (value: string)=> Problem) => {
         let dataArray = StringInternal(data).toList();
@@ -73,6 +87,16 @@ export class Problems extends ArrayAsync<Problem>{
         let data: Array<string> = (value == null) ? [] : value.split('^');
         let problem: Problem = new Problem();
         problem.status = ObjectStatus.Added;
+
+        problem = this._locadMelDataFromString(data, problem);
+
+        return problem;
+    }
+
+    removedProblem = (value: string): Problem => {
+        let data: Array<string> = (value == null) ? [] : value.split('^');
+        let problem: Problem = new Problem();
+        problem.status = ObjectStatus.Removed;
 
         problem = this._locadMelDataFromString(data, problem);
 
