@@ -41,7 +41,7 @@ export class Allergy implements IAllergyData {
       case ObjectState.Update: {
         let code: string = await this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
 
-        if (code !== null) {
+        if (code !== '0') {
           let error = 'Allergy.save error. Code is ' + code;
           console.error(error);
           throw new Error('Allergy not saved. ' + error);
@@ -54,7 +54,7 @@ export class Allergy implements IAllergyData {
       case ObjectState.Remove: {
         let code: string = await this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}');
 
-        if (code !== null) {
+        if (code !== '0') {
           let error = 'Allergy.save error. Code is ' + code;
           console.error(error);
           throw new Error('Allergy not saved. ' + error);
