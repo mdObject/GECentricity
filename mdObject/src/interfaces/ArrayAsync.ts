@@ -58,8 +58,11 @@ export class ArrayAsync<T>
     includes(searchElement: T, fromIndex?: number): boolean {
         return this._data.includes(searchElement, fromIndex);
     }
-    _data: Array<T> = new Array<T>();
+    private _data: Array<T> = new Array<T>();
 
+    get list(): Array<T> {
+        return this._data;
+    }
     /**
      * Gets or sets the length of the array. This is a number one higher than the highest element defined in an array.
      */

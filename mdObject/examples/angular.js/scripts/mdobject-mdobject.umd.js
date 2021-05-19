@@ -2214,6 +2214,13 @@
         ArrayAsync.prototype.includes = function (searchElement, fromIndex) {
             return this._data.includes(searchElement, fromIndex);
         };
+        Object.defineProperty(ArrayAsync.prototype, "list", {
+            get: function () {
+                return this._data;
+            },
+            enumerable: false,
+            configurable: true
+        });
         Object.defineProperty(ArrayAsync.prototype, "length", {
             get: function () {
                 return this._data.length;
