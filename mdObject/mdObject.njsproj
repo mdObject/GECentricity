@@ -234,7 +234,6 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts" />
-    <TypeScriptCompile Include="src\interfaces\ArrayAsync.ts" />
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
     <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
     <TypeScriptCompile Include="src\interfaces\IItem.ts" />

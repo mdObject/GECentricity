@@ -35,4 +35,13 @@ export class System {
             + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate()))
             + '/' + date.getFullYear();
     }
+
+    static nonenumerable (target: any, propertyKey: string) {
+        let descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
+        if (descriptor.enumerable !== false) {
+            descriptor.enumerable = false;
+            descriptor.writable = true;
+            Object.defineProperty(target, propertyKey, descriptor)
+        }
+    }
 }

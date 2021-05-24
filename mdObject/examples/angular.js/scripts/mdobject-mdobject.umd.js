@@ -1544,6 +1544,14 @@
                 + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate()))
                 + '/' + date.getFullYear();
         };
+        System.nonenumerable = function (target, propertyKey) {
+            var descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
+            if (descriptor.enumerable !== false) {
+                descriptor.enumerable = false;
+                descriptor.writable = true;
+                Object.defineProperty(target, propertyKey, descriptor);
+            }
+        };
         return System;
     }());
     System.isSimulator = false;
@@ -2166,146 +2174,6 @@
         return FlowsheetObservation;
     }());
 
-    var ArrayAsync = /** @class */ (function () {
-        function ArrayAsync() {
-            this._data = new Array();
-        }
-        ArrayAsync.prototype[Symbol.unscopables] = function () {
-            return { copyWithin: true, entries: true, fill: true, find: true, findIndex: true, keys: true, values: true };
-        };
-        ArrayAsync.prototype.some = function (predicate, thisArg) {
-            return this._data.some(predicate, thisArg);
-        };
-        ArrayAsync.prototype.map = function (callbackfn, thisArg) {
-            return this._data.map(callbackfn, thisArg);
-        };
-        ArrayAsync.prototype.filter = function (predicate, thisArg) {
-            return this._data.filter(predicate, thisArg);
-        };
-        ArrayAsync.prototype.reduce = function (callbackfn, initialValue) {
-            return this._data.reduce(callbackfn, initialValue);
-        };
-        ArrayAsync.prototype.reduceRight = function (callbackfn, initialValue) {
-            return this._data.reduceRight(callbackfn, initialValue);
-        };
-        ArrayAsync.prototype.find = function (predicate, thisArg) {
-            return this._data.find(predicate, thisArg);
-        };
-        ArrayAsync.prototype.findIndex = function (predicate, thisArg) {
-            return this._data.findIndex(predicate, thisArg);
-        };
-        ArrayAsync.prototype.fill = function (value, start, end) {
-            this._data = this._data.fill(value, start, end);
-            return this;
-        };
-        ArrayAsync.prototype.copyWithin = function (target, start, end) {
-            this._data = this._data.copyWithin(target, start, end);
-            return this;
-        };
-        ArrayAsync.prototype.entries = function () {
-            return this._data.entries();
-        };
-        ArrayAsync.prototype.keys = function () {
-            return this._data.keys();
-        };
-        ArrayAsync.prototype.values = function () {
-            return this._data.values();
-        };
-        ArrayAsync.prototype.includes = function (searchElement, fromIndex) {
-            return this._data.includes(searchElement, fromIndex);
-        };
-        Object.defineProperty(ArrayAsync.prototype, "list", {
-            get: function () {
-                return this._data;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ArrayAsync.prototype, "length", {
-            get: function () {
-                return this._data.length;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        ArrayAsync.prototype.toString = function () {
-            return this._data.toString();
-        };
-        ArrayAsync.prototype.toLocaleString = function () {
-            return this._data.toLocaleString();
-        };
-        ArrayAsync.prototype.pop = function () {
-            return this._data.pop();
-        };
-        ArrayAsync.prototype.push = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).push.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.concat = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).concat.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.join = function (separator) {
-            return this._data.join(separator);
-        };
-        ArrayAsync.prototype.reverse = function () {
-            return this._data.reverse();
-        };
-        ArrayAsync.prototype.shift = function () {
-            return this._data.shift();
-        };
-        ArrayAsync.prototype.slice = function (start, end) {
-            return this._data.slice(start, end);
-        };
-        ArrayAsync.prototype.sort = function (compareFn) {
-            this._data = this._data.sort(compareFn);
-            return this;
-        };
-        ArrayAsync.prototype.splice = function (start, deleteCount) {
-            var _a;
-            var items = [];
-            for (var _i = 2; _i < arguments.length; _i++) {
-                items[_i - 2] = arguments[_i];
-            }
-            return (_a = this._data).splice.apply(_a, __spread([start, deleteCount], items));
-        };
-        ArrayAsync.prototype.unshift = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).unshift.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.indexOf = function (searchElement, fromIndex) {
-            return this._data.indexOf(searchElement, fromIndex);
-        };
-        ArrayAsync.prototype.lastIndexOf = function (searchElement, fromIndex) {
-            return this._data.lastIndexOf(searchElement, fromIndex);
-        };
-        ArrayAsync.prototype.every = function (predicate, thisArg) {
-            return this._data.every(predicate, thisArg);
-        };
-        ArrayAsync.prototype.forEach = function (callbackfn, thisArg) {
-            return this._data.forEach(callbackfn, thisArg);
-        };
-        ArrayAsync.prototype[Symbol.iterator] = function () {
-            return this._data.values();
-        };
-        ArrayAsync.prototype.get = function (n) { return this._data[n]; };
-        ;
-        ArrayAsync.prototype.set = function (n, value) { this._data[n] = value; };
-        return ArrayAsync;
-    }());
-
     var __awaiter$3 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
@@ -2328,72 +2196,26 @@
     var Problems = /** @class */ (function (_super) {
         __extends(Problems, _super);
         function Problems() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
-            _this._isLoaded = false;
-            _this.load = function (mel) {
-                if (!_this._isLoaded) {
-                    _this._current(mel);
-                    _this._new(mel);
-                    _this._removed(mel);
-                    _this._isLoaded = true;
-                }
-            };
-            _this._current = function (mel) {
-                _this.currentProblemMelData = (_this.currentProblemMelData != null) ? _this.currentProblemMelData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
-                _this.loadMelDataToList(_this.currentProblemMelData, _this.currentProblem);
-            };
-            _this._new = function (mel) {
-                _this.newProblemMelData = (_this.newProblemMelData != null) ? _this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
-                _this.loadMelDataToList(_this.newProblemMelData, _this.newProblem);
-            };
-            _this._removed = function (mel) {
-                _this.removedProblemMelData = (_this.removedProblemMelData != null) ? _this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
-                _this.loadMelDataToList(_this.removedProblemMelData, _this.removedProblem);
-            };
-            _this.loadMelDataToList = function (data, predicate) {
-                var dataArray = StringInternal(data).toList();
-                for (var index = 0; index < dataArray.length; index++) {
-                    _this.push(predicate(dataArray[index]));
-                }
-            };
-            _this.currentProblem = function (value) {
-                var data = (value == null) ? [] : value.split('^');
-                var problem = new Problem();
-                problem = _this._locadMelDataFromString(data, problem);
-                return problem;
-            };
-            _this.newProblem = function (value) {
-                var data = (value == null) ? [] : value.split('^');
-                var problem = new Problem();
-                problem.status = ObjectStatus.Added;
-                problem = _this._locadMelDataFromString(data, problem);
-                return problem;
-            };
-            _this.removedProblem = function (value) {
-                var data = (value == null) ? [] : value.split('^');
-                var problem = new Problem();
-                problem.status = ObjectStatus.Removed;
-                problem = _this._locadMelDataFromString(data, problem);
-                return problem;
-            };
-            _this._locadMelDataFromString = function (data, problem) {
-                problem.type = (data.length > 0) ? data[0] : '';
-                problem.description = (data.length > 1) ? data[1] : '';
-                problem.codeIcd9 = (data.length > 2) ? data[2] : '';
-                problem.comment = (data.length > 3) ? data[3] : '';
-                problem.onsetDate = StringInternal((data.length > 4) ? data[4] : '').toDate();
-                problem.stopDate = StringInternal((data.length > 5) ? data[5] : '').toDate();
-                problem.stopReason = (data.length > 6) ? data[6] : '';
-                problem.codeIcd10 = (data.length > 7) ? data[7] : '';
-                problem.lastModifiedDate = (data.length > 9) ? data[9] : '';
-                var _problemId = (data.length > 8) ? data[8] : '';
-                var index = _problemId.indexOf('.');
-                _problemId = (index > -1) ? _problemId.substr(0, index) : _problemId;
-                problem.problemId = _problemId;
-                return problem;
-            };
+            var items = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                items[_i] = arguments[_i];
+            }
+            var _this = _super.apply(this, __spread(items)) || this;
+            Object.setPrototypeOf(_this, Problems.prototype);
+            System.nonenumerable(_this, '_isLoaded');
+            System.nonenumerable(_this, 'currentProblemMelData');
+            System.nonenumerable(_this, 'newProblemMelData');
+            System.nonenumerable(_this, 'removedProblemMelData');
             return _this;
         }
+        Problems.prototype.load = function (mel) {
+            if (!this._isLoaded) {
+                this._current(mel);
+                this._new(mel);
+                this._removed(mel);
+                this._isLoaded = true;
+            }
+        };
         Problems.prototype.loadAsync = function (mel) {
             return __awaiter$3(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
@@ -2416,6 +2238,11 @@
                 });
             });
         };
+        Problems.prototype._current = function (mel) {
+            this.currentProblemMelData = (this.currentProblemMelData != null) ?
+                this.currentProblemMelData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
+            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem, this.locadMelDataFromString);
+        };
         Problems.prototype._currentAsync = function (mel) {
             return __awaiter$3(this, void 0, void 0, function () {
                 var _a, _b;
@@ -2432,11 +2259,16 @@
                             _c.label = 3;
                         case 3:
                             _a.currentProblemMelData = _b;
-                            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
+                            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem, this.locadMelDataFromString);
                             return [2 /*return*/];
                     }
                 });
             });
+        };
+        Problems.prototype._new = function (mel) {
+            this.newProblemMelData = (this.newProblemMelData != null) ?
+                this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
+            this.loadMelDataToList(this.newProblemMelData, this.newProblem, this.locadMelDataFromString);
         };
         Problems.prototype._newAsync = function (mel) {
             return __awaiter$3(this, void 0, void 0, function () {
@@ -2454,11 +2286,16 @@
                             _c.label = 3;
                         case 3:
                             _a.newProblemMelData = _b;
-                            this.loadMelDataToList(this.newProblemMelData, this.newProblem);
+                            this.loadMelDataToList(this.newProblemMelData, this.newProblem, this.locadMelDataFromString);
                             return [2 /*return*/];
                     }
                 });
             });
+        };
+        Problems.prototype._removed = function (mel) {
+            this.removedProblemMelData = (this.removedProblemMelData != null) ?
+                this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
+            this.loadMelDataToList(this.removedProblemMelData, this.removedProblem, this.locadMelDataFromString);
         };
         Problems.prototype._removedAsync = function (mel) {
             return __awaiter$3(this, void 0, void 0, function () {
@@ -2476,14 +2313,56 @@
                             _c.label = 3;
                         case 3:
                             _a.removedProblemMelData = _b;
-                            this.loadMelDataToList(this.removedProblemMelData, this.removedProblem);
+                            this.loadMelDataToList(this.removedProblemMelData, this.removedProblem, this.locadMelDataFromString);
                             return [2 /*return*/];
                     }
                 });
             });
         };
+        Problems.prototype.loadMelDataToList = function (data, predicate, method) {
+            var dataArray = StringInternal(data).toList();
+            for (var index = 0; index < dataArray.length; index++) {
+                this.push(predicate(dataArray[index], method));
+            }
+        };
+        Problems.prototype.currentProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.newProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem.status = ObjectStatus.Added;
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.removedProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem.status = ObjectStatus.Removed;
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.locadMelDataFromString = function (data, problem) {
+            problem.type = (data.length > 0) ? data[0] : '';
+            problem.description = (data.length > 1) ? data[1] : '';
+            problem.codeIcd9 = (data.length > 2) ? data[2] : '';
+            problem.comment = (data.length > 3) ? data[3] : '';
+            problem.onsetDate = StringInternal((data.length > 4) ? data[4] : '').toDate();
+            problem.stopDate = StringInternal((data.length > 5) ? data[5] : '').toDate();
+            problem.stopReason = (data.length > 6) ? data[6] : '';
+            problem.codeIcd10 = (data.length > 7) ? data[7] : '';
+            problem.lastModifiedDate = (data.length > 9) ? data[9] : '';
+            var _problemId = (data.length > 8) ? data[8] : '';
+            var index = _problemId.indexOf('.');
+            _problemId = (index > -1) ? _problemId.substr(0, index) : _problemId;
+            problem.problemId = _problemId;
+            return problem;
+        };
         return Problems;
-    }(ArrayAsync));
+    }(Array));
 
     var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
