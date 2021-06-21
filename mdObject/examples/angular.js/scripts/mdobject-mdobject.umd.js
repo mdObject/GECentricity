@@ -29,9 +29,9 @@
     var AllergyClassification;
     (function (AllergyClassification) {
         AllergyClassification["none"] = "";
-        AllergyClassification["drug"] = "Drug";
-        AllergyClassification["food"] = "Food";
-        AllergyClassification["environmental"] = "Environmental";
+        AllergyClassification["drug"] = "DRUG";
+        AllergyClassification["food"] = "FOOD";
+        AllergyClassification["environmental"] = "ENVIRONMENTAL";
     })(AllergyClassification || (AllergyClassification = {}));
 
     var AllergyCriticality;
@@ -50,6 +50,23 @@
         ObjectState[ObjectState["Update"] = 2] = "Update";
         ObjectState[ObjectState["Remove"] = 3] = "Remove";
     })(ObjectState || (ObjectState = {}));
+
+    var AllergyReasonForRemoval;
+    (function (AllergyReasonForRemoval) {
+        AllergyReasonForRemoval["none"] = "";
+        AllergyReasonForRemoval["error"] = "Entered in error";
+        AllergyReasonForRemoval["patientCorrected"] = "Patient corrected";
+        AllergyReasonForRemoval["disproved"] = "Allergy disproved";
+        AllergyReasonForRemoval["other"] = "Other";
+    })(AllergyReasonForRemoval || (AllergyReasonForRemoval = {}));
+
+    var ObjectStatus;
+    (function (ObjectStatus) {
+        ObjectStatus[ObjectStatus["Unchanged"] = 0] = "Unchanged";
+        ObjectStatus[ObjectStatus["Added"] = 1] = "Added";
+        ObjectStatus[ObjectStatus["Updated"] = 2] = "Updated";
+        ObjectStatus[ObjectStatus["Removed"] = 3] = "Removed";
+    })(ObjectStatus || (ObjectStatus = {}));
 
     var Location = /** @class */ (function () {
         function Location(id, name, locationType) {
@@ -134,29 +151,17 @@
     }());
 
     var Problem = /** @class */ (function () {
-        function Problem(_value) {
-            this._value = _value;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.type = (this.data.length > 0) ? this.data[0] : '';
-            this.description = (this.data.length > 1) ? this.data[1] : '';
-            this.codeIcd9 = (this.data.length > 2) ? this.data[2] : '';
-            this.comment = (this.data.length > 3) ? this.data[3] : '';
-            this.onsetDate = (this.data.length > 4) ? this.data[4] : '';
-            this.stopDate = (this.data.length > 5) ? this.data[5] : '';
-            this.stopReason = (this.data.length > 6) ? this.data[6] : '';
-            this.codeIcd10 = (this.data.length > 7) ? this.data[7] : '';
-            this.lastModifiedDate = (this.data.length > 9) ? this.data[9] : '';
+        function Problem() {
+            this.status = ObjectStatus.Unchanged;
+            this.problemId = '';
+            this.type = '';
+            this.description = '';
+            this.codeIcd9 = '';
+            this.comment = '';
+            this.stopReason = '';
+            this.codeIcd10 = '';
+            this.lastModifiedDate = '';
         }
-        Object.defineProperty(Problem.prototype, "problemId", {
-            get: function () {
-                this._problemId = (this.data.length > 8) ? this.data[8] : '';
-                var index = this._problemId.indexOf('.');
-                this._problemId = (index > -1) ? this._problemId.substr(0, index) : this._problemId;
-                return this._problemId;
-            },
-            enumerable: false,
-            configurable: true
-        });
         return Problem;
     }());
 
@@ -363,12 +368,44 @@
         return User;
     }());
 
+    function StringInternal(value, tag) {
+        value = (value) ? value : '';
+        var result = new String(value);
+        result.toList = function (seporator) {
+            if (seporator == null) {
+                seporator = '|';
+            }
+            var dataArray = value.split(seporator);
+            dataArray = dataArray.filter(function (item) {
+                return item.length !== 0;
+            });
+            return dataArray;
+        };
+        result.startsWith = function (str) {
+            return value.slice(0, str.length) === str;
+        };
+        result.endsWith = function (str) {
+            return value.slice(-str.length) === str;
+        };
+        result.tag = (tag != null) ? tag : '';
+        result.toDate = function () {
+            var theDate = new Date(value.toString());
+            if (theDate instanceof Date && !isNaN(theDate.valueOf())) {
+                return theDate;
+            }
+            else {
+                return undefined;
+            }
+        };
+        return result;
+    }
+
     var AllergyList = /** @class */ (function () {
         function AllergyList(_value) {
             this._value = _value;
             this.data = (this._value == null) ? [] : this._value.split('^');
             this.name = (this.data.length > 0) ? this.data[0] : '';
-            this.onSetDate = (this.data.length > 1) ? this.data[1] : '';
+            this.onSetDate = StringInternal((this.data.length > 1) ? this.data[1] : '').toDate();
             this.criticalIndicator = (this.data.length > 2) ? this.data[2] : '';
             this.classification = (this.data.length > 3) ? this.data[3] : '';
             this.description = (this.data.length > 4) ? this.data[4] : '';
@@ -376,6 +413,7 @@
             this.severity = (this.data.length > 6) ? this.data[6] : '';
             this.allergyId = (this.data.length > 7) ? this.data[7] : '';
             this.stopDate = null;
+            this.reactionCode = 32;
         }
         return AllergyList;
     }());
@@ -678,7 +716,7 @@
             var _this = _super.call(this, _value) || this;
             _this._value = _value;
             _this.name = (_this.data.length > 0) ? _this.data[0] : '';
-            _this.onSetDate = (_this.data.length > 1) ? _this.data[1] : '';
+            _this.onSetDate = StringInternal((_this.data.length > 1) ? _this.data[1] : '').toDate();
             _this.stopDate = (_this.data.length > 2) ? _this.data[2] : '';
             _this.criticalIndicator = (_this.data.length > 3) ? _this.data[3] : '';
             _this.classification = (_this.data.length > 4) ? _this.data[4] : '';
@@ -697,31 +735,6 @@
             if (saveCallback != null) {
                 saveCallback();
             }
-        };
-        return result;
-    }
-
-    function StringInternal(value, tag) {
-        var result = new String(value);
-        result.toList = function (seporator) {
-            if (seporator == null) {
-                seporator = '|';
-            }
-            var dataArray = value.split(seporator);
-            dataArray = dataArray.filter(function (item) {
-                return item.length !== 0;
-            });
-            return dataArray;
-        };
-        result.startsWith = function (str) {
-            return value.slice(0, str.length) === str;
-        };
-        result.endsWith = function (str) {
-            return value.slice(-str.length) === str;
-        };
-        result.tag = (tag != null) ? tag : '';
-        result.toDate = function () {
-            return new Date(value.toString());
         };
         return result;
     }
@@ -748,6 +761,25 @@
         return result;
     }
 
+    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var Allergies = /** @class */ (function () {
         function Allergies(_mel) {
             this._mel = _mel;
@@ -769,6 +801,33 @@
             enumerable: false,
             configurable: true
         });
+        Allergies.prototype.addedAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._addedArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._added != null)) return [3 /*break*/, 1];
+                            _b = this._added;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_NEW("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._added = _b;
+                            dataArray = StringInternal(this._added).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._addedArray.push(new AllergyList(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._addedArray];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Allergies.prototype, "current", {
             get: function () {
                 if (this._currentArray.length === 0) {
@@ -783,6 +842,33 @@
             enumerable: false,
             configurable: true
         });
+        Allergies.prototype.currentAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._currentArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._current != null)) return [3 /*break*/, 1];
+                            _b = this._current;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_PRIOR("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._current = _b;
+                            dataArray = StringInternal(this._current).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._currentArray.push(new AllergyList(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._currentArray];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Allergies.prototype, "removed", {
             get: function () {
                 if (this._removedArray.length === 0) {
@@ -797,6 +883,33 @@
             enumerable: false,
             configurable: true
         });
+        Allergies.prototype.removedAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._removedArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._removed != null)) return [3 /*break*/, 1];
+                            _b = this._removed;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_REMOVED("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._removed = _b;
+                            dataArray = StringInternal(this._removed).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._removedArray.push(new AllergyListRemoved(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._removedArray];
+                    }
+                });
+            });
+        };
         return Allergies;
     }());
 
@@ -1127,9 +1240,49 @@
         return Address;
     }());
 
+    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var Phone = /** @class */ (function () {
-        function Phone(_mel) {
+        function Phone(_mel, _electronicAddressExternal) {
+            var _a, _b, _c;
             this._mel = _mel;
+            this._electronicAddressExternal = _electronicAddressExternal;
+            this.formatMelPhone = function (phone) {
+                var phoneTest = new RegExp(/(\d{3})(\d{3})(\d{4})(\d+)?/);
+                phone = phone.trim();
+                var results = phoneTest.exec(phone);
+                if (results !== null && results.length > 4) {
+                    return "(" + results[1] + ") " + results[2] + "-" + results[3] + (typeof results[4] !== "undefined" ? " [" + results[4] + "]" : "");
+                }
+                else {
+                    return phone;
+                }
+            };
+            if (this._electronicAddressExternal) {
+                this._home = (this._home !== undefined) ? this._home : (_a = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "H" && a.urlScheme === "tel"); })) === null || _a === void 0 ? void 0 : _a.urlAddr;
+                this._home = (this._home) ? this.formatMelPhone(this._home) : this._home;
+                this._business = (this._business !== undefined) ? this._business : (_b = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "WP" && a.urlScheme === "tel"); })) === null || _b === void 0 ? void 0 : _b.urlAddr;
+                this._business = (this._business) ? this.formatMelPhone(this._business) : this._business;
+                this._mobile = (this._mobile !== undefined) ? this._mobile : (_c = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "MC" && a.urlScheme === "tel"); })) === null || _c === void 0 ? void 0 : _c.urlAddr;
+                this._mobile = (this._mobile) ? this.formatMelPhone(this._mobile) : this._mobile;
+            }
         }
         Object.defineProperty(Phone.prototype, "home", {
             get: function () {
@@ -1139,6 +1292,27 @@
             enumerable: false,
             configurable: true
         });
+        Phone.prototype.homeAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._home != null)) return [3 /*break*/, 1];
+                            _e = this._home;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.ALTPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._home = _e;
+                            return [2 /*return*/, this._home];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Phone.prototype, "business", {
             get: function () {
                 this._business = (this._business != null) ? this._business : this._mel.melFunc('{PATIENT.WORKPHONE}');
@@ -1147,6 +1321,27 @@
             enumerable: false,
             configurable: true
         });
+        Phone.prototype.businessAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._business != null)) return [3 /*break*/, 1];
+                            _e = this._business;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.WORKPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._business = _e;
+                            return [2 /*return*/, this._business];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Phone.prototype, "mobile", {
             get: function () {
                 this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.CELLPHONE}');
@@ -1155,6 +1350,27 @@
             enumerable: false,
             configurable: true
         });
+        Phone.prototype.mobileAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._mobile != null)) return [3 /*break*/, 1];
+                            _e = this._mobile;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.CELLPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._mobile = _e;
+                            return [2 /*return*/, this._mobile];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Phone.prototype, "fax", {
             get: function () {
                 this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.FAXPHONE}');
@@ -1163,6 +1379,27 @@
             enumerable: false,
             configurable: true
         });
+        Phone.prototype.faxAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._fax != null)) return [3 /*break*/, 1];
+                            _e = this._fax;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.FAXPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._fax = _e;
+                            return [2 /*return*/, this._fax];
+                    }
+                });
+            });
+        };
         return Phone;
     }());
 
@@ -1273,7 +1510,7 @@
     var productType = 'GE';
 
     var emptyImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII===';
-    var simulatorChromeExtensionId = "gcjidgolppaalnedpaadmcnmhmdohflp";
+    var simulatorChromeExtensionId = "chgnndkhlnpmfkjnchmnhkfneccghaaf";
 
     var System = /** @class */ (function () {
         function System() {
@@ -1301,6 +1538,19 @@
                 }
             }
             return null;
+        };
+        System.dateToString = function (date) {
+            return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1)))
+                + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate()))
+                + '/' + date.getFullYear();
+        };
+        System.nonenumerable = function (target, propertyKey) {
+            var descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
+            if (descriptor.enumerable !== false) {
+                descriptor.enumerable = false;
+                descriptor.writable = true;
+                Object.defineProperty(target, propertyKey, descriptor);
+            }
         };
         return System;
     }());
@@ -1678,143 +1928,141 @@
         }
         UserDetailExternal.fromExternal = function (_obj) {
             var userDetailExternal = new UserDetailExternal();
-            userDetailExternal.activationDate = System.toDate(_obj.activationDate);
-            userDetailExternal.activationDateSpecified = _obj.activationDateSpecified;
-            userDetailExternal.authorizations = _obj.authorizations;
-            userDetailExternal.authorizedLocationOfCares = _obj.authorizedLocationOfCares;
-            userDetailExternal.currentLocation = _obj.currentLocation;
-            userDetailExternal.currentLocationDetail = _obj.currentLocationDetail;
-            userDetailExternal.currentLocationSpecified = _obj.currentLocationSpecified;
-            userDetailExternal.data2000 = _obj.data2000;
-            userDetailExternal.deaNumber = _obj.deaNumber;
-            userDetailExternal.errorDetails = _obj.errorDetails;
-            userDetailExternal.expirationDate = System.toDate(_obj.expirationDate);
-            userDetailExternal.expirationDateSpecified = _obj.expirationDateSpecified;
-            userDetailExternal.firstName = _obj.firstName;
-            userDetailExternal.globalID = _obj.globalID;
-            userDetailExternal.globalIDSpecified = _obj.globalIDSpecified;
-            userDetailExternal.groupList = _obj.groupList;
-            userDetailExternal.homeLocation = _obj.homeLocation;
-            userDetailExternal.homeLocationDetail = _obj.homeLocationDetail;
-            userDetailExternal.homeLocationSpecified = _obj.homeLocationSpecified;
-            userDetailExternal.isrespprov = _obj.isrespprov;
-            userDetailExternal.isrespprovSpecified = _obj.isrespprovSpecified;
-            userDetailExternal.jobTitle = _obj.jobTitle;
-            userDetailExternal.jobTitleDetail = _obj.jobTitleDetail;
-            userDetailExternal.jobTitleSpecified = _obj.jobTitleSpecified;
-            userDetailExternal.lastLoginDate = System.toDate(_obj.lastLoginDate);
-            userDetailExternal.lastLoginDateSpecified = _obj.lastLoginDateSpecified;
-            userDetailExternal.lastName = _obj.lastName;
-            userDetailExternal.lastPasswordChange = System.toDate(_obj.lastPasswordChange);
-            userDetailExternal.lastPasswordChangeSpecified = _obj.lastPasswordChangeSpecified;
-            userDetailExternal.licenseNumber = _obj.licenseNumber;
-            userDetailExternal.loginAttempts = _obj.loginAttempts;
-            userDetailExternal.loginAttemptsSpecified = _obj.loginAttemptsSpecified;
-            userDetailExternal.loginName = _obj.loginName;
-            userDetailExternal.memberID = _obj.memberID;
-            userDetailExternal.middleName = _obj.middleName;
-            userDetailExternal.mqicUserName = _obj.mqicUserName;
-            userDetailExternal.npi = _obj.npi;
-            userDetailExternal.orgName = _obj.orgName;
-            userDetailExternal.phone = _obj.phone;
-            userDetailExternal.pidList = _obj.pidList;
-            userDetailExternal.pmpRoleID = _obj.pmpRoleID;
-            userDetailExternal.pmpRoleIDSpecified = _obj.pmpRoleIDSpecified;
-            userDetailExternal.pmpRoleName = _obj.pmpRoleName;
-            userDetailExternal.prescriberID = _obj.prescriberID;
-            userDetailExternal.providerID = _obj.providerID;
-            userDetailExternal.providerIDSpecified = _obj.providerIDSpecified;
-            userDetailExternal.result = _obj.result;
-            userDetailExternal.resultSpecified = _obj.resultSpecified;
-            userDetailExternal.roleList = _obj.roleList;
-            userDetailExternal.specialty = _obj.specialty;
-            userDetailExternal.specialtyDetail = _obj.specialtyDetail;
-            userDetailExternal.specialtySpecified = _obj.specialtySpecified;
-            userDetailExternal.spi = _obj.spi;
-            userDetailExternal.stateName = _obj.stateName;
-            userDetailExternal.status = _obj.status;
-            userDetailExternal.subscriptionureg = _obj.subscriptionureg;
-            userDetailExternal.tocElectronicAddress = _obj.tocElectronicAddress;
-            userDetailExternal.updateType = _obj.updateType;
-            userDetailExternal.upin = _obj.upin;
+            if (_obj) {
+                userDetailExternal.activationDate = System.toDate(_obj.activationDate);
+                userDetailExternal.activationDateSpecified = _obj.activationDateSpecified;
+                userDetailExternal.authorizations = _obj.authorizations;
+                userDetailExternal.authorizedLocationOfCares = _obj.authorizedLocationOfCares;
+                userDetailExternal.currentLocation = _obj.currentLocation;
+                userDetailExternal.currentLocationDetail = _obj.currentLocationDetail;
+                userDetailExternal.currentLocationSpecified = _obj.currentLocationSpecified;
+                userDetailExternal.data2000 = _obj.data2000;
+                userDetailExternal.deaNumber = _obj.deaNumber;
+                userDetailExternal.errorDetails = _obj.errorDetails;
+                userDetailExternal.expirationDate = System.toDate(_obj.expirationDate);
+                userDetailExternal.expirationDateSpecified = _obj.expirationDateSpecified;
+                userDetailExternal.firstName = _obj.firstName;
+                userDetailExternal.globalID = _obj.globalID;
+                userDetailExternal.globalIDSpecified = _obj.globalIDSpecified;
+                userDetailExternal.groupList = _obj.groupList;
+                userDetailExternal.homeLocation = _obj.homeLocation;
+                userDetailExternal.homeLocationDetail = _obj.homeLocationDetail;
+                userDetailExternal.homeLocationSpecified = _obj.homeLocationSpecified;
+                userDetailExternal.isrespprov = _obj.isrespprov;
+                userDetailExternal.isrespprovSpecified = _obj.isrespprovSpecified;
+                userDetailExternal.jobTitle = _obj.jobTitle;
+                userDetailExternal.jobTitleDetail = _obj.jobTitleDetail;
+                userDetailExternal.jobTitleSpecified = _obj.jobTitleSpecified;
+                userDetailExternal.lastLoginDate = System.toDate(_obj.lastLoginDate);
+                userDetailExternal.lastLoginDateSpecified = _obj.lastLoginDateSpecified;
+                userDetailExternal.lastName = _obj.lastName;
+                userDetailExternal.lastPasswordChange = System.toDate(_obj.lastPasswordChange);
+                userDetailExternal.lastPasswordChangeSpecified = _obj.lastPasswordChangeSpecified;
+                userDetailExternal.licenseNumber = _obj.licenseNumber;
+                userDetailExternal.loginAttempts = _obj.loginAttempts;
+                userDetailExternal.loginAttemptsSpecified = _obj.loginAttemptsSpecified;
+                userDetailExternal.loginName = _obj.loginName;
+                userDetailExternal.memberID = _obj.memberID;
+                userDetailExternal.middleName = _obj.middleName;
+                userDetailExternal.mqicUserName = _obj.mqicUserName;
+                userDetailExternal.npi = _obj.npi;
+                userDetailExternal.orgName = _obj.orgName;
+                userDetailExternal.phone = _obj.phone;
+                userDetailExternal.pidList = _obj.pidList;
+                userDetailExternal.pmpRoleID = _obj.pmpRoleID;
+                userDetailExternal.pmpRoleIDSpecified = _obj.pmpRoleIDSpecified;
+                userDetailExternal.pmpRoleName = _obj.pmpRoleName;
+                userDetailExternal.prescriberID = _obj.prescriberID;
+                userDetailExternal.providerID = _obj.providerID;
+                userDetailExternal.providerIDSpecified = _obj.providerIDSpecified;
+                userDetailExternal.result = _obj.result;
+                userDetailExternal.resultSpecified = _obj.resultSpecified;
+                userDetailExternal.roleList = _obj.roleList;
+                userDetailExternal.specialty = _obj.specialty;
+                userDetailExternal.specialtyDetail = _obj.specialtyDetail;
+                userDetailExternal.specialtySpecified = _obj.specialtySpecified;
+                userDetailExternal.spi = _obj.spi;
+                userDetailExternal.stateName = _obj.stateName;
+                userDetailExternal.status = _obj.status;
+                userDetailExternal.subscriptionureg = _obj.subscriptionureg;
+                userDetailExternal.tocElectronicAddress = _obj.tocElectronicAddress;
+                userDetailExternal.updateType = _obj.updateType;
+                userDetailExternal.upin = _obj.upin;
+            }
             return userDetailExternal;
         };
         return UserDetailExternal;
     }());
 
     var AllergyExternal = /** @class */ (function () {
-        function AllergyExternal() {
+        function AllergyExternal(_obj) {
+            this.allclass = _obj.allclass;
+            this.allergyGroupID = _obj.allergyGroupID;
+            this.allergyGroupIDSpecified = _obj.allergyGroupIDSpecified;
+            this.allergyID = _obj.allergyID;
+            this.annotate = _obj.annotate;
+            this.aproxonsetdate = _obj.aproxonsetdate;
+            this.change = _obj.change;
+            this.changeSpecified = _obj.changeSpecified;
+            this.dbCreateDate = System.toDate(_obj.dbCreateDate);
+            this.dbCreateDateSpecified = _obj.dbCreateDateSpecified;
+            this.dbUpdatedDate = System.toDate(_obj.dbUpdatedDate);
+            this.dbUpdatedDateSpecified = _obj.dbUpdatedDateSpecified;
+            this.description = _obj.description;
+            this.documentDetail = _obj.documentDetail;
+            this.drugDescID = _obj.drugDescID;
+            this.drugDescIDSpecified = _obj.drugDescIDSpecified;
+            this.errorDetails = _obj.errorDetails;
+            this.expirationID = _obj.expirationID;
+            this.extAllergyID = _obj.extAllergyID;
+            this.extAllergyIDSpecified = _obj.extAllergyIDSpecified;
+            this.externalAllergyInfoDetail = _obj.externalAllergyInfoDetail;
+            this.genericProductIndex = _obj.genericProductIndex;
+            this.gi = _obj.gi;
+            this.heme = _obj.heme;
+            this.iscritical = _obj.iscritical;
+            this.kind = _obj.kind;
+            this.knowledgeBaseDrugCode = _obj.knowledgeBaseDrugCode;
+            this.knowledgeBaseDrugCodeSpecified = _obj.knowledgeBaseDrugCodeSpecified;
+            this.medicationInfo = _obj.medicationInfo;
+            this.name = _obj.name;
+            this.ndclabprod = _obj.ndclabprod;
+            this.ndcpackage = _obj.ndcpackage;
+            this.onsetdate = System.toDate(_obj.onsetdate);
+            this.onsetdateSpecified = _obj.onsetdateSpecified;
+            this.other = _obj.other;
+            this.pendUserIndent = _obj.pendUserIndent;
+            this.pendUserIndentSpecified = _obj.pendUserIndentSpecified;
+            this.pendUserSort = _obj.pendUserSort;
+            this.pendUserSortSpecified = _obj.pendUserSortSpecified;
+            this.personID = _obj.personID;
+            this.pubtime = _obj.pubtime;
+            this.pubtimeSpecified = _obj.pubtimeSpecified;
+            this.pubUser = _obj.pubUser;
+            this.pubUserDetail = UserDetailExternal.fromExternal(_obj.pubUserDetail);
+            this.pubUserSpecified = _obj.pubUserSpecified;
+            this.rash = _obj.rash;
+            this.resp = _obj.resp;
+            this.result = _obj.result;
+            this.resultSpecified = _obj.resultSpecified;
+            this.searchCriteria = _obj.searchCriteria;
+            this.secondaryDocumentID = _obj.secondaryDocumentID;
+            this.secondaryDocumentIDSpecified = _obj.secondaryDocumentIDSpecified;
+            this.severity = _obj.severity;
+            this.shock = _obj.shock;
+            this.snomedID = _obj.snomedID;
+            this.snomedIDSpecified = _obj.snomedIDSpecified;
+            this.stopdate = System.toDate(_obj.stopdate);
+            this.stopdateSpecified = _obj.stopdateSpecified;
+            this.stopreason = _obj.stopreason;
+            this.userDetail = UserDetailExternal.fromExternal(_obj.userDetail);
+            this.userID = _obj.userID;
+            this.userIDSpecified = _obj.userIDSpecified;
+            this.userIndent = _obj.userIndent;
+            this.userIndentSpecified = _obj.userIndentSpecified;
+            this.userSort = _obj.userSort;
+            this.userSortSpecified = _obj.userSortSpecified;
         }
-        AllergyExternal.fromExternal = function (_obj) {
-            var allergyExternal = new AllergyExternal();
-            allergyExternal.allclass = _obj.allclass;
-            allergyExternal.allergyGroupID = _obj.allergyGroupID;
-            allergyExternal.allergyGroupIDSpecified = _obj.allergyGroupIDSpecified;
-            allergyExternal.allergyID = _obj.allergyID;
-            allergyExternal.annotate = _obj.annotate;
-            allergyExternal.aproxonsetdate = _obj.aproxonsetdate;
-            allergyExternal.change = _obj.change;
-            allergyExternal.changeSpecified = _obj.changeSpecified;
-            allergyExternal.dbCreateDate = System.toDate(_obj.dbCreateDate);
-            allergyExternal.dbCreateDateSpecified = _obj.dbCreateDateSpecified;
-            allergyExternal.dbUpdatedDate = System.toDate(_obj.dbUpdatedDate);
-            allergyExternal.dbUpdatedDateSpecified = _obj.dbUpdatedDateSpecified;
-            allergyExternal.description = _obj.description;
-            allergyExternal.documentDetail = _obj.documentDetail;
-            allergyExternal.drugDescID = _obj.drugDescID;
-            allergyExternal.drugDescIDSpecified = _obj.drugDescIDSpecified;
-            allergyExternal.errorDetails = _obj.errorDetails;
-            allergyExternal.expirationID = _obj.expirationID;
-            allergyExternal.extAllergyID = _obj.extAllergyID;
-            allergyExternal.extAllergyIDSpecified = _obj.extAllergyIDSpecified;
-            allergyExternal.externalAllergyInfoDetail = _obj.externalAllergyInfoDetail;
-            allergyExternal.genericProductIndex = _obj.genericProductIndex;
-            allergyExternal.gi = _obj.gi;
-            allergyExternal.heme = _obj.heme;
-            allergyExternal.iscritical = _obj.iscritical;
-            allergyExternal.kind = _obj.kind;
-            allergyExternal.knowledgeBaseDrugCode = _obj.knowledgeBaseDrugCode;
-            allergyExternal.knowledgeBaseDrugCodeSpecified = _obj.knowledgeBaseDrugCodeSpecified;
-            allergyExternal.medicationInfo = _obj.medicationInfo;
-            allergyExternal.name = _obj.name;
-            allergyExternal.ndclabprod = _obj.ndclabprod;
-            allergyExternal.ndcpackage = _obj.ndcpackage;
-            allergyExternal.onsetdate = System.toDate(_obj.onsetdate);
-            allergyExternal.onsetdateSpecified = _obj.onsetdateSpecified;
-            allergyExternal.other = _obj.other;
-            allergyExternal.pendUserIndent = _obj.pendUserIndent;
-            allergyExternal.pendUserIndentSpecified = _obj.pendUserIndentSpecified;
-            allergyExternal.pendUserSort = _obj.pendUserSort;
-            allergyExternal.pendUserSortSpecified = _obj.pendUserSortSpecified;
-            allergyExternal.personID = _obj.personID;
-            allergyExternal.pubtime = _obj.pubtime;
-            allergyExternal.pubtimeSpecified = _obj.pubtimeSpecified;
-            allergyExternal.pubUser = _obj.pubUser;
-            allergyExternal.pubUserDetail = UserDetailExternal.fromExternal(_obj.pubUserDetail);
-            allergyExternal.pubUserSpecified = _obj.pubUserSpecified;
-            allergyExternal.rash = _obj.rash;
-            allergyExternal.resp = _obj.resp;
-            allergyExternal.result = _obj.result;
-            allergyExternal.resultSpecified = _obj.resultSpecified;
-            allergyExternal.searchCriteria = _obj.searchCriteria;
-            allergyExternal.secondaryDocumentID = _obj.secondaryDocumentID;
-            allergyExternal.secondaryDocumentIDSpecified = _obj.secondaryDocumentIDSpecified;
-            allergyExternal.severity = _obj.severity;
-            allergyExternal.shock = _obj.shock;
-            allergyExternal.snomedID = _obj.snomedID;
-            allergyExternal.snomedIDSpecified = _obj.snomedIDSpecified;
-            allergyExternal.stopdate = System.toDate(_obj.stopdate);
-            allergyExternal.stopdateSpecified = _obj.stopdateSpecified;
-            allergyExternal.stopreason = _obj.stopreason;
-            allergyExternal.userDetail = UserDetailExternal.fromExternal(_obj.userDetail);
-            allergyExternal.userID = _obj.userID;
-            allergyExternal.userIDSpecified = _obj.userIDSpecified;
-            allergyExternal.userIndent = _obj.userIndent;
-            allergyExternal.userIndentSpecified = _obj.userIndentSpecified;
-            allergyExternal.userSort = _obj.userSort;
-            allergyExternal.userSortSpecified = _obj.userSortSpecified;
-            return allergyExternal;
-        };
         return AllergyExternal;
     }());
 
@@ -1904,6 +2152,17 @@
         return CodeDetailExternal;
     }());
 
+    var AllergiesExternal = /** @class */ (function (_super) {
+        __extends(AllergiesExternal, _super);
+        function AllergiesExternal(json) {
+            if (json === void 0) { json = '[]'; }
+            var _this = _super.apply(this, __spread(JSON.parse(json).map(function (e) { return new AllergyExternal(e); }))) || this;
+            _this.json = json;
+            return _this;
+        }
+        return AllergiesExternal;
+    }(Array));
+
     var FlowsheetObservation = /** @class */ (function () {
         function FlowsheetObservation(_value) {
             this._value = _value;
@@ -1915,7 +2174,197 @@
         return FlowsheetObservation;
     }());
 
-    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$3 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
+    var Problems = /** @class */ (function (_super) {
+        __extends(Problems, _super);
+        function Problems() {
+            var items = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                items[_i] = arguments[_i];
+            }
+            var _this = _super.apply(this, __spread(items)) || this;
+            Object.setPrototypeOf(_this, Problems.prototype);
+            System.nonenumerable(_this, '_isLoaded');
+            System.nonenumerable(_this, 'currentProblemMelData');
+            System.nonenumerable(_this, 'newProblemMelData');
+            System.nonenumerable(_this, 'removedProblemMelData');
+            return _this;
+        }
+        Problems.prototype.load = function (mel) {
+            if (!this._isLoaded) {
+                this._current(mel);
+                this._new(mel);
+                this._removed(mel);
+                this._isLoaded = true;
+            }
+        };
+        Problems.prototype.loadAsync = function (mel) {
+            return __awaiter$3(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (!!this._isLoaded) return [3 /*break*/, 4];
+                            return [4 /*yield*/, this._currentAsync(mel)];
+                        case 1:
+                            _a.sent();
+                            return [4 /*yield*/, this._newAsync(mel)];
+                        case 2:
+                            _a.sent();
+                            return [4 /*yield*/, this._removedAsync(mel)];
+                        case 3:
+                            _a.sent();
+                            this._isLoaded = true;
+                            _a.label = 4;
+                        case 4: return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        Problems.prototype._current = function (mel) {
+            this.currentProblemMelData = (this.currentProblemMelData != null) ?
+                this.currentProblemMelData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
+            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem, this.locadMelDataFromString);
+        };
+        Problems.prototype._currentAsync = function (mel) {
+            return __awaiter$3(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.currentProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.currentProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_PRIOR("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.currentProblemMelData = _b;
+                            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem, this.locadMelDataFromString);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        Problems.prototype._new = function (mel) {
+            this.newProblemMelData = (this.newProblemMelData != null) ?
+                this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
+            this.loadMelDataToList(this.newProblemMelData, this.newProblem, this.locadMelDataFromString);
+        };
+        Problems.prototype._newAsync = function (mel) {
+            return __awaiter$3(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.newProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.newProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_NEW("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.newProblemMelData = _b;
+                            this.loadMelDataToList(this.newProblemMelData, this.newProblem, this.locadMelDataFromString);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        Problems.prototype._removed = function (mel) {
+            this.removedProblemMelData = (this.removedProblemMelData != null) ?
+                this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
+            this.loadMelDataToList(this.removedProblemMelData, this.removedProblem, this.locadMelDataFromString);
+        };
+        Problems.prototype._removedAsync = function (mel) {
+            return __awaiter$3(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.removedProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.removedProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_REMOVED("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.removedProblemMelData = _b;
+                            this.loadMelDataToList(this.removedProblemMelData, this.removedProblem, this.locadMelDataFromString);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        Problems.prototype.loadMelDataToList = function (data, predicate, method) {
+            var dataArray = StringInternal(data).toList();
+            for (var index = 0; index < dataArray.length; index++) {
+                this.push(predicate(dataArray[index], method));
+            }
+        };
+        Problems.prototype.currentProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.newProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem.status = ObjectStatus.Added;
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.removedProblem = function (value, method) {
+            var data = (value == null) ? [] : value.split('^');
+            var problem = new Problem();
+            problem.status = ObjectStatus.Removed;
+            problem = method(data, problem);
+            return problem;
+        };
+        Problems.prototype.locadMelDataFromString = function (data, problem) {
+            problem.type = (data.length > 0) ? data[0] : '';
+            problem.description = (data.length > 1) ? data[1] : '';
+            problem.codeIcd9 = (data.length > 2) ? data[2] : '';
+            problem.comment = (data.length > 3) ? data[3] : '';
+            problem.onsetDate = StringInternal((data.length > 4) ? data[4] : '').toDate();
+            problem.stopDate = StringInternal((data.length > 5) ? data[5] : '').toDate();
+            problem.stopReason = (data.length > 6) ? data[6] : '';
+            problem.codeIcd10 = (data.length > 7) ? data[7] : '';
+            problem.lastModifiedDate = (data.length > 9) ? data[9] : '';
+            var _problemId = (data.length > 8) ? data[8] : '';
+            var index = _problemId.indexOf('.');
+            _problemId = (index > -1) ? _problemId.substr(0, index) : _problemId;
+            problem.problemId = _problemId;
+            return problem;
+        };
+        return Problems;
+    }(Array));
+
+    var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -1935,13 +2384,13 @@
         });
     };
     var Patient = /** @class */ (function () {
-        function Patient(_mel, _demographics) {
+        function Patient(_mel, _demographics, _allergiesExternal) {
             var _this = this;
             this._mel = _mel;
             this._demographics = _demographics;
+            this._allergiesExternal = _allergiesExternal;
             this.observationType = new ObservationType();
             this._contactsArray = [];
-            this._problemsArray = [];
             this._observations = {};
             this._observatiosArray = [];
             this._protocolsArray = [];
@@ -1951,7 +2400,6 @@
             this._locationsArray = [];
             this._allergies = new Allergies(this._mel);
             this._referringProvider = new ReferringProvider(this._mel);
-            this._phone = new Phone(this._mel);
             this.observations = function (name) {
                 if (_this._observations[name] == null) {
                     var updateData = _this._mel.melFunc('{LIST_OBS("' + name + '","Update","Delimited","value")}');
@@ -1993,6 +2441,9 @@
                     if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
                         this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
                     }
+                    if (_demographics.person.electronicAddressList) {
+                        this._phone = (this._phone) ? this._phone : new Phone(this._mel, _demographics.person.electronicAddressList);
+                    }
                     if (_demographics.person.personNameList && _demographics.person.personNameList[0]) {
                         this._firstName = (_demographics.person.personNameList[0].givenName === null) ?
                             '' : _demographics.person.personNameList[0].givenName;
@@ -2015,6 +2466,7 @@
                 }
             }
             this._address = (this._address) ? this._address : new Address(this._mel);
+            this._phone = (this._phone) ? this._phone : new Phone(this._mel);
         }
         Object.defineProperty(Patient.prototype, "lastOfficeVisit", {
             get: function () {
@@ -2041,7 +2493,7 @@
             configurable: true
         });
         Patient.prototype.patientIdAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2070,7 +2522,7 @@
             configurable: true
         });
         Patient.prototype.pidAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2099,7 +2551,7 @@
             configurable: true
         });
         Patient.prototype.medicalRecordIdAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2128,7 +2580,7 @@
             configurable: true
         });
         Patient.prototype.externalIdAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2157,7 +2609,7 @@
             configurable: true
         });
         Patient.prototype.printIdAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2186,7 +2638,7 @@
             configurable: true
         });
         Patient.prototype.ssnAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2215,7 +2667,7 @@
             configurable: true
         });
         Patient.prototype.firstNameAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2244,7 +2696,7 @@
             configurable: true
         });
         Patient.prototype.lastNameAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2273,7 +2725,7 @@
             configurable: true
         });
         Patient.prototype.middleNameAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2302,7 +2754,7 @@
             configurable: true
         });
         Patient.prototype.labelNameAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2331,7 +2783,7 @@
             configurable: true
         });
         Patient.prototype.namePrefixAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2360,7 +2812,7 @@
             configurable: true
         });
         Patient.prototype.nameSuffixAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2389,7 +2841,7 @@
             configurable: true
         });
         Patient.prototype.sexAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2418,7 +2870,7 @@
             configurable: true
         });
         Patient.prototype.raceAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2447,7 +2899,7 @@
             configurable: true
         });
         Patient.prototype.ethnicityAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2476,7 +2928,7 @@
             configurable: true
         });
         Patient.prototype.dateOfBirthAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2505,7 +2957,7 @@
             configurable: true
         });
         Patient.prototype.dateOfDeathAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2534,7 +2986,7 @@
             configurable: true
         });
         Patient.prototype.maritalStatusAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2563,7 +3015,7 @@
             configurable: true
         });
         Patient.prototype.languageAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2592,7 +3044,7 @@
             configurable: true
         });
         Patient.prototype.emailAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2621,7 +3073,7 @@
             configurable: true
         });
         Patient.prototype.contactByAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2650,7 +3102,7 @@
             configurable: true
         });
         Patient.prototype.registrationNoteAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2690,6 +3142,39 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.contactsAsync = function () {
+            return __awaiter$4(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                var _this = this;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._contactsArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._contacts !== undefined)) return [3 /*break*/, 1];
+                            _b = this._contacts;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.CONTACTS}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._contacts = _b;
+                            dataArray = StringInternal(this._contacts).toList();
+                            this._contactsArray = [];
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._contactsArray.push(new PatientContact(dataArray[index]));
+                            }
+                            this._contactsArray.tag = 'PATIENT.CONTACTS';
+                            this._contactsArray.toMelString = function () {
+                                return _this._contacts;
+                            };
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._contactsArray];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "employmentStatus", {
             get: function () {
                 this._employmentStatus = (this._employmentStatus !== undefined) ? this._employmentStatus : this._mel.melFunc('{PATIENT.EMPLSTATUS}');
@@ -2699,7 +3184,7 @@
             configurable: true
         });
         Patient.prototype.employmentStatusAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2728,7 +3213,7 @@
             configurable: true
         });
         Patient.prototype.clinicStatusAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2758,7 +3243,7 @@
             configurable: true
         });
         Patient.prototype.primaryCarePhysicianNameAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2780,24 +3265,31 @@
         };
         Object.defineProperty(Patient.prototype, "problems", {
             get: function () {
-                var _this = this;
-                if (this._problemsArray.length === 0) {
-                    this._problems = (this._problems !== undefined) ? this._problems : this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
-                    var dataArray = StringInternal(this._problems).toList();
-                    this._problemsArray = [];
-                    for (var index = 0; index < dataArray.length; index++) {
-                        this._problemsArray.push(new Problem(dataArray[index]));
-                    }
-                    this._problemsArray.tag = 'PROB_AFTER';
-                    this._problemsArray.toMelString = function () {
-                        return _this._problems;
-                    };
+                if (!this._problems) {
+                    this._problems = new Problems();
+                    this._problems.load(this._mel);
                 }
-                return this._problemsArray;
+                return this._problems;
             },
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.problemsAsync = function () {
+            return __awaiter$4(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (!!this._problems) return [3 /*break*/, 2];
+                            this._problems = new Problems();
+                            return [4 /*yield*/, this._problems.loadAsync(this._mel)];
+                        case 1:
+                            _a.sent();
+                            _a.label = 2;
+                        case 2: return [2 /*return*/, this._problems];
+                    }
+                });
+            });
+        };
         Patient.prototype.flowsheetObservations = function (flowsheet) {
             var _this = this;
             var flowsheetValue = '';
@@ -2893,6 +3385,39 @@
             enumerable: false,
             configurable: true
         });
+        Patient.prototype.carePlansAsync = function () {
+            return __awaiter$4(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                var _this = this;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._carePlansArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._carePlans !== undefined)) return [3 /*break*/, 1];
+                            _b = this._carePlans;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_LIST_CARE_PLAN("delim","all","all")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._carePlans = _b;
+                            dataArray = StringInternal(this._carePlans).toList();
+                            this._carePlansArray = [];
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._carePlansArray.push(new CarePlan(dataArray[index], this._mel));
+                            }
+                            this._carePlansArray.tag = 'MEL_LIST_CARE_PLAN';
+                            this._carePlansArray.toMelString = function () {
+                                return _this._carePlans;
+                            };
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._carePlansArray];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Patient.prototype, "locations", {
             get: function () {
                 if (this._locationsArray.length === 0) {
@@ -2990,6 +3515,9 @@
             this.Demographics = function () {
                 return _this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' });
             };
+            this.Allergies = function () {
+                return _this.sendMessage(simulatorChromeExtensionId, { type: 'Allergies' });
+            };
             this.sendMessage = function (editorExtensionId, data) { return new Promise(function (resolve, reject) {
                 if (typeof (chrome) !== 'undefined') {
                     chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
@@ -3009,7 +3537,7 @@
         return ExtensionExternalSimulator;
     }());
 
-    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$5 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3038,7 +3566,7 @@
             this._isActiveX = false;
             this._isSimulator = false;
             this._ExtensionExternalSimulator = new ExtensionExternalSimulator();
-            this.isSimulatorAsync = function () { return __awaiter$2(_this, void 0, void 0, function () {
+            this.isSimulatorAsync = function () { return __awaiter$5(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -3100,7 +3628,7 @@
         return Simulator;
     }());
 
-    var __awaiter$3 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$6 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3173,7 +3701,7 @@
             configurable: true
         });
         ClinicalDocument.prototype.didAsync = function () {
-            return __awaiter$3(this, void 0, void 0, function () {
+            return __awaiter$6(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3268,7 +3796,7 @@
         return ClinicalDocument;
     }());
 
-    var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$7 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3293,9 +3821,8 @@
             this._window = _window;
             this._document = _document;
             this._melContent = {};
-            this._allergyExternalList = [];
             this._problemExternalList = [];
-            this.externalAsync = function () { return __awaiter$4(_this, void 0, void 0, function () {
+            this.externalAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3337,7 +3864,7 @@
                 }
                 return _this._melContent[name];
             };
-            this.demographicsAsync = function () { return __awaiter$4(_this, void 0, void 0, function () {
+            this.demographicsAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -3365,6 +3892,34 @@
                     }
                 });
             }); };
+            this.allergiesAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+                var _a, _b, _c;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this._allergiesJson)) return [3 /*break*/, 1];
+                            _b = this._allergiesJson;
+                            return [3 /*break*/, 6];
+                        case 1: return [4 /*yield*/, this.externalAsync()];
+                        case 2:
+                            if (!(_d.sent())) return [3 /*break*/, 4];
+                            return [4 /*yield*/, this.externalAsync().then(function (e) { return e.Allergies(); })];
+                        case 3:
+                            _c = _d.sent();
+                            return [3 /*break*/, 5];
+                        case 4:
+                            _c = this._allergiesJson;
+                            _d.label = 5;
+                        case 5:
+                            _b = (_c);
+                            _d.label = 6;
+                        case 6:
+                            _a._allergiesJson = _b;
+                            return [2 /*return*/, new AllergiesExternal(this._allergiesJson)];
+                    }
+                });
+            }); };
             this.allergiesJson = function () {
                 _this._allergiesJson = (_this._allergiesJson) ? _this._allergiesJson
                     : ((_this.external) ? _this.external.Allergies : _this._allergiesJson);
@@ -3375,24 +3930,27 @@
                     : ((_this.external) ? _this.external.Problems : _this._problemsJson);
                 return _this._problemsJson;
             };
-            this.patientAsync = function () { return __awaiter$4(_this, void 0, void 0, function () {
+            this.patientAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
                         case 0:
-                            if (!(this._patient === undefined)) return [3 /*break*/, 2];
+                            if (!(this._patient === undefined)) return [3 /*break*/, 3];
                             _a = this;
                             _b = Patient.bind;
                             _c = [void 0, this.emrMel];
                             return [4 /*yield*/, this.demographicsAsync()];
                         case 1:
+                            _c = _c.concat([_d.sent()]);
+                            return [4 /*yield*/, this.allergiesAsync()];
+                        case 2:
                             _a._patient = new (_b.apply(Patient, _c.concat([_d.sent()])))();
-                            _d.label = 2;
-                        case 2: return [2 /*return*/, this._patient];
+                            _d.label = 3;
+                        case 3: return [2 /*return*/, this._patient];
                     }
                 });
             }); };
-            this.clinicalDocumentAsync = function () { return __awaiter$4(_this, void 0, void 0, function () {
+            this.clinicalDocumentAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -3411,7 +3969,7 @@
             }); };
             this.melFuncAsync = function (data, showWait) {
                 if (showWait === void 0) { showWait = false; }
-                return __awaiter$4(_this, void 0, void 0, function () {
+                return __awaiter$7(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, this.externalAsync().then(function (e) { return e.EvaluateMel(data, showWait); })];
@@ -3511,16 +4069,9 @@
         });
         Object.defineProperty(Emr.prototype, "allergies", {
             get: function () {
-                if (this._allergyExternalList.length === 0) {
-                    var allergiesJson = this.allergiesJson();
-                    if (allergiesJson) {
-                        var dataArray = JSON.parse(allergiesJson);
-                        for (var index = 0; index < dataArray.length; index++) {
-                            this._allergyExternalList.push(AllergyExternal.fromExternal(dataArray[index]));
-                        }
-                    }
-                }
-                return this._allergyExternalList;
+                this._allergiesJson = (this._allergiesJson) ? this._allergiesJson
+                    : ((this.external) ? this.external.Allergies : this._allergiesJson);
+                return new AllergiesExternal(this._allergiesJson);
             },
             enumerable: false,
             configurable: true
@@ -3544,7 +4095,7 @@
         Object.defineProperty(Emr.prototype, "patient", {
             get: function () {
                 if (this._patient === undefined) {
-                    this._patient = new Patient(this.emrMel, this.demographics);
+                    this._patient = new Patient(this.emrMel, this.demographics, this.allergies);
                 }
                 return this._patient;
             },
@@ -3685,54 +4236,110 @@
         return MdObject;
     }());
 
+    var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var Allergy = /** @class */ (function () {
         function Allergy(_mel) {
             var _this = this;
             this._mel = _mel;
             this.state = ObjectState.None;
+            this.status = ObjectStatus.Unchanged;
             this.name = '';
             this.criticalIndicator = AllergyCriticality.undefined;
             this.classification = AllergyClassification.none;
             this.description = '';
             this.gpiCode = '';
             this.severity = '';
-            this.stopDate = '';
             this.allergyId = '';
             this.reactionCode = 32;
-            this.save = function () {
-                switch (_this.state) {
-                    case ObjectState.Add: {
-                        var code = _this._mel.melFunc('{MEL_ADD_ALLERGY("' + _this.toAddString() + '")}');
-                        if (code !== '') {
-                            var error = 'Allergy.save error. Code is ' + code;
-                            console.error(error);
-                            throw new Error('Allergy not saved. ' + error);
-                        }
-                        _this.state = ObjectState.None;
-                        break;
+            this.reasonForRemoval = AllergyReasonForRemoval.none;
+            this.save = function () { return __awaiter$8(_this, void 0, void 0, function () {
+                var _a, code, error, code, error, code, error;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            _a = this.state;
+                            switch (_a) {
+                                case ObjectState.Add: return [3 /*break*/, 1];
+                                case ObjectState.Update: return [3 /*break*/, 3];
+                                case ObjectState.Remove: return [3 /*break*/, 5];
+                            }
+                            return [3 /*break*/, 7];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}')];
+                        case 2:
+                            code = _b.sent();
+                            if (code !== null) {
+                                error = 'Allergy.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('Allergy not saved. ' + error);
+                            }
+                            this.status = ObjectStatus.Added;
+                            this.state = ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 3: return [4 /*yield*/, this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}')];
+                        case 4:
+                            code = _b.sent();
+                            if (code !== '0') {
+                                error = 'Allergy.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('Allergy not saved. ' + error);
+                            }
+                            this.status = ObjectStatus.Updated;
+                            this.state = ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 5: return [4 /*yield*/, this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}')];
+                        case 6:
+                            code = _b.sent();
+                            if (code !== '0') {
+                                error = 'Allergy.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('Allergy not saved. ' + error);
+                            }
+                            this.status = ObjectStatus.Removed;
+                            this.state = ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 7: return [2 /*return*/];
                     }
-                    case ObjectState.Update: {
-                        _this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + _this.toChangeString() + '")}');
-                        _this.state = ObjectState.None;
-                        break;
-                    }
-                    case ObjectState.Remove: {
-                        _this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + _this.toRemoveString() + '")}');
-                        _this.state = ObjectState.None;
-                        break;
-                    }
-                }
+                });
+            }); };
+            this.toChangeString = function () {
+                return _this.allergyId + '","' +
+                    _this.description + '","' +
+                    (_this.onSetDate ? System.dateToString(_this.onSetDate) : '') + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
+                    _this.criticalIndicator + '","' +
+                    _this.classification;
             };
-            this.toChangeString = function () { return ''; };
-            this.toRemoveString = function () { return ''; };
+            this.toRemoveString = function () {
+                return _this.allergyId + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
+                    (_this.reasonForRemoval !== AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
+            };
             this.toAddString = function () {
                 return _this.name + '","' +
                     _this.description + '","' +
-                    _this.onSetDate + '","' +
+                    (_this.onSetDate ? System.dateToString(_this.onSetDate) : '') + '","' +
                     _this.allergyId + '",' +
                     _this.reactionCode + ',"' +
                     _this.gpiCode + '","' +
-                    _this.stopDate + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
                     _this.criticalIndicator + '","' +
                     _this.classification;
             };

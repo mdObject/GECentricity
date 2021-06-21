@@ -16,6 +16,8 @@ export class SimulatorViewComponent implements OnInit {
   businessPhone: string;
   mobilePhone: string;
   fax: string;
+  currentProblemMelData: string;
+  newProblemMelData: string;
 
   constructor(
     private mdObjectServiceService: MdObjectServiceService
@@ -41,6 +43,8 @@ export class SimulatorViewComponent implements OnInit {
       this.patient = e[0];
       this.demographics = this.jsonCleanup(this.patient._demographics.json);
       this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
+      this.currentProblemMelData = this.jsonCleanup(e[8].currentProblemMelData);
+      this.newProblemMelData = this.jsonCleanup(e[8].newProblemMelData);
     });
     Promise.all([
       patientAsync,

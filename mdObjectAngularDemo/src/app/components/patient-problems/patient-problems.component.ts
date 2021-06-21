@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdObject, Patient } from '../../../../../mdObject/src/classes/classes';
+import { Problems } from '../../../../../mdObject/src/classes/Problems';
 import { MdObjectServiceService } from '../../md-object-service.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { MdObjectServiceService } from '../../md-object-service.service';
   styleUrls: ['./patient-problems.component.scss']
 })
 export class PatientProblemsComponent implements OnInit {
-
+  problemList: Problems;
   patient: Patient;
   mdObject: MdObject;
   constructor(
@@ -22,7 +23,10 @@ export class PatientProblemsComponent implements OnInit {
     Promise.all([
       patientAsync,
       patientAsync.then(p => p.problemsAsync()),
-    ]).then(e => { this.patient = e[0]; });
+    ]).then(e => {
+      this.patient = e[0];
+      this.problemList = e[1];
+    });
   }
 
 }

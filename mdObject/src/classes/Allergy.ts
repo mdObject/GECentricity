@@ -1,19 +1,20 @@
 import { IAllergyData } from "../interfaces/interfaces";
 import { EmrMel } from "./EmrMel";
 import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval, ObjectStatus } from "../enums/enums";
+import { System } from "./system";
 
 export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
     status: ObjectStatus = ObjectStatus.Unchanged;
 
     name: string = '';
-    onSetDate: string;
+    onSetDate: Date | undefined;
     criticalIndicator: AllergyCriticality = AllergyCriticality.undefined;
     classification: AllergyClassification = AllergyClassification.none;
     description: string = ''; // Use this field for reaction
     gpiCode: string = '';
     severity: string = '';
-    stopDate: string = '';
+    stopDate: Date | undefined;
     allergyId: string = '';
     reactionCode: number = 32; // OTHER=32
     reasonForRemoval: AllergyReasonForRemoval = AllergyReasonForRemoval.none;
@@ -69,26 +70,26 @@ export class Allergy implements IAllergyData {
     private toChangeString = (): string => {
         return this.allergyId + '","' +
             this.description + '","' +
-            this.onSetDate + '","' +
-            (this.stopDate ? this.stopDate : '') + '","' +
+            (this.onSetDate ? System.dateToString(this.onSetDate) : '') + '","' +
+            (this.stopDate ? System.dateToString(this.stopDate) : '') + '","' +
             this.criticalIndicator + '","' +
             this.classification;
     }
 
     private toRemoveString = (): string => {
         return this.allergyId + '","' +
-            (this.stopDate ? this.stopDate : '') + '","' +
+            (this.stopDate ? System.dateToString(this.stopDate) : '') + '","' +
             (this.reasonForRemoval !== AllergyReasonForRemoval.none ? this.reasonForRemoval : '');
     }
 
     private toAddString = (): string => {
         return this.name + '","' +
             this.description + '","' +
-            this.onSetDate + '","' +
+            (this.onSetDate ? System.dateToString(this.onSetDate) : '') + '","' +
             this.allergyId + '",' +
             this.reactionCode + ',"' +
             this.gpiCode + '","' +
-            this.stopDate + '","' +
+            (this.stopDate ? System.dateToString(this.stopDate) : '') + '","' +
             this.criticalIndicator + '","' +
             this.classification;
     }

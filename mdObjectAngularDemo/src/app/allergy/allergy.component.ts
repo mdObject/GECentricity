@@ -1,16 +1,9 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { MdObject, Allergy } from '../../../../mdObject/src/classes/classes'
 import { AllergyClassification, AllergyCriticality } from '../../../../mdObject/src/enums/enums'
 import { ObjectState } from '../../../../mdObject/src/enums/enums';
 import { MdObjectServiceService } from '../md-object-service.service';
-
-@Pipe({ name: 'enumToArray'})
-export class EnumToArrayPipe implements PipeTransform {
-  transform(value) : Object {
-    return Object.keys(value).map(o => { return { name: o, value: value[o]}});
-  }
-}
 
 @Component({
   selector: 'app-allergy',
@@ -39,8 +32,6 @@ export class AllergyComponent implements OnInit {
   handleAdd = (): void => {
     this.addedAllergy = {
       ...this.allergy,
-      onSetDate: this.convertTime(new Date(this.allergy.onSetDate)),
-      stopDate: this.convertTime(new Date(this.allergy.stopDate)),
       allergyId: Math.floor(Math.random() * 100000).toString(),
       type: 'add'
     };
@@ -49,9 +40,20 @@ export class AllergyComponent implements OnInit {
     this.cancel();
   }
 
+  edit = (item): void => {
+    this.allergy.state = ObjectState.Update;
+    this.setAllergy(item);
+  }
+
+  delete = (item): void => {
+    this.allergy.state = ObjectState.Remove;
+    this.setAllergy(item);
+    this.allergy.save();
+    this.cancel();
+  }
+
   setAllergy = (item): void => {
     if (item) {
-      this.allergy.state = ObjectState.Update;
       this.allergy.allergyId = item.allergyId;
       this.allergy.classification = item.classification;
       this.allergy.criticalIndicator = item.criticalIndicator;
@@ -59,16 +61,15 @@ export class AllergyComponent implements OnInit {
       this.allergy.gpiCode = item.gpiCode;
       this.allergy.name = item.name;
       this.allergy.severity = item.severity;
-      this.allergy.onSetDate = item.onSetDate ? new Date(item.onSetDate) as any : '';
-      this.allergy.stopDate = item.stopDate ? new Date(item.stopDate) as any : '';
+      this.allergy.onSetDate = item.onSetDate;
+      this.allergy.stopDate = item.stopDate;
+      this.allergy.reasonForRemoval = item.removalReason ? item.removalReason : '';
     }
   }
 
   handleEdit = (): void => {
     this.addedAllergy = {
       ...this.allergy,
-      onSetDate: this.convertTime(this.allergy.onSetDate as any),
-      stopDate: this.convertTime(this.allergy.stopDate as any),
       type: 'edit'
     };
 
@@ -80,17 +81,5 @@ export class AllergyComponent implements OnInit {
   cancel = (): void => {
     this.allergy = new Allergy(this.mdObject.emr.emrMel);
     this.allergy.state = ObjectState.Add;
-  }
-
-  convertTime = (value: Date): string => {
-    if (value) {
-      return [
-        `0${1 + value.getMonth()}`.substr(-2),
-        `0${value.getDate()}`.substr(-2),
-        `${value.getFullYear()}`
-      ].join("/");
-    }
-
-    return '';
   }
 }

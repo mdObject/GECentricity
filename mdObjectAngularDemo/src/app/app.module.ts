@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { AllergyComponent, EnumToArrayPipe } from './allergy/allergy.component';
+import { AllergyComponent } from './allergy/allergy.component';
 import { AppComponent } from './app.component';
 import { PatientAddressComponent } from './components/patient-address/patient-address.component';
 import { PatientContactsComponent } from './components/patient-contacts/patient-contacts.component';
@@ -23,12 +23,12 @@ import { PatientHeaderComponent } from './patient-header/patient-header.componen
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
 import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
+import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AllergyComponent,
-    EnumToArrayPipe,
     PatientHeaderComponent,
     PatientPersonalInformationComponent,
     PatientAddressComponent,
@@ -51,6 +51,7 @@ import { DeleteDialogComponent } from './components/patient-alergies/delete-dial
     MatInputModule,
     MatSidenavModule,
     MatDialogModule,
+    EnumToArrayModule
   ],
   providers: [TitleCasePipe, MdObjectServiceService],
   bootstrap: [AppComponent]

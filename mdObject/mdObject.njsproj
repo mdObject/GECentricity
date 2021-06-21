@@ -173,6 +173,9 @@
     <TypeScriptCompile Include="src\classes\PatientContact.ts" />
     <TypeScriptCompile Include="src\classes\Phone.ts" />
     <TypeScriptCompile Include="src\classes\Problem.ts" />
+    <TypeScriptCompile Include="src\classes\Problems.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\Protocol.ts" />
     <TypeScriptCompile Include="src\classes\ReferringProvider.ts" />
     <TypeScriptCompile Include="src\classes\ReferringProviderPhone.ts" />
@@ -195,6 +198,7 @@
     <TypeScriptCompile Include="src\enums\enums.ts" />
     <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
+    <TypeScriptCompile Include="src\enums\ObjectStatus.ts" />
     <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
     <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
     <TypeScriptCompile Include="src\factories\factories.ts" />

@@ -8,7 +8,6 @@ import { Immunization } from './Immunization';
 import { FlowsheetObservation } from './FlowsheetObservation';
 import { PatientContact } from './PatientContact';
 import { ReferringProvider } from './ReferringProvider';
-import { Problem } from './Problem';
 import { Insurance } from './Insurance';
 import { CarePlan } from './CarePlan';
 import { Location } from './Location';
@@ -19,6 +18,7 @@ import { LocationType } from '../enums/enums';
 import { AllergiesExternal, DemographicsExternal } from './external/external';
 import { emptyImage } from '../consts/consts';
 import { System } from './system';
+import { Problems } from './Problems';
 
 // TODO: string = PATIENT.REGNOTE; REGGUARANTOR
 export class Patient {
@@ -50,8 +50,7 @@ export class Patient {
     private _employmentStatus: string;
     private _clinicStatus: string;
     private _primaryCarePhysicianName: string;
-    private _problems: string;
-    private _problemsArray: IArrayAdditionalMethods<Problem> = [];
+    private _problems: Problems;
     private _observations: { [name: string]: IArrayAdditionalMethods<Observation> } = {}
     private _observationList: string;
     private _observatiosArray: IArrayAdditionalMethods<FlowsheetObservation> = [];
@@ -464,43 +463,19 @@ export class Patient {
 
     // Lists all problems 
     get problems() {
-        if (this._problemsArray.length === 0) {
-            this._problems = (this._problems  !== undefined) ? this._problems : this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
-            let dataArray = StringInternal(this._problems).toList();
-
-            /*jslint plusplus: true */
-            this._problemsArray = [];
-            for (let index = 0; index < dataArray.length; index++) {
-                this._problemsArray.push(new Problem(dataArray[index]));
-            }
-
-            this._problemsArray.tag = 'PROB_AFTER';
-
-            this._problemsArray.toMelString = () => {
-                return this._problems;
-            }
+        if (!this._problems) {
+            this._problems = new Problems();
+            this._problems.load(this._mel);
         }
-        return this._problemsArray;
+        return this._problems;
     }
 
     async problemsAsync() {
-        if (this._problemsArray.length === 0) {
-            this._problems = (this._problems !== undefined) ? this._problems : await this._mel.melFunc('{PROB_AFTER("delimited","dat","com")}');
-            let dataArray = StringInternal(this._problems).toList();
-
-            /*jslint plusplus: true */
-            this._problemsArray = [];
-            for (let index = 0; index < dataArray.length; index++) {
-                this._problemsArray.push(new Problem(dataArray[index]));
-            }
-
-            this._problemsArray.tag = 'PROB_AFTER';
-
-            this._problemsArray.toMelString = () => {
-                return this._problems;
-            }
+        if (!this._problems) {
+            this._problems = new Problems();
+            await this._problems.loadAsync(this._mel);
         }
-        return this._problemsArray;
+        return this._problems;
     }
 
     // Lists observations by name. 
