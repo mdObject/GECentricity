@@ -1,5 +1,9 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+
+## Release 2.0.0-alpha.1.4
+	Angular build version upgraded 
+
 ## Release 2.0.0-alpha.1.4
 	Exported Problems in the '@mdobject/mdobject/classes/classes'
 	The mdObjectAngularDemo project is using the reference to npm component 
