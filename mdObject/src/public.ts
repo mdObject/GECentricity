@@ -12,8 +12,6 @@ import { MdObject } from './classes/classes';
     return mdObject;
 })(window);
 
-export { MdObject } from './classes/classes';
+export * from './classes';
+export * from './enums';
 
-export * from './classes/classes';
-
-export * from './enums/enums';
