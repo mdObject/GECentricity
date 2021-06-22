@@ -30,10 +30,10 @@ describe('Class: AllergyListRemoved', () => {
             expect(component.name).toEqual('PENICILLIN');
         });
         it('check onSetDate', () => {
-            expect(component.onSetDate).toEqual(new Date('2013-11-04T22:00:00.000Z'));
+            expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check stopDate', () => {
-            expect(component.onSetDate).toEqual(new Date('2013-11-04T22:00:00.000Z'));
+            expect(new Date(component.stopDate)).toEqual(component.stopDate);
         });
         it('check criticalIndicator', () => {
             expect(component.criticalIndicator).toEqual('C');

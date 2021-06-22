@@ -15,7 +15,7 @@ describe('Class: AllergyList', () => {
             expect(component.name).toEqual('0.0');
         });
         it('check onDate', () => {
-            expect(component.onSetDate).toEqual(new Date('1999-12-31T22:00:00.000Z'));
+            expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check classification', () => {
             expect(component.classification).toEqual('0.3');
@@ -66,7 +66,7 @@ describe('Class: AllergyList', () => {
             expect(component.name).toEqual('CATS');
         });
         it('check onSetDate', () => {
-            expect(component.onSetDate).toEqual(new Date('2020-07-31T21:00:00.000Z'));
+            expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check classification', () => {
             expect(component.classification).toEqual('ENVIRONMENT');
