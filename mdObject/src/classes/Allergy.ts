@@ -8,7 +8,7 @@ export class Allergy implements IAllergyData {
   status: ObjectStatus = ObjectStatus.Unchanged;
 
   name: string = '';
-  onSetDate: Date | undefined;
+  onSetDate: Date | any;
   criticalIndicator: AllergyCriticality = AllergyCriticality.undefined;
   classification: AllergyClassification = AllergyClassification.none;
   description: string = ''; // Use this field for reaction

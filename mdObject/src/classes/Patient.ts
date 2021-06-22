@@ -467,6 +467,9 @@ export class Patient {
             this._problems = new Problems();
             this._problems.load(this._mel);
         }
+    
+        this._problems.tag = 'PROB_AFTER';
+
         return this._problems;
     }
 

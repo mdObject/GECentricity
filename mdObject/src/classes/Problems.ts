@@ -6,6 +6,7 @@ import { ObjectStatus } from "../enums/enums";
 
 export class Problems extends ArrayAsync<Problem>{
     private _isLoaded = false;
+    tag: string;
     currentProblemMelData: string;
     newProblemMelData: string;
 
