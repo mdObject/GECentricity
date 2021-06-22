@@ -30,3 +30,4 @@ export { MdObject } from './MdObject';
 export { FlowsheetObservation } from './FlowsheetObservation';
 export { System } from './system';
 export { Allergy } from './Allergy';
+export { Problems } from './Problems';
