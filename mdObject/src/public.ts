@@ -13,3 +13,7 @@ import { MdObject } from './classes/classes';
 })(window);
 
 export { MdObject } from './classes/classes';
+
+export * from './classes/classes';
+
+export * from './enums/enums';

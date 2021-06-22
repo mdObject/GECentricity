@@ -1,5 +1,10 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+## Release 2.0.0-alpha.1.4
+	Exported Problems in the '@mdobject/mdobject/classes/classes'
+	The mdObjectAngularDemo project is using the reference to npm component 
+	Added export classes and enums in public.ts
+
 ## Release 2.0.0-alpha.1.3
     ! This version is NOT compatable with IE10. Use: <meta http-equiv="X-UA-Compatible" content="IE=11" /> 
 	Added build-with-mdobject.svg to the library
