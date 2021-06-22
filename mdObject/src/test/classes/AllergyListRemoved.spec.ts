@@ -33,7 +33,7 @@ describe('Class: AllergyListRemoved', () => {
             expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check stopDate', () => {
-            expect(new Date(component.stopDate)).toEqual(component.stopDate);
+            expect(component.stopDate).toEqual('08/11/2020');
         });
         it('check criticalIndicator', () => {
             expect(component.criticalIndicator).toEqual('C');
