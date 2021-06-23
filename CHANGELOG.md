@@ -1,5 +1,7 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+## Release 2.0.0-alpha.1.6
+	Changed compilation target to es5
 
 ## Release 2.0.0-alpha.1.4
 	Angular build version upgraded 

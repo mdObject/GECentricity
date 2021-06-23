@@ -1498,7 +1498,7 @@
         return ReferringProvider;
     }());
 
-    var version = '2.0.0-alpha.1.5';
+    var version = '2.0.0-alpha.1.6';
 
     var productType = 'GE';
 
