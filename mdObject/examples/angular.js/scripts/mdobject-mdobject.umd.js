@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define('@mdobject/mdobject', ['exports'], factory) :
-    (global = global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
 }(this, (function (exports) { 'use strict';
 
     var ObsTermsMap = /** @class */ (function () {
@@ -1498,7 +1498,7 @@
         return ReferringProvider;
     }());
 
-    var version = '2.0.0-alpha.1.4';
+    var version = '2.0.0-alpha.1.5';
 
     var productType = 'GE';
 
