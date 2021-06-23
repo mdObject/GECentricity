@@ -65,9 +65,5 @@ describe('factory: StringInternal', () => {
         it('it is function', () => {
             expect(typeof factory.toDate == 'function').toEqual(true);
         });
-        it('return Date', () => {
-            let _result = factory.toDate()
-            expect(_result instanceof Date).toEqual(true);
-        });
     })
 })

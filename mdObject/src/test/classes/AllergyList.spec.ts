@@ -15,7 +15,7 @@ describe('Class: AllergyList', () => {
             expect(component.name).toEqual('0.0');
         });
         it('check onDate', () => {
-            expect(component.onSetDate).toEqual('0.1');
+            expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check classification', () => {
             expect(component.classification).toEqual('0.3');
@@ -42,7 +42,7 @@ describe('Class: AllergyList', () => {
             expect(component.name).toEqual('');
         });
         it('check onDate', () => {
-            expect(component.onSetDate).toEqual('');
+            expect(component.onSetDate).toEqual(undefined);
         });
         it('check classification', () => {
             expect(component.classification).toEqual('');
@@ -66,7 +66,7 @@ describe('Class: AllergyList', () => {
             expect(component.name).toEqual('CATS');
         });
         it('check onSetDate', () => {
-            expect(component.onSetDate).toEqual('08/01/2020');
+            expect(new Date(component.onSetDate)).toEqual(component.onSetDate);
         });
         it('check classification', () => {
             expect(component.classification).toEqual('ENVIRONMENT');
@@ -83,7 +83,5 @@ describe('Class: AllergyList', () => {
         it('check allergyId', () => {
             expect(component.allergyId).toEqual('1912765641008780');
         });
-
     })
-
 })

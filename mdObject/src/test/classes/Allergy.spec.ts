@@ -16,7 +16,7 @@ describe('Class: Allergy', () => {
             component.classification = AllergyClassification.food;
             component.criticalIndicator = AllergyCriticality.severe;
             component.name = 'Seafood';
-            component.onSetDate = '01/02/2020';
+            component.onSetDate = new Date('1999-12-31T22:00:00.000Z');
             component.description = 'Red skin';
             spyOn(mockEmrMel, 'melFunc')
                 .and
@@ -35,7 +35,5 @@ describe('Class: Allergy', () => {
             component.save();
             expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{MEL_ADD_ALLERGY("' + (component as any).toAddString() + '")}');
         });
-
     });
-
 })

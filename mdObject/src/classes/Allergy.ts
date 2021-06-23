@@ -7,17 +7,17 @@ export class Allergy implements IAllergyData {
     state: ObjectState = ObjectState.None;
     status: ObjectStatus = ObjectStatus.Unchanged;
 
-    name: string = '';
-    onSetDate: Date | undefined;
-    criticalIndicator: AllergyCriticality = AllergyCriticality.undefined;
-    classification: AllergyClassification = AllergyClassification.none;
-    description: string = ''; // Use this field for reaction
-    gpiCode: string = '';
-    severity: string = '';
-    stopDate: Date | undefined;
-    allergyId: string = '';
-    reactionCode: number = 32; // OTHER=32
-    reasonForRemoval: AllergyReasonForRemoval = AllergyReasonForRemoval.none;
+  name: string = '';
+  onSetDate: Date | any;
+  criticalIndicator: AllergyCriticality = AllergyCriticality.undefined;
+  classification: AllergyClassification = AllergyClassification.none;
+  description: string = ''; // Use this field for reaction
+  gpiCode: string = '';
+  severity: string = '';
+  stopDate: Date | undefined;
+  allergyId: string = '';
+  reactionCode: number = 32; // OTHER=32
+  reasonForRemoval: AllergyReasonForRemoval = AllergyReasonForRemoval.none;
 
     constructor(
         public _mel: EmrMel
@@ -41,11 +41,11 @@ export class Allergy implements IAllergyData {
             case ObjectState.Update: {
                 let code: string = await this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}');
 
-                if (code !== '0') {
-                    let error = 'Allergy.save error. Code is ' + code;
-                    console.error(error);
-                    throw new Error('Allergy not saved. ' + error);
-                }
+            if (code !== '0') {
+            let error = 'Allergy.save error. Code is ' + code;
+            console.error(error);
+            throw new Error('Allergy not saved. ' + error);
+            }
 
                 this.status = ObjectStatus.Updated;
                 this.state = ObjectState.None;

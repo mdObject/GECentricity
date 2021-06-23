@@ -83,8 +83,7 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).not.toHaveBeenCalled(); })
         it('problems', () => {
             let _result = component.problems;
-            expect(Array.isArray(_result)).toEqual(true);
-            expect(_result.length).toEqual(1);
+            expect(_result.length).toEqual(2);
             expect(_result.tag).toEqual('PROB_AFTER');
             expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
         });
@@ -162,11 +161,8 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PATIENT.PCP}'); })
         it('problems', () => {
             let _result = component.problems;
-            expect(Array.isArray(_result)).toEqual(true);
-            expect(_result.length).toEqual(1);
+            expect(_result.length).toEqual(2);
             expect(_result.tag).toEqual('PROB_AFTER');
-            expect(_result.toMelString()).toEqual(result);
-            expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PROB_AFTER("delimited","dat","com")}');
         });
         it('protocols', () => {
             let _result = component.protocols;
@@ -282,7 +278,5 @@ describe('Class: Patient', () => {
                 expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{GET_FLOWSHEET_VALUES("' + resultFlowsheet + '","DELIM")}');
             })
         })
-
-
     })
 })
