@@ -1,6 +1,6 @@
 <mat-drawer-container autosize="true" class="vh-100">
-  <mat-drawer #drawer mode="side" opened="true" [class.opened]="!isExpanded" class="py-3 shadow-sm">
-    <a class="btn btn-link" (click)="isExpanded = !isExpanded">
+  <mat-drawer #drawer mode="side" opened="true" [class.opened]="!isExpanded" class="py-3 shadow-sm bg-dark">
+    <a class="btn btn-link text-white" (click)="isExpanded = !isExpanded">
       <i class="fas fa-angle-double-right" *ngIf="!isExpanded"></i>
       <i class="fas fa-angle-double-left" *ngIf="isExpanded"></i>
     </a>

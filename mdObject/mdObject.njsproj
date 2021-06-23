@@ -95,6 +95,7 @@
     <TypeScriptCompile Include="src\classes\AllergyList.ts" />
     <TypeScriptCompile Include="src\classes\AllergyListRemoved.ts" />
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
+    <TypeScriptCompile Include="src\classes\index.ts" />
     <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
     <TypeScriptCompile Include="src\classes\external\AllergiesExternal.ts">
@@ -195,6 +196,7 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\enums\AllergyReasonForRemoval.ts" />
+    <TypeScriptCompile Include="src\enums\index.ts" />
     <TypeScriptCompile Include="src\enums\enums.ts" />
     <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
@@ -234,7 +236,6 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts" />
-    <TypeScriptCompile Include="src\interfaces\ArrayAsync.ts" />
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
     <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
     <TypeScriptCompile Include="src\interfaces\IItem.ts" />
