@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AllergyReasonForRemoval } from '../../../../../../mdObject/src/enums/enums';
+import { AllergyReasonForRemoval } from '@mdobject/mdobject/enums';
 
 @Component({
   selector: 'app-delete-dialog',

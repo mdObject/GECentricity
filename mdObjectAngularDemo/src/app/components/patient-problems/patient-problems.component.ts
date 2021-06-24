@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdObject, Patient } from '../../../../../mdObject/src/classes/classes';
-import { Problems } from '../../../../../mdObject/src/classes/Problems';
+import { MdObject, Patient, Problems } from '@mdobject/mdobject/classes';
 import { MdObjectServiceService } from '../../md-object-service.service';
 
 @Component({

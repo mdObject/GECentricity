@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MdObject, Patient, AllergyList } from '../../../../../mdObject/src/classes/classes';
+import { MdObject, Patient, AllergyList } from '@mdobject/mdobject/classes';
 import { MdObjectServiceService } from '../../md-object-service.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
