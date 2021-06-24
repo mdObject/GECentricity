@@ -1,4 +1,4 @@
-import { IStringInternal } from '../interfaces/interfaces';
+import { IStringInternal } from '../interfaces';
 
 export function StringInternal(value: string, tag?: string): IStringInternal {
     value = (value) ? value : '';

@@ -2,7 +2,7 @@ import { AllergyList } from './AllergyList';
 import { AllergyListRemoved } from './AllergyListRemoved';
 import { EmrMel } from './EmrMel';
 import { StringInternal } from '../factories/factories';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
+import { IArrayAdditionalMethods } from '../interfaces';
 
 export class Allergies {
 

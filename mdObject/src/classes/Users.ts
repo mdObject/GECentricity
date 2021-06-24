@@ -2,7 +2,7 @@ import { User } from './User';
 import { EmrMel } from './EmrMel';
 import { StringInternal, GetCurrentUser } from '../factories/factories';
 import { UserCallFunction } from '../enums/enums';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
+import { IArrayAdditionalMethods } from '../interfaces';
 
 export class Users {
 

@@ -96,7 +96,6 @@
     <TypeScriptCompile Include="src\classes\AllergyListRemoved.ts" />
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
     <TypeScriptCompile Include="src\classes\index.ts" />
-    <TypeScriptCompile Include="src\classes\classes.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
     <TypeScriptCompile Include="src\classes\external\AllergiesExternal.ts">
       <SubType>Code</SubType>
@@ -182,7 +181,7 @@
     <TypeScriptCompile Include="src\classes\ReferringProviderPhone.ts" />
     <TypeScriptCompile Include="src\classes\User.ts" />
     <TypeScriptCompile Include="src\classes\Users.ts" />
-    <TypeScriptCompile Include="src\consts\consts.ts" />
+    <TypeScriptCompile Include="src\consts\index.ts" />
     <TypeScriptCompile Include="src\consts\productType.ts" />
     <TypeScriptCompile Include="src\classes\System.ts" />
     <TypeScriptCompile Include="src\consts\strings.ts">
@@ -239,7 +238,7 @@
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
     <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
     <TypeScriptCompile Include="src\interfaces\IItem.ts" />
-    <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
+    <TypeScriptCompile Include="src\interfaces\index.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\public.ts" />
     <TypeScriptCompile Include="src\simulator\ExtensionExternalSimulator.ts">

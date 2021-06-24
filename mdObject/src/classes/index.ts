@@ -28,6 +28,6 @@ export { ClinicalDocument } from './ClinicalDocument';
 export { Users } from './Users';
 export { MdObject } from './MdObject';
 export { FlowsheetObservation } from './FlowsheetObservation';
-export { System } from './system';
+export { System } from './System';
 export { Allergy } from './Allergy';
 export { Problems } from './Problems';

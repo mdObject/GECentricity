@@ -1,5 +1,5 @@
 import { StringInternal } from '../factories/StringInternal';
-import { IAllergyData } from '../interfaces/interfaces';
+import { IAllergyData } from '../interfaces';
 
 export class AllergyList implements IAllergyData {
 

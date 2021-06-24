@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MdObject, Allergy } from '@mdobject//mdobject/classes' 
+import { MdObject, Allergy } from '@mdobject/mdobject/classes' 
 import { AllergyClassification, AllergyCriticality, ObjectState } from '@mdobject/mdobject/enums'
 import { MdObjectServiceService } from '../md-object-service.service';
 

@@ -24,6 +24,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
 import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
 import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
+import { MdObject } from '@mdobject/mdobject/classes/MdObject';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
     MatDialogModule,
     EnumToArrayModule
   ],
-  providers: [TitleCasePipe, MdObjectServiceService],
+  providers: [TitleCasePipe, MdObjectServiceService, MdObject],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

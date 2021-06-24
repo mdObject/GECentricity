@@ -1,4 +1,4 @@
-import { EmrMel } from '../classes/classes';
+import { EmrMel } from '../classes/EmrMel';
 
 export function GetCurrentUser(_mel: EmrMel) {
     return _mel.melFunc('{GETUSERINFO("' + _mel.melFunc('{USER.LOGINNAME}') + '")}') + '^' +

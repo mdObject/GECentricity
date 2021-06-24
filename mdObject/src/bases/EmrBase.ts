@@ -1,5 +1,5 @@
 import { IsActiveXSupported } from '../factories/factories';
-import { System } from '../classes/system';
+import { System } from '../classes';
 import { Simulator } from '../simulator/simulator';
 
 export abstract class EmrBase {

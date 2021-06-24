@@ -1,6 +1,6 @@
-import { MdObject, Emr } from '../../classes/classes';
+import { MdObject, Emr } from '../../classes';
 import { MockWindow } from '../mocks/mocks';
-import { version, productType } from '../../consts/consts'
+import { version, productType } from '../../consts'
 
 describe('Class: MdObject', () => {
 

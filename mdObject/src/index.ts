@@ -1,1 +1,1 @@
-export { MdObject } from './classes/classes';
+export { MdObject } from './classes/MdObject';

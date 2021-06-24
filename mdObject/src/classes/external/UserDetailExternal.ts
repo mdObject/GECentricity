@@ -1,4 +1,4 @@
-import { System } from "../system";
+import { System } from "../System";
 
 export class UserDetailExternal {
     activationDate: Date;

@@ -1,4 +1,4 @@
-import { IItem } from '../interfaces/interfaces';
+import { IItem } from '../interfaces';
 
 export function DocumentVariable(value, saveCallback): IItem {
     let result: IItem = (value == null) ? new Object() : value;

@@ -1,5 +1,6 @@
-import { StringInternal } from '../factories/factories';
-import { EmrMel, EmrApp } from '../classes/classes';
+import { StringInternal } from '../factories/StringInternal';
+import { EmrMel } from './EmrMel';
+import { EmrApp } from './EmrApp';
 
 export class EmrWindow {
 
