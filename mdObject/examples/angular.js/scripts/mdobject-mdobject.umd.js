@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define('@mdobject/mdobject', ['exports'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
+    (global = global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
 }(this, (function (exports) { 'use strict';
 
     var version = '2.0.0-alpha.1.8';
@@ -506,50 +506,6 @@
         return EmrBase;
     }());
 
-    var System$1 = /** @class */ (function () {
-        function System() {
-        }
-        System.toDate = function (value) {
-            if (value) {
-                return new Date(parseInt(value.substr(6)));
-            }
-            else {
-                return null;
-            }
-        };
-        System.toImage = function (arrayBuffer) {
-            if (arrayBuffer) {
-                return "data:image/jpg;base64," + btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
-            }
-            else {
-                return emptyImage;
-            }
-        };
-        System.formatDate = function (value) {
-            if (value) {
-                if (value.length == 8) {
-                    return value.substr(4, 2) + '/' + value.substr(6, 2) + '/' + value.substr(0, 4);
-                }
-            }
-            return null;
-        };
-        System.dateToString = function (date) {
-            return ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1)))
-                + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate()))
-                + '/' + date.getFullYear();
-        };
-        System.nonenumerable = function (target, propertyKey) {
-            var descriptor = Object.getOwnPropertyDescriptor(target, propertyKey) || {};
-            if (descriptor.enumerable !== false) {
-                descriptor.enumerable = false;
-                descriptor.writable = true;
-                Object.defineProperty(target, propertyKey, descriptor);
-            }
-        };
-        return System;
-    }());
-    System$1.isSimulator = false;
-
     var EmrApp = /** @class */ (function (_super) {
         __extends(EmrApp, _super);
         function EmrApp(_window, _simulator) {
@@ -570,7 +526,7 @@
                     if (_this.errorMessage != null) {
                         try {
                             _this.app = new _this._window.ActiveXObject(_this.appObjectNameSimulator);
-                            System$1.isSimulator = true;
+                            System.isSimulator = true;
                         }
                         catch (e) {
                             _this.errorMessage = GetActiveXErrorMessage(_this.appObjectName, e);
@@ -629,7 +585,7 @@
                     if (_this.errorMessage != null) {
                         try {
                             _this.mel = new _this._window.ActiveXObject(_this.melObjectNameSimulator);
-                            System$1.isSimulator = true;
+                            System.isSimulator = true;
                         }
                         catch (e) {
                             console.log(_this.errorMessage);
@@ -761,7 +717,7 @@
                 this.hasPatientAccessSpecified = obj.hasPatientAccessSpecified;
                 this.healthIssueList = obj.healthIssueList;
                 this.identifierList = obj.identifierList;
-                this.lastOfficeVisitDate = System$1.toDate(obj.lastOfficeVisitDate);
+                this.lastOfficeVisitDate = System.toDate(obj.lastOfficeVisitDate);
                 this.lastOfficeVisitDateSpecified = obj.lastOfficeVisitDateSpecified;
                 this.mailingAddressList = obj.mailingAddressList;
                 this.medicareAdvantagePatient = obj.medicareAdvantagePatient;
@@ -771,7 +727,7 @@
                 this.organization = obj.organization;
                 this.patientKey = obj.patientKey;
                 this.patientKeySpecified = obj.patientKeySpecified;
-                this.patientPicture = System$1.toImage(obj.patientPicture);
+                this.patientPicture = System.toImage(obj.patientPicture);
                 this.person = obj.person;
                 this.personAge = obj.personAge;
                 this.preferredLanguage = obj.preferredLanguage;
@@ -923,7 +879,7 @@
         UserDetailExternal.fromExternal = function (_obj) {
             var userDetailExternal = new UserDetailExternal();
             if (_obj) {
-                userDetailExternal.activationDate = System$1.toDate(_obj.activationDate);
+                userDetailExternal.activationDate = System.toDate(_obj.activationDate);
                 userDetailExternal.activationDateSpecified = _obj.activationDateSpecified;
                 userDetailExternal.authorizations = _obj.authorizations;
                 userDetailExternal.authorizedLocationOfCares = _obj.authorizedLocationOfCares;
@@ -933,7 +889,7 @@
                 userDetailExternal.data2000 = _obj.data2000;
                 userDetailExternal.deaNumber = _obj.deaNumber;
                 userDetailExternal.errorDetails = _obj.errorDetails;
-                userDetailExternal.expirationDate = System$1.toDate(_obj.expirationDate);
+                userDetailExternal.expirationDate = System.toDate(_obj.expirationDate);
                 userDetailExternal.expirationDateSpecified = _obj.expirationDateSpecified;
                 userDetailExternal.firstName = _obj.firstName;
                 userDetailExternal.globalID = _obj.globalID;
@@ -947,10 +903,10 @@
                 userDetailExternal.jobTitle = _obj.jobTitle;
                 userDetailExternal.jobTitleDetail = _obj.jobTitleDetail;
                 userDetailExternal.jobTitleSpecified = _obj.jobTitleSpecified;
-                userDetailExternal.lastLoginDate = System$1.toDate(_obj.lastLoginDate);
+                userDetailExternal.lastLoginDate = System.toDate(_obj.lastLoginDate);
                 userDetailExternal.lastLoginDateSpecified = _obj.lastLoginDateSpecified;
                 userDetailExternal.lastName = _obj.lastName;
-                userDetailExternal.lastPasswordChange = System$1.toDate(_obj.lastPasswordChange);
+                userDetailExternal.lastPasswordChange = System.toDate(_obj.lastPasswordChange);
                 userDetailExternal.lastPasswordChangeSpecified = _obj.lastPasswordChangeSpecified;
                 userDetailExternal.licenseNumber = _obj.licenseNumber;
                 userDetailExternal.loginAttempts = _obj.loginAttempts;
@@ -998,9 +954,9 @@
             this.aproxonsetdate = _obj.aproxonsetdate;
             this.change = _obj.change;
             this.changeSpecified = _obj.changeSpecified;
-            this.dbCreateDate = System$1.toDate(_obj.dbCreateDate);
+            this.dbCreateDate = System.toDate(_obj.dbCreateDate);
             this.dbCreateDateSpecified = _obj.dbCreateDateSpecified;
-            this.dbUpdatedDate = System$1.toDate(_obj.dbUpdatedDate);
+            this.dbUpdatedDate = System.toDate(_obj.dbUpdatedDate);
             this.dbUpdatedDateSpecified = _obj.dbUpdatedDateSpecified;
             this.description = _obj.description;
             this.documentDetail = _obj.documentDetail;
@@ -1022,7 +978,7 @@
             this.name = _obj.name;
             this.ndclabprod = _obj.ndclabprod;
             this.ndcpackage = _obj.ndcpackage;
-            this.onsetdate = System$1.toDate(_obj.onsetdate);
+            this.onsetdate = System.toDate(_obj.onsetdate);
             this.onsetdateSpecified = _obj.onsetdateSpecified;
             this.other = _obj.other;
             this.pendUserIndent = _obj.pendUserIndent;
@@ -1046,7 +1002,7 @@
             this.shock = _obj.shock;
             this.snomedID = _obj.snomedID;
             this.snomedIDSpecified = _obj.snomedIDSpecified;
-            this.stopdate = System$1.toDate(_obj.stopdate);
+            this.stopdate = System.toDate(_obj.stopdate);
             this.stopdateSpecified = _obj.stopdateSpecified;
             this.stopreason = _obj.stopreason;
             this.userDetail = UserDetailExternal.fromExternal(_obj.userDetail);
@@ -1073,9 +1029,9 @@
             problemExternal.code = _obj.code;
             problemExternal.codechange = _obj.codechange;
             problemExternal.covered = _obj.covered;
-            problemExternal.dbCreateDate = System$1.toDate(_obj.dbCreateDate);
+            problemExternal.dbCreateDate = System.toDate(_obj.dbCreateDate);
             problemExternal.dbCreateDateSpecified = _obj.dbCreateDateSpecified;
-            problemExternal.dbUpdatedDate = System$1.toDate(_obj.dbUpdatedDate);
+            problemExternal.dbUpdatedDate = System.toDate(_obj.dbUpdatedDate);
             problemExternal.dbUpdatedDateSpecified = _obj.dbUpdatedDateSpecified;
             problemExternal.description = _obj.description;
             problemExternal.documentDetail = _obj.documentDetail;
@@ -1091,12 +1047,12 @@
             problemExternal.icd10CodeDetail = _obj.icd10CodeDetail;
             problemExternal.icd10MasterDiagnosisID = _obj.icd10MasterDiagnosisID;
             problemExternal.icd10MasterDiagnosisIDSpecified = _obj.icd10MasterDiagnosisIDSpecified;
-            problemExternal.lastClaimedDate = System$1.toDate(_obj.lastClaimedDate);
+            problemExternal.lastClaimedDate = System.toDate(_obj.lastClaimedDate);
             problemExternal.lastClaimedDateSpecified = _obj.lastClaimedDateSpecified;
             problemExternal.medicareAdvantageAlert = _obj.medicareAdvantageAlert;
             problemExternal.medicareAdvantageAlertSpecified = _obj.medicareAdvantageAlertSpecified;
             problemExternal.medicareAdvantageRiskAdjustmentFactor = _obj.medicareAdvantageRiskAdjustmentFactor;
-            problemExternal.onsetdate = System$1.toDate(_obj.onsetdate);
+            problemExternal.onsetdate = System.toDate(_obj.onsetdate);
             problemExternal.onsetdateSpecified = _obj.onsetdateSpecified;
             problemExternal.pendUserIndent = _obj.pendUserIndent;
             problemExternal.pendUserIndentSpecified = _obj.pendUserIndentSpecified;
@@ -1123,7 +1079,7 @@
             problemExternal.snoMedCodeDetail = _obj.snoMedCodeDetail;
             problemExternal.snoMedMasterDiagnosisID = _obj.snoMedMasterDiagnosisID;
             problemExternal.snoMedMasterDiagnosisIDSpecified = _obj.snoMedMasterDiagnosisIDSpecified;
-            problemExternal.stopdate = System$1.toDate(_obj.stopdate);
+            problemExternal.stopdate = System.toDate(_obj.stopdate);
             problemExternal.stopdateSpecified = _obj.stopdateSpecified;
             problemExternal.stopreason = _obj.stopreason;
             problemExternal.userDetail = UserDetailExternal.fromExternal(_obj.userDetail);
@@ -2493,10 +2449,10 @@
                     this._medicalRecordId = (medicalRecordId) ? medicalRecordId.idValue : this._medicalRecordId;
                 }
                 if (_demographics.person) {
-                    var birthDate = System$1.formatDate(_demographics.person.birthDate);
+                    var birthDate = System.formatDate(_demographics.person.birthDate);
                     this._dateOfBirth = (birthDate) ? birthDate : this._dateOfBirth;
                     this._dateOfDeath = (_demographics.person.deceaseIndSpecified && _demographics.person.deceaseInd) ?
-                        System$1.formatDate(_demographics.person.deceaseTime) : this._dateOfDeath;
+                        System.formatDate(_demographics.person.deceaseTime) : this._dateOfDeath;
                     this._sex = _demographics.person.genderCode;
                     if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
                         this._address = (this._address) ? this._address : new Address$1(this._mel, _demographics.person.mailingAddressList[0]);
@@ -4445,24 +4401,24 @@
             this.toChangeString = function () {
                 return _this.allergyId + '","' +
                     _this.description + '","' +
-                    (_this.onSetDate ? System$1.dateToString(_this.onSetDate) : '') + '","' +
-                    (_this.stopDate ? System$1.dateToString(_this.stopDate) : '') + '","' +
+                    (_this.onSetDate ? System.dateToString(_this.onSetDate) : '') + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
                     _this.criticalIndicator + '","' +
                     _this.classification;
             };
             this.toRemoveString = function () {
                 return _this.allergyId + '","' +
-                    (_this.stopDate ? System$1.dateToString(_this.stopDate) : '') + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
                     (_this.reasonForRemoval !== exports.AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
             };
             this.toAddString = function () {
                 return _this.name + '","' +
                     _this.description + '","' +
-                    (_this.onSetDate ? System$1.dateToString(_this.onSetDate) : '') + '","' +
+                    (_this.onSetDate ? System.dateToString(_this.onSetDate) : '') + '","' +
                     _this.allergyId + '",' +
                     _this.reactionCode + ',"' +
                     _this.gpiCode + '","' +
-                    (_this.stopDate ? System$1.dateToString(_this.stopDate) : '') + '","' +
+                    (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
                     _this.criticalIndicator + '","' +
                     _this.classification;
             };
