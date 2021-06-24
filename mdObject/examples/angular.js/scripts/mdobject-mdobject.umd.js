@@ -4,56 +4,418 @@
     (global = global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
 }(this, (function (exports) { 'use strict';
 
-    var version = '2.0.0-alpha.1.8';
-
-    var productType = 'GE';
-
-    var HumanName = /** @class */ (function () {
-        function HumanName() {
+    var ObsTermsMap = /** @class */ (function () {
+        function ObsTermsMap() {
+            this.weight = 'Weight';
+            this.height = 'Height';
         }
-        return HumanName;
+        return ObsTermsMap;
     }());
 
-    var Address = /** @class */ (function () {
-        function Address() {
+    var LocationType;
+    (function (LocationType) {
+        LocationType[LocationType["None"] = 0] = "None";
+        LocationType[LocationType["Home"] = 1] = "Home";
+        LocationType[LocationType["Current"] = 2] = "Current";
+    })(LocationType || (LocationType = {}));
+
+    var UserCallFunction;
+    (function (UserCallFunction) {
+        UserCallFunction[UserCallFunction["None"] = 0] = "None";
+        UserCallFunction[UserCallFunction["UserList"] = 1] = "UserList";
+        UserCallFunction[UserCallFunction["UserInfo"] = 2] = "UserInfo";
+    })(UserCallFunction || (UserCallFunction = {}));
+
+    var AllergyClassification;
+    (function (AllergyClassification) {
+        AllergyClassification["none"] = "";
+        AllergyClassification["drug"] = "DRUG";
+        AllergyClassification["food"] = "FOOD";
+        AllergyClassification["environmental"] = "ENVIRONMENTAL";
+    })(AllergyClassification || (AllergyClassification = {}));
+
+    var AllergyCriticality;
+    (function (AllergyCriticality) {
+        AllergyCriticality["undefined"] = "";
+        AllergyCriticality["critical"] = "C";
+        AllergyCriticality["severe"] = "S";
+        AllergyCriticality["moderate"] = "N";
+        AllergyCriticality["mild"] = "I";
+    })(AllergyCriticality || (AllergyCriticality = {}));
+
+    var ObjectState;
+    (function (ObjectState) {
+        ObjectState[ObjectState["None"] = 0] = "None";
+        ObjectState[ObjectState["Add"] = 1] = "Add";
+        ObjectState[ObjectState["Update"] = 2] = "Update";
+        ObjectState[ObjectState["Remove"] = 3] = "Remove";
+    })(ObjectState || (ObjectState = {}));
+
+    var AllergyReasonForRemoval;
+    (function (AllergyReasonForRemoval) {
+        AllergyReasonForRemoval["none"] = "";
+        AllergyReasonForRemoval["error"] = "Entered in error";
+        AllergyReasonForRemoval["patientCorrected"] = "Patient corrected";
+        AllergyReasonForRemoval["disproved"] = "Allergy disproved";
+        AllergyReasonForRemoval["other"] = "Other";
+    })(AllergyReasonForRemoval || (AllergyReasonForRemoval = {}));
+
+    var ObjectStatus;
+    (function (ObjectStatus) {
+        ObjectStatus[ObjectStatus["Unchanged"] = 0] = "Unchanged";
+        ObjectStatus[ObjectStatus["Added"] = 1] = "Added";
+        ObjectStatus[ObjectStatus["Updated"] = 2] = "Updated";
+        ObjectStatus[ObjectStatus["Removed"] = 3] = "Removed";
+    })(ObjectStatus || (ObjectStatus = {}));
+
+    var Location = /** @class */ (function () {
+        function Location(id, name, locationType) {
+            this.id = id;
+            this.name = name;
+            this.locationType = locationType;
+            this.id = (this.id != null) ? this.id : '';
+            this.name = (this.name != null) ? this.name : '';
+            this.locationType = (this.locationType != null) ? this.locationType : LocationType.None;
         }
-        return Address;
+        return Location;
     }());
 
-    var Attachment = /** @class */ (function () {
-        function Attachment() {
+    var EmrContent = /** @class */ (function () {
+        function EmrContent(_value, _mel, _window) {
+            var _this = this;
+            this._value = _value;
+            this._mel = _mel;
+            this._window = _window;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.isNew = (this._value == null) ? true : false;
+            this.contentId = (this.data.length > 0) ? this.data[0] : '';
+            this.key = (this.data.length > 1) ? this.data[1] : '';
+            this.name = (this.data.length > 2) ? this.data[2] : '';
+            this.value = (this.data.length > 3) ? this.data[3] : '';
+            this._unk0 = (this.data.length > 4) ? this.data[4] : '';
+            this._unk1 = (this.data.length > 5) ? this.data[5] : '';
+            this._unk2 = (this.data.length > 6) ? this.data[6] : '';
+            this._unk3 = (this.data.length > 7) ? this.data[7] : '';
+            this._unk4 = (this.data.length > 8) ? this.data[8] : '';
+            this._unk5 = (this.data.length > 9) ? this.data[9] : '';
+            this.toAddString = function (encodeValue) {
+                var recordValue = (encodeValue == null) ? _this.value : _this._window.btoa(_this.value);
+                return _this.key + '^' +
+                    _this.name + '^' +
+                    recordValue + '^' +
+                    _this._unk0 + '^' +
+                    _this._unk1 + '^' +
+                    _this._unk2 + '^' +
+                    _this._unk3 + '^' +
+                    _this._unk4 + '^' +
+                    _this._unk5;
+            };
+            this.save = function (encodeValue) {
+                if (_this.isNew) {
+                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
+                    _this.isNew = false;
+                }
+                else {
+                    _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
+                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
+                }
+            };
+            this.remove = function () {
+                _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
+            };
         }
-        return Attachment;
+        return EmrContent;
     }());
 
-    var Person = /** @class */ (function () {
-        function Person() {
+    var PatientContact = /** @class */ (function () {
+        function PatientContact(_value) {
+            var _this = this;
+            this._value = _value;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.name = (this.data.length > 0) ? this.data[0] : '';
+            this.type = (this.data.length > 1) ? this.data[1] : '';
+            this.phone = (this.data.length > 2) ? this.data[2] : '';
+            this.phoneType = (this.data.length > 3) ? this.data[3] : '';
+            this.address1 = (this.data.length > 4) ? this.data[4] : '';
+            this.address2 = (this.data.length > 5) ? this.data[5] : '';
+            this.city = (this.data.length > 6) ? this.data[6] : '';
+            this.state = (this.data.length > 7) ? this.data[7] : '';
+            this.zip = (this.data.length > 8) ? this.data[8] : '';
+            this.country = (this.data.length > 9) ? this.data[9] : '';
+            this.address = this.address1.concat(' ' + this.address2);
+            this.toMelString = function () {
+                return _this._value;
+            };
         }
-        Object.defineProperty(Person.prototype, "resourceType", {
-            get: function () { return "Person"; },
-            enumerable: false,
-            configurable: true
-        });
-        ;
-        return Person;
+        return PatientContact;
     }());
 
-    var Patient = /** @class */ (function () {
-        function Patient() {
+    var Problem = /** @class */ (function () {
+        function Problem() {
+            this.status = ObjectStatus.Unchanged;
+            this.problemId = '';
+            this.type = '';
+            this.description = '';
+            this.codeIcd9 = '';
+            this.comment = '';
+            this.stopReason = '';
+            this.codeIcd10 = '';
+            this.lastModifiedDate = '';
         }
-        Object.defineProperty(Patient.prototype, "resourceType", {
-            get: function () { return "Patient"; },
-            enumerable: false,
-            configurable: true
-        });
-        ;
-        return Patient;
+        return Problem;
     }());
 
-    var Fhir = /** @class */ (function () {
-        function Fhir() {
+    var Immunization = /** @class */ (function () {
+        function Immunization(_value, _mel) {
+            var _this = this;
+            this._value = _value;
+            this._mel = _mel;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.isNew = this._value == null ? true : false;
+            this.immunizationId = (this.data.length > 0) ? this.data[0] : '';
+            this.immunizationGroupId = (this.data.length > 1) ? this.data[1] : '';
+            this.vaccineGroupName = (this.data.length > 2) ? this.data[2] : '';
+            this.vaccineName = (this.data.length > 3) ? this.data[3] : '';
+            this.medicalDisplayName = (this.data.length > 4) ? this.data[4] : '';
+            this.series = (this.data.length > 5) ? this.data[5] : '';
+            this.wasGiven = (this.data.length > 6) ? this.data[6] : '';
+            this.reasonNotGiven = (this.data.length > 7) ? this.data[7] : '';
+            this.historical = (this.data.length > 8) ? this.data[8] : '';
+            this.historicalSource = (this.data.length > 9) ? this.data[9] : '';
+            this.vfcElegibility = (this.data.length > 10) ? this.data[10] : '';
+            this.ddid = (this.data.length > 11) ? this.data[11] : '';
+            this.dnid = (this.data.length > 12) ? this.data[12] : '';
+            this.gpi = (this.data.length > 13) ? this.data[13] : '';
+            this.kdc = (this.data.length > 14) ? this.data[14] : '';
+            this.ndc = (this.data.length > 15) ? this.data[15] : '';
+            this.cvxCode = (this.data.length > 16) ? this.data[16] : '';
+            this.doseAmount = (this.data.length > 17) ? this.data[17] : '';
+            this.dosageUnitOfMeasure = (this.data.length > 18) ? this.data[18] : '';
+            this.route = (this.data.length > 19) ? this.data[19] : '';
+            this.routeCode = (this.data.length > 20) ? this.data[20] : '';
+            this.site = (this.data.length > 21) ? this.data[21] : '';
+            this.siteCode = (this.data.length > 22) ? this.data[22] : '';
+            this.manufacturer = (this.data.length > 23) ? this.data[23] : '';
+            this.manufacturerCode = (this.data.length > 24) ? this.data[24] : '';
+            this.lotNumber = (this.data.length > 25) ? this.data[25] : '';
+            this.expirationDate = (this.data.length > 26) ? this.data[26] : '';
+            this.visPublishedDate = (this.data.length > 27) ? this.data[27] : '';
+            this.administeredByName = (this.data.length > 28) ? this.data[28] : '';
+            this.administeredDate = (this.data.length > 29) ? this.data[29] : '';
+            this.administeredDateType = (this.data.length > 30) ? this.data[30] : '';
+            this.administeredComments = (this.data.length > 31) ? this.data[31] : '';
+            this.advReactionDateTime = (this.data.length > 32) ? this.data[32] : '';
+            this.advReactionDateTimeType = (this.data.length > 33) ? this.data[33] : '';
+            this.advReactionComments = (this.data.length > 34) ? this.data[34] : '';
+            this.advReactionCmtByName = (this.data.length > 35) ? this.data[35] : '';
+            this.signed = (this.data.length > 36) ? this.data[36] : '';
+            this.signedByName = (this.data.length > 37) ? this.data[37] : '';
+            this.signedDate = (this.data.length > 38) ? this.data[38] : '';
+            this.reasonRemoved = (this.data.length > 39) ? this.data[39] : '';
+            this.stopDate = (this.data.length > 40) ? this.data[40] : '';
+            this.reasonNotGivenMedical = (this.data.length > 41) ? this.data[41] : '';
+            this.reasonNotGivenMedicalDetail = (this.data.length > 42) ? this.data[42] : '';
+            this.save = function () {
+                if (_this.isNew) {
+                    var isError = _this.validateAdd();
+                    var response = void 0;
+                    if (isError === '') {
+                        response = _this._mel.melFunc('{IMMUN_ADD("' + _this.toStringAdd() + '")}');
+                        if (response < 0) {
+                            alert(response);
+                        }
+                    }
+                    else {
+                        alert(isError);
+                    }
+                }
+                else {
+                }
+            };
+            this.toMelString = function () {
+                return _this._value;
+            };
+            this.validateAdd = function () {
+                var errorMessage = ' is required.';
+                if (_this.vaccineGroupName === '') {
+                    return 'vaccineGroupName' + errorMessage;
+                }
+                if (_this.wasGiven === '') {
+                    return 'wasGiven' + errorMessage;
+                }
+                if (_this.historical === '') {
+                    return 'historical' + errorMessage;
+                }
+                if (_this.vfcElegibility === '') {
+                    return 'vfcElegibility' + errorMessage;
+                }
+                if (_this.administeredDate === '') {
+                    return 'administeredDate' + errorMessage;
+                }
+                if (_this.doseAmount.match(/[0-9]{1,25}/g) == null) {
+                    return 'doseAmount should be numeric.';
+                }
+                return '';
+            };
+            this.toStringAdd = function () {
+                return _this.vaccineGroupName + '^' +
+                    _this.vaccineName + '^' +
+                    _this.medicalDisplayName + '^' +
+                    _this.series + '^' +
+                    _this.wasGiven + '^' +
+                    _this.reasonNotGiven + '^' +
+                    _this.historical + '^' +
+                    _this.historicalSource + '^' +
+                    _this.vfcElegibility + '^' +
+                    _this.ddid + '^' +
+                    _this.dnid + '^' +
+                    _this.gpi + '^' +
+                    _this.kdc + '^' +
+                    _this.ndc + '^' +
+                    _this.cvxCode + '^' +
+                    _this.doseAmount + '^' +
+                    _this.dosageUnitOfMeasure + '^' +
+                    _this.route + '^' +
+                    _this.routeCode + '^' +
+                    _this.site + '^' +
+                    _this.siteCode + '^' +
+                    _this.manufacturer + '^' +
+                    _this.manufacturerCode + '^' +
+                    _this.lotNumber + '^' +
+                    _this.expirationDate + '^' +
+                    _this.visPublishedDate + '^' +
+                    _this.administeredByName + '^' +
+                    _this.administeredDate + '^' +
+                    _this.administeredDateType + '^' +
+                    _this.administeredComments + '^' +
+                    _this.advReactionDateTime + '^' +
+                    _this.advReactionDateTimeType + '^' +
+                    _this.advReactionComments + '^' +
+                    _this.advReactionCmtByName + '^' +
+                    _this.signed + '^' +
+                    _this.signedByName + '^' +
+                    _this.signedDate + '^' +
+                    _this.reasonRemoved + '^' +
+                    _this.stopDate + '^' +
+                    _this.reasonNotGivenMedical + '^' +
+                    _this.reasonNotGivenMedicalDetail;
+            };
         }
-        return Fhir;
+        return Immunization;
+    }());
+
+    var ObservationType = /** @class */ (function () {
+        function ObservationType() {
+            this.None = 'Undefined';
+            this.Signed = 'Signed';
+            this.DocumentUnsigned = 'Update';
+        }
+        return ObservationType;
+    }());
+
+    var User = /** @class */ (function () {
+        function User(_value, callFunction) {
+            var _this = this;
+            this._value = _value;
+            this.callFunction = callFunction;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.toMelString = function () {
+                return _this._value;
+            };
+            if (callFunction === UserCallFunction.UserInfo) {
+                this.loginName = (this.data.length > 0) ? this.data[0] : '';
+                this.searchName = (this.data.length > 1) ? this.data[1] : '';
+                this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
+                this.homeLocation = (this.data.length > 3) ? this.data[3] : '';
+                this.group = (this.data.length > 4) ? this.data[4] : '';
+                this.jobTitle = (this.data.length > 5) ? this.data[5] : '';
+                this.specialty = (this.data.length > 6) ? this.data[6] : '';
+                this.roles = (this.data.length > 7) ? this.data[7].split(';') : [];
+                this.npi = (this.data.length > 8) ? this.data[8] : '';
+                this.prescriberId = (this.data.length > 9) ? this.data[9] : '';
+                this.deaId = (this.data.length > 10) ? this.data[10] : '';
+                this.stateLicenceId = (this.data.length > 11) ? this.data[11] : '';
+                this.memberLogin = (this.data.length > 12) ? this.data[12] : '';
+                this.data2000 = (this.data.length > 13) ? this.data[13] : '';
+                this.uniquePhysicianId = (this.data.length > 14) ? this.data[14] : '';
+                this.activationDate = (this.data.length > 15) ? this.data[15] : '';
+                this.expirationDate = (this.data.length > 16) ? this.data[16] : '';
+                this.currentLocation = (this.data.length > 17) ? this.data[17] : '';
+                this.firstName = (this.data.length > 18) ? this.data[18] : '';
+                this.middleName = (this.data.length > 19) ? this.data[19] : '';
+                this.lastName = (this.data.length > 20) ? this.data[20] : '';
+            }
+            if (callFunction === UserCallFunction.UserList) {
+                this.loginName = (this.data.length > 0) ? this.data[0] : '';
+                this.searchName = (this.data.length > 1) ? this.data[1] : '';
+                this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
+                this.homeLocation = (this.data.length > 3) ? this.data[3] : '';
+                this.group = (this.data.length > 4) ? this.data[4] : '';
+                this.jobTitle = (this.data.length > 5) ? this.data[5] : '';
+                this.specialty = (this.data.length > 6) ? this.data[6] : '';
+                this.npi = (this.data.length > 7) ? this.data[7] : '';
+                this.prescriberId = (this.data.length > 8) ? this.data[8] : '';
+                this.deaId = (this.data.length > 9) ? this.data[9] : '';
+                this.stateLicenceId = (this.data.length > 10) ? this.data[10] : '';
+                this.memberLogin = (this.data.length > 11) ? this.data[11] : '';
+                this.data2000 = (this.data.length > 12) ? this.data[12] : '';
+                this.uniquePhysicianId = (this.data.length > 13) ? this.data[13] : '';
+                this.activationDate = (this.data.length > 14) ? this.data[14] : '';
+                this.expirationDate = (this.data.length > 15) ? this.data[15] : '';
+                this.roles = [];
+            }
+        }
+        return User;
+    }());
+
+    function StringInternal(value, tag) {
+        value = (value) ? value : '';
+        var result = new String(value);
+        result.toList = function (seporator) {
+            if (seporator == null) {
+                seporator = '|';
+            }
+            var dataArray = value.split(seporator);
+            dataArray = dataArray.filter(function (item) {
+                return item.length !== 0;
+            });
+            return dataArray;
+        };
+        result.startsWith = function (str) {
+            return value.slice(0, str.length) === str;
+        };
+        result.endsWith = function (str) {
+            return value.slice(-str.length) === str;
+        };
+        result.tag = (tag != null) ? tag : '';
+        result.toDate = function () {
+            var theDate = new Date(value.toString());
+            if (theDate instanceof Date && !isNaN(theDate.valueOf())) {
+                return theDate;
+            }
+            else {
+                return undefined;
+            }
+        };
+        return result;
+    }
+
+    var AllergyList = /** @class */ (function () {
+        function AllergyList(_value) {
+            this._value = _value;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.name = (this.data.length > 0) ? this.data[0] : '';
+            this.onSetDate = StringInternal((this.data.length > 1) ? this.data[1] : '').toDate();
+            this.criticalIndicator = (this.data.length > 2) ? this.data[2] : '';
+            this.classification = (this.data.length > 3) ? this.data[3] : '';
+            this.description = (this.data.length > 4) ? this.data[4] : '';
+            this.gpiCode = (this.data.length > 5) ? this.data[5] : '';
+            this.severity = (this.data.length > 6) ? this.data[6] : '';
+            this.allergyId = (this.data.length > 7) ? this.data[7] : '';
+            this.stopDate = null;
+            this.reactionCode = 32;
+        }
+        return AllergyList;
     }());
 
     /*! *****************************************************************************
@@ -348,49 +710,30 @@
         return value;
     }
 
-    var ApplicationBase = /** @class */ (function () {
-        function ApplicationBase() {
+    var AllergyListRemoved = /** @class */ (function (_super) {
+        __extends(AllergyListRemoved, _super);
+        function AllergyListRemoved(_value) {
+            var _this = _super.call(this, _value) || this;
+            _this._value = _value;
+            _this.name = (_this.data.length > 0) ? _this.data[0] : '';
+            _this.onSetDate = StringInternal((_this.data.length > 1) ? _this.data[1] : '').toDate();
+            _this.stopDate = (_this.data.length > 2) ? _this.data[2] : '';
+            _this.criticalIndicator = (_this.data.length > 3) ? _this.data[3] : '';
+            _this.classification = (_this.data.length > 4) ? _this.data[4] : '';
+            _this.description = (_this.data.length > 5) ? _this.data[5] : '';
+            _this.gpiCode = (_this.data.length > 6) ? _this.data[6] : '';
+            _this.severity = (_this.data.length > 7) ? _this.data[7] : '';
+            _this.allergyId = (_this.data.length > 8) ? _this.data[8] : '';
+            return _this;
         }
-        return ApplicationBase;
-    }());
+        return AllergyListRemoved;
+    }(AllergyList));
 
     function DocumentVariable(value, saveCallback) {
         var result = (value == null) ? new Object() : value;
         result.save = function () {
             if (saveCallback != null) {
                 saveCallback();
-            }
-        };
-        return result;
-    }
-
-    function StringInternal(value, tag) {
-        value = (value) ? value : '';
-        var result = new String(value);
-        result.toList = function (seporator) {
-            if (seporator == null) {
-                seporator = '|';
-            }
-            var dataArray = value.split(seporator);
-            dataArray = dataArray.filter(function (item) {
-                return item.length !== 0;
-            });
-            return dataArray;
-        };
-        result.startsWith = function (str) {
-            return value.slice(0, str.length) === str;
-        };
-        result.endsWith = function (str) {
-            return value.slice(-str.length) === str;
-        };
-        result.tag = (tag != null) ? tag : '';
-        result.toDate = function () {
-            var theDate = new Date(value.toString());
-            if (theDate instanceof Date && !isNaN(theDate.valueOf())) {
-                return theDate;
-            }
-            else {
-                return undefined;
             }
         };
         return result;
@@ -417,6 +760,750 @@
         result += ((e != null && e.hasOwnProperty("Message")) ? ".\nError message: " + e.Message : "");
         return result;
     }
+
+    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
+    var Allergies = /** @class */ (function () {
+        function Allergies(_mel) {
+            this._mel = _mel;
+            this._addedArray = [];
+            this._currentArray = [];
+            this._removedArray = [];
+        }
+        Object.defineProperty(Allergies.prototype, "added", {
+            get: function () {
+                if (this._addedArray.length === 0) {
+                    this._added = (this._added != null) ? this._added : this._mel.melFunc('{ALL_NEW("delimited")}');
+                    var dataArray = StringInternal(this._added).toList();
+                    for (var index = 0; index < dataArray.length; index++) {
+                        this._addedArray.push(new AllergyList(dataArray[index]));
+                    }
+                }
+                return this._addedArray;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Allergies.prototype.addedAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._addedArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._added != null)) return [3 /*break*/, 1];
+                            _b = this._added;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_NEW("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._added = _b;
+                            dataArray = StringInternal(this._added).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._addedArray.push(new AllergyList(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._addedArray];
+                    }
+                });
+            });
+        };
+        Object.defineProperty(Allergies.prototype, "current", {
+            get: function () {
+                if (this._currentArray.length === 0) {
+                    this._current = (this._current != null) ? this._current : this._mel.melFunc('{ALL_PRIOR("delimited")}');
+                    var dataArray = StringInternal(this._current).toList();
+                    for (var index = 0; index < dataArray.length; index++) {
+                        this._currentArray.push(new AllergyList(dataArray[index]));
+                    }
+                }
+                return this._currentArray;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Allergies.prototype.currentAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._currentArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._current != null)) return [3 /*break*/, 1];
+                            _b = this._current;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_PRIOR("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._current = _b;
+                            dataArray = StringInternal(this._current).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._currentArray.push(new AllergyList(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._currentArray];
+                    }
+                });
+            });
+        };
+        Object.defineProperty(Allergies.prototype, "removed", {
+            get: function () {
+                if (this._removedArray.length === 0) {
+                    this._removed = (this._removed != null) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
+                    var dataArray = StringInternal(this._removed).toList();
+                    for (var index = 0; index < dataArray.length; index++) {
+                        this._removedArray.push(new AllergyListRemoved(dataArray[index]));
+                    }
+                }
+                return this._removedArray;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Allergies.prototype.removedAsync = function () {
+            return __awaiter$1(this, void 0, void 0, function () {
+                var _a, _b, dataArray, index;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            if (!(this._removedArray.length === 0)) return [3 /*break*/, 4];
+                            _a = this;
+                            if (!(this._removed != null)) return [3 /*break*/, 1];
+                            _b = this._removed;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_REMOVED("delimited")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a._removed = _b;
+                            dataArray = StringInternal(this._removed).toList();
+                            for (index = 0; index < dataArray.length; index++) {
+                                this._removedArray.push(new AllergyListRemoved(dataArray[index]));
+                            }
+                            _c.label = 4;
+                        case 4: return [2 /*return*/, this._removedArray];
+                    }
+                });
+            });
+        };
+        return Allergies;
+    }());
+
+    var Observation = /** @class */ (function () {
+        function Observation(_name, _observationType, _value, _mel) {
+            var _this = this;
+            this._name = _name;
+            this._observationType = _observationType;
+            this._value = _value;
+            this._mel = _mel;
+            this.data = (this._value == null) ? [] : this._value.split('^');
+            this.observationType = new ObservationType();
+            this.name = (this._name != null) ? this._name : '';
+            this.value = (this.data.length > 0) ? this.data[0] : '';
+            this.date = (this.data.length > 1) ? this.data[1] : '';
+            this.time = (this.data.length > 2) ? this.data[2] : '';
+            this.signingUser = (this.data.length > 3) ? this.data[3] : '';
+            this.enteringUser = (this.data.length > 4) ? this.data[4] : '';
+            this.flags = (this.data.length > 5) ? this.data[5] : '';
+            this.comment = (this.data.length > 6) ? this.data[6] : '';
+            this.state = (this.data.length > 7) ? this.data[7] : '';
+            this.locationOfCare = (this.data.length > 8) ? this.data[8] : '';
+            this.documentType = (this.data.length > 9) ? this.data[9] : '';
+            this.documentId = (this.data.length > 10) ? this.data[10] : '';
+            this.type = this._observationType;
+            this.save = function () {
+                var response = _this._mel.saveObservation(_this.name, _this.value, _this.date);
+                if (_this.tag != null && _this.tag != '') {
+                    response = _this._mel.melFunc('{OBSTAGNOW("' + _this.name + '","' + _this.tag + '")}');
+                }
+                if (_this.comment != null && _this.comment != '') {
+                    response = _this._mel.melFunc('{OBSMODIFIERNOW("' + _this.name + '","' + _this.comment + '")}');
+                }
+                return response;
+            };
+            this.remove = function () {
+            };
+        }
+        Object.defineProperty(Observation.prototype, "unitOfMeasure", {
+            get: function () {
+                this._unitOfMeasure = (this._unitOfMeasure != null) ? this._unitOfMeasure : this._mel.melFunc('{OBSUNIT("' + this.name + '")}');
+                return this._unitOfMeasure;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Observation.prototype, "tag", {
+            get: function () {
+                this._tag = (this._tag != null) ? this._tag
+                    : (this._observationType === this.observationType.DocumentUnsigned) ? this._mel.melFunc('{OBSTAGNOW("' + this.name + '")}')
+                        : '';
+                return this._tag;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return Observation;
+    }());
+
+    var Protocol = /** @class */ (function () {
+        function Protocol(_value) {
+            this._value = _value;
+            this.name = (this._value != null) ? this._value : '';
+        }
+        return Protocol;
+    }());
+
+    var Measurement = /** @class */ (function () {
+        function Measurement(isCurrent, _weight, _height, _mel) {
+            this.isCurrent = isCurrent;
+            this._weight = _weight;
+            this._height = _height;
+            this._mel = _mel;
+        }
+        Object.defineProperty(Measurement.prototype, "weight", {
+            get: function () {
+                return this._mel.getObs(this.isCurrent, this._weight);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Measurement.prototype, "height", {
+            get: function () {
+                return this._mel.getObs(this.isCurrent, this._height);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return Measurement;
+    }());
+
+    var Measurements = /** @class */ (function () {
+        function Measurements(_weight, _height, _mel) {
+            this._weight = _weight;
+            this._height = _height;
+            this._mel = _mel;
+        }
+        Object.defineProperty(Measurements.prototype, "current", {
+            get: function () {
+                return (this._current != null) ? this._current : new Measurement(true, this._weight, this._height, this._mel);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Measurements.prototype, "previous", {
+            get: function () {
+                return (this._previous != null) ? this._previous : new Measurement(false, this._weight, this._height, this._mel);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return Measurements;
+    }());
+
+    var Insurance = /** @class */ (function () {
+        function Insurance(insuranceType, _mel) {
+            this.insuranceType = insuranceType;
+            this._mel = _mel;
+        }
+        Object.defineProperty(Insurance.prototype, "name", {
+            get: function () {
+                this._name = (this._name == null) ? this._mel.melFunc('{INS_NAME("' + this.insuranceType + '")}') : this._name;
+                return this._name;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Insurance.prototype, "address", {
+            get: function () {
+                this._address = (this._address == null) ? this._mel.melFunc('{INS_ADDR("' + this.insuranceType + '")}') : this._address;
+                return this._address;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Insurance.prototype, "insuranceId", {
+            get: function () {
+                this._insuranceId = (this._insuranceId == null) ? this._mel.melFunc('{INS_ID("' + this.insuranceType + '")}') : this._insuranceId;
+                return this._insuranceId;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Insurance.prototype, "planName", {
+            get: function () {
+                this._planName = (this._planName == null) ? this._mel.melFunc('{INS_PLAN("' + this.insuranceType + '")}') : this._planName;
+                return this._planName;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Insurance.prototype, "groupNumber", {
+            get: function () {
+                this._groupNumber = (this._groupNumber == null) ? this._mel.melFunc('{INS_GRP("' + this.insuranceType + '")}') : this._groupNumber;
+                return this._groupNumber;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Insurance.prototype, "phone", {
+            get: function () {
+                this._phone = (this._phone == null) ? this._mel.melFunc('{INS_PHONE("' + this.insuranceType + '")}') : this._phone;
+                return this._phone;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return Insurance;
+    }());
+
+    var CarePlan = /** @class */ (function () {
+        function CarePlan(_value, _mel) {
+            var _this = this;
+            this._value = _value;
+            this._mel = _mel;
+            this.data = this._value == null ? [] : this._value.split('^');
+            this.isNew = this._value == null ? true : false;
+            this.carePlanId = (this.data.length > 0) ? this.data[0] : '';
+            this.goal = (this.data.length > 1) ? this.data[1] : '';
+            this.snomedCTCode = (this.data.length > 2) ? this.data[2] : '';
+            this.target = (this.data.length > 3) ? this.data[3] : '';
+            this.instructions = (this.data.length > 4) ? this.data[4] : '';
+            this.goalSetDate = (this.data.length > 5) ? this.data[5] : '';
+            this.goalMetDate = (this.data.length > 6) ? this.data[6] : '';
+            this.recordCreatedDateTime = (this.data.length > 7) ? this.data[7] : '';
+            this.sign = (this.data.length > 8) ? this.data[8] : '';
+            this.signedBy = (this.data.length > 9) ? this.data[9] : '';
+            this.signedDate = (this.data.length > 10) ? this.data[10] : '';
+            this.recordChangedDateTime = (this.data.length > 11) ? this.data[11] : '';
+            this.recordChangedBy = (this.data.length > 12) ? this.data[12] : '';
+            this.patientConditionDescription = (this.data.length > 13) ? this.data[13] : '';
+            this.patientConditionCode = (this.data.length > 14) ? this.data[14] : '';
+            this.save = function () {
+                if (_this.isNew) {
+                    var isError = _this.validateAdd();
+                    var response = void 0;
+                    if (isError === '') {
+                        response = _this._mel.melFunc('{MEL_ADD_CARE_PLAN(' + _this.toStringAdd() + ')}');
+                        if (response < 0) {
+                            alert(_this.carePlanAddError(response));
+                        }
+                    }
+                    else {
+                        alert(isError);
+                    }
+                }
+                else {
+                }
+            };
+            this.toMelString = function () {
+                return _this._value;
+            };
+            this.validateAdd = function () {
+                var errorMessage = ' is required.';
+                if (_this.goal === '') {
+                    return 'goal' + errorMessage;
+                }
+                return '';
+            };
+            this.toStringAdd = function () {
+                return '\"' + _this.goal + '\",\"' +
+                    _this.snomedCTCode + '\",\"' +
+                    _this.target + '\",\"' +
+                    _this.instructions + '\",\"' +
+                    _this.goalSetDate + '\",\"' +
+                    _this.goalMetDate + '\",\"' +
+                    _this.patientConditionCode + '\"';
+            };
+            this.carePlanAddError = function (code) {
+                var response = '';
+                switch (code) {
+                    case "-1":
+                        response = "Error Code -1: Description or blank is too long.";
+                        break;
+                    case "-2":
+                        response = "Error Code -2: Code is too long.";
+                        break;
+                    case "-3":
+                        response = "Error Code -3: Target is too long.";
+                        break;
+                    case "-4":
+                        response = "Error Code -4: Instruction is too long.";
+                        break;
+                    case "-5":
+                        response = "Error Code -5: goalSetDate is invalid.";
+                        break;
+                    case "-6":
+                        response = "Error Code -6: goalMetDate is invalid or less than goalSetDate.";
+                        break;
+                    case "-7":
+                        response = "Error Code -7: Invalid patientConditionCode. Use $mdObject.patient.problems[index].problemId";
+                        break;
+                    case "-8":
+                        response = "Error Code -8: Cannot add Care Plan for some other reason.";
+                        break;
+                    case "-21":
+                        response = "Error Code -21: Service layer error.";
+                        break;
+                    default:
+                }
+                return response;
+            };
+        }
+        return CarePlan;
+    }());
+
+    var Address = /** @class */ (function () {
+        function Address(_mel, _mailingAddressExternal) {
+            this._mel = _mel;
+            this._mailingAddressExternal = _mailingAddressExternal;
+            if (this._mailingAddressExternal) {
+                this._address1 = this._mailingAddressExternal.line1Addr;
+                this._address2 = this._mailingAddressExternal.line2Addr;
+                this._city = this._mailingAddressExternal.cityName;
+                this._country = this._mailingAddressExternal.countryCode;
+                this._postCode = this._mailingAddressExternal.postalCode;
+                this._state = this._mailingAddressExternal.stateCode;
+            }
+        }
+        Object.defineProperty(Address.prototype, "address1", {
+            get: function () {
+                this._address1 = (this._address1 !== undefined) ? this._address1 : this._mel.melFunc('{PATIENT.ADDRESS1}');
+                return this._address1;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Address.prototype, "address2", {
+            get: function () {
+                this._address2 = (this._address2 !== undefined) ? this._address2 : this._mel.melFunc('{PATIENT.ADDRESS2}');
+                return this._address2;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Address.prototype, "city", {
+            get: function () {
+                this._city = (this._city !== undefined) ? this._city : this._mel.melFunc('{PATIENT.CITY}');
+                return this._city;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Address.prototype, "country", {
+            get: function () {
+                this._country = (this._country !== undefined) ? this._country : this._mel.melFunc('{PATIENT.COUNTRY}');
+                return this._country;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Address.prototype, "postCode", {
+            get: function () {
+                this._postCode = (this._postCode !== undefined) ? this._postCode : this._mel.melFunc('{PATIENT.ZIP}');
+                return this._postCode;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(Address.prototype, "state", {
+            get: function () {
+                this._state = (this._state !== undefined) ? this._state : this._mel.melFunc('{PATIENT.STATE}');
+                return this._state;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return Address;
+    }());
+
+    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
+    var Phone = /** @class */ (function () {
+        function Phone(_mel, _electronicAddressExternal) {
+            var _a, _b, _c;
+            this._mel = _mel;
+            this._electronicAddressExternal = _electronicAddressExternal;
+            this.formatMelPhone = function (phone) {
+                var phoneTest = new RegExp(/(\d{3})(\d{3})(\d{4})(\d+)?/);
+                phone = phone.trim();
+                var results = phoneTest.exec(phone);
+                if (results !== null && results.length > 4) {
+                    return "(" + results[1] + ") " + results[2] + "-" + results[3] + (typeof results[4] !== "undefined" ? " [" + results[4] + "]" : "");
+                }
+                else {
+                    return phone;
+                }
+            };
+            if (this._electronicAddressExternal) {
+                this._home = (this._home !== undefined) ? this._home : (_a = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "H" && a.urlScheme === "tel"); })) === null || _a === void 0 ? void 0 : _a.urlAddr;
+                this._home = (this._home) ? this.formatMelPhone(this._home) : this._home;
+                this._business = (this._business !== undefined) ? this._business : (_b = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "WP" && a.urlScheme === "tel"); })) === null || _b === void 0 ? void 0 : _b.urlAddr;
+                this._business = (this._business) ? this.formatMelPhone(this._business) : this._business;
+                this._mobile = (this._mobile !== undefined) ? this._mobile : (_c = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "MC" && a.urlScheme === "tel"); })) === null || _c === void 0 ? void 0 : _c.urlAddr;
+                this._mobile = (this._mobile) ? this.formatMelPhone(this._mobile) : this._mobile;
+            }
+        }
+        Object.defineProperty(Phone.prototype, "home", {
+            get: function () {
+                this._home = (this._home != null) ? this._home : this._mel.melFunc('{PATIENT.ALTPHONE}');
+                return this._home;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Phone.prototype.homeAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._home != null)) return [3 /*break*/, 1];
+                            _e = this._home;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.ALTPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._home = _e;
+                            return [2 /*return*/, this._home];
+                    }
+                });
+            });
+        };
+        Object.defineProperty(Phone.prototype, "business", {
+            get: function () {
+                this._business = (this._business != null) ? this._business : this._mel.melFunc('{PATIENT.WORKPHONE}');
+                return this._business;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Phone.prototype.businessAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._business != null)) return [3 /*break*/, 1];
+                            _e = this._business;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.WORKPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._business = _e;
+                            return [2 /*return*/, this._business];
+                    }
+                });
+            });
+        };
+        Object.defineProperty(Phone.prototype, "mobile", {
+            get: function () {
+                this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.CELLPHONE}');
+                return this._mobile;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Phone.prototype.mobileAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._mobile != null)) return [3 /*break*/, 1];
+                            _e = this._mobile;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.CELLPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._mobile = _e;
+                            return [2 /*return*/, this._mobile];
+                    }
+                });
+            });
+        };
+        Object.defineProperty(Phone.prototype, "fax", {
+            get: function () {
+                this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.FAXPHONE}');
+                return this._fax;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Phone.prototype.faxAsync = function () {
+            return __awaiter$2(this, void 0, void 0, function () {
+                var _d, _e;
+                return __generator(this, function (_f) {
+                    switch (_f.label) {
+                        case 0:
+                            _d = this;
+                            if (!(this._fax != null)) return [3 /*break*/, 1];
+                            _e = this._fax;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.FAXPHONE}')];
+                        case 2:
+                            _e = _f.sent();
+                            _f.label = 3;
+                        case 3:
+                            _d._fax = _e;
+                            return [2 /*return*/, this._fax];
+                    }
+                });
+            });
+        };
+        return Phone;
+    }());
+
+    var ReferringProviderPhone = /** @class */ (function () {
+        function ReferringProviderPhone(_mel) {
+            this._mel = _mel;
+        }
+        Object.defineProperty(ReferringProviderPhone.prototype, "office", {
+            get: function () {
+                this._office = (this._office != null) ? this._office : this._mel.melFunc('{PATIENT.REFMDOFFICEPHONE}');
+                return this._office;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProviderPhone.prototype, "alternative", {
+            get: function () {
+                this._alternative = (this._alternative != null) ? this._alternative : this._mel.melFunc('{PATIENT.REFMDALTPHONE}');
+                return this._alternative;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProviderPhone.prototype, "fax", {
+            get: function () {
+                this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.REFMDFAXPHONE}');
+                return this._fax;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProviderPhone.prototype, "pager", {
+            get: function () {
+                this._pager = (this._pager != null) ? this._pager : this._mel.melFunc('{PATIENT.REFMDPAGERPHONE}');
+                return this._pager;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProviderPhone.prototype, "mobile", {
+            get: function () {
+                this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.REFMDCELLPHONE}');
+                return this._mobile;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return ReferringProviderPhone;
+    }());
+
+    var ReferringProvider = /** @class */ (function () {
+        function ReferringProvider(_mel) {
+            this._mel = _mel;
+            this._phone = new ReferringProviderPhone(this._mel);
+        }
+        Object.defineProperty(ReferringProvider.prototype, "referringProviderId", {
+            get: function () {
+                this._referringProviderId = (this._referringProviderId != null) ? this._referringProviderId : this._mel.melFunc('{PATIENT.REFMDID}');
+                return this._referringProviderId;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProvider.prototype, "firstName", {
+            get: function () {
+                this._firstName = (this._firstName != null) ? this._firstName : this._mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
+                return this._firstName;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProvider.prototype, "lastName", {
+            get: function () {
+                this._lastName = (this._lastName != null) ? this._lastName : this._mel.melFunc('{PATIENT.REFMDLASTNAME}');
+                return this._lastName;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProvider.prototype, "email", {
+            get: function () {
+                this._email = (this._email != null) ? this._email : this._mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
+                return this._email;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProvider.prototype, "fullAddress", {
+            get: function () {
+                this._fullAddress = (this._fullAddress != null) ? this._fullAddress : this._mel.melFunc('{PATIENT.REFMDADDRESS}');
+                return this._fullAddress;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ReferringProvider.prototype, "phone", {
+            get: function () {
+                return this._phone;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return ReferringProvider;
+    }());
 
     var emptyImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII===';
     var simulatorChromeExtensionId = "chgnndkhlnpmfkjnchmnhkfneccghaaf";
@@ -506,6 +1593,65 @@
         return EmrBase;
     }());
 
+    var EmrMel = /** @class */ (function (_super) {
+        __extends(EmrMel, _super);
+        function EmrMel(_window, _simulator) {
+            var _this = _super.call(this, _window, _simulator) || this;
+            _this._window = _window;
+            _this._simulator = _simulator;
+            _this.melObjectName = 'GE.CPO.EMR.80.MEL';
+            _this.melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
+            _this.noData = 'Data Access Error';
+            _this.initialization = function () {
+                if (IsActiveXSupported(_this._window)) {
+                    try {
+                        _this.mel = new _this._window.ActiveXObject(_this.melObjectName);
+                    }
+                    catch (e) {
+                        _this.errorMessage = GetActiveXErrorMessage(_this.melObjectName, e);
+                    }
+                    if (_this.errorMessage != null) {
+                        try {
+                            _this.mel = new _this._window.ActiveXObject(_this.melObjectNameSimulator);
+                            System.isSimulator = true;
+                        }
+                        catch (e) {
+                            console.log(_this.errorMessage);
+                        }
+                    }
+                }
+            };
+            _this.melFunc = function (data) {
+                return (_this.external) ? _this.external.EvaluateMel(data, false) : (_this.mel) ? _this.mel.eval(data) : _this.noData;
+            };
+            _this.saveObservation = function (obs, value, date) {
+                return (_this.mel == null) ? _this.noData : _this.mel.OBSNOW(obs, value, date);
+            };
+            _this.getObs = function (isCurrent, data) {
+                return (_this.mel == null) ? _this.noData : ((isCurrent == true) ? _this.mel.OBSNOW(data, '', '') : _this.mel.OBSPREV(data));
+            };
+            _this.showUrlDialog = function (url) {
+                _this.melFunc('{SHOWHTMLFORM("' + url + '","test")}');
+            };
+            _this.initialization();
+            return _this;
+        }
+        Object.defineProperty(EmrMel.prototype, "externalSimulator", {
+            get: function () {
+                return (this.mel == null) ? this.noData : this.mel.external;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return EmrMel;
+    }(EmrBase));
+
+    var ApplicationBase = /** @class */ (function () {
+        function ApplicationBase() {
+        }
+        return ApplicationBase;
+    }());
+
     var EmrApp = /** @class */ (function (_super) {
         __extends(EmrApp, _super);
         function EmrApp(_window, _simulator) {
@@ -565,59 +1711,6 @@
         return EmrApp;
     }(EmrBase));
 
-    var EmrMel = /** @class */ (function (_super) {
-        __extends(EmrMel, _super);
-        function EmrMel(_window, _simulator) {
-            var _this = _super.call(this, _window, _simulator) || this;
-            _this._window = _window;
-            _this._simulator = _simulator;
-            _this.melObjectName = 'GE.CPO.EMR.80.MEL';
-            _this.melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
-            _this.noData = 'Data Access Error';
-            _this.initialization = function () {
-                if (IsActiveXSupported(_this._window)) {
-                    try {
-                        _this.mel = new _this._window.ActiveXObject(_this.melObjectName);
-                    }
-                    catch (e) {
-                        _this.errorMessage = GetActiveXErrorMessage(_this.melObjectName, e);
-                    }
-                    if (_this.errorMessage != null) {
-                        try {
-                            _this.mel = new _this._window.ActiveXObject(_this.melObjectNameSimulator);
-                            System.isSimulator = true;
-                        }
-                        catch (e) {
-                            console.log(_this.errorMessage);
-                        }
-                    }
-                }
-            };
-            _this.melFunc = function (data) {
-                return (_this.external) ? _this.external.EvaluateMel(data, false) : (_this.mel) ? _this.mel.eval(data) : _this.noData;
-            };
-            _this.saveObservation = function (obs, value, date) {
-                return (_this.mel == null) ? _this.noData : _this.mel.OBSNOW(obs, value, date);
-            };
-            _this.getObs = function (isCurrent, data) {
-                return (_this.mel == null) ? _this.noData : ((isCurrent == true) ? _this.mel.OBSNOW(data, '', '') : _this.mel.OBSPREV(data));
-            };
-            _this.showUrlDialog = function (url) {
-                _this.melFunc('{SHOWHTMLFORM("' + url + '","test")}');
-            };
-            _this.initialization();
-            return _this;
-        }
-        Object.defineProperty(EmrMel.prototype, "externalSimulator", {
-            get: function () {
-                return (this.mel == null) ? this.noData : this.mel.external;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return EmrMel;
-    }(EmrBase));
-
     var EmrWindow = /** @class */ (function () {
         function EmrWindow(_mel, _app, _window, _document) {
             var _this = this;
@@ -649,53 +1742,6 @@
             };
         }
         return EmrWindow;
-    }());
-
-    var EmrContent = /** @class */ (function () {
-        function EmrContent(_value, _mel, _window) {
-            var _this = this;
-            this._value = _value;
-            this._mel = _mel;
-            this._window = _window;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.isNew = (this._value == null) ? true : false;
-            this.contentId = (this.data.length > 0) ? this.data[0] : '';
-            this.key = (this.data.length > 1) ? this.data[1] : '';
-            this.name = (this.data.length > 2) ? this.data[2] : '';
-            this.value = (this.data.length > 3) ? this.data[3] : '';
-            this._unk0 = (this.data.length > 4) ? this.data[4] : '';
-            this._unk1 = (this.data.length > 5) ? this.data[5] : '';
-            this._unk2 = (this.data.length > 6) ? this.data[6] : '';
-            this._unk3 = (this.data.length > 7) ? this.data[7] : '';
-            this._unk4 = (this.data.length > 8) ? this.data[8] : '';
-            this._unk5 = (this.data.length > 9) ? this.data[9] : '';
-            this.toAddString = function (encodeValue) {
-                var recordValue = (encodeValue == null) ? _this.value : _this._window.btoa(_this.value);
-                return _this.key + '^' +
-                    _this.name + '^' +
-                    recordValue + '^' +
-                    _this._unk0 + '^' +
-                    _this._unk1 + '^' +
-                    _this._unk2 + '^' +
-                    _this._unk3 + '^' +
-                    _this._unk4 + '^' +
-                    _this._unk5;
-            };
-            this.save = function (encodeValue) {
-                if (_this.isNew) {
-                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
-                    _this.isNew = false;
-                }
-                else {
-                    _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
-                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
-                }
-            };
-            this.remove = function () {
-                _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
-            };
-        }
-        return EmrContent;
     }());
 
     var DemographicsExternal = /** @class */ (function () {
@@ -1113,445 +2159,6 @@
         return AllergiesExternal;
     }(Array));
 
-    var Protocol = /** @class */ (function () {
-        function Protocol(_value) {
-            this._value = _value;
-            this.name = (this._value != null) ? this._value : '';
-        }
-        return Protocol;
-    }());
-
-    var ObservationType = /** @class */ (function () {
-        function ObservationType() {
-            this.None = 'Undefined';
-            this.Signed = 'Signed';
-            this.DocumentUnsigned = 'Update';
-        }
-        return ObservationType;
-    }());
-
-    var Observation = /** @class */ (function () {
-        function Observation(_name, _observationType, _value, _mel) {
-            var _this = this;
-            this._name = _name;
-            this._observationType = _observationType;
-            this._value = _value;
-            this._mel = _mel;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.observationType = new ObservationType();
-            this.name = (this._name != null) ? this._name : '';
-            this.value = (this.data.length > 0) ? this.data[0] : '';
-            this.date = (this.data.length > 1) ? this.data[1] : '';
-            this.time = (this.data.length > 2) ? this.data[2] : '';
-            this.signingUser = (this.data.length > 3) ? this.data[3] : '';
-            this.enteringUser = (this.data.length > 4) ? this.data[4] : '';
-            this.flags = (this.data.length > 5) ? this.data[5] : '';
-            this.comment = (this.data.length > 6) ? this.data[6] : '';
-            this.state = (this.data.length > 7) ? this.data[7] : '';
-            this.locationOfCare = (this.data.length > 8) ? this.data[8] : '';
-            this.documentType = (this.data.length > 9) ? this.data[9] : '';
-            this.documentId = (this.data.length > 10) ? this.data[10] : '';
-            this.type = this._observationType;
-            this.save = function () {
-                var response = _this._mel.saveObservation(_this.name, _this.value, _this.date);
-                if (_this.tag != null && _this.tag != '') {
-                    response = _this._mel.melFunc('{OBSTAGNOW("' + _this.name + '","' + _this.tag + '")}');
-                }
-                if (_this.comment != null && _this.comment != '') {
-                    response = _this._mel.melFunc('{OBSMODIFIERNOW("' + _this.name + '","' + _this.comment + '")}');
-                }
-                return response;
-            };
-            this.remove = function () {
-            };
-        }
-        Object.defineProperty(Observation.prototype, "unitOfMeasure", {
-            get: function () {
-                this._unitOfMeasure = (this._unitOfMeasure != null) ? this._unitOfMeasure : this._mel.melFunc('{OBSUNIT("' + this.name + '")}');
-                return this._unitOfMeasure;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Observation.prototype, "tag", {
-            get: function () {
-                this._tag = (this._tag != null) ? this._tag
-                    : (this._observationType === this.observationType.DocumentUnsigned) ? this._mel.melFunc('{OBSTAGNOW("' + this.name + '")}')
-                        : '';
-                return this._tag;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return Observation;
-    }());
-
-    var Address$1 = /** @class */ (function () {
-        function Address(_mel, _mailingAddressExternal) {
-            this._mel = _mel;
-            this._mailingAddressExternal = _mailingAddressExternal;
-            if (this._mailingAddressExternal) {
-                this._address1 = this._mailingAddressExternal.line1Addr;
-                this._address2 = this._mailingAddressExternal.line2Addr;
-                this._city = this._mailingAddressExternal.cityName;
-                this._country = this._mailingAddressExternal.countryCode;
-                this._postCode = this._mailingAddressExternal.postalCode;
-                this._state = this._mailingAddressExternal.stateCode;
-            }
-        }
-        Object.defineProperty(Address.prototype, "address1", {
-            get: function () {
-                this._address1 = (this._address1 !== undefined) ? this._address1 : this._mel.melFunc('{PATIENT.ADDRESS1}');
-                return this._address1;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Address.prototype, "address2", {
-            get: function () {
-                this._address2 = (this._address2 !== undefined) ? this._address2 : this._mel.melFunc('{PATIENT.ADDRESS2}');
-                return this._address2;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Address.prototype, "city", {
-            get: function () {
-                this._city = (this._city !== undefined) ? this._city : this._mel.melFunc('{PATIENT.CITY}');
-                return this._city;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Address.prototype, "country", {
-            get: function () {
-                this._country = (this._country !== undefined) ? this._country : this._mel.melFunc('{PATIENT.COUNTRY}');
-                return this._country;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Address.prototype, "postCode", {
-            get: function () {
-                this._postCode = (this._postCode !== undefined) ? this._postCode : this._mel.melFunc('{PATIENT.ZIP}');
-                return this._postCode;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Address.prototype, "state", {
-            get: function () {
-                this._state = (this._state !== undefined) ? this._state : this._mel.melFunc('{PATIENT.STATE}');
-                return this._state;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return Address;
-    }());
-
-    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try {
-                step(generator.next(value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function rejected(value) { try {
-                step(generator["throw"](value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    };
-    var Phone = /** @class */ (function () {
-        function Phone(_mel, _electronicAddressExternal) {
-            var _a, _b, _c;
-            this._mel = _mel;
-            this._electronicAddressExternal = _electronicAddressExternal;
-            this.formatMelPhone = function (phone) {
-                var phoneTest = new RegExp(/(\d{3})(\d{3})(\d{4})(\d+)?/);
-                phone = phone.trim();
-                var results = phoneTest.exec(phone);
-                if (results !== null && results.length > 4) {
-                    return "(" + results[1] + ") " + results[2] + "-" + results[3] + (typeof results[4] !== "undefined" ? " [" + results[4] + "]" : "");
-                }
-                else {
-                    return phone;
-                }
-            };
-            if (this._electronicAddressExternal) {
-                this._home = (this._home !== undefined) ? this._home : (_a = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "H" && a.urlScheme === "tel"); })) === null || _a === void 0 ? void 0 : _a.urlAddr;
-                this._home = (this._home) ? this.formatMelPhone(this._home) : this._home;
-                this._business = (this._business !== undefined) ? this._business : (_b = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "WP" && a.urlScheme === "tel"); })) === null || _b === void 0 ? void 0 : _b.urlAddr;
-                this._business = (this._business) ? this.formatMelPhone(this._business) : this._business;
-                this._mobile = (this._mobile !== undefined) ? this._mobile : (_c = this._electronicAddressExternal.find(function (a) { return (a.addressSettingCode === "MC" && a.urlScheme === "tel"); })) === null || _c === void 0 ? void 0 : _c.urlAddr;
-                this._mobile = (this._mobile) ? this.formatMelPhone(this._mobile) : this._mobile;
-            }
-        }
-        Object.defineProperty(Phone.prototype, "home", {
-            get: function () {
-                this._home = (this._home != null) ? this._home : this._mel.melFunc('{PATIENT.ALTPHONE}');
-                return this._home;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Phone.prototype.homeAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
-                var _d, _e;
-                return __generator(this, function (_f) {
-                    switch (_f.label) {
-                        case 0:
-                            _d = this;
-                            if (!(this._home != null)) return [3 /*break*/, 1];
-                            _e = this._home;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.ALTPHONE}')];
-                        case 2:
-                            _e = _f.sent();
-                            _f.label = 3;
-                        case 3:
-                            _d._home = _e;
-                            return [2 /*return*/, this._home];
-                    }
-                });
-            });
-        };
-        Object.defineProperty(Phone.prototype, "business", {
-            get: function () {
-                this._business = (this._business != null) ? this._business : this._mel.melFunc('{PATIENT.WORKPHONE}');
-                return this._business;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Phone.prototype.businessAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
-                var _d, _e;
-                return __generator(this, function (_f) {
-                    switch (_f.label) {
-                        case 0:
-                            _d = this;
-                            if (!(this._business != null)) return [3 /*break*/, 1];
-                            _e = this._business;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.WORKPHONE}')];
-                        case 2:
-                            _e = _f.sent();
-                            _f.label = 3;
-                        case 3:
-                            _d._business = _e;
-                            return [2 /*return*/, this._business];
-                    }
-                });
-            });
-        };
-        Object.defineProperty(Phone.prototype, "mobile", {
-            get: function () {
-                this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.CELLPHONE}');
-                return this._mobile;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Phone.prototype.mobileAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
-                var _d, _e;
-                return __generator(this, function (_f) {
-                    switch (_f.label) {
-                        case 0:
-                            _d = this;
-                            if (!(this._mobile != null)) return [3 /*break*/, 1];
-                            _e = this._mobile;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.CELLPHONE}')];
-                        case 2:
-                            _e = _f.sent();
-                            _f.label = 3;
-                        case 3:
-                            _d._mobile = _e;
-                            return [2 /*return*/, this._mobile];
-                    }
-                });
-            });
-        };
-        Object.defineProperty(Phone.prototype, "fax", {
-            get: function () {
-                this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.FAXPHONE}');
-                return this._fax;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Phone.prototype.faxAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
-                var _d, _e;
-                return __generator(this, function (_f) {
-                    switch (_f.label) {
-                        case 0:
-                            _d = this;
-                            if (!(this._fax != null)) return [3 /*break*/, 1];
-                            _e = this._fax;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{PATIENT.FAXPHONE}')];
-                        case 2:
-                            _e = _f.sent();
-                            _f.label = 3;
-                        case 3:
-                            _d._fax = _e;
-                            return [2 /*return*/, this._fax];
-                    }
-                });
-            });
-        };
-        return Phone;
-    }());
-
-    var Immunization = /** @class */ (function () {
-        function Immunization(_value, _mel) {
-            var _this = this;
-            this._value = _value;
-            this._mel = _mel;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.isNew = this._value == null ? true : false;
-            this.immunizationId = (this.data.length > 0) ? this.data[0] : '';
-            this.immunizationGroupId = (this.data.length > 1) ? this.data[1] : '';
-            this.vaccineGroupName = (this.data.length > 2) ? this.data[2] : '';
-            this.vaccineName = (this.data.length > 3) ? this.data[3] : '';
-            this.medicalDisplayName = (this.data.length > 4) ? this.data[4] : '';
-            this.series = (this.data.length > 5) ? this.data[5] : '';
-            this.wasGiven = (this.data.length > 6) ? this.data[6] : '';
-            this.reasonNotGiven = (this.data.length > 7) ? this.data[7] : '';
-            this.historical = (this.data.length > 8) ? this.data[8] : '';
-            this.historicalSource = (this.data.length > 9) ? this.data[9] : '';
-            this.vfcElegibility = (this.data.length > 10) ? this.data[10] : '';
-            this.ddid = (this.data.length > 11) ? this.data[11] : '';
-            this.dnid = (this.data.length > 12) ? this.data[12] : '';
-            this.gpi = (this.data.length > 13) ? this.data[13] : '';
-            this.kdc = (this.data.length > 14) ? this.data[14] : '';
-            this.ndc = (this.data.length > 15) ? this.data[15] : '';
-            this.cvxCode = (this.data.length > 16) ? this.data[16] : '';
-            this.doseAmount = (this.data.length > 17) ? this.data[17] : '';
-            this.dosageUnitOfMeasure = (this.data.length > 18) ? this.data[18] : '';
-            this.route = (this.data.length > 19) ? this.data[19] : '';
-            this.routeCode = (this.data.length > 20) ? this.data[20] : '';
-            this.site = (this.data.length > 21) ? this.data[21] : '';
-            this.siteCode = (this.data.length > 22) ? this.data[22] : '';
-            this.manufacturer = (this.data.length > 23) ? this.data[23] : '';
-            this.manufacturerCode = (this.data.length > 24) ? this.data[24] : '';
-            this.lotNumber = (this.data.length > 25) ? this.data[25] : '';
-            this.expirationDate = (this.data.length > 26) ? this.data[26] : '';
-            this.visPublishedDate = (this.data.length > 27) ? this.data[27] : '';
-            this.administeredByName = (this.data.length > 28) ? this.data[28] : '';
-            this.administeredDate = (this.data.length > 29) ? this.data[29] : '';
-            this.administeredDateType = (this.data.length > 30) ? this.data[30] : '';
-            this.administeredComments = (this.data.length > 31) ? this.data[31] : '';
-            this.advReactionDateTime = (this.data.length > 32) ? this.data[32] : '';
-            this.advReactionDateTimeType = (this.data.length > 33) ? this.data[33] : '';
-            this.advReactionComments = (this.data.length > 34) ? this.data[34] : '';
-            this.advReactionCmtByName = (this.data.length > 35) ? this.data[35] : '';
-            this.signed = (this.data.length > 36) ? this.data[36] : '';
-            this.signedByName = (this.data.length > 37) ? this.data[37] : '';
-            this.signedDate = (this.data.length > 38) ? this.data[38] : '';
-            this.reasonRemoved = (this.data.length > 39) ? this.data[39] : '';
-            this.stopDate = (this.data.length > 40) ? this.data[40] : '';
-            this.reasonNotGivenMedical = (this.data.length > 41) ? this.data[41] : '';
-            this.reasonNotGivenMedicalDetail = (this.data.length > 42) ? this.data[42] : '';
-            this.save = function () {
-                if (_this.isNew) {
-                    var isError = _this.validateAdd();
-                    var response = void 0;
-                    if (isError === '') {
-                        response = _this._mel.melFunc('{IMMUN_ADD("' + _this.toStringAdd() + '")}');
-                        if (response < 0) {
-                            alert(response);
-                        }
-                    }
-                    else {
-                        alert(isError);
-                    }
-                }
-                else {
-                }
-            };
-            this.toMelString = function () {
-                return _this._value;
-            };
-            this.validateAdd = function () {
-                var errorMessage = ' is required.';
-                if (_this.vaccineGroupName === '') {
-                    return 'vaccineGroupName' + errorMessage;
-                }
-                if (_this.wasGiven === '') {
-                    return 'wasGiven' + errorMessage;
-                }
-                if (_this.historical === '') {
-                    return 'historical' + errorMessage;
-                }
-                if (_this.vfcElegibility === '') {
-                    return 'vfcElegibility' + errorMessage;
-                }
-                if (_this.administeredDate === '') {
-                    return 'administeredDate' + errorMessage;
-                }
-                if (_this.doseAmount.match(/[0-9]{1,25}/g) == null) {
-                    return 'doseAmount should be numeric.';
-                }
-                return '';
-            };
-            this.toStringAdd = function () {
-                return _this.vaccineGroupName + '^' +
-                    _this.vaccineName + '^' +
-                    _this.medicalDisplayName + '^' +
-                    _this.series + '^' +
-                    _this.wasGiven + '^' +
-                    _this.reasonNotGiven + '^' +
-                    _this.historical + '^' +
-                    _this.historicalSource + '^' +
-                    _this.vfcElegibility + '^' +
-                    _this.ddid + '^' +
-                    _this.dnid + '^' +
-                    _this.gpi + '^' +
-                    _this.kdc + '^' +
-                    _this.ndc + '^' +
-                    _this.cvxCode + '^' +
-                    _this.doseAmount + '^' +
-                    _this.dosageUnitOfMeasure + '^' +
-                    _this.route + '^' +
-                    _this.routeCode + '^' +
-                    _this.site + '^' +
-                    _this.siteCode + '^' +
-                    _this.manufacturer + '^' +
-                    _this.manufacturerCode + '^' +
-                    _this.lotNumber + '^' +
-                    _this.expirationDate + '^' +
-                    _this.visPublishedDate + '^' +
-                    _this.administeredByName + '^' +
-                    _this.administeredDate + '^' +
-                    _this.administeredDateType + '^' +
-                    _this.administeredComments + '^' +
-                    _this.advReactionDateTime + '^' +
-                    _this.advReactionDateTimeType + '^' +
-                    _this.advReactionComments + '^' +
-                    _this.advReactionCmtByName + '^' +
-                    _this.signed + '^' +
-                    _this.signedByName + '^' +
-                    _this.signedDate + '^' +
-                    _this.reasonRemoved + '^' +
-                    _this.stopDate + '^' +
-                    _this.reasonNotGivenMedical + '^' +
-                    _this.reasonNotGivenMedicalDetail;
-            };
-        }
-        return Immunization;
-    }());
-
     var FlowsheetObservation = /** @class */ (function () {
         function FlowsheetObservation(_value) {
             this._value = _value;
@@ -1561,548 +2168,6 @@
             this.date = (this.data.length > 2) ? this.data[2] : '';
         }
         return FlowsheetObservation;
-    }());
-
-    var PatientContact = /** @class */ (function () {
-        function PatientContact(_value) {
-            var _this = this;
-            this._value = _value;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.name = (this.data.length > 0) ? this.data[0] : '';
-            this.type = (this.data.length > 1) ? this.data[1] : '';
-            this.phone = (this.data.length > 2) ? this.data[2] : '';
-            this.phoneType = (this.data.length > 3) ? this.data[3] : '';
-            this.address1 = (this.data.length > 4) ? this.data[4] : '';
-            this.address2 = (this.data.length > 5) ? this.data[5] : '';
-            this.city = (this.data.length > 6) ? this.data[6] : '';
-            this.state = (this.data.length > 7) ? this.data[7] : '';
-            this.zip = (this.data.length > 8) ? this.data[8] : '';
-            this.country = (this.data.length > 9) ? this.data[9] : '';
-            this.address = this.address1.concat(' ' + this.address2);
-            this.toMelString = function () {
-                return _this._value;
-            };
-        }
-        return PatientContact;
-    }());
-
-    var ReferringProviderPhone = /** @class */ (function () {
-        function ReferringProviderPhone(_mel) {
-            this._mel = _mel;
-        }
-        Object.defineProperty(ReferringProviderPhone.prototype, "office", {
-            get: function () {
-                this._office = (this._office != null) ? this._office : this._mel.melFunc('{PATIENT.REFMDOFFICEPHONE}');
-                return this._office;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProviderPhone.prototype, "alternative", {
-            get: function () {
-                this._alternative = (this._alternative != null) ? this._alternative : this._mel.melFunc('{PATIENT.REFMDALTPHONE}');
-                return this._alternative;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProviderPhone.prototype, "fax", {
-            get: function () {
-                this._fax = (this._fax != null) ? this._fax : this._mel.melFunc('{PATIENT.REFMDFAXPHONE}');
-                return this._fax;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProviderPhone.prototype, "pager", {
-            get: function () {
-                this._pager = (this._pager != null) ? this._pager : this._mel.melFunc('{PATIENT.REFMDPAGERPHONE}');
-                return this._pager;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProviderPhone.prototype, "mobile", {
-            get: function () {
-                this._mobile = (this._mobile != null) ? this._mobile : this._mel.melFunc('{PATIENT.REFMDCELLPHONE}');
-                return this._mobile;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return ReferringProviderPhone;
-    }());
-
-    var ReferringProvider = /** @class */ (function () {
-        function ReferringProvider(_mel) {
-            this._mel = _mel;
-            this._phone = new ReferringProviderPhone(this._mel);
-        }
-        Object.defineProperty(ReferringProvider.prototype, "referringProviderId", {
-            get: function () {
-                this._referringProviderId = (this._referringProviderId != null) ? this._referringProviderId : this._mel.melFunc('{PATIENT.REFMDID}');
-                return this._referringProviderId;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProvider.prototype, "firstName", {
-            get: function () {
-                this._firstName = (this._firstName != null) ? this._firstName : this._mel.melFunc('{PATIENT.REFMDFIRSTNAME}');
-                return this._firstName;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProvider.prototype, "lastName", {
-            get: function () {
-                this._lastName = (this._lastName != null) ? this._lastName : this._mel.melFunc('{PATIENT.REFMDLASTNAME}');
-                return this._lastName;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProvider.prototype, "email", {
-            get: function () {
-                this._email = (this._email != null) ? this._email : this._mel.melFunc('{PATIENT.REFMDEMAILADDRESS}');
-                return this._email;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProvider.prototype, "fullAddress", {
-            get: function () {
-                this._fullAddress = (this._fullAddress != null) ? this._fullAddress : this._mel.melFunc('{PATIENT.REFMDADDRESS}');
-                return this._fullAddress;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ReferringProvider.prototype, "phone", {
-            get: function () {
-                return this._phone;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return ReferringProvider;
-    }());
-
-    var Insurance = /** @class */ (function () {
-        function Insurance(insuranceType, _mel) {
-            this.insuranceType = insuranceType;
-            this._mel = _mel;
-        }
-        Object.defineProperty(Insurance.prototype, "name", {
-            get: function () {
-                this._name = (this._name == null) ? this._mel.melFunc('{INS_NAME("' + this.insuranceType + '")}') : this._name;
-                return this._name;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Insurance.prototype, "address", {
-            get: function () {
-                this._address = (this._address == null) ? this._mel.melFunc('{INS_ADDR("' + this.insuranceType + '")}') : this._address;
-                return this._address;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Insurance.prototype, "insuranceId", {
-            get: function () {
-                this._insuranceId = (this._insuranceId == null) ? this._mel.melFunc('{INS_ID("' + this.insuranceType + '")}') : this._insuranceId;
-                return this._insuranceId;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Insurance.prototype, "planName", {
-            get: function () {
-                this._planName = (this._planName == null) ? this._mel.melFunc('{INS_PLAN("' + this.insuranceType + '")}') : this._planName;
-                return this._planName;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Insurance.prototype, "groupNumber", {
-            get: function () {
-                this._groupNumber = (this._groupNumber == null) ? this._mel.melFunc('{INS_GRP("' + this.insuranceType + '")}') : this._groupNumber;
-                return this._groupNumber;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Insurance.prototype, "phone", {
-            get: function () {
-                this._phone = (this._phone == null) ? this._mel.melFunc('{INS_PHONE("' + this.insuranceType + '")}') : this._phone;
-                return this._phone;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return Insurance;
-    }());
-
-    var CarePlan = /** @class */ (function () {
-        function CarePlan(_value, _mel) {
-            var _this = this;
-            this._value = _value;
-            this._mel = _mel;
-            this.data = this._value == null ? [] : this._value.split('^');
-            this.isNew = this._value == null ? true : false;
-            this.carePlanId = (this.data.length > 0) ? this.data[0] : '';
-            this.goal = (this.data.length > 1) ? this.data[1] : '';
-            this.snomedCTCode = (this.data.length > 2) ? this.data[2] : '';
-            this.target = (this.data.length > 3) ? this.data[3] : '';
-            this.instructions = (this.data.length > 4) ? this.data[4] : '';
-            this.goalSetDate = (this.data.length > 5) ? this.data[5] : '';
-            this.goalMetDate = (this.data.length > 6) ? this.data[6] : '';
-            this.recordCreatedDateTime = (this.data.length > 7) ? this.data[7] : '';
-            this.sign = (this.data.length > 8) ? this.data[8] : '';
-            this.signedBy = (this.data.length > 9) ? this.data[9] : '';
-            this.signedDate = (this.data.length > 10) ? this.data[10] : '';
-            this.recordChangedDateTime = (this.data.length > 11) ? this.data[11] : '';
-            this.recordChangedBy = (this.data.length > 12) ? this.data[12] : '';
-            this.patientConditionDescription = (this.data.length > 13) ? this.data[13] : '';
-            this.patientConditionCode = (this.data.length > 14) ? this.data[14] : '';
-            this.save = function () {
-                if (_this.isNew) {
-                    var isError = _this.validateAdd();
-                    var response = void 0;
-                    if (isError === '') {
-                        response = _this._mel.melFunc('{MEL_ADD_CARE_PLAN(' + _this.toStringAdd() + ')}');
-                        if (response < 0) {
-                            alert(_this.carePlanAddError(response));
-                        }
-                    }
-                    else {
-                        alert(isError);
-                    }
-                }
-                else {
-                }
-            };
-            this.toMelString = function () {
-                return _this._value;
-            };
-            this.validateAdd = function () {
-                var errorMessage = ' is required.';
-                if (_this.goal === '') {
-                    return 'goal' + errorMessage;
-                }
-                return '';
-            };
-            this.toStringAdd = function () {
-                return '\"' + _this.goal + '\",\"' +
-                    _this.snomedCTCode + '\",\"' +
-                    _this.target + '\",\"' +
-                    _this.instructions + '\",\"' +
-                    _this.goalSetDate + '\",\"' +
-                    _this.goalMetDate + '\",\"' +
-                    _this.patientConditionCode + '\"';
-            };
-            this.carePlanAddError = function (code) {
-                var response = '';
-                switch (code) {
-                    case "-1":
-                        response = "Error Code -1: Description or blank is too long.";
-                        break;
-                    case "-2":
-                        response = "Error Code -2: Code is too long.";
-                        break;
-                    case "-3":
-                        response = "Error Code -3: Target is too long.";
-                        break;
-                    case "-4":
-                        response = "Error Code -4: Instruction is too long.";
-                        break;
-                    case "-5":
-                        response = "Error Code -5: goalSetDate is invalid.";
-                        break;
-                    case "-6":
-                        response = "Error Code -6: goalMetDate is invalid or less than goalSetDate.";
-                        break;
-                    case "-7":
-                        response = "Error Code -7: Invalid patientConditionCode. Use $mdObject.patient.problems[index].problemId";
-                        break;
-                    case "-8":
-                        response = "Error Code -8: Cannot add Care Plan for some other reason.";
-                        break;
-                    case "-21":
-                        response = "Error Code -21: Service layer error.";
-                        break;
-                    default:
-                }
-                return response;
-            };
-        }
-        return CarePlan;
-    }());
-
-    (function (LocationType) {
-        LocationType[LocationType["None"] = 0] = "None";
-        LocationType[LocationType["Home"] = 1] = "Home";
-        LocationType[LocationType["Current"] = 2] = "Current";
-    })(exports.LocationType || (exports.LocationType = {}));
-
-    (function (UserCallFunction) {
-        UserCallFunction[UserCallFunction["None"] = 0] = "None";
-        UserCallFunction[UserCallFunction["UserList"] = 1] = "UserList";
-        UserCallFunction[UserCallFunction["UserInfo"] = 2] = "UserInfo";
-    })(exports.UserCallFunction || (exports.UserCallFunction = {}));
-
-    (function (AllergyClassification) {
-        AllergyClassification["none"] = "";
-        AllergyClassification["drug"] = "DRUG";
-        AllergyClassification["food"] = "FOOD";
-        AllergyClassification["environmental"] = "ENVIRONMENTAL";
-    })(exports.AllergyClassification || (exports.AllergyClassification = {}));
-
-    (function (AllergyCriticality) {
-        AllergyCriticality["undefined"] = "";
-        AllergyCriticality["critical"] = "C";
-        AllergyCriticality["severe"] = "S";
-        AllergyCriticality["moderate"] = "N";
-        AllergyCriticality["mild"] = "I";
-    })(exports.AllergyCriticality || (exports.AllergyCriticality = {}));
-
-    (function (ObjectState) {
-        ObjectState[ObjectState["None"] = 0] = "None";
-        ObjectState[ObjectState["Add"] = 1] = "Add";
-        ObjectState[ObjectState["Update"] = 2] = "Update";
-        ObjectState[ObjectState["Remove"] = 3] = "Remove";
-    })(exports.ObjectState || (exports.ObjectState = {}));
-
-    (function (AllergyReasonForRemoval) {
-        AllergyReasonForRemoval["none"] = "";
-        AllergyReasonForRemoval["error"] = "Entered in error";
-        AllergyReasonForRemoval["patientCorrected"] = "Patient corrected";
-        AllergyReasonForRemoval["disproved"] = "Allergy disproved";
-        AllergyReasonForRemoval["other"] = "Other";
-    })(exports.AllergyReasonForRemoval || (exports.AllergyReasonForRemoval = {}));
-
-    (function (ObjectStatus) {
-        ObjectStatus[ObjectStatus["Unchanged"] = 0] = "Unchanged";
-        ObjectStatus[ObjectStatus["Added"] = 1] = "Added";
-        ObjectStatus[ObjectStatus["Updated"] = 2] = "Updated";
-        ObjectStatus[ObjectStatus["Removed"] = 3] = "Removed";
-    })(exports.ObjectStatus || (exports.ObjectStatus = {}));
-
-    var Location = /** @class */ (function () {
-        function Location(id, name, locationType) {
-            this.id = id;
-            this.name = name;
-            this.locationType = locationType;
-            this.id = (this.id != null) ? this.id : '';
-            this.name = (this.name != null) ? this.name : '';
-            this.locationType = (this.locationType != null) ? this.locationType : exports.LocationType.None;
-        }
-        return Location;
-    }());
-
-    var AllergyList = /** @class */ (function () {
-        function AllergyList(_value) {
-            this._value = _value;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.name = (this.data.length > 0) ? this.data[0] : '';
-            this.onSetDate = StringInternal((this.data.length > 1) ? this.data[1] : '').toDate();
-            this.criticalIndicator = (this.data.length > 2) ? this.data[2] : '';
-            this.classification = (this.data.length > 3) ? this.data[3] : '';
-            this.description = (this.data.length > 4) ? this.data[4] : '';
-            this.gpiCode = (this.data.length > 5) ? this.data[5] : '';
-            this.severity = (this.data.length > 6) ? this.data[6] : '';
-            this.allergyId = (this.data.length > 7) ? this.data[7] : '';
-            this.stopDate = null;
-            this.reactionCode = 32;
-        }
-        return AllergyList;
-    }());
-
-    var AllergyListRemoved = /** @class */ (function (_super) {
-        __extends(AllergyListRemoved, _super);
-        function AllergyListRemoved(_value) {
-            var _this = _super.call(this, _value) || this;
-            _this._value = _value;
-            _this.name = (_this.data.length > 0) ? _this.data[0] : '';
-            _this.onSetDate = StringInternal((_this.data.length > 1) ? _this.data[1] : '').toDate();
-            _this.stopDate = (_this.data.length > 2) ? _this.data[2] : '';
-            _this.criticalIndicator = (_this.data.length > 3) ? _this.data[3] : '';
-            _this.classification = (_this.data.length > 4) ? _this.data[4] : '';
-            _this.description = (_this.data.length > 5) ? _this.data[5] : '';
-            _this.gpiCode = (_this.data.length > 6) ? _this.data[6] : '';
-            _this.severity = (_this.data.length > 7) ? _this.data[7] : '';
-            _this.allergyId = (_this.data.length > 8) ? _this.data[8] : '';
-            return _this;
-        }
-        return AllergyListRemoved;
-    }(AllergyList));
-
-    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try {
-                step(generator.next(value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function rejected(value) { try {
-                step(generator["throw"](value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    };
-    var Allergies = /** @class */ (function () {
-        function Allergies(_mel) {
-            this._mel = _mel;
-            this._addedArray = [];
-            this._currentArray = [];
-            this._removedArray = [];
-        }
-        Object.defineProperty(Allergies.prototype, "added", {
-            get: function () {
-                if (this._addedArray.length === 0) {
-                    this._added = (this._added != null) ? this._added : this._mel.melFunc('{ALL_NEW("delimited")}');
-                    var dataArray = StringInternal(this._added).toList();
-                    for (var index = 0; index < dataArray.length; index++) {
-                        this._addedArray.push(new AllergyList(dataArray[index]));
-                    }
-                }
-                return this._addedArray;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Allergies.prototype.addedAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
-                var _a, _b, dataArray, index;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            if (!(this._addedArray.length === 0)) return [3 /*break*/, 4];
-                            _a = this;
-                            if (!(this._added != null)) return [3 /*break*/, 1];
-                            _b = this._added;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_NEW("delimited")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a._added = _b;
-                            dataArray = StringInternal(this._added).toList();
-                            for (index = 0; index < dataArray.length; index++) {
-                                this._addedArray.push(new AllergyList(dataArray[index]));
-                            }
-                            _c.label = 4;
-                        case 4: return [2 /*return*/, this._addedArray];
-                    }
-                });
-            });
-        };
-        Object.defineProperty(Allergies.prototype, "current", {
-            get: function () {
-                if (this._currentArray.length === 0) {
-                    this._current = (this._current != null) ? this._current : this._mel.melFunc('{ALL_PRIOR("delimited")}');
-                    var dataArray = StringInternal(this._current).toList();
-                    for (var index = 0; index < dataArray.length; index++) {
-                        this._currentArray.push(new AllergyList(dataArray[index]));
-                    }
-                }
-                return this._currentArray;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Allergies.prototype.currentAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
-                var _a, _b, dataArray, index;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            if (!(this._currentArray.length === 0)) return [3 /*break*/, 4];
-                            _a = this;
-                            if (!(this._current != null)) return [3 /*break*/, 1];
-                            _b = this._current;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_PRIOR("delimited")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a._current = _b;
-                            dataArray = StringInternal(this._current).toList();
-                            for (index = 0; index < dataArray.length; index++) {
-                                this._currentArray.push(new AllergyList(dataArray[index]));
-                            }
-                            _c.label = 4;
-                        case 4: return [2 /*return*/, this._currentArray];
-                    }
-                });
-            });
-        };
-        Object.defineProperty(Allergies.prototype, "removed", {
-            get: function () {
-                if (this._removedArray.length === 0) {
-                    this._removed = (this._removed != null) ? this._removed : this._mel.melFunc('{ALL_REMOVED("delimited")}');
-                    var dataArray = StringInternal(this._removed).toList();
-                    for (var index = 0; index < dataArray.length; index++) {
-                        this._removedArray.push(new AllergyListRemoved(dataArray[index]));
-                    }
-                }
-                return this._removedArray;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Allergies.prototype.removedAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
-                var _a, _b, dataArray, index;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            if (!(this._removedArray.length === 0)) return [3 /*break*/, 4];
-                            _a = this;
-                            if (!(this._removed != null)) return [3 /*break*/, 1];
-                            _b = this._removed;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._mel.melFunc('{ALL_REMOVED("delimited")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a._removed = _b;
-                            dataArray = StringInternal(this._removed).toList();
-                            for (index = 0; index < dataArray.length; index++) {
-                                this._removedArray.push(new AllergyListRemoved(dataArray[index]));
-                            }
-                            _c.label = 4;
-                        case 4: return [2 /*return*/, this._removedArray];
-                    }
-                });
-            });
-        };
-        return Allergies;
-    }());
-
-    var Problem = /** @class */ (function () {
-        function Problem() {
-            this.status = exports.ObjectStatus.Unchanged;
-            this.problemId = '';
-            this.type = '';
-            this.description = '';
-            this.codeIcd9 = '';
-            this.comment = '';
-            this.stopReason = '';
-            this.codeIcd10 = '';
-            this.lastModifiedDate = '';
-        }
-        return Problem;
     }());
 
     var ArrayAsync = /** @class */ (function () {
@@ -2292,7 +2357,7 @@
             _this.newProblem = function (value) {
                 var data = (value == null) ? [] : value.split('^');
                 var problem = new Problem();
-                problem.status = exports.ObjectStatus.Added;
+                problem.status = ObjectStatus.Added;
                 problem = _this._locadMelDataFromString(data, problem);
                 return problem;
             };
@@ -2399,7 +2464,7 @@
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     };
-    var Patient$1 = /** @class */ (function () {
+    var Patient = /** @class */ (function () {
         function Patient(_mel, _demographics, _allergiesExternal) {
             var _this = this;
             this._mel = _mel;
@@ -2455,7 +2520,7 @@
                         System.formatDate(_demographics.person.deceaseTime) : this._dateOfDeath;
                     this._sex = _demographics.person.genderCode;
                     if (_demographics.person.mailingAddressList && _demographics.person.mailingAddressList[0]) {
-                        this._address = (this._address) ? this._address : new Address$1(this._mel, _demographics.person.mailingAddressList[0]);
+                        this._address = (this._address) ? this._address : new Address(this._mel, _demographics.person.mailingAddressList[0]);
                     }
                     if (_demographics.person.electronicAddressList) {
                         this._phone = (this._phone) ? this._phone : new Phone(this._mel, _demographics.person.electronicAddressList);
@@ -2481,7 +2546,7 @@
                     }
                 }
             }
-            this._address = (this._address) ? this._address : new Address$1(this._mel);
+            this._address = (this._address) ? this._address : new Address(this._mel);
             this._phone = (this._phone) ? this._phone : new Phone(this._mel);
         }
         Object.defineProperty(Patient.prototype, "lastOfficeVisit", {
@@ -3440,7 +3505,7 @@
                 if (this._locationsArray.length === 0) {
                     this._locations = (this._locations !== undefined) ? this._locations : this._mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
                     this._locationsId = (this._locationsId !== undefined) ? this._locationsId : this._mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
-                    var locationProperty = new Location(this._locationsId, this._locations, exports.LocationType.Home);
+                    var locationProperty = new Location(this._locationsId, this._locations, LocationType.Home);
                     this._locationsArray.push(locationProperty);
                     this._locationsArray.findByType =
                         (function (value) {
@@ -3491,61 +3556,6 @@
         return Patient;
     }());
 
-    var User = /** @class */ (function () {
-        function User(_value, callFunction) {
-            var _this = this;
-            this._value = _value;
-            this.callFunction = callFunction;
-            this.data = (this._value == null) ? [] : this._value.split('^');
-            this.toMelString = function () {
-                return _this._value;
-            };
-            if (callFunction === exports.UserCallFunction.UserInfo) {
-                this.loginName = (this.data.length > 0) ? this.data[0] : '';
-                this.searchName = (this.data.length > 1) ? this.data[1] : '';
-                this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
-                this.homeLocation = (this.data.length > 3) ? this.data[3] : '';
-                this.group = (this.data.length > 4) ? this.data[4] : '';
-                this.jobTitle = (this.data.length > 5) ? this.data[5] : '';
-                this.specialty = (this.data.length > 6) ? this.data[6] : '';
-                this.roles = (this.data.length > 7) ? this.data[7].split(';') : [];
-                this.npi = (this.data.length > 8) ? this.data[8] : '';
-                this.prescriberId = (this.data.length > 9) ? this.data[9] : '';
-                this.deaId = (this.data.length > 10) ? this.data[10] : '';
-                this.stateLicenceId = (this.data.length > 11) ? this.data[11] : '';
-                this.memberLogin = (this.data.length > 12) ? this.data[12] : '';
-                this.data2000 = (this.data.length > 13) ? this.data[13] : '';
-                this.uniquePhysicianId = (this.data.length > 14) ? this.data[14] : '';
-                this.activationDate = (this.data.length > 15) ? this.data[15] : '';
-                this.expirationDate = (this.data.length > 16) ? this.data[16] : '';
-                this.currentLocation = (this.data.length > 17) ? this.data[17] : '';
-                this.firstName = (this.data.length > 18) ? this.data[18] : '';
-                this.middleName = (this.data.length > 19) ? this.data[19] : '';
-                this.lastName = (this.data.length > 20) ? this.data[20] : '';
-            }
-            if (callFunction === exports.UserCallFunction.UserList) {
-                this.loginName = (this.data.length > 0) ? this.data[0] : '';
-                this.searchName = (this.data.length > 1) ? this.data[1] : '';
-                this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
-                this.homeLocation = (this.data.length > 3) ? this.data[3] : '';
-                this.group = (this.data.length > 4) ? this.data[4] : '';
-                this.jobTitle = (this.data.length > 5) ? this.data[5] : '';
-                this.specialty = (this.data.length > 6) ? this.data[6] : '';
-                this.npi = (this.data.length > 7) ? this.data[7] : '';
-                this.prescriberId = (this.data.length > 8) ? this.data[8] : '';
-                this.deaId = (this.data.length > 9) ? this.data[9] : '';
-                this.stateLicenceId = (this.data.length > 10) ? this.data[10] : '';
-                this.memberLogin = (this.data.length > 11) ? this.data[11] : '';
-                this.data2000 = (this.data.length > 12) ? this.data[12] : '';
-                this.uniquePhysicianId = (this.data.length > 13) ? this.data[13] : '';
-                this.activationDate = (this.data.length > 14) ? this.data[14] : '';
-                this.expirationDate = (this.data.length > 15) ? this.data[15] : '';
-                this.roles = [];
-            }
-        }
-        return User;
-    }());
-
     var Users = /** @class */ (function () {
         function Users(_mel) {
             var _this = this;
@@ -3553,10 +3563,10 @@
             this._usersArray = [];
             this.getUser = function (value) {
                 if (value != null) {
-                    _this._user = (_this._user != null) ? _this._user : new User(_this._mel.melFunc('{GETUSERINFO("' + value + '")}'), exports.UserCallFunction.UserInfo);
+                    _this._user = (_this._user != null) ? _this._user : new User(_this._mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
                     return _this._user;
                 }
-                _this._currentUser = (_this._currentUser != null) ? _this._currentUser : new User(GetCurrentUser(_this._mel), exports.UserCallFunction.UserInfo);
+                _this._currentUser = (_this._currentUser != null) ? _this._currentUser : new User(GetCurrentUser(_this._mel), UserCallFunction.UserInfo);
                 return _this._currentUser;
             };
             this.getUsers = function () {
@@ -3564,7 +3574,7 @@
                     _this._users = _this._mel.melFunc('{GET_USER_LIST(USER.CURLOCATIONABBREVNAME, "", "delimited", true)}');
                     var dataArray = StringInternal(_this._users).toList();
                     for (var index = 0; index < dataArray.length; index++) {
-                        _this._usersArray.push(new User(dataArray[index], exports.UserCallFunction.UserList));
+                        _this._usersArray.push(new User(dataArray[index], UserCallFunction.UserList));
                     }
                     _this._usersArray.tag = 'GET_USER_LIST';
                     _this._usersArray.toMelString = function () {
@@ -3821,7 +3831,7 @@
             get: function () {
                 if (this._locationPropertyArray.length === 0) {
                     this._location = (this._location != null) ? this._location : this._mel.melFunc('{DOCUMENT.LOCOFCARENAME}');
-                    this._locationProperty = (this._locationProperty != null) ? this._locationProperty : new Location(this._location, this._location, exports.LocationType.Current);
+                    this._locationProperty = (this._locationProperty != null) ? this._locationProperty : new Location(this._location, this._location, LocationType.Current);
                     this._locationPropertyArray.push(this._locationProperty);
                     this._locationPropertyArray.findByType =
                         (function (value) {
@@ -3866,14 +3876,6 @@
             configurable: true
         });
         return ClinicalDocument;
-    }());
-
-    var ObsTermsMap = /** @class */ (function () {
-        function ObsTermsMap() {
-            this.weight = 'Weight';
-            this.height = 'Height';
-        }
-        return ObsTermsMap;
     }());
 
     var __awaiter$7 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -4017,14 +4019,14 @@
                         case 0:
                             if (!(this._patient === undefined)) return [3 /*break*/, 3];
                             _a = this;
-                            _b = Patient$1.bind;
+                            _b = Patient.bind;
                             _c = [void 0, this.emrMel];
                             return [4 /*yield*/, this.demographicsAsync()];
                         case 1:
                             _c = _c.concat([_d.sent()]);
                             return [4 /*yield*/, this.allergiesAsync()];
                         case 2:
-                            _a._patient = new (_b.apply(Patient$1, _c.concat([_d.sent()])))();
+                            _a._patient = new (_b.apply(Patient, _c.concat([_d.sent()])))();
                             _d.label = 3;
                         case 3: return [2 /*return*/, this._patient];
                     }
@@ -4175,7 +4177,7 @@
         Object.defineProperty(Emr.prototype, "patient", {
             get: function () {
                 if (this._patient === undefined) {
-                    this._patient = new Patient$1(this.emrMel, this.demographics, this.allergies);
+                    this._patient = new Patient(this.emrMel, this.demographics, this.allergies);
                 }
                 return this._patient;
             },
@@ -4211,19 +4213,71 @@
         });
         Object.defineProperty(Emr.prototype, "LocationType", {
             get: function () {
-                return exports.LocationType;
+                return LocationType;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(Emr.prototype, "UserCallFunction", {
             get: function () {
-                return exports.UserCallFunction;
+                return UserCallFunction;
             },
             enumerable: false,
             configurable: true
         });
         return Emr;
+    }());
+
+    var version = '2.0.0-alpha.1.9';
+
+    var productType = 'GE';
+
+    var HumanName = /** @class */ (function () {
+        function HumanName() {
+        }
+        return HumanName;
+    }());
+
+    var Address$1 = /** @class */ (function () {
+        function Address() {
+        }
+        return Address;
+    }());
+
+    var Attachment = /** @class */ (function () {
+        function Attachment() {
+        }
+        return Attachment;
+    }());
+
+    var Person = /** @class */ (function () {
+        function Person() {
+        }
+        Object.defineProperty(Person.prototype, "resourceType", {
+            get: function () { return "Person"; },
+            enumerable: false,
+            configurable: true
+        });
+        ;
+        return Person;
+    }());
+
+    var Patient$1 = /** @class */ (function () {
+        function Patient() {
+        }
+        Object.defineProperty(Patient.prototype, "resourceType", {
+            get: function () { return "Patient"; },
+            enumerable: false,
+            configurable: true
+        });
+        ;
+        return Patient;
+    }());
+
+    var Fhir = /** @class */ (function () {
+        function Fhir() {
+        }
+        return Fhir;
     }());
 
     var MdObject = /** @class */ (function () {
@@ -4268,53 +4322,6 @@
         return MdObject;
     }());
 
-    var Measurement = /** @class */ (function () {
-        function Measurement(isCurrent, _weight, _height, _mel) {
-            this.isCurrent = isCurrent;
-            this._weight = _weight;
-            this._height = _height;
-            this._mel = _mel;
-        }
-        Object.defineProperty(Measurement.prototype, "weight", {
-            get: function () {
-                return this._mel.getObs(this.isCurrent, this._weight);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Measurement.prototype, "height", {
-            get: function () {
-                return this._mel.getObs(this.isCurrent, this._height);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return Measurement;
-    }());
-
-    var Measurements = /** @class */ (function () {
-        function Measurements(_weight, _height, _mel) {
-            this._weight = _weight;
-            this._height = _height;
-            this._mel = _mel;
-        }
-        Object.defineProperty(Measurements.prototype, "current", {
-            get: function () {
-                return (this._current != null) ? this._current : new Measurement(true, this._weight, this._height, this._mel);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(Measurements.prototype, "previous", {
-            get: function () {
-                return (this._previous != null) ? this._previous : new Measurement(false, this._weight, this._height, this._mel);
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return Measurements;
-    }());
-
     var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
@@ -4338,17 +4345,17 @@
         function Allergy(_mel) {
             var _this = this;
             this._mel = _mel;
-            this.state = exports.ObjectState.None;
-            this.status = exports.ObjectStatus.Unchanged;
+            this.state = ObjectState.None;
+            this.status = ObjectStatus.Unchanged;
             this.name = '';
-            this.criticalIndicator = exports.AllergyCriticality.undefined;
-            this.classification = exports.AllergyClassification.none;
+            this.criticalIndicator = AllergyCriticality.undefined;
+            this.classification = AllergyClassification.none;
             this.description = '';
             this.gpiCode = '';
             this.severity = '';
             this.allergyId = '';
             this.reactionCode = 32;
-            this.reasonForRemoval = exports.AllergyReasonForRemoval.none;
+            this.reasonForRemoval = AllergyReasonForRemoval.none;
             this.save = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, code, error, code, error, code, error;
                 return __generator(this, function (_b) {
@@ -4356,9 +4363,9 @@
                         case 0:
                             _a = this.state;
                             switch (_a) {
-                                case exports.ObjectState.Add: return [3 /*break*/, 1];
-                                case exports.ObjectState.Update: return [3 /*break*/, 3];
-                                case exports.ObjectState.Remove: return [3 /*break*/, 5];
+                                case ObjectState.Add: return [3 /*break*/, 1];
+                                case ObjectState.Update: return [3 /*break*/, 3];
+                                case ObjectState.Remove: return [3 /*break*/, 5];
                             }
                             return [3 /*break*/, 7];
                         case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}')];
@@ -4369,8 +4376,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = exports.ObjectStatus.Added;
-                            this.state = exports.ObjectState.None;
+                            this.status = ObjectStatus.Added;
+                            this.state = ObjectState.None;
                             return [3 /*break*/, 7];
                         case 3: return [4 /*yield*/, this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}')];
                         case 4:
@@ -4380,8 +4387,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = exports.ObjectStatus.Updated;
-                            this.state = exports.ObjectState.None;
+                            this.status = ObjectStatus.Updated;
+                            this.state = ObjectState.None;
                             return [3 /*break*/, 7];
                         case 5: return [4 /*yield*/, this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}')];
                         case 6:
@@ -4391,8 +4398,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = exports.ObjectStatus.Removed;
-                            this.state = exports.ObjectState.None;
+                            this.status = ObjectStatus.Removed;
+                            this.state = ObjectState.None;
                             return [3 /*break*/, 7];
                         case 7: return [2 /*return*/];
                     }
@@ -4409,7 +4416,7 @@
             this.toRemoveString = function () {
                 return _this.allergyId + '","' +
                     (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
-                    (_this.reasonForRemoval !== exports.AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
+                    (_this.reasonForRemoval !== AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
             };
             this.toAddString = function () {
                 return _this.name + '","' +
@@ -4438,39 +4445,7 @@
         return mdObject;
     })(window);
 
-    exports.Address = Address$1;
-    exports.Allergies = Allergies;
-    exports.Allergy = Allergy;
-    exports.AllergyList = AllergyList;
-    exports.AllergyListRemoved = AllergyListRemoved;
-    exports.CarePlan = CarePlan;
-    exports.ClinicalDocument = ClinicalDocument;
-    exports.Emr = Emr;
-    exports.EmrApp = EmrApp;
-    exports.EmrContent = EmrContent;
-    exports.EmrMel = EmrMel;
-    exports.EmrWindow = EmrWindow;
-    exports.FlowsheetObservation = FlowsheetObservation;
-    exports.Immunization = Immunization;
-    exports.Insurance = Insurance;
-    exports.Location = Location;
     exports.MdObject = MdObject;
-    exports.Measurement = Measurement;
-    exports.Measurements = Measurements;
-    exports.ObsTermsMap = ObsTermsMap;
-    exports.Observation = Observation;
-    exports.ObservationType = ObservationType;
-    exports.Patient = Patient$1;
-    exports.PatientContact = PatientContact;
-    exports.Phone = Phone;
-    exports.Problem = Problem;
-    exports.Problems = Problems;
-    exports.Protocol = Protocol;
-    exports.ReferringProvider = ReferringProvider;
-    exports.ReferringProviderPhone = ReferringProviderPhone;
-    exports.System = System;
-    exports.User = User;
-    exports.Users = Users;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
