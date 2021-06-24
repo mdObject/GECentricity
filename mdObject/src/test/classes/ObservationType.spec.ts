@@ -1,4 +1,4 @@
-import { ObservationType } from '../../classes/classes';
+import { ObservationType } from '../../classes';
 
 describe('Class: ObservationType', () => {
 

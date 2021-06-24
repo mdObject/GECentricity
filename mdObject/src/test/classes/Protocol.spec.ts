@@ -1,4 +1,4 @@
-import { Protocol } from '../../classes/classes';
+import { Protocol } from '../../classes';
 
 describe('Class: Protocol', () => {
 

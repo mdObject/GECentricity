@@ -7,7 +7,7 @@
     "test": "jest",
     "test:ci": "npm run test -- --runInBand",
     "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "npm run test -- --watchAll",
     "clean": "rimraf ./lib",
     "copyfiles": "./node_modules/.bin/copyfiles -f ../build-with-mdobject.svg ../README.md ../LICENSE ../CHANGELOG.md ./src/package.json ./lib",
     "copydemofiles": "./node_modules/.bin/copyfiles -f ./lib/bundles/mdobject-mdobject.umd.min.js  ./lib/bundles/mdobject-mdobject.umd.min.js.map ./lib/bundles/mdobject-mdobject.umd.js  ./lib/bundles/mdobject-mdobject.umd.js.map ./examples/angular.js/scripts",

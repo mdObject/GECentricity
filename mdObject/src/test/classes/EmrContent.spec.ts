@@ -1,4 +1,4 @@
-import { EmrContent } from '../../classes/classes';
+import { EmrContent } from '../../classes';
 import { MockEmrMel, mockResultEmr, MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrContent', () => {

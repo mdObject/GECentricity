@@ -1,4 +1,4 @@
-import { ReferringProviderPhone } from '../../classes/classes';
+import { ReferringProviderPhone } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: ReferringProviderPhone', () => {

@@ -1,4 +1,4 @@
-import { Allergies } from '../../classes/classes';
+import { Allergies } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Allergies', () => {

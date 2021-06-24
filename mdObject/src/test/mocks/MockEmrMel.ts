@@ -1,5 +1,5 @@
 import { MockWindow } from './mocks';
-import { EmrMel } from '../../classes/classes';
+import { EmrMel } from '../../classes';
 import { MockSimulator } from './MockSimulator';
 var _window = new MockWindow();
 var _simulator = new MockSimulator();

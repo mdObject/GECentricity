@@ -1,4 +1,4 @@
-import { Phone } from '../../classes/classes';
+import { Phone } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Phone', () => {
