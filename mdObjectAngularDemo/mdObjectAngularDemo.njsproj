@@ -20,7 +20,6 @@
     <Content Include=".browserslistrc" />
     <Content Include="angular.json" />
     <Content Include="karma.conf.js" />
-    <Content Include="libman.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="src\app\allergy\allergy.component.scss" />

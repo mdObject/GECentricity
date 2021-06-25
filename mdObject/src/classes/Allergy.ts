@@ -1,4 +1,4 @@
-import { IAllergyData } from '../interfaces';
+import { IAllergyData } from '../interfaces/IAllergyData';
 import { EmrMel } from './EmrMel';
 import { ObjectState, AllergyClassification, AllergyCriticality, AllergyReasonForRemoval, ObjectStatus } from '../enums';
 import { System } from './System';

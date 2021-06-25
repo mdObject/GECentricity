@@ -11,7 +11,7 @@ import { AllergyReasonForRemoval } from '@mdobject/mdobject/enums';
 export class DeleteDialogComponent implements OnInit {
 
   form: FormGroup;
-  removalReason = AllergyReasonForRemoval;
+  removalReason : AllergyReasonForRemoval;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
