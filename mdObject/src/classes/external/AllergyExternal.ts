@@ -1,5 +1,5 @@
-import { UserDetailExternal } from "./UserDetailExternal";
-import { System } from "../System";
+import { UserDetailExternal } from './UserDetailExternal';
+import { System } from '../System';
 
 export class AllergyExternal {
     allclass: string; //IAllergyData.classification.substr(0,1) See: AllergyClassCode

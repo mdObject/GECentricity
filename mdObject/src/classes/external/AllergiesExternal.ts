@@ -1,4 +1,4 @@
-import { AllergyExternal } from "./AllergyExternal";
+import { AllergyExternal } from './AllergyExternal';
 
 export class AllergiesExternal extends Array<AllergyExternal>
 {
