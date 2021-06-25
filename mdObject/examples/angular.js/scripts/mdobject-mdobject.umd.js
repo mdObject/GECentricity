@@ -1,8 +1,7 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-    typeof define === 'function' && define.amd ? define('@mdobject/mdobject', ['exports'], factory) :
-    (global = global || self, factory((global.mdobject = global.mdobject || {}, global.mdobject.mdobject = {})));
-}(this, (function (exports) { 'use strict';
+(function (factory) {
+    typeof define === 'function' && define.amd ? define('@mdobject/mdobject', factory) :
+    factory();
+}((function () { 'use strict';
 
     var ObsTermsMap = /** @class */ (function () {
         function ObsTermsMap() {
@@ -4444,10 +4443,6 @@
         }
         return mdObject;
     })(window);
-
-    exports.MdObject = MdObject;
-
-    Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=mdobject-mdobject.umd.js.map

@@ -14,7 +14,7 @@ import { Location } from './Location';
 import { Allergies } from './Allergies';
 import { EmrMel } from './EmrMel';
 import { IArrayAdditionalMethods } from '../interfaces';
-import { LocationType } from '../enums/enums';
+import { LocationType } from '../enums';
 import { AllergiesExternal, DemographicsExternal } from './external/external';
 import { emptyImage } from '../consts/strings';
 import { System } from './System';

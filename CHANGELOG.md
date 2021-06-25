@@ -1,5 +1,8 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+## Release 2.0.0-alpha.1.9
+	* Replace import from "enums/enums" to just "enums"
+
 ## Release 2.0.0-alpha.1.8
 	Fixed build and casing issues
 	Fixed "Circular dependency" issues

@@ -196,7 +196,6 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\enums\AllergyReasonForRemoval.ts" />
     <TypeScriptCompile Include="src\enums\index.ts" />
-    <TypeScriptCompile Include="src\enums\enums.ts" />
     <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
     <TypeScriptCompile Include="src\enums\ObjectStatus.ts" />

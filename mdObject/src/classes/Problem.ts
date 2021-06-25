@@ -1,4 +1,4 @@
-import { ObjectStatus } from "../enums/enums";
+import { ObjectStatus } from "../enums";
 
 export class Problem {
     status: ObjectStatus = ObjectStatus.Unchanged;

@@ -1,6 +1,6 @@
 import { Location } from './Location';
 import { EmrMel } from './EmrMel';
-import { LocationType } from '../enums/enums';
+import { LocationType } from '../enums';
 import { DocumentVariable } from '../factories/factories';
 import { IArrayAdditionalMethods, IItem } from '../interfaces';
 import { Emr } from './Emr';

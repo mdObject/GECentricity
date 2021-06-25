@@ -9,7 +9,7 @@ import { Patient } from './Patient';
 import { Users } from './Users';
 import { Simulator } from '../simulator/simulator';
 import { ClinicalDocument } from './ClinicalDocument';
-import { LocationType, UserCallFunction } from '../enums/enums'
+import { LocationType, UserCallFunction } from '../enums'
 import { ObsTermsMap } from './ObsTermsMap';
 import { AllergiesExternal } from './external/AllergiesExternal';
 

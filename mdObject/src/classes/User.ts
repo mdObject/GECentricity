@@ -1,4 +1,4 @@
-import { UserCallFunction } from '../enums/enums';
+import { UserCallFunction } from '../enums';
 
 export class User {
 
