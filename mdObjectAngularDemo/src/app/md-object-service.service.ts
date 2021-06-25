@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { MdObject } from '@mdobject/mdobject/'
-import { Patient } from '@mdobject/mdobject/classes'
+
+import { MdObject, Patient } from '@mdobject/mdobject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MdObjectServiceService {
 
-  mdObject: MdObject;
+  mdObject = new MdObject(window, document);
   patient: Promise<Patient> | null = null;
 
   constructor() {
-    this.mdObject = new MdObject(window, document);
-
     this.patient = this.mdObject.emr.patientAsync();
-  
   }
-
 }

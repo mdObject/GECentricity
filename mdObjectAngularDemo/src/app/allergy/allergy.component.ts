@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { MdObject } from '@mdobject/mdobject/'; 
-import { Allergy } from '@mdobject/mdobject/classes/Allergy'; 
-import { AllergyClassification, AllergyCriticality, ObjectState } from '@mdobject/mdobject/enums/';
+
+import {
+  MdObject,
+  Allergy,
+  AllergyClassification,
+  AllergyCriticality,
+  ObjectState
+} from '@mdobject/mdobject';
+
 import { MdObjectServiceService } from '../md-object-service.service';
 
 @Component({
@@ -13,11 +19,9 @@ import { MdObjectServiceService } from '../md-object-service.service';
 export class AllergyComponent implements OnInit {
 
   mdObject: MdObject = this.mdObjectServiceService.mdObject;
-
-  allergy: Allergy;
+  allergy = new Allergy(this.mdObject.emr.emrMel);
   allergyClassification: AllergyClassification;
   allergyCriticality: AllergyCriticality;
-
   addedAllergy: any;
 
   constructor(
@@ -26,7 +30,6 @@ export class AllergyComponent implements OnInit {
 
   ngOnInit(): void {
     this.allergy.state = ObjectState.Add;
-    this.allergy = new Allergy(this.mdObject.emr.emrMel);
   }
 
   handleAdd = (): void => {

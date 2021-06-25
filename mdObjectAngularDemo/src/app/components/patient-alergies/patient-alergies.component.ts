@@ -1,11 +1,20 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MdObject, Patient, AllergyList } from '@mdobject/mdobject/classes';
+
+import { MdObject, Patient, AllergyList } from '@mdobject/mdobject';
+
 import { MdObjectServiceService } from '../../md-object-service.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
-  selector: 'patient-alergies',
+  selector: 'app-patient-alergies',
   templateUrl: './patient-alergies.component.html',
   styleUrls: ['./patient-alergies.component.scss']
 })
@@ -32,7 +41,7 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    let patientAsync = this.mdObjectServiceService.patient;
+    const patientAsync = this.mdObjectServiceService.patient;
     Promise.all([
       patientAsync,
       patientAsync.then(p => p.allergies.addedAsync()),

@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MdObject, Patient } from '@mdobject/mdobject/classes'
+import { Component, OnInit } from '@angular/core';
+
+import { MdObject, Patient } from '@mdobject/mdobject';
+
 import { MdObjectServiceService } from '../md-object-service.service';
 
 @Component({
@@ -19,8 +21,8 @@ export class PatientHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.patient = this.mdObjectServiceService.patient; //.then(e => this.patient = e);
+    this.patient = this.mdObjectServiceService.patient; // .then(e => this.patient = e);
   }
 
-//  patient: Patient = this.mdObject.emr.patient;
+  // patient: Patient = this.mdObject.emr.patient;
 }
