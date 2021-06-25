@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MdObject, Patient } from '@mdobject/mdobject/classes'
+import { MdObject } from '@mdobject/mdobject/'
+import { Patient } from '@mdobject/mdobject/classes'
 
 @Injectable({
   providedIn: 'root'
