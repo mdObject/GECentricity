@@ -12,4 +12,8 @@ import { MdObject } from './classes';
     return mdObject;
 })(window);
 
-export { MdObject } from './classes';
+// export * as core from './core';
+
+export * from './classes';
+export * from './enums';
+export * from './interfaces';

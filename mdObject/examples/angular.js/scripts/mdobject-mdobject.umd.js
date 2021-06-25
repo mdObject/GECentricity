@@ -12,61 +12,54 @@
         return ObsTermsMap;
     }());
 
-    var LocationType;
     (function (LocationType) {
         LocationType[LocationType["None"] = 0] = "None";
         LocationType[LocationType["Home"] = 1] = "Home";
         LocationType[LocationType["Current"] = 2] = "Current";
-    })(LocationType || (LocationType = {}));
+    })(exports.LocationType || (exports.LocationType = {}));
 
-    var UserCallFunction;
     (function (UserCallFunction) {
         UserCallFunction[UserCallFunction["None"] = 0] = "None";
         UserCallFunction[UserCallFunction["UserList"] = 1] = "UserList";
         UserCallFunction[UserCallFunction["UserInfo"] = 2] = "UserInfo";
-    })(UserCallFunction || (UserCallFunction = {}));
+    })(exports.UserCallFunction || (exports.UserCallFunction = {}));
 
-    var AllergyClassification;
     (function (AllergyClassification) {
         AllergyClassification["none"] = "";
         AllergyClassification["drug"] = "DRUG";
         AllergyClassification["food"] = "FOOD";
         AllergyClassification["environmental"] = "ENVIRONMENTAL";
-    })(AllergyClassification || (AllergyClassification = {}));
+    })(exports.AllergyClassification || (exports.AllergyClassification = {}));
 
-    var AllergyCriticality;
     (function (AllergyCriticality) {
         AllergyCriticality["undefined"] = "";
         AllergyCriticality["critical"] = "C";
         AllergyCriticality["severe"] = "S";
         AllergyCriticality["moderate"] = "N";
         AllergyCriticality["mild"] = "I";
-    })(AllergyCriticality || (AllergyCriticality = {}));
+    })(exports.AllergyCriticality || (exports.AllergyCriticality = {}));
 
-    var ObjectState;
     (function (ObjectState) {
         ObjectState[ObjectState["None"] = 0] = "None";
         ObjectState[ObjectState["Add"] = 1] = "Add";
         ObjectState[ObjectState["Update"] = 2] = "Update";
         ObjectState[ObjectState["Remove"] = 3] = "Remove";
-    })(ObjectState || (ObjectState = {}));
+    })(exports.ObjectState || (exports.ObjectState = {}));
 
-    var AllergyReasonForRemoval;
     (function (AllergyReasonForRemoval) {
         AllergyReasonForRemoval["none"] = "";
         AllergyReasonForRemoval["error"] = "Entered in error";
         AllergyReasonForRemoval["patientCorrected"] = "Patient corrected";
         AllergyReasonForRemoval["disproved"] = "Allergy disproved";
         AllergyReasonForRemoval["other"] = "Other";
-    })(AllergyReasonForRemoval || (AllergyReasonForRemoval = {}));
+    })(exports.AllergyReasonForRemoval || (exports.AllergyReasonForRemoval = {}));
 
-    var ObjectStatus;
     (function (ObjectStatus) {
         ObjectStatus[ObjectStatus["Unchanged"] = 0] = "Unchanged";
         ObjectStatus[ObjectStatus["Added"] = 1] = "Added";
         ObjectStatus[ObjectStatus["Updated"] = 2] = "Updated";
         ObjectStatus[ObjectStatus["Removed"] = 3] = "Removed";
-    })(ObjectStatus || (ObjectStatus = {}));
+    })(exports.ObjectStatus || (exports.ObjectStatus = {}));
 
     var Location = /** @class */ (function () {
         function Location(id, name, locationType) {
@@ -75,7 +68,7 @@
             this.locationType = locationType;
             this.id = (this.id != null) ? this.id : '';
             this.name = (this.name != null) ? this.name : '';
-            this.locationType = (this.locationType != null) ? this.locationType : LocationType.None;
+            this.locationType = (this.locationType != null) ? this.locationType : exports.LocationType.None;
         }
         return Location;
     }());
@@ -152,7 +145,7 @@
 
     var Problem = /** @class */ (function () {
         function Problem() {
-            this.status = ObjectStatus.Unchanged;
+            this.status = exports.ObjectStatus.Unchanged;
             this.problemId = '';
             this.type = '';
             this.description = '';
@@ -322,7 +315,7 @@
             this.toMelString = function () {
                 return _this._value;
             };
-            if (callFunction === UserCallFunction.UserInfo) {
+            if (callFunction === exports.UserCallFunction.UserInfo) {
                 this.loginName = (this.data.length > 0) ? this.data[0] : '';
                 this.searchName = (this.data.length > 1) ? this.data[1] : '';
                 this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
@@ -345,7 +338,7 @@
                 this.middleName = (this.data.length > 19) ? this.data[19] : '';
                 this.lastName = (this.data.length > 20) ? this.data[20] : '';
             }
-            if (callFunction === UserCallFunction.UserList) {
+            if (callFunction === exports.UserCallFunction.UserList) {
                 this.loginName = (this.data.length > 0) ? this.data[0] : '';
                 this.searchName = (this.data.length > 1) ? this.data[1] : '';
                 this.phoneNumber = (this.data.length > 2) ? this.data[2] : '';
@@ -2357,7 +2350,7 @@
             _this.newProblem = function (value) {
                 var data = (value == null) ? [] : value.split('^');
                 var problem = new Problem();
-                problem.status = ObjectStatus.Added;
+                problem.status = exports.ObjectStatus.Added;
                 problem = _this._locadMelDataFromString(data, problem);
                 return problem;
             };
@@ -3505,7 +3498,7 @@
                 if (this._locationsArray.length === 0) {
                     this._locations = (this._locations !== undefined) ? this._locations : this._mel.melFunc('{PATIENT.HOMELOCATIONNAME}');
                     this._locationsId = (this._locationsId !== undefined) ? this._locationsId : this._mel.melFunc('{PATIENT.HOMELOCATIONABBREVNAME}');
-                    var locationProperty = new Location(this._locationsId, this._locations, LocationType.Home);
+                    var locationProperty = new Location(this._locationsId, this._locations, exports.LocationType.Home);
                     this._locationsArray.push(locationProperty);
                     this._locationsArray.findByType =
                         (function (value) {
@@ -3563,10 +3556,10 @@
             this._usersArray = [];
             this.getUser = function (value) {
                 if (value != null) {
-                    _this._user = (_this._user != null) ? _this._user : new User(_this._mel.melFunc('{GETUSERINFO("' + value + '")}'), UserCallFunction.UserInfo);
+                    _this._user = (_this._user != null) ? _this._user : new User(_this._mel.melFunc('{GETUSERINFO("' + value + '")}'), exports.UserCallFunction.UserInfo);
                     return _this._user;
                 }
-                _this._currentUser = (_this._currentUser != null) ? _this._currentUser : new User(GetCurrentUser(_this._mel), UserCallFunction.UserInfo);
+                _this._currentUser = (_this._currentUser != null) ? _this._currentUser : new User(GetCurrentUser(_this._mel), exports.UserCallFunction.UserInfo);
                 return _this._currentUser;
             };
             this.getUsers = function () {
@@ -3574,7 +3567,7 @@
                     _this._users = _this._mel.melFunc('{GET_USER_LIST(USER.CURLOCATIONABBREVNAME, "", "delimited", true)}');
                     var dataArray = StringInternal(_this._users).toList();
                     for (var index = 0; index < dataArray.length; index++) {
-                        _this._usersArray.push(new User(dataArray[index], UserCallFunction.UserList));
+                        _this._usersArray.push(new User(dataArray[index], exports.UserCallFunction.UserList));
                     }
                     _this._usersArray.tag = 'GET_USER_LIST';
                     _this._usersArray.toMelString = function () {
@@ -3831,7 +3824,7 @@
             get: function () {
                 if (this._locationPropertyArray.length === 0) {
                     this._location = (this._location != null) ? this._location : this._mel.melFunc('{DOCUMENT.LOCOFCARENAME}');
-                    this._locationProperty = (this._locationProperty != null) ? this._locationProperty : new Location(this._location, this._location, LocationType.Current);
+                    this._locationProperty = (this._locationProperty != null) ? this._locationProperty : new Location(this._location, this._location, exports.LocationType.Current);
                     this._locationPropertyArray.push(this._locationProperty);
                     this._locationPropertyArray.findByType =
                         (function (value) {
@@ -4213,14 +4206,14 @@
         });
         Object.defineProperty(Emr.prototype, "LocationType", {
             get: function () {
-                return LocationType;
+                return exports.LocationType;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(Emr.prototype, "UserCallFunction", {
             get: function () {
-                return UserCallFunction;
+                return exports.UserCallFunction;
             },
             enumerable: false,
             configurable: true
@@ -4345,17 +4338,17 @@
         function Allergy(_mel) {
             var _this = this;
             this._mel = _mel;
-            this.state = ObjectState.None;
-            this.status = ObjectStatus.Unchanged;
+            this.state = exports.ObjectState.None;
+            this.status = exports.ObjectStatus.Unchanged;
             this.name = '';
-            this.criticalIndicator = AllergyCriticality.undefined;
-            this.classification = AllergyClassification.none;
+            this.criticalIndicator = exports.AllergyCriticality.undefined;
+            this.classification = exports.AllergyClassification.none;
             this.description = '';
             this.gpiCode = '';
             this.severity = '';
             this.allergyId = '';
             this.reactionCode = 32;
-            this.reasonForRemoval = AllergyReasonForRemoval.none;
+            this.reasonForRemoval = exports.AllergyReasonForRemoval.none;
             this.save = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, code, error, code, error, code, error;
                 return __generator(this, function (_b) {
@@ -4363,9 +4356,9 @@
                         case 0:
                             _a = this.state;
                             switch (_a) {
-                                case ObjectState.Add: return [3 /*break*/, 1];
-                                case ObjectState.Update: return [3 /*break*/, 3];
-                                case ObjectState.Remove: return [3 /*break*/, 5];
+                                case exports.ObjectState.Add: return [3 /*break*/, 1];
+                                case exports.ObjectState.Update: return [3 /*break*/, 3];
+                                case exports.ObjectState.Remove: return [3 /*break*/, 5];
                             }
                             return [3 /*break*/, 7];
                         case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}')];
@@ -4376,8 +4369,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = ObjectStatus.Added;
-                            this.state = ObjectState.None;
+                            this.status = exports.ObjectStatus.Added;
+                            this.state = exports.ObjectState.None;
                             return [3 /*break*/, 7];
                         case 3: return [4 /*yield*/, this._mel.melFunc('{MEL_CHANGE_ALLERGY("' + this.toChangeString() + '")}')];
                         case 4:
@@ -4387,8 +4380,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = ObjectStatus.Updated;
-                            this.state = ObjectState.None;
+                            this.status = exports.ObjectStatus.Updated;
+                            this.state = exports.ObjectState.None;
                             return [3 /*break*/, 7];
                         case 5: return [4 /*yield*/, this._mel.melFunc('{MEL_REMOVE_ALLERGY("' + this.toRemoveString() + '")}')];
                         case 6:
@@ -4398,8 +4391,8 @@
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
                             }
-                            this.status = ObjectStatus.Removed;
-                            this.state = ObjectState.None;
+                            this.status = exports.ObjectStatus.Removed;
+                            this.state = exports.ObjectState.None;
                             return [3 /*break*/, 7];
                         case 7: return [2 /*return*/];
                     }
@@ -4416,7 +4409,7 @@
             this.toRemoveString = function () {
                 return _this.allergyId + '","' +
                     (_this.stopDate ? System.dateToString(_this.stopDate) : '') + '","' +
-                    (_this.reasonForRemoval !== AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
+                    (_this.reasonForRemoval !== exports.AllergyReasonForRemoval.none ? _this.reasonForRemoval : '');
             };
             this.toAddString = function () {
                 return _this.name + '","' +
@@ -4445,7 +4438,39 @@
         return mdObject;
     })(window);
 
+    exports.Address = Address;
+    exports.Allergies = Allergies;
+    exports.Allergy = Allergy;
+    exports.AllergyList = AllergyList;
+    exports.AllergyListRemoved = AllergyListRemoved;
+    exports.CarePlan = CarePlan;
+    exports.ClinicalDocument = ClinicalDocument;
+    exports.Emr = Emr;
+    exports.EmrApp = EmrApp;
+    exports.EmrContent = EmrContent;
+    exports.EmrMel = EmrMel;
+    exports.EmrWindow = EmrWindow;
+    exports.FlowsheetObservation = FlowsheetObservation;
+    exports.Immunization = Immunization;
+    exports.Insurance = Insurance;
+    exports.Location = Location;
     exports.MdObject = MdObject;
+    exports.Measurement = Measurement;
+    exports.Measurements = Measurements;
+    exports.ObsTermsMap = ObsTermsMap;
+    exports.Observation = Observation;
+    exports.ObservationType = ObservationType;
+    exports.Patient = Patient;
+    exports.PatientContact = PatientContact;
+    exports.Phone = Phone;
+    exports.Problem = Problem;
+    exports.Problems = Problems;
+    exports.Protocol = Protocol;
+    exports.ReferringProvider = ReferringProvider;
+    exports.ReferringProviderPhone = ReferringProviderPhone;
+    exports.System = System;
+    exports.User = User;
+    exports.Users = Users;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
