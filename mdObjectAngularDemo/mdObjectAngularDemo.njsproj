@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5d212a59-fcc9-4a6d-b0cb-f0acf70d181b}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -20,6 +20,7 @@
     <Content Include=".browserslistrc" />
     <Content Include="angular.json" />
     <Content Include="karma.conf.js" />
+    <Content Include="libman.json" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="src\app\allergy\allergy.component.scss" />
