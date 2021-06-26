@@ -1,7 +1,7 @@
 {
   "name": "@mdobject/mdobject",
   "author": "mdObject, Inc",
-  "version": "2.0.0-alpha.1.9",
+  "version": "2.0.0-alpha.2.1",
   "description": "mdObject Centricity EMP/CPS component",
   "main": "./bundles/mdobject-mdobject.umd.min.js",
   "types": "./mdobject-mdobject.d.ts",
