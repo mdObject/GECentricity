@@ -2,6 +2,7 @@
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
 ## Release 2.0.0-alpha.1.9
 	* Replace import from "enums/enums" to just "enums"
+	* Re-export all classes, enums and interfaces from the root. Use ```import { MdObject, Patient } from '@mdobject/mdobject';```
 
 ## Release 2.0.0-alpha.1.8
 	Fixed build and casing issues
