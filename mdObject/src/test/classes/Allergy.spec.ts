@@ -1,6 +1,6 @@
-import { Allergy } from "../../classes/classes";
+import { Allergy } from "../../classes";
 import { MockEmrMel } from "../mocks/mocks";
-import { AllergyClassification, AllergyCriticality, ObjectState } from "../../enums/enums";
+import { AllergyClassification, AllergyCriticality, ObjectState } from "../../enums";
 
 describe('Class: Allergy', () => {
 

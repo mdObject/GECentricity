@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MdObject, Patient } from '../../../../../mdObject/src/classes/classes';
+
+import { MdObject, Patient } from '@mdobject/mdobject';
+
 import { MdObjectServiceService } from '../../md-object-service.service';
 
 @Component({
@@ -11,6 +13,7 @@ export class PatientAddressComponent implements OnInit {
 
   patient: Promise<Patient> | null = null;
   mdObject: MdObject;
+
   constructor(
     private mdObjectServiceService: MdObjectServiceService
   ) {

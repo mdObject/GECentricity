@@ -1,4 +1,4 @@
-import { PatientContact } from '../../classes/classes';
+import { PatientContact } from '../../classes';
 import { mockResultEmr } from '../mocks/mocks';
 
 describe('Class: PatientContact', () => {

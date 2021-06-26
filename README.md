@@ -87,6 +87,10 @@ Here is the example how to create a new observation (jQuery is used below to pul
     npm install
     npm run build:libraries
 
+## Library usage
+    Use ```import { MdObject, Patient,... } from '@mdobject/mdobject';``` to avoid the ```Module not found: Error: Can't resolve '@mdobject/mdobject/clssess' in 'xyz'``` error.
+    See the mdObjectAngularDemo project for details
+
 ## Badges
 
 Show your support by adding a **built with mdObject** badge to your projects README or website.

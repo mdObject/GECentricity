@@ -1,4 +1,4 @@
-import { Problem } from '../../classes/classes';
+import { Problem } from '../../classes';
 
 describe('Class: Problem', () => {
 

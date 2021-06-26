@@ -1,5 +1,16 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
+## Release 2.0.0-alpha.1.9
+	* Replace import from "enums/enums" to just "enums"
+	* Re-export all classes, enums and interfaces from the root. Use ```import { MdObject, Patient } from '@mdobject/mdobject';```
+	The mdObjectAngularDemo using the npm package 2.0.0-alpha.1.9
+
+## Release 2.0.0-alpha.1.8
+	Fixed build and casing issues
+	Fixed "Circular dependency" issues
+	Fixed "Module not found" issues for NPM package
+	* Replace import from "classes/classes" to just "classes"
+	
 ## Release 2.0.0-alpha.1.6
 	Changed compilation target to es5
 

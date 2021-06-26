@@ -1,4 +1,4 @@
-import { MdObject } from './classes/classes';
+import { MdObject } from './classes';
 
 (function (window) {
     var mdObject: MdObject;
@@ -14,4 +14,4 @@ import { MdObject } from './classes/classes';
 
 export * from './classes';
 export * from './enums';
-
+export * from './interfaces';

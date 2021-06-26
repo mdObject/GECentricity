@@ -1,4 +1,4 @@
-import { ClinicalDocument } from '../../classes/classes';
+import { ClinicalDocument } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: ClinicalDocument', () => {

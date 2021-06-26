@@ -1,5 +1,5 @@
 /// <reference types="chrome"/>
-import { simulatorChromeExtensionId } from "../consts/consts";
+import { simulatorChromeExtensionId } from "../consts/strings";
 import { GetActiveXErrorMessage } from "../factories/factories";
 import { IsActiveXSupported } from "../factories/IsActiveXSupported";
 import { ExtensionExternalSimulator } from "./ExtensionExternalSimulator";

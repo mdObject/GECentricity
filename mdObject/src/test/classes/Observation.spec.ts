@@ -1,4 +1,4 @@
-import { Observation, ObservationType } from '../../classes/classes';
+import { Observation, ObservationType } from '../../classes';
 import { mockResultEmr, MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Observation', () => {

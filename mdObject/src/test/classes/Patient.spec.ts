@@ -1,4 +1,4 @@
-import { Patient, Allergies, ReferringProvider, Phone, Address } from '../../classes/classes';
+import { Patient, Allergies, ReferringProvider, Phone, Address } from '../../classes';
 import { MockEmrMel, mockResultEmr, mockResultFlowsheet } from '../mocks/mocks';
 
 describe('Class: Patient', () => {

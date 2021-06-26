@@ -1,4 +1,4 @@
-import { Measurement } from '../../classes/classes';
+import { Measurement } from '../../classes';
 import { MockEmrMel } from '../mocks/mocks';
 
 describe('Class: Measurement', () => {

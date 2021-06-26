@@ -1,4 +1,4 @@
-import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument, ObsTermsMap } from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument, ObsTermsMap } from '../../classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
 import { MockSimulator } from '../mocks/MockSimulator';
 

@@ -13,11 +13,11 @@ import { CarePlan } from './CarePlan';
 import { Location } from './Location';
 import { Allergies } from './Allergies';
 import { EmrMel } from './EmrMel';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
-import { LocationType } from '../enums/enums';
+import { IArrayAdditionalMethods } from '../interfaces';
+import { LocationType } from '../enums';
 import { AllergiesExternal, DemographicsExternal } from './external/external';
-import { emptyImage } from '../consts/consts';
-import { System } from './system';
+import { emptyImage } from '../consts/strings';
+import { System } from './System';
 import { Problems } from './Problems';
 
 // TODO: string = PATIENT.REGNOTE; REGGUARANTOR

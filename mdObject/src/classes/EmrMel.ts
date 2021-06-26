@@ -1,4 +1,4 @@
-import { System } from './system';
+import { System } from './System';
 import { GetActiveXErrorMessage, IsActiveXSupported } from '../factories/factories';
 import { EmrBase } from '../bases/EmrBase';
 import { Simulator } from '../simulator/simulator';

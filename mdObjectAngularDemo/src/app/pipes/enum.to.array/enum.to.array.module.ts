@@ -18,4 +18,5 @@ const PIPES = [
     ...PIPES
   ]
 })
+
 export class EnumToArrayModule { }

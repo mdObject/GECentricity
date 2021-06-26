@@ -1,4 +1,4 @@
-import { System } from "../system";
+import { System } from "../System";
 import { PersonExternal } from './PersonExternal';
 import { IdentifierExternal } from "./IdentifierExternal";
 import { PersonAgeExternal } from "./PersonAgeExternal";

@@ -1,6 +1,6 @@
 import { UserDetailExternal } from "./UserDetailExternal";
 import { CodeDetailExternal } from "./CodeDetailExternal";
-import { System } from "../system";
+import { System } from "../System";
 
 export class ProblemExternal {
     annotate: string;

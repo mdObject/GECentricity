@@ -7,12 +7,13 @@
     "test": "jest",
     "test:ci": "npm run test -- --runInBand",
     "test:coverage": "npm run test -- --coverage && http-server -c-1 -o -p 9875 src/test/coverage/lcov-report",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "npm run test -- --watchAll",
     "clean": "rimraf ./lib",
     "copyfiles": "./node_modules/.bin/copyfiles -f ../build-with-mdobject.svg ../README.md ../LICENSE ../CHANGELOG.md ./src/package.json ./lib",
     "copydemofiles": "./node_modules/.bin/copyfiles -f ./lib/bundles/mdobject-mdobject.umd.min.js  ./lib/bundles/mdobject-mdobject.umd.min.js.map ./lib/bundles/mdobject-mdobject.umd.js  ./lib/bundles/mdobject-mdobject.umd.js.map ./examples/angular.js/scripts",
     "ng": "ng",
     "build:libraries": "ng build mdObjectLib --prod  && npm run copyfiles && npm run copydemofiles",
+    "pack:libraries": "npm run clean && npm run build:libraries && cd lib && npm pack && cd ..",
     "startdemo": "http-server ./examples/angular.js/"
   },
   "jest": {
@@ -42,13 +43,13 @@
     "rimraf": "~2.6.3",
     "ts-jest": "^26.1.3",
     "typescript": "3.9.7",
-    "@angular/cli": "10.2.3",
-    "@angular-devkit/build-angular": "0.1002.3",
-    "@angular-devkit/build-ng-packagr": "0.1002.3",
-    "@angular/compiler-cli": "10.2.5",
-    "@angular/compiler": "10.2.5",
-    "@angular/core": "10.2.5",
-    "ng-packagr": "10.1.2"
+    "@angular/cli": "10.0.5",
+    "@angular-devkit/build-angular": "~0.1000.6",
+    "@angular-devkit/build-ng-packagr": "~0.1000.6",
+    "@angular/compiler-cli": "10.0.9",
+    "@angular/compiler": "10.0.9",
+    "@angular/core": "10.0.9",
+    "ng-packagr": "10.0.4"
   },
   "dependencies": {}
 }

@@ -1,4 +1,4 @@
-import { Users, User } from '../../classes/classes';
+import { Users, User } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Users', () => {

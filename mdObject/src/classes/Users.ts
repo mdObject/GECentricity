@@ -1,8 +1,8 @@
 import { User } from './User';
 import { EmrMel } from './EmrMel';
 import { StringInternal, GetCurrentUser } from '../factories/factories';
-import { UserCallFunction } from '../enums/enums';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
+import { UserCallFunction } from '../enums';
+import { IArrayAdditionalMethods } from '../interfaces';
 
 export class Users {
 

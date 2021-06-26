@@ -2,14 +2,14 @@ import { EmrApp } from './EmrApp';
 import { EmrMel } from './EmrMel';
 import { EmrWindow } from './EmrWindow';
 import { EmrContent } from './EmrContent';
-import { IArrayAdditionalMethods } from '../interfaces/interfaces';
+import { IArrayAdditionalMethods } from '../interfaces';
 import { StringInternal } from '../factories/factories';
 import { DemographicsExternal, ProblemExternal } from './external/external';
 import { Patient } from './Patient';
 import { Users } from './Users';
 import { Simulator } from '../simulator/simulator';
 import { ClinicalDocument } from './ClinicalDocument';
-import { LocationType, UserCallFunction } from '../enums/enums'
+import { LocationType, UserCallFunction } from '../enums'
 import { ObsTermsMap } from './ObsTermsMap';
 import { AllergiesExternal } from './external/AllergiesExternal';
 

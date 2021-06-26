@@ -1,4 +1,4 @@
-import { EmrMel } from './classes';
+import { EmrMel } from './EmrMel';
 import { ElectronicAddressExternal } from './external/ElectronicAddressExternal';
 
 export class Phone {

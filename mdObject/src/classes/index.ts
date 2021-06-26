@@ -23,11 +23,11 @@ export { EmrMel } from './EmrMel';
 export { EmrApp } from './EmrApp';
 export { EmrWindow } from './EmrWindow';
 export { Emr } from './Emr';
-export { Patient } from './Patient'
+export { Patient } from './Patient';
 export { ClinicalDocument } from './ClinicalDocument';
 export { Users } from './Users';
 export { MdObject } from './MdObject';
 export { FlowsheetObservation } from './FlowsheetObservation';
-export { System } from './system';
+export { System } from './System';
 export { Allergy } from './Allergy';
 export { Problems } from './Problems';

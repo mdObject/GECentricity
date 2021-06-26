@@ -1,4 +1,4 @@
-import { Insurance } from '../../classes/classes';
+import { Insurance } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Insurance', () => {

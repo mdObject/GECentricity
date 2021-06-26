@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MdObject, Patient } from '../../../../../mdObject/src/classes/classes';
+
+import { MdObject, Patient } from '@mdobject/mdobject';
+
 import { MdObjectServiceService } from '../../md-object-service.service';
 
 @Component({
@@ -8,6 +10,7 @@ import { MdObjectServiceService } from '../../md-object-service.service';
   styleUrls: ['./simulator-view.component.scss']
 })
 export class SimulatorViewComponent implements OnInit {
+
   patient: Patient;
   dateOfDeath: string;
   mdObject: MdObject;
@@ -26,7 +29,7 @@ export class SimulatorViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let patientAsync = this.mdObjectServiceService.patient;
+    const patientAsync = this.mdObjectServiceService.patient;
     Promise.all([
       patientAsync,
       patientAsync.then(p => p.raceAsync()),
@@ -67,9 +70,9 @@ export class SimulatorViewComponent implements OnInit {
   jsonCleanup = (data: string): string => {
     return data
       .replace(/\"/g, '\\"')
-      .replace(/\\n/g, "\\\\n")
-      .replace(/\\r/g, "\\\\r")
-      .replace(/\\t/g, "\\\\t");
+      .replace(/\\n/g, '\\\\n')
+      .replace(/\\r/g, '\\\\r')
+      .replace(/\\t/g, '\\\\t');
   }
 
   formater = (data): string => {

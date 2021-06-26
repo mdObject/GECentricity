@@ -1,4 +1,4 @@
-import { emptyImage } from "../consts/consts";
+import { emptyImage } from "../consts/strings";
 
 export class System {
     static isSimulator: boolean = false;

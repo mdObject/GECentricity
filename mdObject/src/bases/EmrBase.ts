@@ -1,5 +1,6 @@
 import { IsActiveXSupported } from '../factories/factories';
-import { System } from '../classes/system';
+// Avoid Circular dependency detected. Do not reference classes
+import { System } from '../classes/System';
 import { Simulator } from '../simulator/simulator';
 
 export abstract class EmrBase {

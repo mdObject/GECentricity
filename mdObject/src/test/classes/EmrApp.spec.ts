@@ -1,5 +1,5 @@
 import { EmrBase } from '../../bases/bases';
-import { EmrApp } from '../../classes/classes';
+import { EmrApp } from '../../classes';
 import { MockWindow } from '../mocks/mocks';
 import { MockSimulator } from '../mocks/MockSimulator';
 
