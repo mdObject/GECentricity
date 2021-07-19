@@ -51,16 +51,21 @@ export class Simulator {
 
     private sendMessage = (editorExtensionId: string, data: any) => new Promise<boolean>((resolve, _reject) => {
         if (typeof (chrome) !== 'undefined') {
-            chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
-                if (response) {
-                    console.info('mdObject is using Chrome Extension Simulator: ' + simulatorChromeExtensionId);
-                    resolve(true);
-                }
-                else {
-                    console.info('mdObject: Chrome Extension Simulator is missing or inactive');
-                    resolve(false);
-                }
-            });
+            if (typeof (chrome.runtime) !== 'undefined') {
+                chrome.runtime.sendMessage(editorExtensionId, data, (response: any) => {
+                    if (response) {
+                        console.info('mdObject is using Chrome Extension Simulator: ' + simulatorChromeExtensionId);
+                        resolve(true);
+                    }
+                    else {
+                        console.info('mdObject: Chrome Extension Simulator is missing or inactive');
+                        resolve(false);
+                    }
+                });
+            }
+            else {
+                resolve(false);
+            }
         }
         else {
             resolve(false);
