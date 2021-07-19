@@ -1,5 +1,7 @@
-<input type="text" #txt> <button (click)="send(txt.value)"> throw</button>
 
-<div class="errors" *ngFor="let message of messages">
-  {{ message }}
+<div class="errors" *ngFor="let error of errors">
+  <b>{{ error.message }}</b>
+  <br>
+  {{ error.stack }}
+  <hr>
 </div>

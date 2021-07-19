@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { ErrorService } from 'src/app/error.service';
 
-import { ConsoleService } from 'src/app/console.service';
 
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
-  styleUrls: ['./log.component.scss']
+  styleUrls: ['./log.component.scss'],
 })
-export class LogComponent implements OnInit {
+export class LogComponent {
 
-  constructor(private consoleService: ConsoleService) { }
+  constructor(public es: ErrorService) { }
 
-  ngOnInit(): void {
-  }
-
-  get messages(): any {
-    return this.consoleService.messages;
-  }
-
-  send(text: string): void {
-    this.consoleService.log(text);
+  get errors(): any {
+    return this.es.errors;
   }
 }

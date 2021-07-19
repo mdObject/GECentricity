@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -25,7 +25,7 @@ import { PatientAlergiesComponent } from './components/patient-alergies/patient-
 import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
 import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
 import { LogComponent } from './components/log/log.component';
-import { ConsoleService } from './console.service';
+import { GlobalErrorHandler } from './global-error-handler.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,11 @@ import { ConsoleService } from './console.service';
     MatDialogModule,
     EnumToArrayModule
   ],
-  providers: [TitleCasePipe, MdObjectServiceService, ConsoleService],
+  providers: [
+    TitleCasePipe,
+    MdObjectServiceService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
