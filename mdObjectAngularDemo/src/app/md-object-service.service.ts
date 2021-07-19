@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { MdObject, Patient } from '@mdobject/mdobject';
 
 @Injectable({
@@ -6,11 +7,10 @@ import { MdObject, Patient } from '@mdobject/mdobject';
 })
 export class MdObjectServiceService {
 
-  mdObject: MdObject;
+  mdObject = new MdObject(window, document);
   patient: Promise<Patient> | null = null;
 
   constructor() {
-    this.mdObject= new MdObject(window, document);
-    this.patient = this.mdObject.emr.patientAsync();    
+    this.patient = this.mdObject.emr.patientAsync();
   }
 }

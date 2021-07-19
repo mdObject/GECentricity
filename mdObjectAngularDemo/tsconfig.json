@@ -6,6 +6,10 @@
 */
 {
   "files": [],
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"

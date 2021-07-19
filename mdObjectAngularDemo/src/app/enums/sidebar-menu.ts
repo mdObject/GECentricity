@@ -7,5 +7,6 @@ export enum SidebarMenu {
   Problems = 5,
   Allergy = 6,
   About = 7,
-  Simulator = 8
+  Simulator = 8,
+  Log = 9
 }

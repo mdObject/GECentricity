@@ -24,6 +24,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { PatientAlergiesComponent } from './components/patient-alergies/patient-alergies.component';
 import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
 import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
+import { LogComponent } from './components/log/log.component';
+import { ConsoleService } from './console.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
     PatientProblemsComponent,
     SidenavComponent,
     PatientAlergiesComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
     MatDialogModule,
     EnumToArrayModule
   ],
-  providers: [TitleCasePipe, MdObjectServiceService],
+  providers: [TitleCasePipe, MdObjectServiceService, ConsoleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

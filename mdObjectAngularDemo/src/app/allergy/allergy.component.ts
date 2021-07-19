@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+
 import {
-  ObjectState, AllergyCriticality, AllergyClassification, Allergy, MdObject
+  MdObject,
+  Allergy,
+  AllergyClassification,
+  AllergyCriticality,
+  ObjectState
 } from '@mdobject/mdobject';
 
 import { MdObjectServiceService } from '../md-object-service.service';
@@ -15,8 +20,8 @@ export class AllergyComponent implements OnInit {
 
   mdObject: MdObject = this.mdObjectServiceService.mdObject;
   allergy = new Allergy(this.mdObject.emr.emrMel);
-  allergyClassification = AllergyClassification;
-  allergyCriticality = AllergyCriticality;
+  allergyClassification: AllergyClassification;
+  allergyCriticality: AllergyCriticality;
   addedAllergy: any;
 
   constructor(

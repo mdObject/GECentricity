@@ -20,16 +20,16 @@
           <app-patient-phone *ngSwitchCase="SidebarMenu.PatientPhone"></app-patient-phone>
           <app-patient-problems *ngSwitchCase="SidebarMenu.Problems"></app-patient-problems>
           <app-allergy *ngSwitchCase="SidebarMenu.Allergy"></app-allergy>
-          <!-- Toolbar -->
           <app-simulator-view *ngSwitchCase="SidebarMenu.Simulator"></app-simulator-view>
+          <app-log *ngSwitchCase="SidebarMenu.Log"></app-log>
         </container-element>
 
-          <div class="content">
-            <!-- Resources -->
-            <!-- Footer -->
-            <a href="#" class="nav-link" onclick='DemoClick()'>Click here to open this page in Internet Explorer (IE)</a>
-          </div>
+        <div class="content">
+          <!-- Resources -->
+          <!-- Footer -->
+          <a href="#" class="nav-link" onclick='DemoClick()'>Click here to open this page in Internet Explorer (IE)</a>
         </div>
+      </div>
     </main>
   </mat-drawer-content>
 </mat-drawer-container>
