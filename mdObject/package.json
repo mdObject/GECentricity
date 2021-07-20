@@ -14,6 +14,7 @@
     "ng": "ng",
     "build:libraries": "ng build mdObjectLib --prod  && npm run copyfiles && npm run copydemofiles",
     "build:libraries:dev": "ng build mdObjectLib  && npm run copyfiles && npm run copydemofiles",
+    "build:watch": "ng build mdObjectLib --watch",
     "pack:libraries": "npm run clean && npm run build:libraries && cd lib && npm pack && cd ..",
     "pack:libraries:dev": "npm run clean && npm run build:libraries:dev && cd lib && npm pack && cd ..",
     "startdemo": "http-server ./examples/angular.js/"
