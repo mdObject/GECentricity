@@ -20,8 +20,8 @@ export class AllergyComponent implements OnInit {
 
   mdObject: MdObject = this.mdObjectServiceService.mdObject;
   allergy = new Allergy(this.mdObject.emr.emrMel);
-  allergyClassification: AllergyClassification;
-  allergyCriticality: AllergyCriticality;
+  allergyClassification = AllergyClassification;
+  allergyCriticality = AllergyCriticality;
   addedAllergy: any;
 
   constructor(
