@@ -2,6 +2,7 @@
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
+	Fixed simulator validation.
 
 ## Release 2.0.0-alpha.2.1
 	* Fixed issue with compatability with the V20 version
