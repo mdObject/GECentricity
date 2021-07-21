@@ -3587,12 +3587,6 @@
                 if (_showWait === void 0) { _showWait = false; }
                 return _this.sendMessage(simulatorChromeExtensionId, { type: 'EvaluateMel', data: data });
             };
-            this.Demographics = function () {
-                return _this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' });
-            };
-            this.Allergies = function () {
-                return _this.sendMessage(simulatorChromeExtensionId, { type: 'Allergies' });
-            };
             this.sendMessage = function (editorExtensionId, data) { return new Promise(function (resolve, reject) {
                 if (typeof (chrome) !== 'undefined') {
                     chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
@@ -3609,6 +3603,20 @@
                 }
             }); };
         }
+        Object.defineProperty(ExtensionExternalSimulator.prototype, "Demographics", {
+            get: function () {
+                return this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' });
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ExtensionExternalSimulator.prototype, "Allergies", {
+            get: function () {
+                return this.sendMessage(simulatorChromeExtensionId, { type: 'Allergies' });
+            },
+            enumerable: false,
+            configurable: true
+        });
         return ExtensionExternalSimulator;
     }());
 
@@ -3676,16 +3684,21 @@
             };
             this.sendMessage = function (editorExtensionId, data) { return new Promise(function (resolve, _reject) {
                 if (typeof (chrome) !== 'undefined') {
-                    chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
-                        if (response) {
-                            console.info('mdObject is using Chrome Extension Simulator: ' + simulatorChromeExtensionId);
-                            resolve(true);
-                        }
-                        else {
-                            console.info('mdObject: Chrome Extension Simulator is missing or inactive');
-                            resolve(false);
-                        }
-                    });
+                    if (typeof (chrome.runtime) !== 'undefined') {
+                        chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
+                            if (response) {
+                                console.info('mdObject is using Chrome Extension Simulator: ' + simulatorChromeExtensionId);
+                                resolve(true);
+                            }
+                            else {
+                                console.info('mdObject: Chrome Extension Simulator is missing or inactive');
+                                resolve(false);
+                            }
+                        });
+                    }
+                    else {
+                        resolve(false);
+                    }
                 }
                 else {
                     resolve(false);
@@ -3898,25 +3911,20 @@
             this._melContent = {};
             this._problemExternalList = [];
             this.externalAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
-                var _a, _b;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
+                var _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
                             if (this._external) {
                                 return [2 /*return*/, this._external];
                             }
                             _a = this;
-                            if (!this._external) return [3 /*break*/, 1];
-                            _b = this._external;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, this._simulator.isSimulatorAsync()];
-                        case 2:
-                            _b = (_c.sent()) ? this._simulator.externalSimulator
+                            return [4 /*yield*/, this._simulator.isSimulatorAsync()];
+                        case 1:
+                            _a._external = (_b.sent())
+                                ? this._simulator.externalSimulator
                                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                                     : this._window.external;
-                            _c.label = 3;
-                        case 3:
-                            _a._external = _b;
                             return [2 /*return*/, this._external];
                     }
                 });
@@ -3951,7 +3959,7 @@
                         case 1: return [4 /*yield*/, this.externalAsync()];
                         case 2:
                             if (!(_d.sent())) return [3 /*break*/, 4];
-                            return [4 /*yield*/, this.externalAsync().then(function (e) { return e.Demographics(); })];
+                            return [4 /*yield*/, this.externalAsync().then(function (e) { return e.Demographics; })];
                         case 3:
                             _c = _d.sent();
                             return [3 /*break*/, 5];
@@ -3979,7 +3987,7 @@
                         case 1: return [4 /*yield*/, this.externalAsync()];
                         case 2:
                             if (!(_d.sent())) return [3 /*break*/, 4];
-                            return [4 /*yield*/, this.externalAsync().then(function (e) { return e.Allergies(); })];
+                            return [4 /*yield*/, this.externalAsync().then(function (e) { return e.Allergies; })];
                         case 3:
                             _c = _d.sent();
                             return [3 /*break*/, 5];
@@ -4071,9 +4079,8 @@
                 if (this._external) {
                     return this._external;
                 }
-                this._external = this._external ? this._external
-                    : (this._window.opener && this._window.opener.external) ? this._window.opener.external
-                        : this._window.external;
+                this._external = (this._window.opener && this._window.opener.external)
+                    ? this._window.opener.external : this._window.external;
                 if (this._external.IsDebugMode === undefined) {
                     this._external = this._simulator.externalSimulator;
                 }
@@ -4221,7 +4228,7 @@
         return Emr;
     }());
 
-    var version = '2.0.0-alpha.1.9';
+    var version = '2.0.0-alpha.2.1';
 
     var productType = 'GE';
 

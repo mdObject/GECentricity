@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { AllergyReasonForRemoval } from '@mdobject/mdobject/enums';
+import { AllergyReasonForRemoval } from '@mdobject/mdobject';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -12,7 +12,7 @@ import { AllergyReasonForRemoval } from '@mdobject/mdobject/enums';
 export class DeleteDialogComponent implements OnInit {
 
   form: FormGroup;
-  removalReason: AllergyReasonForRemoval;
+  removalReason = AllergyReasonForRemoval;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,

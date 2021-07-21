@@ -54,9 +54,8 @@ export class Emr {
             return this._external;
         }
 
-        this._external = this._external ? this._external        // if the _external is set, then use it
-            : (this._window.opener && this._window.opener.external) ? this._window.opener.external
-                : this._window.external;
+        this._external = (this._window.opener && this._window.opener.external)
+            ? this._window.opener.external : this._window.external;
         if (this._external.IsDebugMode === undefined) {
             // try simulator
             this._external = this._simulator.externalSimulator;
@@ -71,8 +70,8 @@ export class Emr {
             return this._external;
         }
 
-        this._external = this._external ? this._external        // if the _external is set, then use it
-            : (await this._simulator.isSimulatorAsync()) ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
+        this._external = (await this._simulator.isSimulatorAsync())
+            ? this._simulator.externalSimulator   // if the simulator is set, then use simulator
                 : (this._window.opener && this._window.opener.external) ? this._window.opener.external
                     : this._window.external;
         return this._external;
@@ -145,7 +144,7 @@ export class Emr {
 
     demographicsAsync = async (): Promise<DemographicsExternal> => {
         this._demographics = (this._demographics) ? this._demographics
-            : ((await this.externalAsync()) ? await this.externalAsync().then(e=> e.Demographics()) : this._demographics);
+            : ((await this.externalAsync()) ? await this.externalAsync().then(e=> e.Demographics) : this._demographics);
 
         return new DemographicsExternal(this._demographics);
     }
@@ -159,7 +158,7 @@ export class Emr {
 
     allergiesAsync = async (): Promise<AllergiesExternal> => {
         this._allergiesJson = (this._allergiesJson) ? this._allergiesJson
-            : ((await this.externalAsync()) ? await this.externalAsync().then(e => e.Allergies()) : this._allergiesJson);
+            : ((await this.externalAsync()) ? await this.externalAsync().then(e => e.Allergies) : this._allergiesJson);
 
         return new AllergiesExternal(this._allergiesJson);
     }

@@ -8,11 +8,11 @@ export class ExtensionExternalSimulator {
         return this.sendMessage(simulatorChromeExtensionId, { type: 'EvaluateMel', data: data });
     }
 
-    Demographics = (): Promise<any> => {
+    get Demographics (): Promise<any> {
         return this.sendMessage(simulatorChromeExtensionId, { type: 'Demographics' } );
     }
 
-    Allergies = (): Promise<any> => {
+    get Allergies (): Promise<any> {
         return this.sendMessage(simulatorChromeExtensionId, { type: 'Allergies' });
     }
 
