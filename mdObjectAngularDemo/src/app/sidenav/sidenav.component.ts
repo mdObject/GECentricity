@@ -28,4 +28,8 @@ export class SidenavComponent {
     this.sideMenu = itemCliked;
     this.sideMenuChange.emit(this.sideMenu); // Notify subcomponent that the value changed.
   }
+
+  refresh = (): void => {
+    location.reload(true);
+  }
 }
