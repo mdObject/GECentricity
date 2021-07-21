@@ -28,7 +28,7 @@ export class Allergy implements IAllergyData {
             case ObjectState.Add: {
                 let code: string = await this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}');
 
-                if (code !== null) {
+                if (code !== '') {
                     let error = 'Allergy.save error. Code is ' + code;
                     console.error(error);
                     throw new Error('Allergy not saved. ' + error);
