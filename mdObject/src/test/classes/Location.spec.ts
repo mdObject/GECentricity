@@ -1,5 +1,5 @@
-import { Location } from '../../classes/classes';
-import { LocationType } from '../../enums/enums';
+import { Location } from '../../classes';
+import { LocationType } from '../../enums';
 
 describe('Class: Location', () => {
 

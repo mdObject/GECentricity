@@ -1,0 +1,52 @@
+<h4>Patient Information</h4>
+<div class="card mb-3 shadow-sm">
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>PID:</strong><br>{{patient?.pid}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
+  </div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>ID:</strong><br />{{patient?.patientId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Medical Record ID:</strong><br />{{patient?.medicalRecordId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>External Id:</strong><br />{{patient?.externalId}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Print ID:</strong><br />{{patient?.printId}}</div>
+  </div>
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>First Name:</strong><br />{{patient?.firstName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Last Name:</strong><br />{{patient?.lastName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Middle Name:</strong><br />{{patient?.middleName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>SSN:</strong><br />{{patient?.ssn}}</div>
+  </div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Label Name:</strong><br />{{patient?.labelName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Prefix:</strong><br />{{patient?.namePrefix}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Suffix:</strong><br />{{patient?.nameSuffix}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Sex:</strong><br />{{patient?.sex}}</div>
+  </div>
+
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Race:</strong><br />{{patient?.race}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Ethnicity:</strong><br />{{patient?.ethnicity}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Date Of Birth:</strong><br />{{patient?.dateOfBirth}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Date Of Death:</strong><br />{{patient?.dateOfDeath}}</div>
+  </div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Marital Status:</strong><br />{{patient?.maritalStatus}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Language:</strong><br />{{patient?.language}}</div>
+    <!--<div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Home location of care:</strong><br />{{patient?.location.findByType(LocationType.Home).name}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Abbreviated home location of care:</strong><br />{{patient?.location.findByType(LocationType.Home).id}}</div>-->
+  </div>
+  <div class="card-body row">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Email:</strong><br />{{patient?.email}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Contact By:</strong><br />{{patient?.contactBy}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Employment Status:</strong><br />{{patient?.employmentStatus}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Clinic Status:</strong><br />{{patient?.clinicStatus}}</div>
+  </div>
+  <div class="card-body row bg-light mx-0 px-2">
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Primary Care Physician Name:</strong><br />{{patient?.primaryCarePhysicianName}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Registration Note:</strong><br />{{patient?.registrationNote}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><strong>Last Office Visit:</strong><br />{{patient?.lastOfficeVisit|date}}</div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"></div>
+    <div class="card-text col-lg-3 col-md-4 col-sm-6"><span></span></div>
+  </div>
+</div>

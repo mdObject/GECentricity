@@ -1,0 +1,47 @@
+<h4>Problems</h4>
+<table class="table table-hover bg-white border shadow-sm mb-3">
+  <thead class="bg-light">
+    <tr>
+      <th scope="col" class="text-center align-middle">ID</th>
+      <th scope="col" class="align-middle">Status</th>
+      <th scope="col" class="align-middle">Description</th>
+      <th scope="col" class="text-center align-middle">ICD9 Code</th>
+      <th scope="col" class="text-center align-middle">ICD10 Code</th>
+      <th scope="col" class="align-middle">Comment</th>
+      <th scope="col" class="text-center align-middle">Onset Date</th>
+      <th scope="col" class="text-center align-middle">Stop Date</th>
+      <th scope="col" class="align-middle">Stop Reason</th>
+      <th scope="col" class="text-center align-middle">Last Modified Date</th>
+      <th scope="col" class="text-center align-middle">Problem Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let problem of problemList">
+      <td class="text-center align-middle" scope="row">{{problem?.problemId}}</td>
+      <td class="text-center align-middle">{{(problem?.status === 1)?'+': (problem?.status === 3) ? 'X' : '' }}</td>
+      <td class="align-middle">{{problem?.description}}</td>
+      <td class="text-center align-middle">{{problem?.codeIcd9}}</td>
+      <td class="text-center align-middle">{{problem?.codeIcd10}}</td>
+      <td class="align-middle">{{problem?.comment}}</td>
+      <td class="text-center align-middle">{{problem?.onsetDate | date: 'MM/dd/yyyy'}}</td>
+      <td class="text-center align-middle">{{problem?.stopDate | date: 'MM/dd/yyyy'}}</td>
+      <td class="align-middle">{{problem?.stopReason}}</td>
+      <td class="text-center align-middle">{{problem?.lastModifiedDate}}</td>
+      <td class="text-center align-middle">{{problem?.type}}</td>
+    </tr>
+  </tbody>
+</table>
+<!--<div class="card mb-3 shadow-sm">
+  <div class="card-body row" *ngFor="let problem of patient?.problems">
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ID:</strong><br />{{problem.problemId}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Description:</strong><br />{{problem.description}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD9 Code:</strong><br />{{problem.codeIcd9}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>ICD10 Code:</strong><br />{{problem.codeIcd10}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Comment:</strong><br />{{problem.comment}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>onset Date:</strong><br />{{problem.onsetDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Date:</strong><br />{{problem.stopDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>stop Reason:</strong><br />{{problem.stopReason}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>last Modified Date:</strong><br />{{problem.lastModifiedDate}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Problem Type</strong><br />{{problem.type}}</div>
+  </div>
+</div>-->

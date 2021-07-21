@@ -1,4 +1,4 @@
-import { LocationType } from '../enums/enums';
+import { LocationType } from '../enums';
 
 export class Location {
 

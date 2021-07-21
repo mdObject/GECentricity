@@ -1,4 +1,4 @@
-import { ObsTermsMap } from '../../classes/classes';
+import { ObsTermsMap } from '../../classes';
 
 describe('Class: ObsTermsMap', () => {
 

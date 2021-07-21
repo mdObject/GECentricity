@@ -1,6 +1,6 @@
-import { User } from '../../classes/classes';
+import { User } from '../../classes';
 import { mockResultEmr } from '../mocks/mocks';
-import { UserCallFunction } from '../../enums/enums';
+import { UserCallFunction } from '../../enums';
 
 describe('Class: User', () => {
 

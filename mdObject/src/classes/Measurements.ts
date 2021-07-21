@@ -1,4 +1,5 @@
-import { Measurement, EmrMel } from './classes';
+import { Measurement } from './Measurement';
+import { EmrMel } from './EmrMel';
 
 export class Measurements {
 

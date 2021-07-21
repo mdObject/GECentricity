@@ -1,4 +1,4 @@
-import { EmrMel } from './classes'
+import { EmrMel } from './EmrMel'
 
 export class Immunization {
 

@@ -1,0 +1,17 @@
+<div class="card mb-3 alert-primary shadow-sm">
+  <div class="d-flex no-gutters">
+    <div class="flex-fill">
+      <div class="card-body row">
+        <h5 class="card-title col-12 text-primary">{{ (patient | async)?.firstName + ' ' + (patient | async)?.middleName  + ' ' + (patient | async)?.lastName }}</h5>
+        <!--<div class="card-text col"><strong>Adress:</strong><br>{{(patient | async)?.address.address1 + ' ' + (patient | async)?.address.address2 }}<br>{{(patient | async)?.address.city + ' ' + (patient | async)?.address.state +', '+ (patient | async)?.address.postCode}}</div>-->
+        <div class="card-text col"><strong>Sex:</strong><br>{{(patient | async)?.sex}}</div>
+        <div class="card-text col"><strong>DOB:</strong><br>{{(patient | async)?.dateOfBirth}}</div>
+        <!--<div class="card-text col"><strong>Home:</strong><br>{{(patient | async)?.phone.home}}</div>
+        <div class="card-text col"><strong>Work:</strong><br>{{(patient | async)?.phone.home}}</div>-->
+      </div>
+    </div>
+    <div>
+      <img src="{{(patient | async)?.patientPicture}}" alt="patient image" />
+    </div>
+  </div>
+</div>

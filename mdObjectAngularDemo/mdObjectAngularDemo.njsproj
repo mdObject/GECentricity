@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5d212a59-fcc9-4a6d-b0cb-f0acf70d181b}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include=".browserslistrc" />
+    <Content Include="angular.json" />
+    <Content Include="karma.conf.js" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="src\app\allergy\allergy.component.scss" />
+    <Content Include="src\app\app.component.scss" />
+    <Content Include="src\app\components\patient-address\patient-address.component.html" />
+    <Content Include="src\app\components\patient-address\patient-address.component.scss" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.html" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.html" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.scss" />
+    <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.scss" />
+    <Content Include="src\app\components\patient-alergies\patient-alergies.component.html" />
+    <Content Include="src\app\components\patient-alergies\patient-alergies.component.scss" />
+    <Content Include="src\app\components\patient-contacts\patient-contacts.component.html" />
+    <Content Include="src\app\components\patient-contacts\patient-contacts.component.scss" />
+    <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.html" />
+    <Content Include="src\app\components\patient-personal-information\patient-personal-information.component.scss" />
+    <Content Include="src\app\components\patient-phone\patient-phone.component.html" />
+    <Content Include="src\app\components\patient-phone\patient-phone.component.scss" />
+    <Content Include="src\app\components\patient-problems\patient-problems.component.html" />
+    <Content Include="src\app\components\patient-problems\patient-problems.component.scss" />
+    <Content Include="src\app\components\simulator-view\simulator-view.component.html" />
+    <Content Include="src\app\components\simulator-view\simulator-view.component.scss" />
+    <Content Include="src\app\patient-header\patient-header.component.html" />
+    <Content Include="src\app\patient-header\patient-header.component.scss" />
+    <Content Include="src\app\sidenav\sidenav.component.html" />
+    <Content Include="src\app\sidenav\sidenav.component.html" />
+    <Content Include="src\app\sidenav\sidenav.component.scss" />
+    <Content Include="src\app\sidenav\sidenav.component.scss" />
+    <Content Include="src\styles.scss" />
+    <Content Include="tsconfig.app.json" />
+    <Content Include="tsconfig.base.json" />
+    <None Include="tsconfig.json" />
+    <Content Include="tsconfig.spec.json" />
+    <Content Include="tslint.json" />
+    <Content Include="README.md" />
+    <None Include="e2e\tsconfig.json" />
+    <Content Include="src\index.html" />
+    <Content Include="src\favicon.ico" />
+    <None Include="src\main.ts" />
+    <None Include="src\polyfills.ts" />
+    <None Include="src\test.ts" />
+    <None Include="e2e\src\app.e2e-spec.ts" />
+    <None Include="e2e\src\app.po.ts" />
+    <Content Include="src\app\app.component.html" />
+    <None Include="src\app\app.component.spec.ts" />
+    <None Include="src\app\app.component.ts" />
+    <None Include="src\app\app.module.ts" />
+    <None Include="src\environments\environment.prod.ts" />
+    <None Include="src\environments\environment.ts" />
+    <Content Include="src\app\allergy\allergy.component.html" />
+    <None Include="src\app\allergy\allergy.component.spec.ts" />
+    <None Include="src\app\allergy\allergy.component.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="e2e" />
+    <Folder Include="e2e\src" />
+    <Folder Include="src" />
+    <Folder Include="src\app" />
+    <Folder Include="src\app\allergy" />
+    <Folder Include="src\app\components\" />
+    <Folder Include="src\app\components\patient-address\" />
+    <Folder Include="src\app\components\patient-alergies\" />
+    <Folder Include="src\app\components\patient-alergies\delete-dialog\" />
+    <Folder Include="src\app\components\patient-contacts\" />
+    <Folder Include="src\app\components\patient-personal-information\" />
+    <Folder Include="src\app\components\patient-phone\" />
+    <Folder Include="src\app\components\patient-problems\" />
+    <Folder Include="src\app\components\simulator-view\" />
+    <Folder Include="src\app\patient-header\" />
+    <Folder Include="src\app\sidenav\" />
+    <Folder Include="src\assets" />
+    <Folder Include="src\environments" />
+    <Folder Include="src\app\enums\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\patient-alergies.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-alergies\patient-alergies.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-contacts\patient-contacts.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-personal-information\patient-personal-information.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-phone\patient-phone.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-phone\patient-phone.component.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-problems\patient-problems.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\patient-problems\patient-problems.component.ts" />
+    <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.ts" />
+    <TypeScriptCompile Include="src\app\md-object-service.service.spec.ts" />
+    <TypeScriptCompile Include="src\app\md-object-service.service.ts" />
+    <TypeScriptCompile Include="src\app\patient-header\patient-header.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\patient-header\patient-header.component.ts" />
+    <TypeScriptCompile Include="src\app\enums\sidebar-menu.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\sidenav\sidenav.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\sidenav\sidenav.component.ts" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

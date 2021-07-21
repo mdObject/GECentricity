@@ -1,0 +1,2 @@
+export const emptyImage: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII===';
+export const simulatorChromeExtensionId = "chgnndkhlnpmfkjnchmnhkfneccghaaf";

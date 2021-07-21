@@ -4,6 +4,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>mdObject</Name>
     <RootNamespace>_MdObject</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -23,9 +24,9 @@
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptToolsVersion>3.9</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.8</TypeScriptToolsVersion>
     <EnableTypeScript>true</EnableTypeScript>
-    <StartWebBrowser>false</StartWebBrowser>
+    <StartWebBrowser>False</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,17 +38,19 @@
     <Folder Include="examples\" />
     <Folder Include="examples\angular.js\" />
     <Folder Include="examples\angular.js\scripts\" />
-    <Folder Include="examples\old\" />
-    <Folder Include="examples\old\scripts\" />
-    <Folder Include="old-data\" />
-    <Folder Include="old-data\scripts\" />
+    <Folder Include="examples\Angular\" />
     <Folder Include="src\" />
     <Folder Include="src\bases\" />
     <Folder Include="src\classes\" />
+    <Folder Include="src\classes\external\" />
+    <Folder Include="src\classes\external\enums\" />
     <Folder Include="src\consts\" />
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
+    <Folder Include="src\fhir\codes\" />
     <Folder Include="src\interfaces\" />
+    <Folder Include="src\fhir\" />
+    <Folder Include="src\simulator\" />
     <Folder Include="src\test\" />
     <Folder Include="src\test\bases\" />
     <Folder Include="src\test\classes\" />
@@ -58,45 +61,32 @@
     <Content Include=".editorconfig" />
     <Content Include=".gitignore" />
     <Content Include=".npmignore" />
+    <Content Include="angular.json" />
     <Content Include="examples\angular.js\index.html" />
-    <Content Include="examples\old\Demo.html" />
-    <Content Include="examples\old\scripts\angular.LICENSE" />
-    <Content Include="examples\old\scripts\bootstrap.LICENSE" />
-    <Content Include="examples\old\scripts\bootstrap.min.css" />
-    <Content Include="examples\old\scripts\prettify.css" />
-    <Content Include="src\LICENSE" />
+    <None Include="examples\angular.js\scripts\mdobject-mdobject.umd.min.js" />
+    <Content Include="examples\angular.js\scripts\mdobject-mdobject.umd.js" />
+    <Content Include="examples\Angular\README.md" />
+    <Content Include="README.md" />
+    <Content Include="src\classes\Allergy.ts">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\index.html" />
+    <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />
-    <Content Include="old-data\Demo.html" />
-    <Content Include="old-data\mdObjectHelp.html" />
-    <Content Include="old-data\scripts\angular.LICENSE" />
-    <Content Include="old-data\scripts\bootstrap.LICENSE" />
-    <Content Include="old-data\scripts\bootstrap.min.css" />
-    <Content Include="old-data\scripts\prettify.css" />
-    <Content Include="old-data\SimulatorXml.html" />
+    <Content Include="examples\mdObjectHelp.html" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
-    <Content Include="src\README.md" />
+    <Content Include="src\tsconfig.app.json" />
+    <Content Include="src\tsconfig.lib.json" />
+    <Content Include="src\tsconfig.lib.prod.json" />
     <Content Include="tsconfig.json" />
     <Content Include="tsconfig.spec.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="examples\angular.js\scripts\bundle.public.min.js" />
-    <Compile Include="examples\angular.js\scripts\DemoController.js" />
-    <Compile Include="examples\old\scripts\angular.min.js" />
-    <Compile Include="examples\old\scripts\bootstrap.min.js" />
-    <Compile Include="examples\old\scripts\DemoController.js" />
-    <Compile Include="examples\old\scripts\jquery-2.1.1.min.js" />
-    <Compile Include="examples\old\scripts\mdObject.js" />
-    <Compile Include="examples\old\scripts\mdObject.min.js" />
-    <Compile Include="old-data\scripts\angular.min.js" />
-    <Compile Include="old-data\scripts\bootstrap.min.js" />
-    <Compile Include="old-data\scripts\DemoController.js" />
-    <Compile Include="old-data\scripts\jquery-2.1.1.min.js" />
-    <Compile Include="old-data\scripts\mdObject.js" />
-    <Compile Include="old-data\scripts\mdObject.min.js" />
-    <Compile Include="webpack.config.js" />
+    <None Include="examples\angular.js\scripts\DemoController.js" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="examples\angular.js\scripts\polyfills.js" />
     <TypeScriptCompile Include="src\bases\ApplicationBase.ts" />
     <TypeScriptCompile Include="src\bases\bases.ts" />
     <TypeScriptCompile Include="src\bases\EmrBase.ts" />
@@ -105,13 +95,70 @@
     <TypeScriptCompile Include="src\classes\AllergyList.ts" />
     <TypeScriptCompile Include="src\classes\AllergyListRemoved.ts" />
     <TypeScriptCompile Include="src\classes\CarePlan.ts" />
-    <TypeScriptCompile Include="src\classes\classes.ts" />
+    <TypeScriptCompile Include="src\classes\index.ts" />
     <TypeScriptCompile Include="src\classes\ClinicalDocument.ts" />
+    <TypeScriptCompile Include="src\classes\external\AllergiesExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\AllergyExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\CodeDetailExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\ElectronicAddressExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\enums\AllergyClassCode.ts" />
+    <TypeScriptCompile Include="src\classes\external\ProblemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\IdentifierExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\IdentifierDomainExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsurancePolicyExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsuranceSetExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\InsuranceSetItemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\MailingAddressExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PayorExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PersonAgeExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PersonNameExternal.ts" />
+    <TypeScriptCompile Include="src\classes\external\PersonExternal.ts" />
+    <TypeScriptCompile Include="src\classes\external\DemographicsExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\Emr.ts" />
     <TypeScriptCompile Include="src\classes\EmrApp.ts" />
     <TypeScriptCompile Include="src\classes\EmrContent.ts" />
     <TypeScriptCompile Include="src\classes\EmrMel.ts" />
     <TypeScriptCompile Include="src\classes\EmrWindow.ts" />
+    <TypeScriptCompile Include="src\classes\external\external.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PrimaryProviderRelationshipExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\PrimaryProviderRelationshipItemExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\classes\external\UserDetailExternal.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\FlowsheetObservation.ts" />
     <TypeScriptCompile Include="src\classes\Immunization.ts" />
     <TypeScriptCompile Include="src\classes\Insurance.ts" />
@@ -126,16 +173,32 @@
     <TypeScriptCompile Include="src\classes\PatientContact.ts" />
     <TypeScriptCompile Include="src\classes\Phone.ts" />
     <TypeScriptCompile Include="src\classes\Problem.ts" />
+    <TypeScriptCompile Include="src\classes\Problems.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\classes\Protocol.ts" />
     <TypeScriptCompile Include="src\classes\ReferringProvider.ts" />
     <TypeScriptCompile Include="src\classes\ReferringProviderPhone.ts" />
     <TypeScriptCompile Include="src\classes\User.ts" />
     <TypeScriptCompile Include="src\classes\Users.ts" />
-    <TypeScriptCompile Include="src\consts\consts.ts" />
+    <TypeScriptCompile Include="src\consts\index.ts" />
     <TypeScriptCompile Include="src\consts\productType.ts" />
+    <TypeScriptCompile Include="src\classes\System.ts" />
+    <TypeScriptCompile Include="src\consts\strings.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\consts\version.ts" />
-    <TypeScriptCompile Include="src\enums\enums.ts" />
+    <TypeScriptCompile Include="src\enums\AllergyClassification.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\enums\AllergyCriticality.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\enums\AllergyReasonForRemoval.ts" />
+    <TypeScriptCompile Include="src\enums\index.ts" />
+    <TypeScriptCompile Include="src\enums\ObjectState.ts" />
     <TypeScriptCompile Include="src\enums\LocationType.ts" />
+    <TypeScriptCompile Include="src\enums\ObjectStatus.ts" />
     <TypeScriptCompile Include="src\enums\UserCallFunction.ts" />
     <TypeScriptCompile Include="src\factories\DocumentVariable.ts" />
     <TypeScriptCompile Include="src\factories\factories.ts" />
@@ -143,16 +206,52 @@
     <TypeScriptCompile Include="src\factories\GetCurrentUser.ts" />
     <TypeScriptCompile Include="src\factories\IsActiveXSupported.ts" />
     <TypeScriptCompile Include="src\factories\StringInternal.ts" />
+    <TypeScriptCompile Include="src\fhir\Address.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Attachment.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\codes\CommunicationCode.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\codes\AdministrativeGenderCode.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\ContactPoint.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\fhir.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\HumanName.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Patient.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Person.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts" />
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />
     <TypeScriptCompile Include="src\interfaces\IArrayAdditionalMethods.ts" />
     <TypeScriptCompile Include="src\interfaces\IItem.ts" />
-    <TypeScriptCompile Include="src\interfaces\interfaces.ts" />
+    <TypeScriptCompile Include="src\interfaces\index.ts" />
     <TypeScriptCompile Include="src\interfaces\IStringInternal.ts" />
     <TypeScriptCompile Include="src\public.ts" />
+    <TypeScriptCompile Include="src\simulator\ExtensionExternalSimulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\simulator\simulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\bases\EmrBase.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Address.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\Allergies.spec.ts" />
+    <TypeScriptCompile Include="src\test\classes\Allergy.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\classes\AllergyList.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\AllergyListRemoved.spec.ts" />
     <TypeScriptCompile Include="src\test\classes\CarePlan.spec.ts" />
@@ -188,6 +287,8 @@
     <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\IsActiveXSupported.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\StringInternal.spec.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockEmrBase.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockExternal.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockDocument.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockElement.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockEmrApp.ts" />
@@ -197,6 +298,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\mockResultEmr.ts" />
     <TypeScriptCompile Include="src\test\mocks\mocks.ts" />
+    <TypeScriptCompile Include="src\test\mocks\MockSimulator.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\MockWindow.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

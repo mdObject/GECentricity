@@ -1,0 +1,83 @@
+{{ '{' }}
+<br />
+Demographics:&#x27;<span>{{ demographics }}</span>&#x27;,
+<br />
+Allergies:&#x27;<span>{{ allergies }}</span>&#x27;,
+<br />
+{{formater('{PATIENT.PATIENTID}')}}:&#x27;<span>{{patient?.patientId}}</span>&#x27;,
+<br />
+{{formater('{find("patient", "PID")}')}}:&#x27;<span>{{patient?.pid}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.RACE}')}}:&#x27;<span>{{patient?.race}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.MARITALSTATUS}')}}:&#x27;<span>{{patient?.maritalStatus}}</span>&#x27;,
+<br />
+
+{{formater('{PATIENT.EMAIL}')}}:&#x27;<span>{{patient?.email}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.CONTACTBY}')}}:&#x27;<span>{{patient?.contactBy}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.EMPLSTATUS}')}}:&#x27;<span>{{patient?.employmentStatus}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.PSTATUS}')}}:&#x27;<span>{{patient?.clinicStatus}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.PCP}')}}:&#x27;<span>{{patient?.primaryCarePhysicianName}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.REGNOTE}')}}:&#x27;<span>{{patient?.registrationNote}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.MEDRECNO}')}}:&#x27;<span>{{patient?.medicalRecordId}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.EXTERNALID}')}}:&#x27;<span>{{patient?.externalId}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.PRINTID}')}}:&#x27;<span>{{patient?.printId}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.SOCSECNO}')}}:&#x27;<span>{{patient?.ssn}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.FIRSTNAME}')}}:&#x27;<span>{{patient?.firstName}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.LASTNAME}')}}:&#x27;<span>{{patient?.lastName}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.MIDDLENAME}')}}:&#x27;<span>{{patient?.middleName}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.LABELNAME}')}}:&#x27;<span>{{patient?.labelName}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.TITLE}')}}:&#x27;<span>{{patient?.namePrefix}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.ENTITLEMENTS}')}}:&#x27;<span>{{patient?.nameSuffix}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.SEX}')}}:&#x27;<span>{{patient?.sex}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.ETHNICITY}')}}:&#x27;<span>{{patient?.ethnicity}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.DATEOFBIRTH}')}}:&#x27;<span>{{patient?.dateOfBirth}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.DATEOFDEATH}')}}:&#x27;<span>{{patient?.dateOfDeath}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.CONTACTS}')}}:&#x27;<span>{{patient?.contacts.toMelString()}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.ALTPHONE}')}}:&#x27;<span>{{patient?.phone.home}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.WORKPHONE}')}}:&#x27;<span>{{businessPhone}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.CELLPHONE}')}}:&#x27;<span>{{mobilePhone}}</span>&#x27;,
+<br />
+{{formater('{PATIENT.FAXPHONE}')}}:&#x27;<span>{{fax}}</span>&#x27;,
+<br />
+{{formater('{MEL_LIST_CARE_PLAN("delim","all","all")}')}}:&#x27;<span>{{patient?.carePlans.toMelString()}}</span>&#x27;,
+<br />
+<!--{{formater('{PROB_AFTER("delimited","dat","com")}')}}:&#x27;<span>{{patient?.problems.toMelString()}}</span>&#x27;,
+<br />-->
+{{formater('{ALL_NEW("delimited")}')}}:&#x27;<span>{{patient?.allergies._added}}</span>&#x27;,
+<br />
+{{formater('{ALL_PRIOR("delimited")}')}}:&#x27;<span>{{patient?.allergies._current}}</span>&#x27;,
+<br />
+{{formater('{ALL_REMOVED("delimited")}')}}:&#x27;<span>{{patient?.allergies._removed}}</span>&#x27;,
+<br />
+{{formater('{PROB_PRIOR("delimited","dat","com")}')}}:&#x27;<span>{{currentProblemMelData}}</span>&#x27;,
+<br />
+{{formater('{PROB_NEW("delimited","dat","com")}')}}:&#x27;<span>{{newProblemMelData}}</span>&#x27;,
+<br />
+
+{{ '}' }}
+<br />
+<br />

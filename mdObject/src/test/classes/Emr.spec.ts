@@ -1,10 +1,13 @@
-import { Emr, EmrWindow, EmrMel, EmrApp } from '../../classes/classes';
+import { Emr, EmrWindow, EmrMel, EmrApp, Users, Patient, ClinicalDocument, ObsTermsMap } from '../../classes';
 import { MockWindow, mockResultEmr } from '../mocks/mocks';
+import { MockSimulator } from '../mocks/MockSimulator';
 
 describe('Class: Emr', () => {
 
     let component: Emr;
     let _window = new MockWindow();
+    let _simulator = new MockSimulator();
+
     let result: string = mockResultEmr;
     let name: string = 'qwe';
 
@@ -53,13 +56,27 @@ describe('Class: Emr', () => {
             it('emrApp', () => {
                 expect(component.emrApp instanceof EmrApp).toEqual(true);
             });
+
+            it('check users', () => {
+                expect(component.users instanceof Users).toEqual(true);
+            });
+            it('check patient', () => {
+                expect(component.patient instanceof Patient).toEqual(true);
+            });
+            it('check gpiCode', () => {
+                expect(component.clinicalDocument instanceof ClinicalDocument).toEqual(true);
+            });
+            it('check obsTermsMap', () => {
+                expect(component.obsTermsMap instanceof ObsTermsMap).toEqual(true);
+            });
+
         })
         describe('from window.opener._melOpener and window.opener._appOpener', () => {
             beforeAll(() => {
                 component = new Emr(_window, _window.document);
                 _window.opener = {
-                    _melOpener: new EmrMel(_window),
-                    _appOpener: new EmrApp(_window)
+                    _melOpener: new EmrMel(_window, _simulator),
+                    _appOpener: new EmrApp(_window, _simulator)
                 }
             });
 

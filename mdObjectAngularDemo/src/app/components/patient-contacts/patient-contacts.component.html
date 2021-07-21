@@ -1,0 +1,45 @@
+<h4>Patient Contacts</h4>
+<table class="table table-hover bg-white border shadow-sm mb-3">
+  <thead class="bg-light">
+    <tr>
+      <th scope="col" class="align-middle">Name</th>
+      <th scope="col" class="align-middle">Type</th>
+      <th scope="col" class="align-middle">Phone</th>
+      <th scope="col" class="align-middle">Phone Type</th>
+      <th scope="col" class="align-middle">Address1</th>
+      <th scope="col" class="align-middle">Address2</th>
+      <th scope="col" class="align-middle">City</th>
+      <th scope="col" class="align-middle">State</th>
+      <th scope="col" class="text-center align-middle">Zip</th>
+      <th scope="col" class="align-middle">Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contact of patient?.contacts">
+      <td class="align-middle" scope="row">{{contact.name}}</td>
+      <td class="align-middle">{{contact.type}}</td>
+      <td class="align-middle">{{contact.phone}}</td>
+      <td class="align-middle">{{contact.phoneType}}</td>
+      <td class="align-middle">{{contact.address1}}</td>
+      <td class="align-middle">{{contact.address2}}</td>
+      <td class="align-middle">{{contact.city}}</td>
+      <td class="align-middle">{{contact.state}}</td>
+      <td class="text-center align-middle">{{contact.zip}}</td>
+      <td class="align-middle">{{contact.country}}</td>
+    </tr>
+  </tbody>
+</table>
+<!--<div class="card mb-3 shadow-sm">
+  <div class="card-body row card-table" *ngFor="let contact of patient?.contacts">
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Name:</strong><br />{{contact.name}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Type:</strong><br />{{contact.type}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone:</strong><br />{{contact.phone}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Phone Type:</strong><br />{{contact.phoneType}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{contact.address1}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{contact.address2}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{contact.city}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{contact.state}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{contact.zip}}</div>
+      <div class="card-text col-lg-3 col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{contact.country}}</div>
+    </div>
+</div>-->

@@ -1,15 +1,14 @@
 /// <reference path="../../../node_modules/@types/jest/index.d.ts" />
 
 import { EmrBase } from '../../bases/bases';
-import { MockWindow } from '../mocks/mocks';
+import { MockEmrBase } from '../mocks/MockEmrBase';
 
 describe('Base: EmrBase', () => {
 
     let base: EmrBase;
-    let _window = new MockWindow();
 
     beforeEach(() => {
-        base = new EmrBase(_window);
+        base = new MockEmrBase();
     });
 
     it('noData is equal', () => {
@@ -21,6 +20,6 @@ describe('Base: EmrBase', () => {
     });
 
     it('errorMessage is undefined', () => {
-        expect(typeof base.errorMessage == 'undefined').toEqual(true);
+        expect(typeof (base.errorMessage) === 'undefined').toEqual(true);
     });
 })

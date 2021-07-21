@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;600;700;900&display=swap');
+/** fontawesome */
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Heebo', sans-serif;
+}
+.card {
+    overflow-x: hidden;
+}
+.card-table:nth-child(even){
+  background-color: #f8f9fa;
+}

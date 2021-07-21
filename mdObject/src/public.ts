@@ -1,7 +1,7 @@
-import { MdObject } from './classes/classes';
+import { MdObject } from './classes';
 
 (function (window) {
-    var mdObject;
+    var mdObject: MdObject;
     try {
         mdObject = new MdObject(window, window.document);
         window['mdObject'] = mdObject;
@@ -11,3 +11,7 @@ import { MdObject } from './classes/classes';
     }
     return mdObject;
 })(window);
+
+export * from './classes';
+export * from './enums';
+export * from './interfaces';

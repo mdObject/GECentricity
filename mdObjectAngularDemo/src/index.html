@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MdObjectAngularDemo</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="PRAGMA" content="NO-CACHE" />
+  <meta http-equiv="CACHE-CONTROL" content="no-store,max-age=0,must-revalidate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script>
+    var w
+    function DemoClick() {
+      var features = [
+        "menubar=yes",
+        "resizable=yes",
+        "scrollbars=yes",
+        "status=yes",
+        "titlebar=yes",
+        "toolbar=yes"
+      ].join(",");
+
+      w = window.open(
+        window.location,
+        "_blank",
+        features);
+    }
+  </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

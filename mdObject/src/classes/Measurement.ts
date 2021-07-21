@@ -1,4 +1,5 @@
-import { ObsTermsMap, EmrMel } from './classes';
+import { ObsTermsMap } from './ObsTermsMap';
+import { EmrMel } from './EmrMel';
 
 export class Measurement implements ObsTermsMap {
 

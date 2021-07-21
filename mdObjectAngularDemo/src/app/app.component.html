@@ -1,0 +1,35 @@
+<mat-drawer-container autosize="true" class="vh-100">
+  <mat-drawer #drawer mode="side" opened="true" [class.opened]="!isExpanded" class="py-3 shadow-sm bg-dark">
+    <a class="btn btn-link text-white" (click)="isExpanded = !isExpanded">
+      <i class="fas fa-angle-double-right" *ngIf="!isExpanded"></i>
+      <i class="fas fa-angle-double-left" *ngIf="isExpanded"></i>
+    </a>
+    <span *ngIf="!isExpanded">
+      <app-sidenav [(sideMenu)]="sideMenu"></app-sidenav>
+    </span>
+  </mat-drawer>
+  <mat-drawer-content>
+    <main role="main" class="p-4">
+      <div class="d-flex justify-content-center flex-column">
+        <app-patient-header></app-patient-header>
+
+        <container-element [ngSwitch]="sideMenu">
+          <app-patient-personal-information *ngSwitchCase="SidebarMenu.PatientInfo"></app-patient-personal-information>
+          <app-patient-address *ngSwitchCase="SidebarMenu.PatientAddress"></app-patient-address>
+          <app-patient-contacts *ngSwitchCase="SidebarMenu.PatientContact"></app-patient-contacts>
+          <app-patient-phone *ngSwitchCase="SidebarMenu.PatientPhone"></app-patient-phone>
+          <app-patient-problems *ngSwitchCase="SidebarMenu.Problems"></app-patient-problems>
+          <app-allergy *ngSwitchCase="SidebarMenu.Allergy"></app-allergy>
+          <app-simulator-view *ngSwitchCase="SidebarMenu.Simulator"></app-simulator-view>
+          <app-log *ngSwitchCase="SidebarMenu.Log"></app-log>
+        </container-element>
+
+        <div class="content">
+          <!-- Resources -->
+          <!-- Footer -->
+          <a href="#" class="nav-link" onclick='DemoClick()'>Click here to open this page in Internet Explorer (IE)</a>
+        </div>
+      </div>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,12 @@
+<h4>Patient Address</h4>
+<div class="card mb-3 shadow-sm">
+  <div class="card-body row">
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Address1:</strong><br />{{(patient | async)?.address.address1}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Address2:</strong><br />{{(patient | async)?.address.address2}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>City:</strong><br />{{(patient | async)?.address.city}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>State:</strong><br />{{(patient | async)?.address.state}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Zip:</strong><br />{{(patient | async)?.address.postCode}}</div>
+      <div class="card-text col-md-4 col-sm-6 mb-3"><strong>Country:</strong><br />{{(patient | async)?.address.country}}</div>
+    </div>
+</div>
+

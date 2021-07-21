@@ -1,4 +1,4 @@
-import { Address } from '../../classes/classes';
+import { Address } from '../../classes';
 import { MockEmrMel, mockResultEmr } from '../mocks/mocks';
 
 describe('Class: Address', () => {

@@ -1,4 +1,4 @@
-import { EmrWindow } from '../../classes/classes';
+import { EmrWindow } from '../../classes';
 import { MockEmrMel, MockEmrApp, MockWindow } from '../mocks/mocks';
 
 describe('Class: EmrWindow', () => {

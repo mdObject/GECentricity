@@ -2,18 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="mdObjectDemo">
 <head>
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
     <meta http-equiv="PRAGMA" content="NO-CACHE" />
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
 
     <!-- CDN -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom -->
-    <script src="scripts/bundle.public.min.js" type="text/javascript"></script>
+    <!--<script src="scripts/bundle.public.min.js" type="text/javascript"></script>-->
+    <script src="scripts/ts-polyfill.min.js" type="text/javascript"></script>
+    <script src="scripts/polyfills.js" type="text/javascript"></script>
+    <script src="scripts/mdobject-mdobject.umd.min.js" type="text/javascript"></script>
+    <!--<script src="scripts/mdobject-mdobject.umd.js" type="text/javascript"></script>-->
     <script src="scripts/DemoController.js" type="text/javascript"></script>
     <script>
         var w
@@ -32,34 +36,27 @@
                 "_blank",
                 features);
         }
+
+
     </script>
 </head>
 <body ng-controller="DemoController">
 
     <div class="container">
         <div class="jumbotron">
-            <h1>  GE Centricity $mdObject Demo 2</h1>
+            <h1>mdObject Features Demo</h1>
             <p>
-                This is a template for a simple demo of $mdObject functionality.
+                This is a template for a simple demo of mdObject functionality.
                 Use it as a starting point to create something more unique.
             </p>
             Click <a href="#" onclick='DemoClick()'>here to open this page in Internet Explorer (IE)</a>
-            <p>$mdObject version: <span ng-bind="version"></span></p>
+            <p>mdObject version: <span ng-bind="version"></span></p>
         </div>
-
-        <!--<p>
-        ----------------------------------------------------------------------
-    </p>
-    <p>
-        !{{mdObject}}!
-    </p>
-    <p>
-        ----------------------------------------------------------------------
-    </p>-->
 
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Patient</h3>
+                <img style="width:100px;height:100px;border:1px solid #000;" ng-src="{{patient.patientPicture}}" />
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -202,7 +199,13 @@
                     <div class="col-sm-3">Primary Care Physician Name:</div>
                     <div class="col-sm-3"><span ng-bind="patient.primaryCarePhysicianName"></span></div>
                     <div class="col-sm-3">Registration Note:</div>
-                    <div class="col-sm-3"><span ng-bind="patient.registrationNote"></div>
+                    <div class="col-sm-3"><span ng-bind="patient.registrationNote"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">Last Office Visit:</div>
+                    <div class="col-sm-3"><span ng-bind="patient.lastOfficeVisit|date"></span></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"><span ng-bind=""></span></div>
                 </div>
                 <br />
                 <div class="row">
@@ -912,8 +915,8 @@
                 <div class="row">
                     <div class="col-sm-3">Enterprise Id:</div>
                     <div class="col-sm-3"><span ng-bind="emr.enterpriseId"></span></div>
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-3"><span></span></div>
+                    <div class="col-sm-3">BaseServicesUrl:</div>
+                    <div class="col-sm-3"><span ng-bind="emr.baseServicesUrl"></span></div>
                 </div>
 
             </div>

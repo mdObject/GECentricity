@@ -1,0 +1,61 @@
+<table class="table table-hover bg-white border shadow-sm mb-3">
+  <thead class="bg-light">
+    <tr>
+      <th scope="col" class="align-middle">Name</th>
+      <th scope="col" class="align-middle">Description</th>
+      <th scope="col" class="align-middle">Category</th>
+      <th scope="col" class="text-center align-middle">Criticality</th>
+      <th scope="col" class="text-center align-middle">Onset Date</th>
+      <th scope="col" class="text-center align-middle">Stop Date</th>
+      <th scope="col" class="text-center align-middle">Edit</th>
+      <th scope="col" class="text-center align-middle">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let allergy of allergyList; index as i">
+      <td class="align-middle" scope="row">{{ allergy?.name }}</td>
+      <td class="align-middle">{{ allergy?.description }}</td>
+      <td class="align-middle">{{ allergy?.classification }}</td>
+      <td class="text-center align-middle">{{ allergy?.severity  | titlecase }}</td>
+      <td class="text-center align-middle">{{ allergy?.onSetDate  | date: 'MM/dd/yyyy' }}</td>
+      <td class="text-center align-middle">{{ allergy?.stopDate  | date: 'MM/dd/yyyy'}}</td>
+      <td class="text-center align-middle">
+        <button (click)="edit(i)" class="btn btn-link text-info p-0 position-relative" title="Edit">
+          <i class="far fa-edit h5"></i>
+        </button>
+      </td>
+      <td class="text-center align-middle">
+        <button (click)="openDeleteDialog(i)" class="btn btn-link text-danger p-0 position-relative" title="Delete">
+          <i class="far fa-trash-alt h5"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--<div class="card mb-3 shadow-sm">
+  <div class="card-body row card-table d-flex flex-wrap" *ngFor="let allergy of allergyList; index as i">
+    <div class="card-text col mb-3">
+      <strong>Name:</strong><br />{{ allergy.name }}
+    </div>
+    <div class="card-text col mb-3">
+      <strong>Description:</strong><br />{{ allergy.description }}
+    </div>
+    <div class="card-text col mb-3">
+      <strong>Category:</strong><br />{{ allergy.classification }}
+    </div>
+    <div class="card-text col mb-3">
+      <strong>Onset Date:</strong><br />{{ allergy.onSetDate }}
+    </div>
+    <div class="card-text col mb-3">
+      <strong>Criticality:</strong><br />{{ allergy.criticalIndicator | titlecase }}
+    </div>
+    <div class="card-text col mb-3">
+      <strong>Stop Date:</strong><br />{{ allergy.stopDate }}
+    </div>
+    <div class="card-text col d-flex align-items-start justify-content-end">
+      <button (click)="edit(i)" class="btn btn-info">Edit</button>
+      <button (click)="delete(i)" class="btn btn-danger ml-3">Delete</button>
+    </div>
+  </div>
+</div>-->

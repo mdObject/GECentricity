@@ -1,22 +1,27 @@
-import { EmrBase } from '../bases/bases'
-import { GetActiveXErrorMessage } from '../factories/factories';
+import { System } from './System';
+import { GetActiveXErrorMessage, IsActiveXSupported } from '../factories/factories';
+import { EmrBase } from '../bases/EmrBase';
+import { Simulator } from '../simulator/simulator';
 
 export class EmrMel extends EmrBase {
 
     private melObjectName = 'GE.CPO.EMR.80.MEL';
     private melObjectNameSimulator = 'GE.CPO.EMR.80.MEL.SIMULATOR';
     private mel;
+    public errorMessage: string;
+    readonly noData: string = 'Data Access Error';
 
     constructor(
-        public _window: any
+        public _window: any,
+        public _simulator: Simulator
     ) {
-        super(_window);
+        super(_window, _simulator);
 
         this.initialization();
     }
 
     private initialization = (): void => {
-        if (this.isActiveXSupported) {
+        if (IsActiveXSupported(this._window)) {
             try {
                 this.mel = new this._window.ActiveXObject(this.melObjectName);
             } catch (e) {
@@ -26,8 +31,9 @@ export class EmrMel extends EmrBase {
             if (this.errorMessage != null) {
                 try {
                     this.mel = new this._window.ActiveXObject(this.melObjectNameSimulator);
+                    System.isSimulator = true;
                 } catch (e) {
-                    alert(this.errorMessage);
+                    console.log(this.errorMessage);
                 }
             }
         }
@@ -35,7 +41,7 @@ export class EmrMel extends EmrBase {
 
     // Implements MEL eval 
     melFunc = (data: string): string => {
-        return (this.mel == null) ? this.noData : this.mel.eval(data);
+        return (this.external) ? this.external.EvaluateMel(data, false) : (this.mel) ? this.mel.eval(data) :  this.noData;
     }
 
     saveObservation = (obs: string, value: string, date: string): string => {
@@ -49,4 +55,9 @@ export class EmrMel extends EmrBase {
     showUrlDialog = (url: string): void => {
         this.melFunc('{SHOWHTMLFORM("' + url + '","test")}');
     }
+
+    get externalSimulator(): any {
+        return (this.mel == null) ? this.noData : this.mel.external;
+    }
+
 }

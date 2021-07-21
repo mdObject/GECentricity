@@ -1,0 +1,80 @@
+<h4>Allergy</h4>
+<app-patient-alergies
+  [addedAllergy]="addedAllergy"
+  (handleEdit)="edit($event)"
+  (handleDelete)="delete($event)"
+></app-patient-alergies>
+
+<div class="card mb-3 shadow-sm">
+  <div class="card-body row d-flex justify-content-end">
+    <div class="card-text col-md-4 col-sm-6 mb-3">
+      <label for="name" class="visually-hidden">Name:</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="name"
+        required
+        [disabled]="allergy.state === 2"
+        [(ngModel)]="allergy.name"
+        name="name"
+      >
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3 input-group">
+      <label for="onSetDate" class="visually-hidden d-block w-100">OnSet Date:</label>
+      <input class="form-control form-control-lg rounded" [matDatepicker]="setPicker" [(ngModel)]="allergy.onSetDate" id="onSetDate">
+      <mat-datepicker-toggle matSuffix [for]="setPicker"></mat-datepicker-toggle>
+      <mat-datepicker #setPicker></mat-datepicker>
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3 input-group">
+      <label for="stopDate" class="visually-hidden d-block w-100">Stop Date:</label>
+      <input class="form-control form-control-lg rounded" [matDatepicker]="stopPicker" [(ngModel)]="allergy.stopDate" id="stopDate">
+      <mat-datepicker-toggle matSuffix [for]="stopPicker"></mat-datepicker-toggle>
+      <mat-datepicker #stopPicker></mat-datepicker>
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3">
+      <label for="reaction" class="visually-hidden">Reaction:</label>
+      <input type="text" class="form-control form-control-lg" id="reaction" required [(ngModel)]="allergy.description" name="reaction">
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3">
+      <label for="classification" class="visually-hidden">Category:</label>
+      <select [(ngModel)]="allergy.classification" class="form-control form-control-lg" id="classification">
+        <option *ngFor="let item of allergyClassification | enumToArray" [value]="item.value">
+          {{ item.name | titlecase }}
+        </option>
+      </select>
+    </div>
+    <div class="card-text col-md-4 col-sm-6 mb-3">
+      <label for="criticality" class="visually-hidden">Criticality:</label>
+      <select [(ngModel)]="allergy.severity" class="form-control form-control-lg" id="criticality">
+        <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.name | titlecase">
+          {{ item.name | titlecase }}
+        </option>
+      </select>
+    </div>
+      <div class="card-text col-md-4 col-sm-6 mb-3 d-flex align-items-end">
+        <button
+          *ngIf="allergy.state === 1; else elseBlock"
+          class="btn btn-lg btn-primary w-100"
+          type="submit"
+          id="add"
+          (click)="handleAdd()"
+        >Add Allergy</button>
+
+        <ng-template #elseBlock>
+          <button
+            class="btn btn-lg btn-info w-100"
+            type="submit"
+            id="save"
+            (click)="handleEdit()"
+          >Save</button>
+
+          <button
+            class="btn btn-lg btn-light w-100 ml-3"
+            type="submit"
+            id="cancel"
+            (click)="cancel()"
+          >Cancel</button>
+        </ng-template>
+      </div>
+  </div>
+</div>

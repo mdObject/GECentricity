@@ -1,5 +1,5 @@
-import { Patient, Measurements, Allergies, ReferringProvider, Phone, Address, Emr } from '../../classes/classes';
-import { MockEmrMel, mockResultEmr, MockWindow, mockResultFlowsheet } from '../mocks/mocks';
+import { Patient, Allergies, ReferringProvider, Phone, Address } from '../../classes';
+import { MockEmrMel, mockResultEmr, mockResultFlowsheet } from '../mocks/mocks';
 
 describe('Class: Patient', () => {
 
@@ -7,14 +7,11 @@ describe('Class: Patient', () => {
     let mockEmrMel = new MockEmrMel();
     let result: string = mockResultEmr;
     let resultFlowsheet: string = mockResultFlowsheet;
-    let _window = new MockWindow();
-    let weight = '1';
-    let height = '2';
     let name = 'name';
 
     describe('get from cache', () => {
         beforeAll(() => {
-            component = new Patient(weight, height, _window, _window.document, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             component.patientId;
             component.pid;
             component.medicalRecordId;
@@ -86,8 +83,7 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).not.toHaveBeenCalled(); })
         it('problems', () => {
             let _result = component.problems;
-            expect(Array.isArray(_result)).toEqual(true);
-            expect(_result.length).toEqual(1);
+            expect(_result.length).toEqual(2);
             expect(_result.tag).toEqual('PROB_AFTER');
             expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
         });
@@ -125,7 +121,7 @@ describe('Class: Patient', () => {
 
     describe('get from mel', () => {
         beforeEach(() => {
-            component = new Patient(weight, height, _window, _window.document, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             spyOn(mockEmrMel, 'melFunc')
                 .and
                 .returnValue(result);
@@ -165,11 +161,8 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PATIENT.PCP}'); })
         it('problems', () => {
             let _result = component.problems;
-            expect(Array.isArray(_result)).toEqual(true);
-            expect(_result.length).toEqual(1);
+            expect(_result.length).toEqual(2);
             expect(_result.tag).toEqual('PROB_AFTER');
-            expect(_result.toMelString()).toEqual(result);
-            expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PROB_AFTER("delimited","dat","com")}');
         });
         it('protocols', () => {
             let _result = component.protocols;
@@ -212,17 +205,15 @@ describe('Class: Patient', () => {
     });
 
     describe('check', () => {
-        it('measurements', () => { expect(component.measurements instanceof Measurements).toEqual(true); })
         it('allergies', () => { expect(component.allergies instanceof Allergies).toEqual(true); })
         it('referringProvider', () => { expect(component.referringProvider instanceof ReferringProvider).toEqual(true); })
         it('phone', () => { expect(component.phone instanceof Phone).toEqual(true); })
         it('address', () => { expect(component.address instanceof Address).toEqual(true); })
-        it('emr', () => { expect(component.emr instanceof Emr).toEqual(true); })
     })
 
     describe('methods', () => {
         beforeEach(() => {
-            component = new Patient(weight, height, _window, _window.document, mockEmrMel as any);
+            component = new Patient(mockEmrMel as any);
             
         });
 
@@ -287,7 +278,5 @@ describe('Class: Patient', () => {
                 expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{GET_FLOWSHEET_VALUES("' + resultFlowsheet + '","DELIM")}');
             })
         })
-
-
     })
 })

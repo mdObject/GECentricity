@@ -1,7 +1,9 @@
-import { Location, EmrMel } from '../classes/classes';
-import { LocationType } from '../enums/enums';
+import { Location } from './Location';
+import { EmrMel } from './EmrMel';
+import { LocationType } from '../enums';
 import { DocumentVariable } from '../factories/factories';
-import { IArrayAdditionalMethods, IItem } from '../interfaces/interfaces';
+import { IArrayAdditionalMethods, IItem } from '../interfaces';
+import { Emr } from './Emr';
 
 export class ClinicalDocument {
 
@@ -18,7 +20,8 @@ export class ClinicalDocument {
     private _userLoginName: string;
 
     constructor(
-        public _mel: EmrMel
+        public _mel: EmrMel,
+        public _emr?: Emr
     ) { }
 
     private save = (): void => {
@@ -68,6 +71,11 @@ export class ClinicalDocument {
 
     get did() {
         this._did = (this._did != null) ? this._did : this._mel.melFunc('{find("DOCUMENT","DID")}');
+        return this._did;
+    }
+
+    async didAsync(): Promise<string> {
+        this._did = (this._did != null) ? this._did : await this._emr.melFuncAsync('{find("DOCUMENT","DID")}');
         return this._did;
     }
 
