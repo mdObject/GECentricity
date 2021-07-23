@@ -3,6 +3,8 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
 	Fixed simulator validation.
+	Added emrContentsAsync in Emr.
+	Added EmrContents an array of EmrContent.
 
 ## Release 2.0.0-alpha.2.1
 	* Fixed issue with compatability with the V20 version

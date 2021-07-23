@@ -10,7 +10,7 @@ mdObject For Centricity
 [![npm version](https://img.shields.io/npm/v/%40mdobject/mdobject?color=008000&label=npm%20package)](https://www.npmjs.com/package/%40mdobject/mdobject)
 [![npm downloads](https://img.shields.io/npm/dm/%40mdobject/mdobject.svg?color=008000&label=npm%20downloads)](https://www.npmjs.com/package/%40mdobject/mdobject)
 
-
+See the [![CHANGELOG.md](./CHANGELOG.md)] for details of the changes in this release. 
 
 Centricity is a brand of healthcare IT software solutions from GE Healthcare, a division of General Electric.
 

@@ -12,6 +12,7 @@ import { ClinicalDocument } from './ClinicalDocument';
 import { LocationType, UserCallFunction } from '../enums'
 import { ObsTermsMap } from './ObsTermsMap';
 import { AllergiesExternal } from './external/AllergiesExternal';
+import { EmrContents } from './EmrContents';
 
 export class Emr {
 
@@ -89,6 +90,12 @@ export class Emr {
     // this is emrWindow as modal's window
     get emrWindow() {
         return this._emrWindow;
+    }
+
+    async emrContentsAsync(name: string):Promise<EmrContents> {
+        let content = new EmrContents();
+        await content.loadAsync(name, this.emrMel, this._window);
+        return content;
     }
 
     melContent = (name: string) => {
