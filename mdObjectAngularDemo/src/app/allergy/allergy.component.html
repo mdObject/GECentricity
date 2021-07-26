@@ -45,8 +45,8 @@
     </div>
     <div class="card-text col-md-4 col-sm-6 mb-3">
       <label for="criticality" class="visually-hidden">Criticality:</label>
-      <select [(ngModel)]="allergy.severity" class="form-control form-control-lg" id="criticality">
-        <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.name | titlecase">
+      <select [(ngModel)]="allergy.criticalIndicator" class="form-control form-control-lg" id="criticality">
+        <option *ngFor="let item of allergyCriticality | enumToArray" [value]="item.value | titlecase">
           {{ item.name | titlecase }}
         </option>
       </select>

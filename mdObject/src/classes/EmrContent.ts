@@ -36,6 +36,7 @@ export class EmrContent {
     }
 
     save = (encodeValue: string): void => {
+        console.log(encodeValue);
         if (this.isNew) {
             this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString(encodeValue) + '")}');
             this.isNew = false;

@@ -16,9 +16,9 @@
       <td class="align-middle" scope="row">{{ allergy?.name }}</td>
       <td class="align-middle">{{ allergy?.description }}</td>
       <td class="align-middle">{{ allergy?.classification }}</td>
-      <td class="text-center align-middle">{{ allergy?.severity  | titlecase }}</td>
-      <td class="text-center align-middle">{{ allergy?.onSetDate  | date: 'MM/dd/yyyy' }}</td>
-      <td class="text-center align-middle">{{ allergy?.stopDate  | date: 'MM/dd/yyyy'}}</td>
+      <td class="text-center align-middle">{{ allergy?.criticalIndicator | titlecase }}</td>
+      <td class="text-center align-middle">{{ allergy?.onSetDate | date: 'MM/dd/yyyy' }}</td>
+      <td class="text-center align-middle">{{ allergy?.stopDate | date: 'MM/dd/yyyy'}}</td>
       <td class="text-center align-middle">
         <button (click)="edit(i)" class="btn btn-link text-info p-0 position-relative" title="Edit">
           <i class="far fa-edit h5"></i>

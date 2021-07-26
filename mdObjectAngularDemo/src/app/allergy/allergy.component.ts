@@ -33,9 +33,9 @@ export class AllergyComponent implements OnInit {
   }
 
   handleAdd = (): void => {
+    this.allergy.allergyId = Math.floor(Math.random() * 100000).toString();
     this.addedAllergy = {
       ...this.allergy,
-      allergyId: Math.floor(Math.random() * 100000).toString(),
       type: 'add'
     };
 

@@ -116,5 +116,8 @@
       }
     }
   },
-  "defaultProject": "mdobject-lib"
+  "defaultProject": "mdobject-lib",
+  "cli": {
+    "analytics": false
+  }
 }

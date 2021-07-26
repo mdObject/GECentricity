@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.0.9",
+    "@angular/animations": "~10.0.6",
     "@angular/cdk": "^10.1.3",
     "@angular/common": "~10.0.6",
     "@angular/compiler": "~10.0.6",
@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@mdobject/mdobject": "^2.0.0-alpha.2.1",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.2.0",

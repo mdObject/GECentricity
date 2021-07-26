@@ -54,6 +54,7 @@ export class PatientAlergiesComponent implements OnInit, OnChanges {
       this.removedArray = e[3];
 
       this.allergyList = e[1].concat(e[2]);
+      console.log(this.allergyList);
     });
   }
 

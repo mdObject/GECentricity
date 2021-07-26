@@ -104,6 +104,7 @@
                     _this._unk5;
             };
             this.save = function (encodeValue) {
+                console.log(encodeValue);
                 if (_this.isNew) {
                     _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
                     _this.isNew = false;
@@ -395,9 +396,13 @@
 
     var AllergyList = /** @class */ (function () {
         function AllergyList(_value) {
+            var _this = this;
             this._value = _value;
             this.data = (this._value == null) ? [] : this._value.split('^');
-            this.name = (this.data.length > 0) ? this.data[0] : '';
+            this.name = (function () {
+                console.log(_this._value);
+                return (_this.data.length > 0);
+            }) ? this.data[0] : '';
             this.onSetDate = StringInternal((this.data.length > 1) ? this.data[1] : '').toDate();
             this.criticalIndicator = (this.data.length > 2) ? this.data[2] : '';
             this.classification = (this.data.length > 3) ? this.data[3] : '';
@@ -3589,14 +3594,19 @@
             };
             this.sendMessage = function (editorExtensionId, data) { return new Promise(function (resolve, reject) {
                 if (typeof (chrome) !== 'undefined') {
-                    chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
-                        if (response) {
-                            resolve(response);
-                        }
-                        else {
-                            resolve(null);
-                        }
-                    });
+                    if (typeof (chrome.runtime) !== 'undefined') {
+                        chrome.runtime.sendMessage(editorExtensionId, data, function (response) {
+                            if (typeof (response) !== 'undefined') {
+                                resolve(response);
+                            }
+                            else {
+                                resolve(null);
+                            }
+                        });
+                    }
+                    else {
+                        reject('unsupported');
+                    }
                 }
                 else {
                     reject('unsupported');
@@ -3903,6 +3913,62 @@
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     };
+    var EmrContents = /** @class */ (function (_super) {
+        __extends(EmrContents, _super);
+        function EmrContents() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            _this._isLoaded = false;
+            _this.loadMelDataToList = function (data, mel, win) {
+                var dataArray = StringInternal(data).toList();
+                for (var index = 0; index < dataArray.length; index++) {
+                    _this.push(new EmrContent(dataArray[index], mel, win));
+                }
+            };
+            return _this;
+        }
+        EmrContents.prototype.loadAsync = function (name, mel, win) {
+            return __awaiter$7(this, void 0, void 0, function () {
+                var _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            if (!(!this._isLoaded || this._name !== name)) return [3 /*break*/, 2];
+                            this._name = name;
+                            this.tag = 'MEL_GET_CONTENT';
+                            _a = this;
+                            return [4 /*yield*/, mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}')];
+                        case 1:
+                            _a.melData = _b.sent();
+                            this.loadMelDataToList(this.melData, mel, win);
+                            this._isLoaded = true;
+                            _b.label = 2;
+                        case 2: return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        return EmrContents;
+    }(ArrayAsync));
+
+    var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var Emr = /** @class */ (function () {
         function Emr(_window, _document) {
             var _this = this;
@@ -3910,7 +3976,7 @@
             this._document = _document;
             this._melContent = {};
             this._problemExternalList = [];
-            this.externalAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+            this.externalAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -3947,7 +4013,7 @@
                 }
                 return _this._melContent[name];
             };
-            this.demographicsAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+            this.demographicsAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -3975,7 +4041,7 @@
                     }
                 });
             }); };
-            this.allergiesAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+            this.allergiesAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4013,7 +4079,7 @@
                     : ((_this.external) ? _this.external.Problems : _this._problemsJson);
                 return _this._problemsJson;
             };
-            this.patientAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+            this.patientAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4033,7 +4099,7 @@
                     }
                 });
             }); };
-            this.clinicalDocumentAsync = function () { return __awaiter$7(_this, void 0, void 0, function () {
+            this.clinicalDocumentAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4052,7 +4118,7 @@
             }); };
             this.melFuncAsync = function (data, showWait) {
                 if (showWait === void 0) { showWait = false; }
-                return __awaiter$7(_this, void 0, void 0, function () {
+                return __awaiter$8(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, this.externalAsync().then(function (e) { return e.EvaluateMel(data, showWait); })];
@@ -4111,6 +4177,21 @@
             enumerable: false,
             configurable: true
         });
+        Emr.prototype.emrContentsAsync = function (name) {
+            return __awaiter$8(this, void 0, void 0, function () {
+                var content;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            content = new EmrContents();
+                            return [4 /*yield*/, content.loadAsync(name, this.emrMel, this._window)];
+                        case 1:
+                            _a.sent();
+                            return [2 /*return*/, content];
+                    }
+                });
+            });
+        };
         Object.defineProperty(Emr.prototype, "emrMel", {
             get: function () {
                 this._emrMel = (this._window.opener != null && this._window.opener['_melOpener'] != undefined) ? this._window.opener['_melOpener']
@@ -4228,7 +4309,7 @@
         return Emr;
     }());
 
-    var version = '2.0.0-alpha.2.1';
+    var version = '2.0.0-alpha.2.2';
 
     var productType = 'GE';
 
@@ -4322,7 +4403,7 @@
         return MdObject;
     }());
 
-    var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$9 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -4356,7 +4437,7 @@
             this.allergyId = '';
             this.reactionCode = 32;
             this.reasonForRemoval = exports.AllergyReasonForRemoval.none;
-            this.save = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.save = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a, code, error, code, error, code, error;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -4371,7 +4452,7 @@
                         case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_ADD_ALLERGY("' + this.toAddString() + '")}')];
                         case 2:
                             code = _b.sent();
-                            if (code !== null) {
+                            if (code !== '') {
                                 error = 'Allergy.save error. Code is ' + code;
                                 console.error(error);
                                 throw new Error('Allergy not saved. ' + error);
