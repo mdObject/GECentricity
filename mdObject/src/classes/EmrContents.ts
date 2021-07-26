@@ -21,7 +21,7 @@ export class EmrContents extends ArrayAsync<EmrContent> {
         }
     }
 
-    private loadMelDataToList = (data: string, mel: EmrMel, win: any,) => {
+    private loadMelDataToList = (data: string, mel: EmrMel, win: any) => {
         let dataArray = StringInternal(data).toList();
         for (let index = 0; index < dataArray.length; index++) {
             this.push(new EmrContent(dataArray[index], mel, win));
