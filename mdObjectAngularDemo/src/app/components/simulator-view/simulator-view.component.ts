@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EmrContent, ObjectState } from '@mdobject/mdobject';
 
-import { MdObject, Patient } from '@mdobject/mdobject/classes';
+import { MdObject, Patient, EmrContents } from '@mdobject/mdobject/classes';
 
 import { MdObjectServiceService } from '../../md-object-service.service';
 
@@ -21,6 +22,7 @@ export class SimulatorViewComponent implements OnInit {
   fax: string;
   currentProblemMelData: string;
   newProblemMelData: string;
+  emrContentsData: string;
 
   constructor(
     private mdObjectServiceService: MdObjectServiceService
@@ -30,6 +32,9 @@ export class SimulatorViewComponent implements OnInit {
 
   ngOnInit(): void {
     const patientAsync = this.mdObjectServiceService.patient;
+    const emr = this.mdObjectServiceService.mdObject.emr;
+    let emrContent: EmrContent;
+
     Promise.all([
       patientAsync,
       patientAsync.then(p => p.raceAsync()),
@@ -41,8 +46,7 @@ export class SimulatorViewComponent implements OnInit {
       patientAsync.then(p => p.carePlansAsync()),
       patientAsync.then(p => p.problemsAsync()),
       patientAsync.then(p => p.clinicStatusAsync()),
-    ]).then(e =>
-    {
+    ]).then(e => {
       this.patient = e[0];
       this.demographics = this.jsonCleanup(this.patient._demographics.json);
       this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
@@ -65,6 +69,10 @@ export class SimulatorViewComponent implements OnInit {
       this.mobilePhone = v[2];
       this.fax = v[3];
     });
+
+    Promise.all([
+      this.saveEmrContent().then(p => { emrContent = p; return emr.emrContentsAsync('MDOBJECT.COMPONENT.VERSION') })
+    ]).then(data => this.emrContentsData = data[0].melData);
   }
 
   jsonCleanup = (data: string): string => {
@@ -77,6 +85,16 @@ export class SimulatorViewComponent implements OnInit {
 
   formater = (data): string => {
     return data.replace(/[{}]/gi, '').replace(/[."(),\s]/gi, '_').trim();
+  }
+
+  private async saveEmrContent(): Promise<EmrContent> {
+    let emrContent = new EmrContent(null, this.mdObject.emr.emrMel);
+
+    emrContent.namespace = 'MDOBJECT.COMPONENT.VERSION';
+    emrContent.displayName = this.mdObject.version;
+    emrContent.state = ObjectState.Add;
+    await emrContent.save();
+    return emrContent;
   }
 }
 
