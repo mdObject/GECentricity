@@ -1,6 +1,8 @@
 ## Note
 The * indicates changes that break backward compatibility. See https://docs.npmjs.com/about-semantic-versioning for more about product versioning.  
 ## Release 2.0.0-alpha.2.3
+	Added export EmrContents class.
+	Update demo to output data from EmrContents
 
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
