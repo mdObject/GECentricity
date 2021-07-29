@@ -73,50 +73,411 @@
         return Location;
     }());
 
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    function __extends(d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); };
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
+                }
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+    function __createBinding(o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        o[k2] = m[k];
+    }
+    function __exportStar(m, exports) {
+        for (var p in m)
+            if (p !== "default" && !exports.hasOwnProperty(p))
+                exports[p] = m[p];
+    }
+    function __values(o) {
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+        if (m)
+            return m.call(o);
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    }
+    ;
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
+    }
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
+    }
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
+        return cooked;
+    }
+    ;
+    function __importStar(mod) {
+        if (mod && mod.__esModule)
+            return mod;
+        var result = {};
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k))
+                    result[k] = mod[k];
+        result.default = mod;
+        return result;
+    }
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
+    }
+
+    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
     var EmrContent = /** @class */ (function () {
-        function EmrContent(_value, _mel, _window) {
+        function EmrContent(_value, _mel) {
             var _this = this;
             this._value = _value;
             this._mel = _mel;
-            this._window = _window;
             this.data = (this._value == null) ? [] : this._value.split('^');
-            this.isNew = (this._value == null) ? true : false;
+            this.state = exports.ObjectState.None;
+            this.status = exports.ObjectStatus.Unchanged;
             this.contentId = (this.data.length > 0) ? this.data[0] : '';
-            this.key = (this.data.length > 1) ? this.data[1] : '';
-            this.name = (this.data.length > 2) ? this.data[2] : '';
-            this.value = (this.data.length > 3) ? this.data[3] : '';
-            this._unk0 = (this.data.length > 4) ? this.data[4] : '';
-            this._unk1 = (this.data.length > 5) ? this.data[5] : '';
-            this._unk2 = (this.data.length > 6) ? this.data[6] : '';
-            this._unk3 = (this.data.length > 7) ? this.data[7] : '';
-            this._unk4 = (this.data.length > 8) ? this.data[8] : '';
-            this._unk5 = (this.data.length > 9) ? this.data[9] : '';
-            this.toAddString = function (encodeValue) {
-                var recordValue = (encodeValue == null) ? _this.value : _this._window.btoa(_this.value);
-                return _this.key + '^' +
-                    _this.name + '^' +
-                    recordValue + '^' +
-                    _this._unk0 + '^' +
-                    _this._unk1 + '^' +
-                    _this._unk2 + '^' +
-                    _this._unk3 + '^' +
-                    _this._unk4 + '^' +
-                    _this._unk5;
+            this.namespace = (this.data.length > 1) ? this.data[1] : '';
+            this.nodeName = (this.data.length > 2) ? this.data[2] : '';
+            this.displayName = (this.data.length > 3) ? this.data[3] : '';
+            this.sourceName = (this.data.length > 4) ? this.data[4] : '';
+            this.code = (this.data.length > 5) ? this.data[5] : '';
+            this.codeType = (this.data.length > 6) ? this.data[6] : '';
+            this.contentGroup = (this.data.length > 7) ? this.data[7] : '';
+            this.listOrder = (this.data.length > 8) ? this.data[8] : '';
+            this.contentDefault = (this.data.length > 9) ? this.data[9] : '';
+            this.toAddString = function () {
+                return _this.namespace + '^' +
+                    _this.nodeName + '^' +
+                    _this.displayName + '^' +
+                    _this.sourceName + '^' +
+                    _this.code + '^' +
+                    _this.codeType + '^' +
+                    _this.contentGroup + '^' +
+                    _this.listOrder + '^' +
+                    _this.contentDefault;
             };
-            this.save = function (encodeValue) {
-                console.log(encodeValue);
-                if (_this.isNew) {
-                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
-                    _this.isNew = false;
-                }
-                else {
-                    _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
-                    _this._mel.melFunc('{MEL_ADD_CONTENT("' + _this.toAddString(encodeValue) + '")}');
-                }
+            this.toChangeString = function () {
+                return _this.namespace + '^' +
+                    _this.nodeName + '^' +
+                    _this.displayName + '^' +
+                    _this.sourceName + '^' +
+                    _this.code + '^' +
+                    _this.codeType + '^' +
+                    _this.contentGroup + '^' +
+                    _this.listOrder + '^' +
+                    _this.contentDefault;
             };
-            this.remove = function () {
-                _this._mel.melFunc('{MEL_REMOVE_CONTENT("' + _this.contentId + '")}');
-            };
+            this.save = function () { return __awaiter$1(_this, void 0, void 0, function () {
+                var _a, code, codeNumeric, error, code, codeNumeric, error, code, codeBoolean, error;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            _a = this.state;
+                            switch (_a) {
+                                case exports.ObjectState.Add: return [3 /*break*/, 1];
+                                case exports.ObjectState.Update: return [3 /*break*/, 3];
+                                case exports.ObjectState.Remove: return [3 /*break*/, 5];
+                            }
+                            return [3 /*break*/, 7];
+                        case 1: return [4 /*yield*/, this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}')];
+                        case 2:
+                            code = _b.sent();
+                            codeNumeric = +code;
+                            if (codeNumeric < 0 || codeNumeric === NaN) {
+                                error = 'EmrContent.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('EmrContent not saved. ' + error);
+                            }
+                            this.contentId = code;
+                            this.nodeName = (this.nodeName) ? this.nodeName : code;
+                            this.status = exports.ObjectStatus.Added;
+                            this.state = exports.ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 3: return [4 /*yield*/, this._mel.melFunc('{MEL_UPDATE_CONTENT("' + this.contentId + '","' + this.toChangeString() + '")}')];
+                        case 4:
+                            code = _b.sent();
+                            codeNumeric = +code;
+                            if (codeNumeric < 0 || codeNumeric === NaN) {
+                                error = 'EmrContent.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('EmrContent not saved. ' + error);
+                            }
+                            this.status = exports.ObjectStatus.Updated;
+                            this.state = exports.ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 5: return [4 /*yield*/, this._mel.melFunc('{MEL_REMOVE_CONTENT("' + this.contentId + '")}')];
+                        case 6:
+                            code = _b.sent();
+                            codeBoolean = (code == "true");
+                            if (!codeBoolean) {
+                                error = 'EmrContent.save error. Code is ' + code;
+                                console.error(error);
+                                throw new Error('EmrContent not saved. ' + error);
+                            }
+                            this.status = exports.ObjectStatus.Removed;
+                            this.state = exports.ObjectState.None;
+                            return [3 /*break*/, 7];
+                        case 7: return [2 /*return*/];
+                    }
+                });
+            }); };
         }
         return EmrContent;
     }());
@@ -416,298 +777,6 @@
         return AllergyList;
     }());
 
-    /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation.
-
-    Permission to use, copy, modify, and/or distribute this software for any
-    purpose with or without fee is hereby granted.
-
-    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-    PERFORMANCE OF THIS SOFTWARE.
-    ***************************************************************************** */
-    /* global Reflect, Promise */
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
-                    d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    function __extends(d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    }
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
-    function __rest(s, e) {
-        var t = {};
-        for (var p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-                t[p] = s[p];
-        if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                    t[p[i]] = s[p[i]];
-            }
-        return t;
-    }
-    function __decorate(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-            r = Reflect.decorate(decorators, target, key, desc);
-        else
-            for (var i = decorators.length - 1; i >= 0; i--)
-                if (d = decorators[i])
-                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    }
-    function __param(paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); };
-    }
-    function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-            return Reflect.metadata(metadataKey, metadataValue);
-    }
-    function __awaiter(thisArg, _arguments, P, generator) {
-        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try {
-                step(generator.next(value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function rejected(value) { try {
-                step(generator["throw"](value));
-            }
-            catch (e) {
-                reject(e);
-            } }
-            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    }
-    function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function () { if (t[0] & 1)
-                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
-        function verb(n) { return function (v) { return step([n, v]); }; }
-        function step(op) {
-            if (f)
-                throw new TypeError("Generator is already executing.");
-            while (_)
-                try {
-                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
-                        return t;
-                    if (y = 0, t)
-                        op = [op[0] & 2, t.value];
-                    switch (op[0]) {
-                        case 0:
-                        case 1:
-                            t = op;
-                            break;
-                        case 4:
-                            _.label++;
-                            return { value: op[1], done: false };
-                        case 5:
-                            _.label++;
-                            y = op[1];
-                            op = [0];
-                            continue;
-                        case 7:
-                            op = _.ops.pop();
-                            _.trys.pop();
-                            continue;
-                        default:
-                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                                _ = 0;
-                                continue;
-                            }
-                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                                _.label = op[1];
-                                break;
-                            }
-                            if (op[0] === 6 && _.label < t[1]) {
-                                _.label = t[1];
-                                t = op;
-                                break;
-                            }
-                            if (t && _.label < t[2]) {
-                                _.label = t[2];
-                                _.ops.push(op);
-                                break;
-                            }
-                            if (t[2])
-                                _.ops.pop();
-                            _.trys.pop();
-                            continue;
-                    }
-                    op = body.call(thisArg, _);
-                }
-                catch (e) {
-                    op = [6, e];
-                    y = 0;
-                }
-                finally {
-                    f = t = 0;
-                }
-            if (op[0] & 5)
-                throw op[1];
-            return { value: op[0] ? op[1] : void 0, done: true };
-        }
-    }
-    function __createBinding(o, m, k, k2) {
-        if (k2 === undefined)
-            k2 = k;
-        o[k2] = m[k];
-    }
-    function __exportStar(m, exports) {
-        for (var p in m)
-            if (p !== "default" && !exports.hasOwnProperty(p))
-                exports[p] = m[p];
-    }
-    function __values(o) {
-        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m)
-            return m.call(o);
-        if (o && typeof o.length === "number")
-            return {
-                next: function () {
-                    if (o && i >= o.length)
-                        o = void 0;
-                    return { value: o && o[i++], done: !o };
-                }
-            };
-        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-    }
-    function __read(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-            return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-                ar.push(r.value);
-        }
-        catch (error) {
-            e = { error: error };
-        }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"]))
-                    m.call(i);
-            }
-            finally {
-                if (e)
-                    throw e.error;
-            }
-        }
-        return ar;
-    }
-    function __spread() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    }
-    function __spreadArrays() {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
-            s += arguments[i].length;
-        for (var r = Array(s), k = 0, i = 0; i < il; i++)
-            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-                r[k] = a[j];
-        return r;
-    }
-    ;
-    function __await(v) {
-        return this instanceof __await ? (this.v = v, this) : new __await(v);
-    }
-    function __asyncGenerator(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator)
-            throw new TypeError("Symbol.asyncIterator is not defined.");
-        var g = generator.apply(thisArg, _arguments || []), i, q = [];
-        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function verb(n) { if (g[n])
-            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-        function resume(n, v) { try {
-            step(g[n](v));
-        }
-        catch (e) {
-            settle(q[0][3], e);
-        } }
-        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
-        function fulfill(value) { resume("next", value); }
-        function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length)
-            resume(q[0][0], q[0][1]); }
-    }
-    function __asyncDelegator(o) {
-        var i, p;
-        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
-    }
-    function __asyncValues(o) {
-        if (!Symbol.asyncIterator)
-            throw new TypeError("Symbol.asyncIterator is not defined.");
-        var m = o[Symbol.asyncIterator], i;
-        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
-    }
-    function __makeTemplateObject(cooked, raw) {
-        if (Object.defineProperty) {
-            Object.defineProperty(cooked, "raw", { value: raw });
-        }
-        else {
-            cooked.raw = raw;
-        }
-        return cooked;
-    }
-    ;
-    function __importStar(mod) {
-        if (mod && mod.__esModule)
-            return mod;
-        var result = {};
-        if (mod != null)
-            for (var k in mod)
-                if (Object.hasOwnProperty.call(mod, k))
-                    result[k] = mod[k];
-        result.default = mod;
-        return result;
-    }
-    function __importDefault(mod) {
-        return (mod && mod.__esModule) ? mod : { default: mod };
-    }
-    function __classPrivateFieldGet(receiver, privateMap) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to get private field on non-instance");
-        }
-        return privateMap.get(receiver);
-    }
-    function __classPrivateFieldSet(receiver, privateMap, value) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to set private field on non-instance");
-        }
-        privateMap.set(receiver, value);
-        return value;
-    }
-
     var AllergyListRemoved = /** @class */ (function (_super) {
         __extends(AllergyListRemoved, _super);
         function AllergyListRemoved(_value) {
@@ -759,7 +828,7 @@
         return result;
     }
 
-    var __awaiter$1 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -800,7 +869,7 @@
             configurable: true
         });
         Allergies.prototype.addedAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$2(this, void 0, void 0, function () {
                 var _a, _b, dataArray, index;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -841,7 +910,7 @@
             configurable: true
         });
         Allergies.prototype.currentAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$2(this, void 0, void 0, function () {
                 var _a, _b, dataArray, index;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -882,7 +951,7 @@
             configurable: true
         });
         Allergies.prototype.removedAsync = function () {
-            return __awaiter$1(this, void 0, void 0, function () {
+            return __awaiter$2(this, void 0, void 0, function () {
                 var _a, _b, dataArray, index;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -1238,7 +1307,7 @@
         return Address;
     }());
 
-    var __awaiter$2 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$3 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -1291,7 +1360,7 @@
             configurable: true
         });
         Phone.prototype.homeAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
+            return __awaiter$3(this, void 0, void 0, function () {
                 var _d, _e;
                 return __generator(this, function (_f) {
                     switch (_f.label) {
@@ -1320,7 +1389,7 @@
             configurable: true
         });
         Phone.prototype.businessAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
+            return __awaiter$3(this, void 0, void 0, function () {
                 var _d, _e;
                 return __generator(this, function (_f) {
                     switch (_f.label) {
@@ -1349,7 +1418,7 @@
             configurable: true
         });
         Phone.prototype.mobileAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
+            return __awaiter$3(this, void 0, void 0, function () {
                 var _d, _e;
                 return __generator(this, function (_f) {
                     switch (_f.label) {
@@ -1378,7 +1447,7 @@
             configurable: true
         });
         Phone.prototype.faxAsync = function () {
-            return __awaiter$2(this, void 0, void 0, function () {
+            return __awaiter$3(this, void 0, void 0, function () {
                 var _d, _e;
                 return __generator(this, function (_f) {
                     switch (_f.label) {
@@ -2301,7 +2370,7 @@
         return ArrayAsync;
     }());
 
-    var __awaiter$3 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -2378,7 +2447,7 @@
             return _this;
         }
         Problems.prototype.loadAsync = function (mel) {
-            return __awaiter$3(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -2397,7 +2466,7 @@
             });
         };
         Problems.prototype._currentAsync = function (mel) {
-            return __awaiter$3(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2419,7 +2488,7 @@
             });
         };
         Problems.prototype._newAsync = function (mel) {
-            return __awaiter$3(this, void 0, void 0, function () {
+            return __awaiter$4(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2443,7 +2512,7 @@
         return Problems;
     }(ArrayAsync));
 
-    var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$5 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -2572,7 +2641,7 @@
             configurable: true
         });
         Patient.prototype.patientIdAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2601,7 +2670,7 @@
             configurable: true
         });
         Patient.prototype.pidAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2630,7 +2699,7 @@
             configurable: true
         });
         Patient.prototype.medicalRecordIdAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2659,7 +2728,7 @@
             configurable: true
         });
         Patient.prototype.externalIdAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2688,7 +2757,7 @@
             configurable: true
         });
         Patient.prototype.printIdAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2717,7 +2786,7 @@
             configurable: true
         });
         Patient.prototype.ssnAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2746,7 +2815,7 @@
             configurable: true
         });
         Patient.prototype.firstNameAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2775,7 +2844,7 @@
             configurable: true
         });
         Patient.prototype.lastNameAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2804,7 +2873,7 @@
             configurable: true
         });
         Patient.prototype.middleNameAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2833,7 +2902,7 @@
             configurable: true
         });
         Patient.prototype.labelNameAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2862,7 +2931,7 @@
             configurable: true
         });
         Patient.prototype.namePrefixAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2891,7 +2960,7 @@
             configurable: true
         });
         Patient.prototype.nameSuffixAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2920,7 +2989,7 @@
             configurable: true
         });
         Patient.prototype.sexAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2949,7 +3018,7 @@
             configurable: true
         });
         Patient.prototype.raceAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -2978,7 +3047,7 @@
             configurable: true
         });
         Patient.prototype.ethnicityAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3007,7 +3076,7 @@
             configurable: true
         });
         Patient.prototype.dateOfBirthAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3036,7 +3105,7 @@
             configurable: true
         });
         Patient.prototype.dateOfDeathAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3065,7 +3134,7 @@
             configurable: true
         });
         Patient.prototype.maritalStatusAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3094,7 +3163,7 @@
             configurable: true
         });
         Patient.prototype.languageAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3123,7 +3192,7 @@
             configurable: true
         });
         Patient.prototype.emailAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3152,7 +3221,7 @@
             configurable: true
         });
         Patient.prototype.contactByAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3181,7 +3250,7 @@
             configurable: true
         });
         Patient.prototype.registrationNoteAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3222,7 +3291,7 @@
             configurable: true
         });
         Patient.prototype.contactsAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b, dataArray, index;
                 var _this = this;
                 return __generator(this, function (_c) {
@@ -3263,7 +3332,7 @@
             configurable: true
         });
         Patient.prototype.employmentStatusAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3292,7 +3361,7 @@
             configurable: true
         });
         Patient.prototype.clinicStatusAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3322,7 +3391,7 @@
             configurable: true
         });
         Patient.prototype.primaryCarePhysicianNameAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3355,7 +3424,7 @@
             configurable: true
         });
         Patient.prototype.problemsAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -3466,7 +3535,7 @@
             configurable: true
         });
         Patient.prototype.carePlansAsync = function () {
-            return __awaiter$4(this, void 0, void 0, function () {
+            return __awaiter$5(this, void 0, void 0, function () {
                 var _a, _b, dataArray, index;
                 var _this = this;
                 return __generator(this, function (_c) {
@@ -3630,7 +3699,7 @@
         return ExtensionExternalSimulator;
     }());
 
-    var __awaiter$5 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$6 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3659,7 +3728,7 @@
             this._isActiveX = false;
             this._isSimulator = false;
             this._ExtensionExternalSimulator = new ExtensionExternalSimulator();
-            this.isSimulatorAsync = function () { return __awaiter$5(_this, void 0, void 0, function () {
+            this.isSimulatorAsync = function () { return __awaiter$6(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -3726,7 +3795,7 @@
         return Simulator;
     }());
 
-    var __awaiter$6 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$7 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3799,7 +3868,7 @@
             configurable: true
         });
         ClinicalDocument.prototype.didAsync = function () {
-            return __awaiter$6(this, void 0, void 0, function () {
+            return __awaiter$7(this, void 0, void 0, function () {
                 var _a, _b;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
@@ -3894,7 +3963,7 @@
         return ClinicalDocument;
     }());
 
-    var __awaiter$7 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3918,16 +3987,16 @@
         function EmrContents() {
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this._isLoaded = false;
-            _this.loadMelDataToList = function (data, mel, win) {
+            _this.loadMelDataToList = function (data, mel) {
                 var dataArray = StringInternal(data).toList();
                 for (var index = 0; index < dataArray.length; index++) {
-                    _this.push(new EmrContent(dataArray[index], mel, win));
+                    _this.push(new EmrContent(dataArray[index], mel));
                 }
             };
             return _this;
         }
-        EmrContents.prototype.loadAsync = function (name, mel, win) {
-            return __awaiter$7(this, void 0, void 0, function () {
+        EmrContents.prototype.loadAsync = function (name, mel) {
+            return __awaiter$8(this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -3939,7 +4008,7 @@
                             return [4 /*yield*/, mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}')];
                         case 1:
                             _a.melData = _b.sent();
-                            this.loadMelDataToList(this.melData, mel, win);
+                            this.loadMelDataToList(this.melData, mel);
                             this._isLoaded = true;
                             _b.label = 2;
                         case 2: return [2 /*return*/];
@@ -3950,7 +4019,7 @@
         return EmrContents;
     }(ArrayAsync));
 
-    var __awaiter$8 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$9 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -3976,7 +4045,7 @@
             this._document = _document;
             this._melContent = {};
             this._problemExternalList = [];
-            this.externalAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.externalAsync = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -4001,7 +4070,7 @@
                     var dataArray = StringInternal(data_1).toList();
                     var melContentArray = [];
                     for (var index = 0; index < dataArray.length; index++) {
-                        melContentArray.push(new EmrContent(dataArray[index], _this.emrMel, _this._window));
+                        melContentArray.push(new EmrContent(dataArray[index], _this.emrMel));
                     }
                     _this._melContent[name] = melContentArray;
                     _this._melContent[name].tag = function () {
@@ -4013,7 +4082,7 @@
                 }
                 return _this._melContent[name];
             };
-            this.demographicsAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.demographicsAsync = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4041,7 +4110,7 @@
                     }
                 });
             }); };
-            this.allergiesAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.allergiesAsync = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4079,7 +4148,7 @@
                     : ((_this.external) ? _this.external.Problems : _this._problemsJson);
                 return _this._problemsJson;
             };
-            this.patientAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.patientAsync = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4099,7 +4168,7 @@
                     }
                 });
             }); };
-            this.clinicalDocumentAsync = function () { return __awaiter$8(_this, void 0, void 0, function () {
+            this.clinicalDocumentAsync = function () { return __awaiter$9(_this, void 0, void 0, function () {
                 var _a, _b, _c;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -4118,7 +4187,7 @@
             }); };
             this.melFuncAsync = function (data, showWait) {
                 if (showWait === void 0) { showWait = false; }
-                return __awaiter$8(_this, void 0, void 0, function () {
+                return __awaiter$9(_this, void 0, void 0, function () {
                     return __generator(this, function (_a) {
                         switch (_a.label) {
                             case 0: return [4 /*yield*/, this.externalAsync().then(function (e) { return e.EvaluateMel(data, showWait); })];
@@ -4178,13 +4247,13 @@
             configurable: true
         });
         Emr.prototype.emrContentsAsync = function (name) {
-            return __awaiter$8(this, void 0, void 0, function () {
+            return __awaiter$9(this, void 0, void 0, function () {
                 var content;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             content = new EmrContents();
-                            return [4 /*yield*/, content.loadAsync(name, this.emrMel, this._window)];
+                            return [4 /*yield*/, content.loadAsync(name, this.emrMel)];
                         case 1:
                             _a.sent();
                             return [2 /*return*/, content];
@@ -4403,7 +4472,7 @@
         return MdObject;
     }());
 
-    var __awaiter$9 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    var __awaiter$a = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
@@ -4437,7 +4506,7 @@
             this.allergyId = '';
             this.reactionCode = 32;
             this.reasonForRemoval = exports.AllergyReasonForRemoval.none;
-            this.save = function () { return __awaiter$9(_this, void 0, void 0, function () {
+            this.save = function () { return __awaiter$a(_this, void 0, void 0, function () {
                 var _a, code, error, code, error, code, error;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
