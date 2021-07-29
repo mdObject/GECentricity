@@ -94,7 +94,7 @@ export class Emr {
 
     async emrContentsAsync(name: string):Promise<EmrContents> {
         let content = new EmrContents();
-        await content.loadAsync(name, this.emrMel, this._window);
+        await content.loadAsync(name, this.emrMel);
         return content;
     }
 
@@ -104,7 +104,7 @@ export class Emr {
             let dataArray = StringInternal(data).toList();
             let melContentArray: IArrayAdditionalMethods<EmrContent> = [];
             for (let index = 0; index < dataArray.length; index++) {
-                melContentArray.push(new EmrContent(dataArray[index], this.emrMel, this._window));
+                melContentArray.push(new EmrContent(dataArray[index], this.emrMel));
             }
             this._melContent[name] = melContentArray;
 

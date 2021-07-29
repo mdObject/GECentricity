@@ -9,22 +9,22 @@ export class EmrContents extends ArrayAsync<EmrContent> {
     tag: string;
     _name: string;
     
-    async loadAsync(name: string, mel: EmrMel, win: any) {
+    async loadAsync(name: string, mel: EmrMel) {
         if (!this._isLoaded || this._name !== name) {
             this._name = name;
             this.tag = 'MEL_GET_CONTENT';
             this.melData = await mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
 
-            this.loadMelDataToList(this.melData, mel, win);
+            this.loadMelDataToList(this.melData, mel);
 
             this._isLoaded = true;
         }
     }
 
-    private loadMelDataToList = (data: string, mel: EmrMel, win: any) => {
+    private loadMelDataToList = (data: string, mel: EmrMel) => {
         let dataArray = StringInternal(data).toList();
         for (let index = 0; index < dataArray.length; index++) {
-            this.push(new EmrContent(dataArray[index], mel, win));
+            this.push(new EmrContent(dataArray[index], mel));
         }
     }
 }

@@ -5,6 +5,20 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Fixed simulator validation.
 	Added emrContentsAsync in Emr.
 	Added EmrContents an array of EmrContent.
+	* Modified EmrContent the "save" method is using the ObjectState enum to control Add/Update/Remove
+	* The EmrContent value encoding removed. Use window.btoa(value) to encode a string in base-64. Use window.atob(enc) to decode a base-64 encoded string.
+	* The EmrContent "remove" method has been removed. Use the "save" method and indicate ObjectState.
+	* The EmrContent key renamed to namespace
+	* The EmrContent name renamed to nodeName
+	* The EmrContent value renamed to displayName
+	* The EmrContent _unk0 renamed to sourceName
+	* The EmrContent _unk1 renamed to code
+	* The EmrContent _unk2 renamed to codeType
+	* The EmrContent _unk3 renamed to contentGroup
+	* The EmrContent _unk4 renamed to listOrder
+	* The EmrContent _unk5 renamed to contentDefault
+	* The EmrContent isNew removed. Use state and status.
+	* The EmrContent constructor changed. The _window parameter removed.
 
 ## Release 2.0.0-alpha.2.1
 	* Fixed issue with compatability with the V20 version
