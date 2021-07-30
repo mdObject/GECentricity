@@ -5,6 +5,7 @@
         "useCache": false
     },
   "compilerOptions": {
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "module": "es2015",

@@ -1,1 +1,2 @@
-export const version: string = '2.0.0-alpha.2.3';
+import { version  as packageVersion } from '../package.json';
+export const version: string = packageVersion;
