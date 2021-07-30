@@ -40,6 +40,8 @@
     <Content Include="src\app\components\patient-phone\patient-phone.component.scss" />
     <Content Include="src\app\components\patient-problems\patient-problems.component.html" />
     <Content Include="src\app\components\patient-problems\patient-problems.component.scss" />
+    <Content Include="src\app\components\about\about.component.html" />
+    <Content Include="src\app\components\about\about.component.scss" />
     <Content Include="src\app\components\simulator-view\simulator-view.component.html" />
     <Content Include="src\app\components\simulator-view\simulator-view.component.scss" />
     <Content Include="src\app\patient-header\patient-header.component.html" />
@@ -48,6 +50,7 @@
     <Content Include="src\app\sidenav\sidenav.component.html" />
     <Content Include="src\app\sidenav\sidenav.component.scss" />
     <Content Include="src\app\sidenav\sidenav.component.scss" />
+    <Content Include="src\assets\build-with-mdobject.svg" />
     <Content Include="src\styles.scss" />
     <Content Include="tsconfig.app.json" />
     <Content Include="tsconfig.base.json" />
@@ -87,6 +90,7 @@
     <Folder Include="src\app\components\patient-personal-information\" />
     <Folder Include="src\app\components\patient-phone\" />
     <Folder Include="src\app\components\patient-problems\" />
+    <Folder Include="src\app\components\about\" />
     <Folder Include="src\app\components\simulator-view\" />
     <Folder Include="src\app\patient-header\" />
     <Folder Include="src\app\sidenav\" />
@@ -109,6 +113,8 @@
     <TypeScriptCompile Include="src\app\components\patient-phone\patient-phone.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-problems\patient-problems.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-problems\patient-problems.component.ts" />
+    <TypeScriptCompile Include="src\app\components\about\about.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\about\about.component.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.spec.ts" />

@@ -2,23 +2,37 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output
 } from '@angular/core';
 
 import { SidebarMenu } from '../enums/sidebar-menu';
+import { MdObjectServiceService } from '../md-object-service.service';
+import { MdObject } from '@mdobject/mdobject';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit{
 
   // Component should be @Input/@Output to be controlled in the subcomponent
   @Input() sideMenu: SidebarMenu;
   @Output() sideMenuChange = new EventEmitter<SidebarMenu>();
 
-  constructor() { }
+  mdObjectVersion: string;
+  mdObject: MdObject;
+
+  constructor(
+    private mdObjectServiceService: MdObjectServiceService
+  ) {
+    this.mdObject = this.mdObjectServiceService.mdObject;
+  }
+
+  ngOnInit(): void {
+    this.mdObjectVersion = this.mdObject.version;
+  }
 
   get SidebarMenu(): typeof SidebarMenu {
     return SidebarMenu;

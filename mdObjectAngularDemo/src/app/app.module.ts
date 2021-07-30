@@ -25,6 +25,7 @@ import { PatientAlergiesComponent } from './components/patient-alergies/patient-
 import { DeleteDialogComponent } from './components/patient-alergies/delete-dialog/delete-dialog.component';
 import { EnumToArrayModule } from './pipes/enum.to.array/enum.to.array.module';
 import { LogComponent } from './components/log/log.component';
+import { AboutViewComponent } from './components/about/about.component';
 import { GlobalErrorHandler } from './global-error-handler.component';
 
 @NgModule({
@@ -41,7 +42,8 @@ import { GlobalErrorHandler } from './global-error-handler.component';
     SidenavComponent,
     PatientAlergiesComponent,
     DeleteDialogComponent,
-    LogComponent
+    LogComponent,
+    AboutViewComponent
   ],
   imports: [
     BrowserModule,
