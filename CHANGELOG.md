@@ -5,6 +5,8 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Update demo to output data from EmrContents
 	* Problem list marked problems removed during current update with the status: Removed
 	Added "PROB_REMOVED" to the simulator demo view
+	* The version contant is pulling the version from project.json
+	Added About form for the mdObjectAngularDemo project
 
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
