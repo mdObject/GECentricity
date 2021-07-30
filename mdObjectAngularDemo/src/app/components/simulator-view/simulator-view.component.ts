@@ -22,6 +22,7 @@ export class SimulatorViewComponent implements OnInit {
   fax: string;
   currentProblemMelData: string;
   newProblemMelData: string;
+  removedProblemMelData: string;
   emrContentsData: string;
 
   constructor(
@@ -52,6 +53,7 @@ export class SimulatorViewComponent implements OnInit {
       this.allergies = this.jsonCleanup(this.patient._allergiesExternal.json);
       this.currentProblemMelData = this.jsonCleanup(e[8].currentProblemMelData);
       this.newProblemMelData = this.jsonCleanup(e[8].newProblemMelData);
+      this.removedProblemMelData = this.jsonCleanup(e[8].removedProblemMelData);
     });
     Promise.all([
       patientAsync,
