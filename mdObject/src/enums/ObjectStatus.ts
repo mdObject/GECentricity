@@ -2,5 +2,6 @@ export enum ObjectStatus {
     Unchanged = 0,
     Added = 1,
     Updated = 2,
-    Removed=3
+    Removed = 3,
+    Changed = 4,
 }

@@ -7,7 +7,7 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Added "PROB_REMOVED" to the simulator demo view
 	* The version contant is pulling the version from project.json
 	Added About form for the mdObjectAngularDemo project
-
+	* Added Problems filtration. See README.md in the src/classes. Array<T> now is simplified with the status filtration
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
 	Fixed simulator validation.

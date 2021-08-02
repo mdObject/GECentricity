@@ -78,13 +78,12 @@ export class Problems extends ArrayAsync<Problem>{
         let dataArray = StringInternal(data).toList();
         for (let index = 0; index < dataArray.length; index++) {
             let problem = predicate(dataArray[index]);
-            this.forEach((value) => {
+            this.forEach((value) => { // find in the list and mark status as Changed
                 if (value.problemId === problem.problemId) {
-                    value.status = ObjectStatus.Removed;
-                    value.stopDate = problem.stopDate;
-                    value.stopReason = problem.stopReason;
+                    value.status = ObjectStatus.Changed;
                 }
             });
+            this.push(problem); //Added with Removed
         }
     }
 
@@ -137,4 +136,10 @@ export class Problems extends ArrayAsync<Problem>{
         return problem;
     }
 
+    filterProblems = (predicate: (value: Problem, index: number, array: Problem[]) => unknown, thisArg?: any): Problems => {
+        let problems = new Problems();
+        problems.push(...super.filter(predicate, thisArg));
+        return problems;
+    }
+ 
 }

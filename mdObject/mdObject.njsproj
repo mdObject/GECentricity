@@ -70,6 +70,7 @@
     <Content Include="src\classes\Allergy.ts">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\classes\README.md" />
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />

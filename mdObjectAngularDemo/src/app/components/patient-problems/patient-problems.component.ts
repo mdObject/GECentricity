@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ObjectStatus } from '@mdobject/mdobject';
 
 import { MdObject, Patient, Problems } from '@mdobject/mdobject/classes';
 
@@ -23,13 +24,8 @@ export class PatientProblemsComponent implements OnInit {
 
   ngOnInit(): void {
     const patientAsync = this.mdObjectServiceService.patient;
-    Promise.all([
-      patientAsync,
-      patientAsync.then(p => p.problemsAsync()),
-    ]).then(e => {
-      this.patient = e[0];
-      this.problemList = e[1];
-    });
+    patientAsync
+      .then(p => { this.patient = p; return p.problemsAsync(); })
+      .then(e => this.problemList = e.filterProblems(i => i.status !== ObjectStatus.Changed));
   }
-
 }
