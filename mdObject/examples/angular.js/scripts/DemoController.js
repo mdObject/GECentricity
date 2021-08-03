@@ -1,8 +1,8 @@
 /// <reference types="../../../lib/mdobject-mdobject" />
 
-var phonecatApp = angular.module('mdObjectDemo', []);
+var angularJsApp = angular.module('mdObjectDemo', []);
 
-phonecatApp.controller('DemoController', function ($scope, $parse) {
+angularJsApp.controller('DemoController', function ($scope, $parse) {
 
     $scope.flowsheets = [
         { name: "Internal Medicine", value: "Enterprise\\Medicine\\Internal Medicine" },
