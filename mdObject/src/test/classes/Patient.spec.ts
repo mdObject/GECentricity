@@ -83,7 +83,7 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).not.toHaveBeenCalled(); })
         it('problems', () => {
             let _result = component.problems;
-            expect(_result.length).toEqual(2);
+            expect(_result.length).toEqual(3);
             expect(_result.tag).toEqual('PROB_AFTER');
             expect(mockEmrMel.melFunc).not.toHaveBeenCalled();
         });
@@ -161,7 +161,7 @@ describe('Class: Patient', () => {
         it('primaryCarePhysicianName', () => { component.primaryCarePhysicianName; expect(mockEmrMel.melFunc).toHaveBeenCalledWith('{PATIENT.PCP}'); })
         it('problems', () => {
             let _result = component.problems;
-            expect(_result.length).toEqual(2);
+            expect(_result.length).toEqual(3);
             expect(_result.tag).toEqual('PROB_AFTER');
         });
         it('protocols', () => {
