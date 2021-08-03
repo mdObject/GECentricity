@@ -24,6 +24,8 @@
     <Content Include="package.json" />
     <Content Include="src\app\allergy\allergy.component.scss" />
     <Content Include="src\app\app.component.scss" />
+    <Content Include="src\app\components\log\log.component.html" />
+    <Content Include="src\app\components\log\log.component.scss" />
     <Content Include="src\app\components\patient-address\patient-address.component.html" />
     <Content Include="src\app\components\patient-address\patient-address.component.scss" />
     <Content Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.html" />
@@ -83,6 +85,7 @@
     <Folder Include="src\app" />
     <Folder Include="src\app\allergy" />
     <Folder Include="src\app\components\" />
+    <Folder Include="src\app\components\log\" />
     <Folder Include="src\app\components\patient-address\" />
     <Folder Include="src\app\components\patient-alergies\" />
     <Folder Include="src\app\components\patient-alergies\delete-dialog\" />
@@ -99,6 +102,8 @@
     <Folder Include="src\app\enums\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\components\log\log.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\components\log\log.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\patient-address\patient-address.component.ts" />
     <TypeScriptCompile Include="src\app\components\patient-alergies\delete-dialog\delete-dialog.component.spec.ts" />
@@ -117,6 +122,8 @@
     <TypeScriptCompile Include="src\app\components\about\about.component.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.spec.ts" />
     <TypeScriptCompile Include="src\app\components\simulator-view\simulator-view.component.ts" />
+    <TypeScriptCompile Include="src\app\error.service.ts" />
+    <TypeScriptCompile Include="src\app\global-error-handler.component.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.spec.ts" />
     <TypeScriptCompile Include="src\app\md-object-service.service.ts" />
     <TypeScriptCompile Include="src\app\patient-header\patient-header.component.spec.ts" />
