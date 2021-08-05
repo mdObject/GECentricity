@@ -4,13 +4,11 @@
 // </copyright>
 import { version } from '../consts/version'
 import { productType } from '../consts/productType'
-import { Fhir } from '../fhir/fhir';
 import { Emr } from './Emr';
 
 export class MdObject {
 
     private _emr: Emr;
-    private _fhir: Fhir;
 
     constructor(
         public _window: any,
@@ -23,7 +21,6 @@ export class MdObject {
 
         this._emr = new Emr(this._window, this._document);
 
-        this._fhir = new Fhir();
     }
 
     get version(): string {
@@ -36,9 +33,5 @@ export class MdObject {
 
     public get emr():Emr {
         return this._emr;
-    }
-
-    public get fhir(): Fhir {
-        return this._fhir;
     }
 }
