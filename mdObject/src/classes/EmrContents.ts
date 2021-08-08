@@ -9,7 +9,7 @@ export class EmrContents extends Array<EmrContent> {
     tag: string;
     _name: string;
     
-    async loadAsync(name: string, mel: EmrMel) {
+    loadAsync = async(name: string, mel: EmrMel) => {
         if (!this._isLoaded || this._name !== name) {
             this._name = name;
             this.tag = 'MEL_GET_CONTENT';

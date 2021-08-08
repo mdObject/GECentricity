@@ -2,8 +2,7 @@
 Usage Example
 ===============
 ## Extension of the Array<T>
-    For regular methods use arrow declarations. For example load=()=>{}
-    For async methods DO NOT use arrow declarations. For example async load(){} 
+    For regular and async methods use arrow declarations. For example ```load=()=>{}``` or ```loadAsync = async ()=>{}```
 
 ## Problems
     1. Show all previous (signed only) values. Filter for ObjectStatus.Changed && ObjectStatus.Unchanged

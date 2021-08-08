@@ -24,7 +24,7 @@ export class Problems extends Array<Problem>{
         }
     }
 
-    async loadAsync(mel: EmrMel) {
+    loadAsync = async (mel: EmrMel) =>{
         if (!this._isLoaded) {
             // Load Current
             await this._currentAsync(mel);
@@ -42,7 +42,7 @@ export class Problems extends Array<Problem>{
         this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
     }
 
-    async _currentAsync(mel: EmrMel) {
+    _currentAsync = async (mel: EmrMel) =>{
         this.currentProblemMelData = (this.currentProblemMelData != null) ? this.currentProblemMelData : await mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
         this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
     }
@@ -52,7 +52,7 @@ export class Problems extends Array<Problem>{
         this.loadMelDataToList(this.newProblemMelData, this.newProblem);
     }
 
-    async _newAsync(mel: EmrMel) {
+    _newAsync = async (mel: EmrMel) =>{
         this.newProblemMelData = (this.newProblemMelData != null) ? this.newProblemMelData : await mel.melFunc('{PROB_NEW("delimited","dat","com")}');
         this.loadMelDataToList(this.newProblemMelData, this.newProblem);
     }
@@ -62,7 +62,7 @@ export class Problems extends Array<Problem>{
         this.markRemovedMelDataFromList(this.removedProblemMelData, this.removedProblem);
     }
 
-    async _removedAsync(mel: EmrMel) {
+    _removedAsync = async(mel: EmrMel) =>{
         this.removedProblemMelData = (this.removedProblemMelData != null) ? this.removedProblemMelData : await mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
         this.markRemovedMelDataFromList(this.removedProblemMelData, this.removedProblem);
     }
