@@ -90,7 +90,7 @@ export class SimulatorViewComponent implements OnInit {
   }
 
   private async saveEmrContent(): Promise<EmrContent> {
-    let emrContent = new EmrContent(null, this.mdObject.emr.emrMel);
+    let emrContent = new EmrContent({ data:null, mel:this.mdObject.emr.emrMel });
 
     emrContent.namespace = 'MDOBJECT.COMPONENT.VERSION';
     emrContent.displayName = this.mdObject.version;

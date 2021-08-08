@@ -1,6 +1,9 @@
 
 Usage Example
 ===============
+## Extension of the Array<T>
+    For regular methods use arrow declarations. For example load=()=>{}
+    For async methods DO NOT use arrow declarations. For example async load(){} 
 
 ## Problems
     1. Show all previous (signed only) values. Filter for ObjectStatus.Changed && ObjectStatus.Unchanged

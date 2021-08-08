@@ -1,9 +1,6 @@
 import { EmrApp } from './EmrApp';
 import { EmrMel } from './EmrMel';
 import { EmrWindow } from './EmrWindow';
-import { EmrContent } from './EmrContent';
-import { IArrayAdditionalMethods } from '../interfaces';
-import { StringInternal } from '../factories/factories';
 import { DemographicsExternal, ProblemExternal } from './external/external';
 import { Patient } from './Patient';
 import { Users } from './Users';
@@ -18,7 +15,7 @@ export class Emr {
 
     private _emrMel: EmrMel;
     private _emrApp: EmrApp;
-    private _melContent: { [name: string]: IArrayAdditionalMethods<EmrContent> } = {}
+    private _melContent: { [name: string]: EmrContents } = {}
     private _emrWindow: EmrWindow;
     private _version: string;
     private _external: any;
@@ -98,24 +95,12 @@ export class Emr {
         return content;
     }
 
-    melContent = (name: string) => {
-        if (this._melContent[name] == null) {
-            let data = this.emrMel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
-            let dataArray = StringInternal(data).toList();
-            let melContentArray: IArrayAdditionalMethods<EmrContent> = [];
-            for (let index = 0; index < dataArray.length; index++) {
-                melContentArray.push(new EmrContent(dataArray[index], this.emrMel));
-            }
-            this._melContent[name] = melContentArray;
-
-            this._melContent[name].tag = function () {
-                return 'MEL_GET_CONTENT';
-            }();
-
-            this._melContent[name].toMelString = () => {
-                return data;
-            }
+    melContent = (name: string, reload: boolean = false) => {
+        if (this._melContent[name] == null || reload) {
+            this._melContent[name] = new EmrContents();
+            this._melContent[name].load(name, this.emrMel);
         }
+
         return this._melContent[name];
     }
 

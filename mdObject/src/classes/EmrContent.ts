@@ -1,6 +1,12 @@
 import { ObjectState, ObjectStatus } from '../enums';
 import { EmrMel } from './EmrMel';
 
+export interface EmrContentParams {
+    data?: string,
+    mel?: EmrMel
+    // Add Parameters ...
+}
+
 /* This class correlates to the ContentList table.
  * The "namespace" parameter (formal key) is not unique and maybe duplicated 255 characters
  * The "nodeName" parameter (formal name) 20 characters
@@ -13,28 +19,45 @@ import { EmrMel } from './EmrMel';
  */
 export class EmrContent {
 
-    private data: Array<string> = (this._value == null) ? [] : this._value.split('^');
 
     state: ObjectState = ObjectState.None;
     status: ObjectStatus = ObjectStatus.Unchanged;
 
-    contentId: string = (this.data.length > 0) ? this.data[0] : '';
-    namespace: string = (this.data.length > 1) ? this.data[1] : '';
-    nodeName: string = (this.data.length > 2) ? this.data[2] : '';
-    displayName: string = (this.data.length > 3) ? this.data[3] : '';
-    sourceName: string | null = (this.data.length > 4) ? this.data[4] : '';
-    code: string | null = (this.data.length > 5) ? this.data[5] : '';
-    codeType: string | null = (this.data.length > 6) ? this.data[6] : '';
-    contentGroup: string = (this.data.length > 7) ? this.data[7] : '';
-    listOrder: string = (this.data.length > 8) ? this.data[8] : '';
-    contentDefault: string = (this.data.length > 9) ? this.data[9] : '';
+    contentId: string;
+    namespace: string;
+    nodeName: string;
+    displayName: string;
+    sourceName: string | null;
+    code: string | null;
+    codeType: string | null;
+    contentGroup: string;
+    listOrder: string;
+    contentDefault: string;
 
-    constructor(
-        public _value: string | null,
-        public _mel: EmrMel
-    ) { }
+    private _mel: EmrMel
+    private data: Array<string>;
 
-    toAddString = (): string => {
+    constructor(params: EmrContentParams = {} as EmrContentParams) {
+        let { data = null, mel = null } = params;
+        this._mel = mel;
+        this.data = (data == null) ? [] : data.split('^');
+        this.initializeData()
+    }
+
+    private initializeData = (): void => {
+        this.contentId = (this.data.length > 0) ? this.data[0] : '';
+        this.namespace = (this.data.length > 1) ? this.data[1] : '';
+        this.nodeName = (this.data.length > 2) ? this.data[2] : '';
+        this.displayName = (this.data.length > 3) ? this.data[3] : '';
+        this.sourceName = (this.data.length > 4) ? this.data[4] : '';
+        this.code = (this.data.length > 5) ? this.data[5] : '';
+        this.codeType = (this.data.length > 6) ? this.data[6] : '';
+        this.contentGroup = (this.data.length > 7) ? this.data[7] : '';
+        this.listOrder = (this.data.length > 8) ? this.data[8] : '';
+        this.contentDefault = (this.data.length > 9) ? this.data[9] : '';
+    }
+
+    private toAddString = (): string => {
         return this.namespace + '^' +
             this.nodeName + '^' +
             this.displayName + '^' +
@@ -46,7 +69,7 @@ export class EmrContent {
             this.contentDefault;
     }
 
-    toChangeString = (): string => {
+    private toChangeString = (): string => {
         return this.namespace + '^' +
             this.nodeName + '^' +
             this.displayName + '^' +
@@ -58,7 +81,9 @@ export class EmrContent {
             this.contentDefault;
     }
 
-    save = async () => {
+    save = async (mel?: EmrMel) => {
+        if (!this._mel && mel) { this._mel = mel; }
+        if (!this._mel) { throw new Error('Mel undefined');}
         switch (this.state) {
             case ObjectState.Add: {
                 let code: string = await this._mel.melFunc('{MEL_ADD_CONTENT("' + this.toAddString() + '")}');

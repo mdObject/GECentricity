@@ -21,7 +21,7 @@ export class Problem {
     static fromFhir(condition: Condition): Problem {
         const problem = new this() 
         problem.description = condition.code.text;
-
+        problem.comment = condition.evidence?.[0]?.code.text;
         return problem;        
     }
 }

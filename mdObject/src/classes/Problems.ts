@@ -1,10 +1,10 @@
 import { Problem } from './Problem';
 import { StringInternal } from '../factories/factories';
 import { EmrMel } from './EmrMel';
-import { ArrayAsync } from '../interfaces/ArrayAsync';
+//import { ArrayAsync } from '../interfaces/ArrayAsync';
 import { ObjectStatus } from '../enums';
 
-export class Problems extends ArrayAsync<Problem>{
+export class Problems extends Array<Problem>{
     private _isLoaded = false;
     tag: string;
     currentProblemMelData: string;

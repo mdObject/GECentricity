@@ -59,6 +59,7 @@
         ObjectStatus[ObjectStatus["Added"] = 1] = "Added";
         ObjectStatus[ObjectStatus["Updated"] = 2] = "Updated";
         ObjectStatus[ObjectStatus["Removed"] = 3] = "Removed";
+        ObjectStatus[ObjectStatus["Changed"] = 4] = "Changed";
     })(exports.ObjectStatus || (exports.ObjectStatus = {}));
 
     var Location = /** @class */ (function () {
@@ -385,23 +386,23 @@
         });
     };
     var EmrContent = /** @class */ (function () {
-        function EmrContent(_value, _mel) {
+        function EmrContent(params) {
             var _this = this;
-            this._value = _value;
-            this._mel = _mel;
-            this.data = (this._value == null) ? [] : this._value.split('^');
+            if (params === void 0) { params = {}; }
             this.state = exports.ObjectState.None;
             this.status = exports.ObjectStatus.Unchanged;
-            this.contentId = (this.data.length > 0) ? this.data[0] : '';
-            this.namespace = (this.data.length > 1) ? this.data[1] : '';
-            this.nodeName = (this.data.length > 2) ? this.data[2] : '';
-            this.displayName = (this.data.length > 3) ? this.data[3] : '';
-            this.sourceName = (this.data.length > 4) ? this.data[4] : '';
-            this.code = (this.data.length > 5) ? this.data[5] : '';
-            this.codeType = (this.data.length > 6) ? this.data[6] : '';
-            this.contentGroup = (this.data.length > 7) ? this.data[7] : '';
-            this.listOrder = (this.data.length > 8) ? this.data[8] : '';
-            this.contentDefault = (this.data.length > 9) ? this.data[9] : '';
+            this.initializeData = function () {
+                _this.contentId = (_this.data.length > 0) ? _this.data[0] : '';
+                _this.namespace = (_this.data.length > 1) ? _this.data[1] : '';
+                _this.nodeName = (_this.data.length > 2) ? _this.data[2] : '';
+                _this.displayName = (_this.data.length > 3) ? _this.data[3] : '';
+                _this.sourceName = (_this.data.length > 4) ? _this.data[4] : '';
+                _this.code = (_this.data.length > 5) ? _this.data[5] : '';
+                _this.codeType = (_this.data.length > 6) ? _this.data[6] : '';
+                _this.contentGroup = (_this.data.length > 7) ? _this.data[7] : '';
+                _this.listOrder = (_this.data.length > 8) ? _this.data[8] : '';
+                _this.contentDefault = (_this.data.length > 9) ? _this.data[9] : '';
+            };
             this.toAddString = function () {
                 return _this.namespace + '^' +
                     _this.nodeName + '^' +
@@ -424,11 +425,17 @@
                     _this.listOrder + '^' +
                     _this.contentDefault;
             };
-            this.save = function () { return __awaiter$1(_this, void 0, void 0, function () {
+            this.save = function (mel) { return __awaiter$1(_this, void 0, void 0, function () {
                 var _a, code, codeNumeric, error, code, codeNumeric, error, code, codeBoolean, error;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
                         case 0:
+                            if (!this._mel && mel) {
+                                this._mel = mel;
+                            }
+                            if (!this._mel) {
+                                throw new Error('Mel undefined');
+                            }
                             _a = this.state;
                             switch (_a) {
                                 case exports.ObjectState.Add: return [3 /*break*/, 1];
@@ -478,6 +485,10 @@
                     }
                 });
             }); };
+            var _a = params.data, data = _a === void 0 ? null : _a, _b = params.mel, mel = _b === void 0 ? null : _b;
+            this._mel = mel;
+            this.data = (data == null) ? [] : data.split('^');
+            this.initializeData();
         }
         return EmrContent;
     }());
@@ -517,6 +528,13 @@
             this.codeIcd10 = '';
             this.lastModifiedDate = '';
         }
+        Problem.fromFhir = function (condition) {
+            var _a, _b;
+            var problem = new this();
+            problem.description = condition.code.text;
+            problem.comment = (_b = (_a = condition.evidence) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.code.text;
+            return problem;
+        };
         return Problem;
     }());
 
@@ -2237,139 +2255,6 @@
         return FlowsheetObservation;
     }());
 
-    var ArrayAsync = /** @class */ (function () {
-        function ArrayAsync() {
-            this._data = new Array();
-        }
-        ArrayAsync.prototype[Symbol.unscopables] = function () {
-            return { copyWithin: true, entries: true, fill: true, find: true, findIndex: true, keys: true, values: true };
-        };
-        ArrayAsync.prototype.some = function (predicate, thisArg) {
-            return this._data.some(predicate, thisArg);
-        };
-        ArrayAsync.prototype.map = function (callbackfn, thisArg) {
-            return this._data.map(callbackfn, thisArg);
-        };
-        ArrayAsync.prototype.filter = function (predicate, thisArg) {
-            return this._data.filter(predicate, thisArg);
-        };
-        ArrayAsync.prototype.reduce = function (callbackfn, initialValue) {
-            return this._data.reduce(callbackfn, initialValue);
-        };
-        ArrayAsync.prototype.reduceRight = function (callbackfn, initialValue) {
-            return this._data.reduceRight(callbackfn, initialValue);
-        };
-        ArrayAsync.prototype.find = function (predicate, thisArg) {
-            return this._data.find(predicate, thisArg);
-        };
-        ArrayAsync.prototype.findIndex = function (predicate, thisArg) {
-            return this._data.findIndex(predicate, thisArg);
-        };
-        ArrayAsync.prototype.fill = function (value, start, end) {
-            this._data = this._data.fill(value, start, end);
-            return this;
-        };
-        ArrayAsync.prototype.copyWithin = function (target, start, end) {
-            this._data = this._data.copyWithin(target, start, end);
-            return this;
-        };
-        ArrayAsync.prototype.entries = function () {
-            return this._data.entries();
-        };
-        ArrayAsync.prototype.keys = function () {
-            return this._data.keys();
-        };
-        ArrayAsync.prototype.values = function () {
-            return this._data.values();
-        };
-        ArrayAsync.prototype.includes = function (searchElement, fromIndex) {
-            return this._data.includes(searchElement, fromIndex);
-        };
-        Object.defineProperty(ArrayAsync.prototype, "length", {
-            get: function () {
-                return this._data.length;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        ArrayAsync.prototype.toString = function () {
-            return this._data.toString();
-        };
-        ArrayAsync.prototype.toLocaleString = function () {
-            return this._data.toLocaleString();
-        };
-        ArrayAsync.prototype.pop = function () {
-            return this._data.pop();
-        };
-        ArrayAsync.prototype.push = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).push.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.concat = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).concat.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.join = function (separator) {
-            return this._data.join(separator);
-        };
-        ArrayAsync.prototype.reverse = function () {
-            return this._data.reverse();
-        };
-        ArrayAsync.prototype.shift = function () {
-            return this._data.shift();
-        };
-        ArrayAsync.prototype.slice = function (start, end) {
-            return this._data.slice(start, end);
-        };
-        ArrayAsync.prototype.sort = function (compareFn) {
-            this._data = this._data.sort(compareFn);
-            return this;
-        };
-        ArrayAsync.prototype.splice = function (start, deleteCount) {
-            var _a;
-            var items = [];
-            for (var _i = 2; _i < arguments.length; _i++) {
-                items[_i - 2] = arguments[_i];
-            }
-            return (_a = this._data).splice.apply(_a, __spread([start, deleteCount], items));
-        };
-        ArrayAsync.prototype.unshift = function () {
-            var _a;
-            var items = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                items[_i] = arguments[_i];
-            }
-            return (_a = this._data).unshift.apply(_a, __spread(items));
-        };
-        ArrayAsync.prototype.indexOf = function (searchElement, fromIndex) {
-            return this._data.indexOf(searchElement, fromIndex);
-        };
-        ArrayAsync.prototype.lastIndexOf = function (searchElement, fromIndex) {
-            return this._data.lastIndexOf(searchElement, fromIndex);
-        };
-        ArrayAsync.prototype.every = function (predicate, thisArg) {
-            return this._data.every(predicate, thisArg);
-        };
-        ArrayAsync.prototype.forEach = function (callbackfn, thisArg) {
-            return this._data.forEach(callbackfn, thisArg);
-        };
-        ArrayAsync.prototype[Symbol.iterator] = function () {
-            return this._data.values();
-        };
-        ArrayAsync.prototype.get = function (n) { return this._data[n]; };
-        ;
-        ArrayAsync.prototype.set = function (n, value) { this._data[n] = value; };
-        return ArrayAsync;
-    }());
-
     var __awaiter$4 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
@@ -2398,6 +2283,7 @@
                 if (!_this._isLoaded) {
                     _this._current(mel);
                     _this._new(mel);
+                    _this._removed(mel);
                     _this._isLoaded = true;
                 }
             };
@@ -2409,10 +2295,29 @@
                 _this.newProblemMelData = (_this.newProblemMelData != null) ? _this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
                 _this.loadMelDataToList(_this.newProblemMelData, _this.newProblem);
             };
+            _this._removed = function (mel) {
+                _this.removedProblemMelData = (_this.removedProblemMelData != null) ? _this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
+                _this.markRemovedMelDataFromList(_this.removedProblemMelData, _this.removedProblem);
+            };
             _this.loadMelDataToList = function (data, predicate) {
                 var dataArray = StringInternal(data).toList();
                 for (var index = 0; index < dataArray.length; index++) {
                     _this.push(predicate(dataArray[index]));
+                }
+            };
+            _this.markRemovedMelDataFromList = function (data, predicate) {
+                var dataArray = StringInternal(data).toList();
+                var _loop_1 = function (index) {
+                    var problem = predicate(dataArray[index]);
+                    _this.forEach(function (value) {
+                        if (value.problemId === problem.problemId) {
+                            value.status = exports.ObjectStatus.Changed;
+                        }
+                    });
+                    _this.push(problem);
+                };
+                for (var index = 0; index < dataArray.length; index++) {
+                    _loop_1(index);
                 }
             };
             _this.currentProblem = function (value) {
@@ -2425,6 +2330,13 @@
                 var data = (value == null) ? [] : value.split('^');
                 var problem = new Problem();
                 problem.status = exports.ObjectStatus.Added;
+                problem = _this._locadMelDataFromString(data, problem);
+                return problem;
+            };
+            _this.removedProblem = function (value) {
+                var data = (value == null) ? [] : value.split('^');
+                var problem = new Problem();
+                problem.status = exports.ObjectStatus.Removed;
                 problem = _this._locadMelDataFromString(data, problem);
                 return problem;
             };
@@ -2444,6 +2356,11 @@
                 problem.problemId = _problemId;
                 return problem;
             };
+            _this.filterProblems = function (predicate, thisArg) {
+                var problems = new Problems();
+                problems.push.apply(problems, __spread(_super.prototype.filter.call(_this, predicate, thisArg)));
+                return problems;
+            };
             return _this;
         }
         Problems.prototype.loadAsync = function (mel) {
@@ -2451,16 +2368,19 @@
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            if (!!this._isLoaded) return [3 /*break*/, 3];
+                            if (!!this._isLoaded) return [3 /*break*/, 4];
                             return [4 /*yield*/, this._currentAsync(mel)];
                         case 1:
                             _a.sent();
                             return [4 /*yield*/, this._newAsync(mel)];
                         case 2:
                             _a.sent();
+                            return [4 /*yield*/, this._removedAsync(mel)];
+                        case 3:
+                            _a.sent();
                             this._isLoaded = true;
-                            _a.label = 3;
-                        case 3: return [2 /*return*/];
+                            _a.label = 4;
+                        case 4: return [2 /*return*/];
                     }
                 });
             });
@@ -2509,8 +2429,30 @@
                 });
             });
         };
+        Problems.prototype._removedAsync = function (mel) {
+            return __awaiter$4(this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.removedProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.removedProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_REMOVED("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.removedProblemMelData = _b;
+                            this.markRemovedMelDataFromList(this.removedProblemMelData, this.removedProblem);
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
         return Problems;
-    }(ArrayAsync));
+    }(Array));
 
     var __awaiter$5 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -3987,10 +3929,19 @@
         function EmrContents() {
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this._isLoaded = false;
+            _this.load = function (name, mel) {
+                if (!_this._isLoaded || _this._name !== name) {
+                    _this._name = name;
+                    _this.tag = 'MEL_GET_CONTENT';
+                    _this.melData = mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
+                    _this.loadMelDataToList(_this.melData, mel);
+                    _this._isLoaded = true;
+                }
+            };
             _this.loadMelDataToList = function (data, mel) {
                 var dataArray = StringInternal(data).toList();
                 for (var index = 0; index < dataArray.length; index++) {
-                    _this.push(new EmrContent(dataArray[index], mel));
+                    _this.push(new EmrContent({ data: dataArray[index], mel: mel }));
                 }
             };
             return _this;
@@ -4017,7 +3968,7 @@
             });
         };
         return EmrContents;
-    }(ArrayAsync));
+    }(Array));
 
     var __awaiter$9 = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -4064,21 +4015,11 @@
                     }
                 });
             }); };
-            this.melContent = function (name) {
-                if (_this._melContent[name] == null) {
-                    var data_1 = _this.emrMel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
-                    var dataArray = StringInternal(data_1).toList();
-                    var melContentArray = [];
-                    for (var index = 0; index < dataArray.length; index++) {
-                        melContentArray.push(new EmrContent(dataArray[index], _this.emrMel));
-                    }
-                    _this._melContent[name] = melContentArray;
-                    _this._melContent[name].tag = function () {
-                        return 'MEL_GET_CONTENT';
-                    }();
-                    _this._melContent[name].toMelString = function () {
-                        return data_1;
-                    };
+            this.melContent = function (name, reload) {
+                if (reload === void 0) { reload = false; }
+                if (_this._melContent[name] == null || reload) {
+                    _this._melContent[name] = new EmrContents();
+                    _this._melContent[name].load(name, _this.emrMel);
                 }
                 return _this._melContent[name];
             };
@@ -4378,57 +4319,37 @@
         return Emr;
     }());
 
-    var version = '2.0.0-alpha.2.2';
+    var name = "@mdobject/mdobject";
+    var author = "mdObject, Inc";
+    var version = "2.0.0-alpha.2.3";
+    var description = "mdObject Centricity EMP/CPS component";
+    var main = "./bundles/mdobject-mdobject.umd.min.js";
+    var types = "./mdobject-mdobject.d.ts";
+    var license = "MS-PL";
+    var repository = {
+        type: "git",
+        url: "git+https://github.com/mdObject/GECentricity.git"
+    };
+    var bugs = {
+        url: "https://github.com/mdObject/GECentricity/issues"
+    };
+    var homepage = "https://mdobject.com/gecentricity";
+    var _package = {
+        name: name,
+        author: author,
+        version: version,
+        description: description,
+        main: main,
+        types: types,
+        license: license,
+        repository: repository,
+        bugs: bugs,
+        homepage: homepage
+    };
+
+    var version$1 = version;
 
     var productType = 'GE';
-
-    var HumanName = /** @class */ (function () {
-        function HumanName() {
-        }
-        return HumanName;
-    }());
-
-    var Address$1 = /** @class */ (function () {
-        function Address() {
-        }
-        return Address;
-    }());
-
-    var Attachment = /** @class */ (function () {
-        function Attachment() {
-        }
-        return Attachment;
-    }());
-
-    var Person = /** @class */ (function () {
-        function Person() {
-        }
-        Object.defineProperty(Person.prototype, "resourceType", {
-            get: function () { return "Person"; },
-            enumerable: false,
-            configurable: true
-        });
-        ;
-        return Person;
-    }());
-
-    var Patient$1 = /** @class */ (function () {
-        function Patient() {
-        }
-        Object.defineProperty(Patient.prototype, "resourceType", {
-            get: function () { return "Patient"; },
-            enumerable: false,
-            configurable: true
-        });
-        ;
-        return Patient;
-    }());
-
-    var Fhir = /** @class */ (function () {
-        function Fhir() {
-        }
-        return Fhir;
-    }());
 
     var MdObject = /** @class */ (function () {
         function MdObject(_window, _document) {
@@ -4439,11 +4360,10 @@
             }
             console.info("The mdObject Version:" + this.version);
             this._emr = new Emr(this._window, this._document);
-            this._fhir = new Fhir();
         }
         Object.defineProperty(MdObject.prototype, "version", {
             get: function () {
-                return version;
+                return version$1;
             },
             enumerable: false,
             configurable: true
@@ -4458,13 +4378,6 @@
         Object.defineProperty(MdObject.prototype, "emr", {
             get: function () {
                 return this._emr;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(MdObject.prototype, "fhir", {
-            get: function () {
-                return this._fhir;
             },
             enumerable: false,
             configurable: true
@@ -4605,6 +4518,7 @@
     exports.Emr = Emr;
     exports.EmrApp = EmrApp;
     exports.EmrContent = EmrContent;
+    exports.EmrContents = EmrContents;
     exports.EmrMel = EmrMel;
     exports.EmrWindow = EmrWindow;
     exports.FlowsheetObservation = FlowsheetObservation;

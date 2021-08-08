@@ -11,6 +11,10 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	* Fhir call removed from mdObject
 	New Fhir classes added: Condition, CodeableConcept, Coding, Resource
 	Added Problem conversion: ```let problem: Problem = Problem.fromFhir(condition);```
+	* The mdObject.emr.melContent is EmrContents type. Set reload to true, to reload content.
+	* Problems extends Array<Problem>.
+	Fixed angular.js demo. Angular.js is local now.
+
 ## Release 2.0.0-alpha.2.2
 	Fixed bug with Add Allergy return code.
 	Fixed simulator validation.

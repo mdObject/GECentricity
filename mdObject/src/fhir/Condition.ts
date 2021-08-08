@@ -39,10 +39,10 @@ export class Condition implements Resource {
 //--not implemented            "summary": { CodeableConcept }; // C? Simple summary (disease specific)
 //--not implemented            "assessment": [{ Reference(ClinicalImpression|DiagnosticReport|Observation) }] // C? Formal record of assessment
 //--not implemented        };
-//--not implemented        "evidence": [{ // Supporting evidence
-//--not implemented            "code": { CodeableConcept }; // C? Manifestation/symptom
+    evidence: [{ // Supporting evidence
+     code: CodeableConcept; // C? Manifestation/symptom
 //--not implemented            "detail": [{ Reference(Any) }] // C? Supporting information found elsewhere
-//--not implemented        }];
+    }];
     bodySite: Array<CodeableConcept>; // Anatomical location, if relevant
     notes: string; // Additional information about the Condition
 

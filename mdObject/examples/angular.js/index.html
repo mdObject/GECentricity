@@ -8,12 +8,11 @@
 
     <!-- CDN -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom -->
-    <!--<script src="scripts/bundle.public.min.js" type="text/javascript"></script>-->
     <script src="scripts/ts-polyfill.min.js" type="text/javascript"></script>
     <script src="scripts/polyfills.js" type="text/javascript"></script>
     <script src="scripts/mdobject-mdobject.umd.min.js" type="text/javascript"></script>
@@ -934,7 +933,7 @@
                             <select ng-model="selectedFlowsheet" name="flowsheetObs" id="flowsheetObs">
                                 <option ng-repeat="x in flowsheets" value="{{x.value}}">{{x.name}}</option>
                             </select>
-                        </h3> 
+                        </h3>
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
@@ -1038,6 +1037,44 @@
                                 <div class="row">
                                     <div class="col-sm-3">Name:</div>
                                     <div class="col-sm-9"><span ng-bind="pro.name"></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Emr Content</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="data in content">
+                                <div class="row">
+                                    <span ng-bind="data.displayName"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Log Errors</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="log in errorLog">
+                                <div class="row">
+                                    <span ng-bind="log"></span>
                                 </div>
                             </li>
                         </ul>
