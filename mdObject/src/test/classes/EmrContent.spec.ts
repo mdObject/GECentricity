@@ -11,7 +11,7 @@ describe('Class: EmrContent', () => {
 
     describe('right value', () => {
         beforeAll(() => {
-            component = new EmrContent(result, mockEmrMel as any);
+            component = new EmrContent({ data: result, mel: mockEmrMel as any });
         })
 
         it('check contentId', () => {
@@ -48,7 +48,7 @@ describe('Class: EmrContent', () => {
 
     describe('default value', () => {
         beforeAll(() => {
-            component = new EmrContent('', mockEmrMel as any);
+            component = new EmrContent({ data: '', mel: mockEmrMel as any });
         })
 
         it('check contentId', () => {
@@ -85,15 +85,15 @@ describe('Class: EmrContent', () => {
 
     describe('methods', () => {
         beforeEach(() => {
-            component = new EmrContent(result, mockEmrMel as any);
-            spyOn(component._mel, 'melFunc')
+            component = new EmrContent({ data: result, mel: mockEmrMel as any });
+            spyOn((component as any)._mel, 'melFunc')
                 .and
                 .returnValue('');
         })
 
         describe('toAddString', () => {
             it('right value', () => {
-                let _result = component.toAddString();
+                let _result = (component as any).toAddString();
                 let __result = component.namespace + '^' +
                     component.nodeName + '^' +
                     component.displayName + '^' +
@@ -109,7 +109,7 @@ describe('Class: EmrContent', () => {
                 spyOn(_window, 'btoa')
                     .and
                     .returnValue('');
-                let _result = component.toAddString();
+                let _result = (component as any).toAddString();
                 let __result = component.namespace + '^' +
                     component.nodeName + '^' +
                     component.displayName + '^' +
@@ -125,33 +125,33 @@ describe('Class: EmrContent', () => {
         })
         describe('save', () => {
             beforeEach(() => {
-                spyOn(component, 'toAddString')
+                spyOn((component as any), 'toAddString')
                     .and
-                    .returnValue(component.toAddString());
+                    .returnValue((component as any).toAddString());
             })
 
             it('ObjectState.Add', () => {
-                component = new EmrContent(null, mockEmrMel as any);
+                component = new EmrContent({ data: null, mel: mockEmrMel as any });
                 component.state = ObjectState.Add;
 
-                spyOn(component, 'toAddString')
+                spyOn((component as any), 'toAddString')
                     .and
-                    .returnValue(component.toAddString());
+                    .returnValue((component as any).toAddString());
                 component.save();
-                expect(component._mel.melFunc).toHaveBeenCalledWith('{MEL_ADD_CONTENT("' + component.toAddString() + '")}');
-                expect(component.toAddString).toHaveBeenCalled();
+                expect((component as any)._mel.melFunc).toHaveBeenCalledWith('{MEL_ADD_CONTENT("' + (component as any).toAddString() + '")}');
+                expect((component as any).toAddString).toHaveBeenCalled();
             })
             it('ObjectState.Update', () => {
                 component.state = ObjectState.Update;
                 component.save();
-                expect(component._mel.melFunc).toHaveBeenCalledWith('{MEL_UPDATE_CONTENT("' + component.contentId + '","' + component.toChangeString() +  '")}');
-                expect(component.toAddString).toHaveBeenCalled();
+                expect((component as any)._mel.melFunc).toHaveBeenCalledWith('{MEL_UPDATE_CONTENT("' + component.contentId + '","' + (component as any).toChangeString() +  '")}');
+                expect((component as any).toAddString).toHaveBeenCalled();
             })
         })
         it('remove', () => {
             component.state = ObjectState.Remove;
             component.save();
-            expect(component._mel.melFunc).toHaveBeenCalledWith('{MEL_REMOVE_CONTENT("' + component.contentId + '")}');
+            expect((component as any)._mel.melFunc).toHaveBeenCalledWith('{MEL_REMOVE_CONTENT("' + component.contentId + '")}');
         })
     })
 
