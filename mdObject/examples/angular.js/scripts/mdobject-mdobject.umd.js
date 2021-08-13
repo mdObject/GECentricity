@@ -2287,18 +2287,98 @@
                     _this._isLoaded = true;
                 }
             };
+            _this.loadAsync = function (mel) { return __awaiter$4(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            if (!!this._isLoaded) return [3 /*break*/, 4];
+                            return [4 /*yield*/, this._currentAsync(mel)];
+                        case 1:
+                            _a.sent();
+                            return [4 /*yield*/, this._newAsync(mel)];
+                        case 2:
+                            _a.sent();
+                            return [4 /*yield*/, this._removedAsync(mel)];
+                        case 3:
+                            _a.sent();
+                            this._isLoaded = true;
+                            _a.label = 4;
+                        case 4: return [2 /*return*/];
+                    }
+                });
+            }); };
             _this._current = function (mel) {
                 _this.currentProblemMelData = (_this.currentProblemMelData != null) ? _this.currentProblemMelData : mel.melFunc('{PROB_PRIOR("delimited","dat","com")}');
                 _this.loadMelDataToList(_this.currentProblemMelData, _this.currentProblem);
             };
+            _this._currentAsync = function (mel) { return __awaiter$4(_this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.currentProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.currentProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_PRIOR("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.currentProblemMelData = _b;
+                            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
+                            return [2 /*return*/];
+                    }
+                });
+            }); };
             _this._new = function (mel) {
                 _this.newProblemMelData = (_this.newProblemMelData != null) ? _this.newProblemMelData : mel.melFunc('{PROB_NEW("delimited","dat","com")}');
                 _this.loadMelDataToList(_this.newProblemMelData, _this.newProblem);
             };
+            _this._newAsync = function (mel) { return __awaiter$4(_this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.newProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.newProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_NEW("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.newProblemMelData = _b;
+                            this.loadMelDataToList(this.newProblemMelData, this.newProblem);
+                            return [2 /*return*/];
+                    }
+                });
+            }); };
             _this._removed = function (mel) {
                 _this.removedProblemMelData = (_this.removedProblemMelData != null) ? _this.removedProblemMelData : mel.melFunc('{PROB_REMOVED("delimited","dat","com")}');
                 _this.markRemovedMelDataFromList(_this.removedProblemMelData, _this.removedProblem);
             };
+            _this._removedAsync = function (mel) { return __awaiter$4(_this, void 0, void 0, function () {
+                var _a, _b;
+                return __generator(this, function (_c) {
+                    switch (_c.label) {
+                        case 0:
+                            _a = this;
+                            if (!(this.removedProblemMelData != null)) return [3 /*break*/, 1];
+                            _b = this.removedProblemMelData;
+                            return [3 /*break*/, 3];
+                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_REMOVED("delimited","dat","com")}')];
+                        case 2:
+                            _b = _c.sent();
+                            _c.label = 3;
+                        case 3:
+                            _a.removedProblemMelData = _b;
+                            this.markRemovedMelDataFromList(this.removedProblemMelData, this.removedProblem);
+                            return [2 /*return*/];
+                    }
+                });
+            }); };
             _this.loadMelDataToList = function (data, predicate) {
                 var dataArray = StringInternal(data).toList();
                 for (var index = 0; index < dataArray.length; index++) {
@@ -2363,94 +2443,6 @@
             };
             return _this;
         }
-        Problems.prototype.loadAsync = function (mel) {
-            return __awaiter$4(this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            if (!!this._isLoaded) return [3 /*break*/, 4];
-                            return [4 /*yield*/, this._currentAsync(mel)];
-                        case 1:
-                            _a.sent();
-                            return [4 /*yield*/, this._newAsync(mel)];
-                        case 2:
-                            _a.sent();
-                            return [4 /*yield*/, this._removedAsync(mel)];
-                        case 3:
-                            _a.sent();
-                            this._isLoaded = true;
-                            _a.label = 4;
-                        case 4: return [2 /*return*/];
-                    }
-                });
-            });
-        };
-        Problems.prototype._currentAsync = function (mel) {
-            return __awaiter$4(this, void 0, void 0, function () {
-                var _a, _b;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _a = this;
-                            if (!(this.currentProblemMelData != null)) return [3 /*break*/, 1];
-                            _b = this.currentProblemMelData;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_PRIOR("delimited","dat","com")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a.currentProblemMelData = _b;
-                            this.loadMelDataToList(this.currentProblemMelData, this.currentProblem);
-                            return [2 /*return*/];
-                    }
-                });
-            });
-        };
-        Problems.prototype._newAsync = function (mel) {
-            return __awaiter$4(this, void 0, void 0, function () {
-                var _a, _b;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _a = this;
-                            if (!(this.newProblemMelData != null)) return [3 /*break*/, 1];
-                            _b = this.newProblemMelData;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_NEW("delimited","dat","com")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a.newProblemMelData = _b;
-                            this.loadMelDataToList(this.newProblemMelData, this.newProblem);
-                            return [2 /*return*/];
-                    }
-                });
-            });
-        };
-        Problems.prototype._removedAsync = function (mel) {
-            return __awaiter$4(this, void 0, void 0, function () {
-                var _a, _b;
-                return __generator(this, function (_c) {
-                    switch (_c.label) {
-                        case 0:
-                            _a = this;
-                            if (!(this.removedProblemMelData != null)) return [3 /*break*/, 1];
-                            _b = this.removedProblemMelData;
-                            return [3 /*break*/, 3];
-                        case 1: return [4 /*yield*/, mel.melFunc('{PROB_REMOVED("delimited","dat","com")}')];
-                        case 2:
-                            _b = _c.sent();
-                            _c.label = 3;
-                        case 3:
-                            _a.removedProblemMelData = _b;
-                            this.markRemovedMelDataFromList(this.removedProblemMelData, this.removedProblem);
-                            return [2 /*return*/];
-                    }
-                });
-            });
-        };
         return Problems;
     }(Array));
 
@@ -3929,25 +3921,7 @@
         function EmrContents() {
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this._isLoaded = false;
-            _this.load = function (name, mel) {
-                if (!_this._isLoaded || _this._name !== name) {
-                    _this._name = name;
-                    _this.tag = 'MEL_GET_CONTENT';
-                    _this.melData = mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
-                    _this.loadMelDataToList(_this.melData, mel);
-                    _this._isLoaded = true;
-                }
-            };
-            _this.loadMelDataToList = function (data, mel) {
-                var dataArray = StringInternal(data).toList();
-                for (var index = 0; index < dataArray.length; index++) {
-                    _this.push(new EmrContent({ data: dataArray[index], mel: mel }));
-                }
-            };
-            return _this;
-        }
-        EmrContents.prototype.loadAsync = function (name, mel) {
-            return __awaiter$8(this, void 0, void 0, function () {
+            _this.loadAsync = function (name, mel) { return __awaiter$8(_this, void 0, void 0, function () {
                 var _a;
                 return __generator(this, function (_b) {
                     switch (_b.label) {
@@ -3965,8 +3939,24 @@
                         case 2: return [2 /*return*/];
                     }
                 });
-            });
-        };
+            }); };
+            _this.load = function (name, mel) {
+                if (!_this._isLoaded || _this._name !== name) {
+                    _this._name = name;
+                    _this.tag = 'MEL_GET_CONTENT';
+                    _this.melData = mel.melFunc('{MEL_GET_CONTENT(\"' + name + '\",\"MATCH\")}');
+                    _this.loadMelDataToList(_this.melData, mel);
+                    _this._isLoaded = true;
+                }
+            };
+            _this.loadMelDataToList = function (data, mel) {
+                var dataArray = StringInternal(data).toList();
+                for (var index = 0; index < dataArray.length; index++) {
+                    _this.push(new EmrContent({ data: dataArray[index], mel: mel }));
+                }
+            };
+            return _this;
+        }
         return EmrContents;
     }(Array));
 
