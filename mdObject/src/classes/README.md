@@ -6,6 +6,7 @@ Usage Example
 
 ## Problems
     1. Show all previous (signed only) values. Filter for ObjectStatus.Changed && ObjectStatus.Unchanged
+    The ObjectStatus.Changed may be a bit confusing. However, when a user removed/update value, the prevoius value will have ObjectStatus.Changed status.   
     ```
     private patient: Patient;
     private problemList: Problems;
