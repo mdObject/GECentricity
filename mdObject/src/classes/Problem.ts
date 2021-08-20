@@ -55,9 +55,9 @@ export class Problem {
     }
 
     public get code()  {
-        return this.codeIcd10
-            ? this.codeIcd9 ? this.codeIcd9 + '|' + this.codeIcd10 : this.codeIcd10
-            : this.codeIcd9;
+        return this.codeIcd9 && this.codeIcd10
+            ? this.codeIcd9 + '|' + this.codeIcd10
+            : this.codeIcd9 + this.codeIcd10;
     }
 
     private toAddString = (): string => {

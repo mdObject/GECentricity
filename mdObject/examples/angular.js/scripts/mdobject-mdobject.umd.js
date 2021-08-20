@@ -640,10 +640,9 @@
         }
         Object.defineProperty(Problem.prototype, "code", {
             get: function () {
-                var code = '';
-                code = (this.codeIcd9) ? this.codeIcd9 : code;
-                code = (this.codeIcd10) ? (code) ? '|' + this.codeIcd10 : this.codeIcd10 : code;
-                return code;
+                return this.codeIcd9 && this.codeIcd10
+                    ? this.codeIcd9 + '|' + this.codeIcd10
+                    : this.codeIcd9 + this.codeIcd10;
             },
             enumerable: false,
             configurable: true
