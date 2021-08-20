@@ -46,6 +46,14 @@ export class Problem {
         }
     }
 
+    constructor(item?) {
+        if (item) {
+            Object.keys(this).forEach(key => {
+                this[key] = item[key] ? item[key] : this[key];
+            });
+        }
+    }
+
     // TODO: Add unit test for:
     // 1. codeIcd9 = empty && codeIcd10 = ICD10-A (Result 'ICD10-A')
     // 2. codeIcd9 = ICD-B && codeIcd10 = ICD10-A (Result 'ICD-B|ICD10-A')
@@ -57,7 +65,7 @@ export class Problem {
         code = (this.codeIcd10) ? (code) ? '|' + this.codeIcd10 : this.codeIcd10 : code;
 
         return code;
-}
+    }
 
     private toAddString = (): string => {
         return this.type + '","' +
