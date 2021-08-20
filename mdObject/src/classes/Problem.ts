@@ -54,17 +54,10 @@ export class Problem {
         }
     }
 
-    // TODO: Add unit test for:
-    // 1. codeIcd9 = empty && codeIcd10 = ICD10-A (Result 'ICD10-A')
-    // 2. codeIcd9 = ICD-B && codeIcd10 = ICD10-A (Result 'ICD-B|ICD10-A')
-    // 3. codeIcd9 = empty && codeIcd10 = empty (result '')
-    // 4. codeIcd9 = ICD-B && codeIcd10 = empty (Result 'ICD-B')
-    private get code()  {
-        let code = '';
-        code = (this.codeIcd9) ? this.codeIcd9 : code;
-        code = (this.codeIcd10) ? (code) ? '|' + this.codeIcd10 : this.codeIcd10 : code;
-
-        return code;
+    public get code()  {
+        return this.codeIcd10
+            ? this.codeIcd9 ? this.codeIcd9 + '|' + this.codeIcd10 : this.codeIcd10
+            : this.codeIcd9;
     }
 
     private toAddString = (): string => {

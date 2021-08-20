@@ -49,5 +49,25 @@ describe('Class: Problem', () => {
         it('check problemId', () => {
             expect(component.problemId).toEqual('');
         });
+        it('check code (codeIcd9 = empty && codeIcd10 = ICD10-A)', () => {
+            component.codeIcd9 = '';
+            component.codeIcd10 = 'ICD10-A';
+            expect(component.code).toEqual('ICD10-A');
+        });
+        it('check code (codeIcd9 = ICD-B && codeIcd10 = ICD10-A)', () => {
+            component.codeIcd9 = 'ICD-B';
+            component.codeIcd10 = 'ICD10-A';
+            expect(component.code).toEqual('ICD-B|ICD10-A');
+        });
+        it('check code (codeIcd9 = empty && codeIcd10 = empty)', () => {
+            component.codeIcd9 = '';
+            component.codeIcd10 = '';
+            expect(component.code).toEqual('');
+        });
+        it('check code (codeIcd9 = ICD-B && codeIcd10 = empty)', () => {
+            component.codeIcd9 = 'ICD-B';
+            component.codeIcd10 = '';
+            expect(component.code).toEqual('ICD-B');
+        });
     })
 })
