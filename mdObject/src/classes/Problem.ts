@@ -1,9 +1,10 @@
 import { ObjectState, ObjectStatus } from '../enums';
 import { Condition } from '../fhir';
 import { EmrMel } from './EmrMel';
+import { EmrObject } from './EmrObject';
 import { System } from './System';
 
-export class Problem {
+export class Problem extends EmrObject<Problem> {
     status: ObjectStatus = ObjectStatus.Unchanged;
     state: ObjectState = ObjectState.None;
 
@@ -28,12 +29,30 @@ export class Problem {
     codeIcd10: string = '';
     lastModifiedDate: string = '';
 
-    save = async (mel: EmrMel) => {
+    
+    save = (mel: EmrMel) => {
+        switch (this.state) {
+            case ObjectState.Add: {
+                let code: string = mel.melFunc('{MEL_ADD_PROBLEM("' + this.toAddString() + '")}');
+
+                if (code !== '0') {
+                    let error = 'Problem.save error. Code is ' + code;
+                    console.error(error);
+                    throw new Error('Problem not saved. ' + error);
+                }
+
+                this.status = ObjectStatus.Added;
+                this.state = ObjectState.None;
+                break;
+            }
+        }
+    }
+    saveAsync = async (mel: EmrMel) => {
         switch (this.state) {
             case ObjectState.Add: {
                 let code: string = await mel.melFunc('{MEL_ADD_PROBLEM("' + this.toAddString() + '")}');
 
-                if (code !== '') {
+                if (code !== '0') {
                     let error = 'Problem.save error. Code is ' + code;
                     console.error(error);
                     throw new Error('Problem not saved. ' + error);
@@ -46,12 +65,9 @@ export class Problem {
         }
     }
 
-    constructor(problem?) {
-        if (problem) {
-            Object.keys(this).forEach(key => {
-                this[key] = problem[key] ? problem[key] : this[key];
-            });
-        }
+
+    constructor(problem?: Problem) {
+        super(problem);
     }
 
     public get code()  {

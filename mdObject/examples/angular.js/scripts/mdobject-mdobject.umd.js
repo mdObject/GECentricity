@@ -516,6 +516,18 @@
         return PatientContact;
     }());
 
+    var EmrObject = /** @class */ (function () {
+        function EmrObject(item) {
+            var _this = this;
+            if (item) {
+                Object.keys(this).forEach(function (key) {
+                    _this[key] = item[key] ? item[key] : _this[key];
+                });
+            }
+        }
+        return EmrObject;
+    }());
+
     var emptyImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII===';
     var simulatorChromeExtensionId = "chgnndkhlnpmfkjnchmnhkfneccghaaf";
 
@@ -582,22 +594,38 @@
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     };
-    var Problem = /** @class */ (function () {
-        function Problem(item) {
-            var _this = this;
-            this.status = exports.ObjectStatus.Unchanged;
-            this.state = exports.ObjectState.None;
-            this.assessment = 'N';
-            this.note = '';
-            this.problemId = '';
-            this.type = '';
-            this.description = '';
-            this.codeIcd9 = '';
-            this.comment = '';
-            this.stopReason = '';
-            this.codeIcd10 = '';
-            this.lastModifiedDate = '';
-            this.save = function (mel) { return __awaiter$2(_this, void 0, void 0, function () {
+    var Problem = /** @class */ (function (_super) {
+        __extends(Problem, _super);
+        function Problem(problem) {
+            var _this = _super.call(this, problem) || this;
+            _this.status = exports.ObjectStatus.Unchanged;
+            _this.state = exports.ObjectState.None;
+            _this.assessment = 'N';
+            _this.note = '';
+            _this.problemId = '';
+            _this.type = '';
+            _this.description = '';
+            _this.codeIcd9 = '';
+            _this.comment = '';
+            _this.stopReason = '';
+            _this.codeIcd10 = '';
+            _this.lastModifiedDate = '';
+            _this.save = function (mel) {
+                switch (_this.state) {
+                    case exports.ObjectState.Add: {
+                        var code = mel.melFunc('{MEL_ADD_PROBLEM("' + _this.toAddString() + '")}');
+                        if (code !== '0') {
+                            var error = 'Problem.save error. Code is ' + code;
+                            console.error(error);
+                            throw new Error('Problem not saved. ' + error);
+                        }
+                        _this.status = exports.ObjectStatus.Added;
+                        _this.state = exports.ObjectState.None;
+                        break;
+                    }
+                }
+            };
+            _this.saveAsync = function (mel) { return __awaiter$2(_this, void 0, void 0, function () {
                 var _c, code, error;
                 return __generator(this, function (_d) {
                     switch (_d.label) {
@@ -610,7 +638,7 @@
                         case 1: return [4 /*yield*/, mel.melFunc('{MEL_ADD_PROBLEM("' + this.toAddString() + '")}')];
                         case 2:
                             code = _d.sent();
-                            if (code !== '') {
+                            if (code !== '0') {
                                 error = 'Problem.save error. Code is ' + code;
                                 console.error(error);
                                 throw new Error('Problem not saved. ' + error);
@@ -622,7 +650,7 @@
                     }
                 });
             }); };
-            this.toAddString = function () {
+            _this.toAddString = function () {
                 return _this.type + '","' +
                     _this.description + '","' +
                     _this.code + '","' +
@@ -632,11 +660,7 @@
                     _this.assessment + ',"' +
                     _this.note;
             };
-            if (item) {
-                Object.keys(this).forEach(function (key) {
-                    _this[key] = item[key] ? item[key] : _this[key];
-                });
-            }
+            return _this;
         }
         Object.defineProperty(Problem.prototype, "code", {
             get: function () {
@@ -655,7 +679,7 @@
             return problem;
         };
         return Problem;
-    }());
+    }(EmrObject));
 
     var Immunization = /** @class */ (function () {
         function Immunization(_value, _mel) {
@@ -4582,6 +4606,7 @@
     exports.EmrContent = EmrContent;
     exports.EmrContents = EmrContents;
     exports.EmrMel = EmrMel;
+    exports.EmrObject = EmrObject;
     exports.EmrWindow = EmrWindow;
     exports.FlowsheetObservation = FlowsheetObservation;
     exports.Immunization = Immunization;

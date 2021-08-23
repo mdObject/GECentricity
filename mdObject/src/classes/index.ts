@@ -31,4 +31,5 @@ export { FlowsheetObservation } from './FlowsheetObservation';
 export { System } from './System';
 export { Allergy } from './Allergy';
 export { Problems } from './Problems';
-export { EmrContents} from './EmrContents'
+export { EmrContents } from './EmrContents';
+export { EmrObject } from './EmrObject';
