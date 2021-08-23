@@ -46,10 +46,10 @@ export class Problem {
         }
     }
 
-    constructor(item?) {
-        if (item) {
+    constructor(problem?) {
+        if (problem) {
             Object.keys(this).forEach(key => {
-                this[key] = item[key] ? item[key] : this[key];
+                this[key] = problem[key] ? problem[key] : this[key];
             });
         }
     }
