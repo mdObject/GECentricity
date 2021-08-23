@@ -23,8 +23,8 @@ export class Problem extends EmrObject<Problem> {
     description: string = '';
     codeIcd9: string = '';
     comment: string = '';
-    onsetDate: Date | undefined;
-    stopDate: Date | undefined;
+    onsetDate: Date | undefined = undefined;
+    stopDate: Date | undefined = undefined;
     stopReason: string = '';
     codeIcd10: string = '';
     lastModifiedDate: string = '';
@@ -67,7 +67,8 @@ export class Problem extends EmrObject<Problem> {
 
 
     constructor(problem?: Problem) {
-        super(problem);
+        super();
+        this.objectSetup(this, problem);
     }
 
     public get code()  {

@@ -1,11 +1,14 @@
 import { EmrMel } from "./EmrMel";
 
 export abstract class EmrObject<T> {
-    constructor(item?:T) {
-        if (item) {
-            Object.keys(this).forEach(key => {
-                this[key] = item[key] ? item[key] : this[key];
-            });
+    // All base properties MUST have an initial value!!! 
+    protected objectSetup(base?: T, item?: T) {
+        if (item && base) {
+            Object.keys(base)
+                .filter(key => (typeof base[key]) !== "function")
+                .forEach(key => {
+                    base[key] = item[key] ? item[key] : base[key];
+                });
         }
     }
 

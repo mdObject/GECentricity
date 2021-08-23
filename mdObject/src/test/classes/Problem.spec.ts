@@ -70,4 +70,27 @@ describe('Class: Problem', () => {
             expect(component.code).toEqual('ICD-B');
         });
     })
+
+    describe('constructor', () => {
+        it('check parameterised constructor', () => {
+            component = new Problem();
+            component.codeIcd9 = 'ICD-B';
+            component.codeIcd10 = 'ICD10-A';
+            component.comment = 'mycomments';
+            component.description = 'MyDescription';
+            component.problemId = '12345';
+            component.onsetDate = new Date();
+            component.stopDate = new Date();
+            component.note = 'My note';
+            let newComponent = new Problem(component);
+            
+            expect(newComponent.problemId).toEqual(component.problemId);
+            expect(newComponent.codeIcd9).toEqual(component.codeIcd9);
+            expect(newComponent.codeIcd10).toEqual(component.codeIcd10);
+            expect(newComponent.comment).toEqual(component.comment);
+            expect(newComponent.onsetDate).toEqual(component.onsetDate);
+            expect(newComponent.stopDate).toEqual(component.stopDate);
+            expect(newComponent.note).toEqual(component.note);
+        });
+    });
 })
