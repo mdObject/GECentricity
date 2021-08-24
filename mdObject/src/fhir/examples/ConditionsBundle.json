@@ -1,0 +1,211 @@
+{
+  "resourceType": "Bundle",
+  "id": "37b07071-38e8-4ae0-ac01-25e7e9d3c528",
+  "meta": { "lastUpdated": "2021-08-24T18:19:59.539+00:00" },
+  "type": "searchset",
+  "total": 7,
+  "link": [
+    {
+      "relation": "self",
+      "url": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition?patient=pid-1239620410000620"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239656604000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239656604000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "13644009",
+              "display": "SNOMED"
+            }
+          ],
+          "text": "HYPERCHOLESTEROLEMIA"
+        },
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2007-09-03T00:00:00",
+        "abatementDateTime": "4700-12-31T00:00:00",
+        "notes": "needs to be treated"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239657413000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239657413000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9-cm",
+              "code": "ICD-600",
+              "display": "ICD9"
+            }
+          ],
+          "text": "PROSTATIC HYPERTROPHY"
+        },
+        "clinicalStatus": "resolved",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2008-09-21T00:00:00",
+        "abatementDateTime": "2017-10-01T00:00:00",
+        "notes": "followed by urology"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239655567000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239655567000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "53741008",
+              "display": "SNOMED"
+            }
+          ],
+          "text": "CORONARY ARTERY DISEASE"
+        },
+        "clinicalStatus": "resolved",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2007-08-19T00:00:00",
+        "abatementDateTime": "2017-10-01T00:00:00",
+        "notes": "uncle dead age 60 mi  grandfather dead age 60 mi"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239657128000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239657128000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9-cm",
+              "code": "ICD-413.9",
+              "display": "ICD9"
+            }
+          ],
+          "text": "ANGINA  FUNCTIONAL CLASS III"
+        },
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2008-03-18T00:00:00",
+        "abatementDateTime": "4700-12-31T00:00:00",
+        "notes": "  new stable angina ETT ECHO due on 5 28 99 at Evergreen"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239656736000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239656736000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "13645005",
+              "display": "SNOMED"
+            }
+          ],
+          "text": "CHRONIC AIRWAY OBSTRUCTION  COPD "
+        },
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2008-03-05T00:00:00",
+        "abatementDateTime": "4700-12-31T00:00:00",
+        "notes": "FEV1 10 97 1 8 LITERS"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239657197000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239657197000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "54150009",
+              "display": "SNOMED"
+            }
+          ],
+          "text": "UPPER RESPIRATORY INFECTION"
+        },
+        "clinicalStatus": "resolved",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2008-05-18T00:00:00",
+        "abatementDateTime": "2008-06-01T00:00:00",
+        "notes": " pneumonia"
+      },
+      "search": { "mode": "match" }
+    },
+    {
+      "fullUrl": "https://api.mdemrarchive.com/projects/demo/repos/centricity-extract/fhir/Condition/sprid-1239655562000620",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "sprid-1239655562000620",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+        },
+        "patient": { "reference": "Patient/pid-1239620410000620" },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "3723001",
+              "display": "SNOMED"
+            }
+          ],
+          "text": "ARTHRITIS"
+        },
+        "clinicalStatus": "active",
+        "verificationStatus": "confirmed",
+        "onsetDateTime": "2007-08-19T00:00:00",
+        "abatementDateTime": "4700-12-31T00:00:00",
+        "notes": "osteoarthritis hips and lumbar spine"
+      },
+      "search": { "mode": "match" }
+    }
+  ]
+}

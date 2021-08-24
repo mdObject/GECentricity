@@ -1,4 +1,6 @@
 import { Problem } from '../../classes';
+import { ObjectState, ObjectStatus } from '../../enums';
+import { Condition } from '../../fhir';
 
 describe('Class: Problem', () => {
 
@@ -82,6 +84,9 @@ describe('Class: Problem', () => {
             component.onsetDate = new Date();
             component.stopDate = new Date();
             component.note = 'My note';
+            component.state = ObjectState.Add;
+            component.status = ObjectStatus.Added;
+
             let newComponent = new Problem(component);
             
             expect(newComponent.problemId).toEqual(component.problemId);
@@ -91,6 +96,45 @@ describe('Class: Problem', () => {
             expect(newComponent.onsetDate).toEqual(component.onsetDate);
             expect(newComponent.stopDate).toEqual(component.stopDate);
             expect(newComponent.note).toEqual(component.note);
+            expect(newComponent.state).toEqual(component.state);
+            expect(newComponent.status).toEqual(component.status);
+        });
+    });
+
+    describe('fromFhir', () => {
+        it('Sample1', () => {
+            let condition: Condition = {
+                "resourceType": "Condition",
+                "id": "sprid-1239657128000620",
+                "meta": {
+                    "versionId": "1",
+                    "lastUpdated": "2020-02-18T20:48:19.034+00:00"
+                },
+                "patient": { "reference": "Patient/pid-1239620410000620" },
+                "code": {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/icd-9-cm",
+                            "code": "ICD-413.9",
+                            "display": "ICD9"
+                        }
+                    ],
+                    "text": "ANGINA  FUNCTIONAL CLASS III"
+                },
+                "clinicalStatus": "active",
+                "verificationStatus": "confirmed",
+                "onsetDateTime": "2008-03-18T00:00:00",
+                "abatementDateTime": "4700-12-31T00:00:00",
+                "notes": "  new stable angina ETT ECHO due on 5 28 99 at Evergreen"
+            };
+
+            let problem: Problem = Problem.fromFhir(condition);
+            expect(problem.problemId).toEqual('sprid-1239657128000620');
+            expect(problem.codeIcd9).toEqual('ICD-413.9');
+            expect(problem.comment).toEqual('  new stable angina ETT ECHO due on 5 28 99 at Evergreen');
+            expect(problem.description).toEqual('ANGINA  FUNCTIONAL CLASS III');
+            expect(problem.onsetDate).toEqual(new Date('2008-03-18T00:00:00'));
+            expect(problem.stopDate).toEqual(new Date('4700-12-31T00:00:00'));
         });
     });
 })

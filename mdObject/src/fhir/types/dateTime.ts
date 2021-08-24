@@ -1,0 +1,2 @@
+export type dateTime = string & {
+}

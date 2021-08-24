@@ -1,0 +1,1 @@
+export type ClinicalStatus = 'active' | 'relapse' | 'remission' | 'resolved';

@@ -48,6 +48,8 @@
     <Folder Include="src\enums\" />
     <Folder Include="src\factories\" />
     <Folder Include="src\fhir\codes\" />
+    <Folder Include="src\fhir\examples\" />
+    <Folder Include="src\fhir\types\" />
     <Folder Include="src\interfaces\" />
     <Folder Include="src\fhir\" />
     <Folder Include="src\simulator\" />
@@ -72,6 +74,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="src\classes\README.md" />
+    <Content Include="src\fhir\examples\ConditionsBundle.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="src\index.html" />
     <Content Include="src\ng-package.json" />
     <Content Include="src\package.json" />
@@ -221,6 +226,10 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\CodeableConcept.ts" />
+    <TypeScriptCompile Include="src\fhir\codes\VerificationStatus.ts" />
+    <TypeScriptCompile Include="src\fhir\codes\ClinicalStatus.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\codes\CommunicationCode.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -236,13 +245,28 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\index.ts" />
+    <TypeScriptCompile Include="src\fhir\Meta.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\Patient.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\Person.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Reference.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\Resource.ts" />
+    <TypeScriptCompile Include="src\fhir\types\Converter.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\types\dateTime.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\types\index.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\index.ts" />
     <TypeScriptCompile Include="src\interfaces\ArrayAsync.ts" />
     <TypeScriptCompile Include="src\interfaces\IAllergyData.ts" />

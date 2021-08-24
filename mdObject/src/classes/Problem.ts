@@ -1,12 +1,11 @@
 import { ObjectState, ObjectStatus } from '../enums';
 import { Condition } from '../fhir';
+import { Converter } from '../fhir/types';
 import { EmrMel } from './EmrMel';
 import { EmrObject } from './EmrObject';
 import { System } from './System';
 
 export class Problem extends EmrObject<Problem> {
-    status: ObjectStatus = ObjectStatus.Unchanged;
-    state: ObjectState = ObjectState.None;
 
     // The assessment values:
     // New or N
@@ -93,9 +92,15 @@ export class Problem extends EmrObject<Problem> {
     // let problem: Problem = Problem.fromFhir(condition);
     //
     static fromFhir(condition: Condition): Problem {
-        const problem = new this() 
-        problem.description = condition.code.text;
-        problem.comment = condition.evidence?.[0]?.code.text;
+        const problem = new this()
+        problem.problemId = condition?.id;
+        problem.description = condition?.code?.text;
+        problem.comment = condition?.notes;
+        problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
+        problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
+        problem.codeIcd9 = condition?.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-9-cm")?.code;
+        problem.codeIcd10 = condition?.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-10")?.code;
+        problem.type = 'DX OF';
         return problem;        
     }
 }

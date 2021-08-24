@@ -516,15 +516,29 @@
         return PatientContact;
     }());
 
+    var Converter = /** @class */ (function () {
+        function Converter() {
+        }
+        Converter.dateTimeToDate = function (source) {
+            return new Date(source);
+        };
+        return Converter;
+    }());
+
     var EmrObject = /** @class */ (function () {
-        function EmrObject(item) {
-            var _this = this;
-            if (item) {
-                Object.keys(this).forEach(function (key) {
-                    _this[key] = item[key] ? item[key] : _this[key];
+        function EmrObject() {
+            this.status = exports.ObjectStatus.Unchanged;
+            this.state = exports.ObjectState.None;
+        }
+        EmrObject.prototype.objectSetup = function (base, item) {
+            if (item && base) {
+                Object.keys(base)
+                    .filter(function (key) { return (typeof base[key]) !== "function"; })
+                    .forEach(function (key) {
+                    base[key] = item[key] ? item[key] : base[key];
                 });
             }
-        }
+        };
         return EmrObject;
     }());
 
@@ -597,9 +611,7 @@
     var Problem = /** @class */ (function (_super) {
         __extends(Problem, _super);
         function Problem(problem) {
-            var _this = _super.call(this, problem) || this;
-            _this.status = exports.ObjectStatus.Unchanged;
-            _this.state = exports.ObjectState.None;
+            var _this = _super.call(this) || this;
             _this.assessment = 'N';
             _this.note = '';
             _this.problemId = '';
@@ -607,6 +619,8 @@
             _this.description = '';
             _this.codeIcd9 = '';
             _this.comment = '';
+            _this.onsetDate = undefined;
+            _this.stopDate = undefined;
             _this.stopReason = '';
             _this.codeIcd10 = '';
             _this.lastModifiedDate = '';
@@ -626,18 +640,18 @@
                 }
             };
             _this.saveAsync = function (mel) { return __awaiter$2(_this, void 0, void 0, function () {
-                var _c, code, error;
-                return __generator(this, function (_d) {
-                    switch (_d.label) {
+                var _f, code, error;
+                return __generator(this, function (_g) {
+                    switch (_g.label) {
                         case 0:
-                            _c = this.state;
-                            switch (_c) {
+                            _f = this.state;
+                            switch (_f) {
                                 case exports.ObjectState.Add: return [3 /*break*/, 1];
                             }
                             return [3 /*break*/, 3];
                         case 1: return [4 /*yield*/, mel.melFunc('{MEL_ADD_PROBLEM("' + this.toAddString() + '")}')];
                         case 2:
-                            code = _d.sent();
+                            code = _g.sent();
                             if (code !== '0') {
                                 error = 'Problem.save error. Code is ' + code;
                                 console.error(error);
@@ -660,6 +674,7 @@
                     _this.assessment + ',"' +
                     _this.note;
             };
+            _this.objectSetup(_this, problem);
             return _this;
         }
         Object.defineProperty(Problem.prototype, "code", {
@@ -672,10 +687,16 @@
             configurable: true
         });
         Problem.fromFhir = function (condition) {
-            var _a, _b;
+            var _a, _b, _c, _d, _e;
             var problem = new this();
-            problem.description = condition.code.text;
-            problem.comment = (_b = (_a = condition.evidence) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.code.text;
+            problem.problemId = condition === null || condition === void 0 ? void 0 : condition.id;
+            problem.description = (_a = condition === null || condition === void 0 ? void 0 : condition.code) === null || _a === void 0 ? void 0 : _a.text;
+            problem.comment = condition === null || condition === void 0 ? void 0 : condition.notes;
+            problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
+            problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
+            problem.codeIcd9 = (_c = (_b = condition === null || condition === void 0 ? void 0 : condition.code) === null || _b === void 0 ? void 0 : _b.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-9-cm"; })) === null || _c === void 0 ? void 0 : _c.code;
+            problem.codeIcd10 = (_e = (_d = condition === null || condition === void 0 ? void 0 : condition.code) === null || _d === void 0 ? void 0 : _d.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-10"; })) === null || _e === void 0 ? void 0 : _e.code;
+            problem.type = 'DX OF';
             return problem;
         };
         return Problem;

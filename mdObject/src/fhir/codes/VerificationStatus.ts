@@ -1,0 +1,1 @@
+export type VerificationStatus = 'provisional' | 'differential' | 'confirmed' | 'refuted' | 'entered-in-error' | 'unknown';
