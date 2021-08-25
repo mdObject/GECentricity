@@ -6,6 +6,7 @@ The * indicates changes that break backward compatibility. See https://docs.npmj
 	Problem extends EmrObject<Problem>
 	Added sample for FHIR Conditions.
 	Added FHIR implementation for types.
+	Added FHIR Bundle, BundleTypeCode, EntryBundle, Search, Signature object.
 
 ## Release 2.0.0-alpha.2.3
 	Added export EmrContents class.

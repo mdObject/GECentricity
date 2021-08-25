@@ -93,14 +93,16 @@ export class Problem extends EmrObject<Problem> {
     //
     static fromFhir(condition: Condition): Problem {
         const problem = new this()
-        problem.problemId = condition?.id;
-        problem.description = condition?.code?.text;
-        problem.comment = condition?.notes;
-        problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
-        problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
-        problem.codeIcd9 = condition?.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-9-cm")?.code;
-        problem.codeIcd10 = condition?.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-10")?.code;
-        problem.type = 'DX OF';
+        if (condition) {
+            problem.problemId = condition.id;
+            problem.description = condition.code?.text;
+            problem.comment = condition.notes;
+            problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
+            problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
+            problem.codeIcd9 = condition.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-9-cm")?.code;
+            problem.codeIcd10 = condition.code?.coding.find(e => e.system === "http://hl7.org/fhir/sid/icd-10")?.code;
+            problem.type = 'DX OF';
+        }
         return problem;        
     }
 }

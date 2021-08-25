@@ -58,6 +58,7 @@
     <Folder Include="src\test\classes\" />
     <Folder Include="src\test\factories\" />
     <Folder Include="src\test\mocks\" />
+    <Folder Include="src\test\fhir\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".editorconfig" />
@@ -225,7 +226,13 @@
     <TypeScriptCompile Include="src\fhir\Attachment.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Bundle.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\CodeableConcept.ts" />
+    <TypeScriptCompile Include="src\fhir\codes\BundleTypeCode.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\codes\VerificationStatus.ts" />
     <TypeScriptCompile Include="src\fhir\codes\ClinicalStatus.ts">
       <SubType>Code</SubType>
@@ -239,6 +246,9 @@
     <TypeScriptCompile Include="src\fhir\Coding.ts" />
     <TypeScriptCompile Include="src\fhir\Condition.ts" />
     <TypeScriptCompile Include="src\fhir\ContactPoint.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\EntryBundle.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\HumanName.ts">
@@ -258,6 +268,12 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\Resource.ts" />
+    <TypeScriptCompile Include="src\fhir\Search.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\fhir\Signature.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\fhir\types\Converter.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -322,6 +338,9 @@
     <TypeScriptCompile Include="src\test\factories\GetCurrentUser.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\IsActiveXSupported.spec.ts" />
     <TypeScriptCompile Include="src\test\factories\StringInternal.spec.ts" />
+    <TypeScriptCompile Include="src\test\fhir\Bundle.spec.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\test\mocks\MockEmrBase.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockExternal.ts" />
     <TypeScriptCompile Include="src\test\mocks\MockDocument.ts" />
