@@ -11,3 +11,4 @@ export { Bundle } from './Bundle';
 export { EntryBundle } from './EntryBundle';
 export { Search } from './Search';
 export { Signature } from './Signature';
+export { Meta } from './Meta';
