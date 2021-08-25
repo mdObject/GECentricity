@@ -7,3 +7,7 @@ export { Coding } from './Coding';
 export { CodeableConcept } from './CodeableConcept';
 export { Condition } from './Condition';
 export { Resource } from './Resource';
+export { Bundle } from './Bundle';
+export { EntryBundle } from './EntryBundle';
+export { Search } from './Search';
+export { Signature } from './Signature';

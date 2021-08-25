@@ -19,5 +19,4 @@ export class EntryBundle {
     //    "location": "<uri>", // The location, if the operation returns a location
     //    "etag": "<string>", // The etag for the resource (if relevant)
     //    "lastModified": "<instant>" // Server's date time modified
-    }
 }
