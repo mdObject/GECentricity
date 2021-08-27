@@ -689,14 +689,16 @@
         Problem.fromFhir = function (condition) {
             var _a, _b, _c, _d, _e;
             var problem = new this();
-            problem.problemId = condition === null || condition === void 0 ? void 0 : condition.id;
-            problem.description = (_a = condition === null || condition === void 0 ? void 0 : condition.code) === null || _a === void 0 ? void 0 : _a.text;
-            problem.comment = condition === null || condition === void 0 ? void 0 : condition.notes;
-            problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
-            problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
-            problem.codeIcd9 = (_c = (_b = condition === null || condition === void 0 ? void 0 : condition.code) === null || _b === void 0 ? void 0 : _b.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-9-cm"; })) === null || _c === void 0 ? void 0 : _c.code;
-            problem.codeIcd10 = (_e = (_d = condition === null || condition === void 0 ? void 0 : condition.code) === null || _d === void 0 ? void 0 : _d.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-10"; })) === null || _e === void 0 ? void 0 : _e.code;
-            problem.type = 'DX OF';
+            if (condition) {
+                problem.problemId = condition.id;
+                problem.description = (_a = condition.code) === null || _a === void 0 ? void 0 : _a.text;
+                problem.comment = condition.notes;
+                problem.onsetDate = Converter.dateTimeToDate(condition.onsetDateTime);
+                problem.stopDate = Converter.dateTimeToDate(condition.abatementDateTime);
+                problem.codeIcd9 = (_c = (_b = condition.code) === null || _b === void 0 ? void 0 : _b.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-9-cm"; })) === null || _c === void 0 ? void 0 : _c.code;
+                problem.codeIcd10 = (_e = (_d = condition.code) === null || _d === void 0 ? void 0 : _d.coding.find(function (e) { return e.system === "http://hl7.org/fhir/sid/icd-10"; })) === null || _e === void 0 ? void 0 : _e.code;
+                problem.type = 'DX OF';
+            }
             return problem;
         };
         return Problem;
@@ -4603,6 +4605,122 @@
         return Allergy;
     }());
 
+    var HumanName = /** @class */ (function () {
+        function HumanName() {
+        }
+        return HumanName;
+    }());
+
+    var Address$1 = /** @class */ (function () {
+        function Address() {
+        }
+        return Address;
+    }());
+
+    var Attachment = /** @class */ (function () {
+        function Attachment() {
+        }
+        return Attachment;
+    }());
+
+    var Person = /** @class */ (function () {
+        function Person() {
+        }
+        Object.defineProperty(Person.prototype, "resourceType", {
+            get: function () { return "Person"; },
+            enumerable: false,
+            configurable: true
+        });
+        ;
+        return Person;
+    }());
+
+    var Patient$1 = /** @class */ (function () {
+        function Patient() {
+        }
+        Object.defineProperty(Patient.prototype, "resourceType", {
+            get: function () { return "Patient"; },
+            enumerable: false,
+            configurable: true
+        });
+        ;
+        return Patient;
+    }());
+
+    var Coding = /** @class */ (function () {
+        function Coding() {
+        }
+        return Coding;
+    }());
+
+    var CodeableConcept = /** @class */ (function () {
+        function CodeableConcept() {
+        }
+        return CodeableConcept;
+    }());
+
+    var Condition = /** @class */ (function () {
+        function Condition() {
+            this.resourceType = 'Condition';
+        }
+        return Condition;
+    }());
+
+    var Resource = /** @class */ (function () {
+        function Resource() {
+        }
+        return Resource;
+    }());
+
+    var Bundle = /** @class */ (function () {
+        function Bundle() {
+            this.resourceType = 'Bundle';
+        }
+        return Bundle;
+    }());
+
+    var EntryBundle = /** @class */ (function () {
+        function EntryBundle() {
+        }
+        return EntryBundle;
+    }());
+
+    var Search = /** @class */ (function () {
+        function Search() {
+        }
+        return Search;
+    }());
+
+    var Signature = /** @class */ (function () {
+        function Signature() {
+        }
+        return Signature;
+    }());
+
+    var Meta = /** @class */ (function () {
+        function Meta() {
+        }
+        return Meta;
+    }());
+
+    var index = /*#__PURE__*/Object.freeze({
+        __proto__: null,
+        HumanName: HumanName,
+        Address: Address$1,
+        Attachment: Attachment,
+        Person: Person,
+        Patient: Patient$1,
+        Coding: Coding,
+        CodeableConcept: CodeableConcept,
+        Condition: Condition,
+        Resource: Resource,
+        Bundle: Bundle,
+        EntryBundle: EntryBundle,
+        Search: Search,
+        Signature: Signature,
+        Meta: Meta
+    });
+
     (function (window) {
         var mdObject;
         try {
@@ -4629,6 +4747,7 @@
     exports.EmrMel = EmrMel;
     exports.EmrObject = EmrObject;
     exports.EmrWindow = EmrWindow;
+    exports.Fhir = index;
     exports.FlowsheetObservation = FlowsheetObservation;
     exports.Immunization = Immunization;
     exports.Insurance = Insurance;
