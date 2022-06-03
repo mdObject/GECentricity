@@ -41,7 +41,7 @@
     "@angular/cli": "10.0.5",
     "@angular/compiler": "10.0.9",
     "@angular/compiler-cli": "10.0.9",
-    "@angular/core": "10.0.9",
+    "@angular/core": "11.0.5",
     "@types/chrome": "0.0.127",
     "@types/jest": "^26.0.19",
     "@types/node": "12.12.70",
